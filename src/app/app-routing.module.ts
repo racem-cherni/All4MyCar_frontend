@@ -12,13 +12,13 @@ import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from 'src/app/components/espace-client/dashboard/dashboard.component';
 import { ProfilComponent } from 'src/app/components/espace-client/profil/profil.component';
 
-
+import { AuthGuardService as AuthGuard } from './_services/auth-guard.service';
 
 const routes: Routes = [
 
   { path: 'register', component: RegisterComponent },
   { path: 'tmp', component: LayoutComponent , children: [
-    { path: 'espace-client', component: EspaceClientComponent ,  children: [
+    { path: 'espace-client', component: EspaceClientComponent, canActivate: [AuthGuard] ,  children: [
       {path: 'vehicules', component: VehiculesComponent},
       {path: 'dashboard', component: DashboardComponent},
       {path: 'profil', component: ProfilComponent},

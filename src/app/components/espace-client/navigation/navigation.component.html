@@ -5,10 +5,15 @@
 
           <h4 class="account-nav__title">Navigation</h4>
           <ul class="account-nav__list">
-            <li class="account-nav__item account-nav__item--active">
-              <a (click)="gotodashbord()">Dashboard</a></li>
-              <li class="account-nav__item" (click)="gotovehicules()"><a >Véhicules</a></li>
-              <li class="account-nav__item" (click)="gotoprofil()"  ><a >Edit Profile</a></li>
+            <li class="account-nav__item ">
+             <!-- <a (click)="gotodashbord()">Dashboard</a></li>-->
+
+              <a routerLink="/tmp/espace-client/dashboard"  routerLinkActive=" account-nav__item--active">Dashboard</a>
+
+
+
+              <li class="account-nav__item" (click)="gotovehicules()"><a routerLink="/tmp/espace-client/vehicules" routerLinkActive=" account-nav__item--active" >Véhicules</a></li>
+              <li class="account-nav__item" (click)="gotoprofil()"  ><a routerLink="/tmp/espace-client/profil"  routerLinkActive=" account-nav__item--active" >Edit Profile</a></li>
               <li class="account-nav__item"><a >Order History</a></li>
               <li class="account-nav__item"><a >Password</a></li>
               <li class="account-nav__divider" role="presentation"></li><li class="account-nav__item"><a>Logout</a></li></ul>

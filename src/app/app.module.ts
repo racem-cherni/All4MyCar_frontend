@@ -12,6 +12,8 @@ import { HomeComponent } from 'src/app/components/home/home.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
+
+
 import { EspaceClientComponent } from 'src/app/components/espace-client/espace-client.component';
 import { EspacePrestataireComponent } from './components/espace-prestataire/espace-prestataire.component';
 import { VehiculesComponent } from 'src/app/components/espace-client/vehicules/vehicules.component';
@@ -23,6 +25,13 @@ import { FooterComponent } from './layout/footer/footer.component';
 
 import { NavigationComponent } from 'src/app/components/espace-client/navigation/navigation.component';
 import { ProfilComponent } from 'src/app/components/espace-client/profil/profil.component';
+import { JwtModule, JwtModuleOptions, JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -44,9 +53,9 @@ import { ProfilComponent } from 'src/app/components/espace-client/profil/profil.
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
-  ],
-  providers: [authInterceptorProviders],
+    HttpClientModule,
+    JwtModule ],
+  providers: [authInterceptorProviders, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

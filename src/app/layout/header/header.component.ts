@@ -55,12 +55,14 @@ export class HeaderComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorageService.getUser().roles;
-     //   this.reloadPage();
+      //  this.reloadPage();
         if (this.roles.includes('ROLE_USER')){
-          this.router.navigate(['/tmp/espace-client/dashboard']);
+          this.router.navigate(['/tmp/espace-client/dashboard']).then(() => {
+            window.location.reload();
+          });
          }
          else if (this.roles.includes('ROLE_PRESTATAIRE')){
-          this.router.navigate(['/tmp/espace-prestataire']);
+          this.router.navigate(['/espace-prestataire']);
          }
         },
       err => {
