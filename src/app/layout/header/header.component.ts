@@ -57,12 +57,10 @@ export class HeaderComponent implements OnInit {
         this.roles = this.tokenStorageService.getUser().roles;
       //  this.reloadPage();
         if (this.roles.includes('ROLE_USER')){
-          this.router.navigate(['/tmp/espace-client/dashboard']).then(() => {
-            window.location.reload();
-          });
+          window.location.href = '/tmp/espace-client/dashboard';
          }
          else if (this.roles.includes('ROLE_PRESTATAIRE')){
-          this.router.navigate(['/espace-prestataire']);
+          window.location.href = '/espace-prestataire';
          }
         },
       err => {

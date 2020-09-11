@@ -26,6 +26,17 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { NavigationComponent } from 'src/app/components/espace-client/navigation/navigation.component';
 import { ProfilComponent } from 'src/app/components/espace-client/profil/profil.component';
 import { JwtModule, JwtModuleOptions, JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatNativeDateModule} from '@angular/material/core';
+
+
+import { ReactiveFormsModule } from '@angular/forms';
+
+import {CalendarModule} from 'primeng/calendar';
+
+
 
 
 
@@ -50,11 +61,18 @@ import { JwtModule, JwtModuleOptions, JWT_OPTIONS, JwtHelperService } from '@aut
 
   ],
   imports: [
+    CalendarModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    JwtModule ],
+    JwtModule,
+    BrowserAnimationsModule ],
   providers: [authInterceptorProviders, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService  ],
   bootstrap: [AppComponent]
 })

@@ -1,13 +1,28 @@
   <div class="dashboard">
     <div class="dashboard__profile card profile-card">
       <div class="card-body profile-card__body">
-        <div class="profile-card__avatar"><img src="assets/images/avatars/avatar-4.jpg" alt=""></div>
-        <div class="profile-card__name">Helena Garcia</div>
-        <div class="profile-card__email">red-parts@example.com</div>
+        <div class="profile-card__avatar"><img src="assets/images/avatars/avat.jpg" alt=""></div>
+
+
+
+
+
+
+
+
+        <div class="profile-card__name">{{ user.username}} {{client.lastNameclt}} </div>
+
+
+
+
+
+
+
+        <div class="profile-card__email">{{ user.email}}</div>
         <div class="profile-card__edit"><a routerLink="/tmp/espace-client/profil" class="btn btn-secondary btn-sm">Edit Profile</a></div></div></div>
         <div class="dashboard__address card address-card address-card--featured">
           <div class="address-card__badge tag-badge tag-badge--theme">Default</div>
-          <div class="address-card__body"><div class="address-card__name">Helena Garcia</div>
+          <div class="address-card__body"><div class="address-card__name">{{ user.username}} {{client.lastNameclt}}</div>
           <div class="address-card__row">Random Federation<br>115302, Moscow<br>ul. Varshavskaya, 15-2-178</div>
           <div class="address-card__row"><div class="address-card__row-title">Phone Number</div>
           <div class="address-card__row-content">38 972 588-42-36</div></div>
