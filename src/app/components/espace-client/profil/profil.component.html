@@ -4,151 +4,75 @@
   </div>
   <div class="card-divider"></div>
   <div class="card-body card-body--padding--2">
-    <form name="form"
-    *ngIf="!isSuccessful"
 
-      name="form"
-      (ngSubmit)="f.form.valid && onSubmit()"
-      #f="ngForm"
-      novalidate
-            >
+    <form
+    novalidate [formGroup]="form" #fform="ngForm"(ngSubmit)="onsubmitt()" *ngIf="showclientForm">
     <div class="row no-gutters">
       <div class="col-12 col-lg-7 col-xl-5">
-        <div class="form-group"><label for="firstname">First Name</label>
-           <input type="text" class="form-control" id="firstNameclt" placeholder="First Name"
-           [(ngModel)]="form.firstNameclt"
-          required
-          minlength="3"
-          maxlength="20"
-          #firstNameclt="ngModel"
-           >
-           <div class="alert-danger" *ngIf="f.submitted && firstNameclt.invalid">
-            <div *ngIf="firstNameclt.errors.required">firstname is required</div>
-            <div *ngIf="firstNameclt.errors.minlength">
-              firstname must be at least 3 characters
-            </div>
-            <div *ngIf="firstNameclt.errors.maxlength">
-              firstname must be at most 20 characters
-            </div>
-          </div>
-          </div>
-        <div class="form-group"><label for="email">Email Address</label>
-          <input type="email" class="form-control" id="emailclt" placeholder="Email Address"
-          name="email"
-               [(ngModel)]="form.emailclt"
-               required
-               email
-               #emailclt="ngModel"
-          >
-          <div class="alert-danger" *ngIf="f.submitted && emailclt.invalid">
-            <div *ngIf="emailclt.errors.required">Email is required</div>
-            <div *ngIf="emailclt.errors.email">
-              Email must be a valid email address
-            </div>
-          </div>
-        </div>
+        <mat-form-field class="half-width">
+           <input matInput formControlName="firstNameclt" type="text"  id="firstNameclt" placeholder="First Name" required>
+           <mat-error *ngIf="formErrors.firstNameclt">{{formErrors.firstNameclt}}</mat-error>
+           </mat-form-field>
 
-            <div class="form-group"><label for="cin">Numero CIN</label>
-              <input type="number" class="form-control" id="CIN" placeholder="cin"
-              name="cin"
-              [(ngModel)]="form.CIN"
-              required size="8"
-              #CIN="ngModel"
-              >
-              <div class="alert-danger" *ngIf="f.submitted && CIN.invalid">
-                <div *ngIf="CIN.errors.required">CIN is required</div>
-                <div *ngIf="CIN.errors.size">
-                  firstname must be 8 numbers
-                </div>
+           <mat-form-field class="half-width">
+          <input matInput formControlName="emailclt" type="email" id="emailclt" placeholder="Email Address"required email>
+          <mat-error *ngIf="formErrors.emailclt">{{formErrors.emailclt}}</mat-error>
+        </mat-form-field>
 
-              </div>
-              </div>
+        <mat-form-field class="half-width">
+              <input matInput formControlName="CIN" type="tel" placeholder="cin" pattern="[0-9]*" required >
+              <mat-error *ngIf="formErrors.CIN">{{formErrors.CIN}}</mat-error>
+              </mat-form-field>
 
-              <div class="form-group"><label for="datepermis">Date permis</label>
-                &nbsp;
-                <mat-form-field appearance="fill">
-                <input matInput [matDatepicker]="picker" placeholder="Choose a date" class="form-control"
-                name="datepermis" id="datepermis"
-              [(ngModel)]="form.datepermis"
-              required
-              #datepermis="ngModel"
-                >
+
+               <mat-form-field class="half-width">
+                  <label for="date_permis">Date permis</label>
+                <input matInput formControlName="date_permis" [matDatepicker]="picker" placeholder="Choose a date" type="date" required  >
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="formErrors.date_permis">{{formErrors.date_permis}}</mat-error>
                 </mat-form-field>
-                <div class="alert-danger" *ngIf="f.submitted && datepermis.invalid">
-                  <div *ngIf="datepermis.errors.required">Date permis is required</div>
 
+            <!--    <div class="p-field p-col-12 p-md-4">
+                  <label for="icon">Icon</label>
+                  <p-calendar formControlName="date_permis" [showIcon]="true" type="date" inputId="icon">
+                    <mat-error *ngIf="formErrors.date_permis">{{formErrors.date_permis}}</mat-error>
+                  </p-calendar>
+              </div>-->
 
-                </div>
-            </div>
       </div>
 
 
       <div class="col-12 col-lg-7 col-xl-1">
       </div>
       <div class="col-12 col-lg-7 col-xl-5">
-        <div class="form-group"><label for="lastname">Last Name</label>
-          <input type="text" class="form-control" id="lastNameclt" placeholder="Last Name"
-          [(ngModel)]="form.lastNameclt"
-         required
-         minlength="3"
-         maxlength="20"
-         #lastNameclt="ngModel"
-          >
-          <div class="alert-danger" *ngIf="f.submitted && lastNameclt.invalid">
-           <div *ngIf="lastNameclt.errors.required">lastname is required</div>
-           <div *ngIf="lastNameclt.errors.minlength">
-            lastname must be at least 3 characters
-           </div>
-           <div *ngIf="lastNameclt.errors.maxlength">
-            lastname must be at most 20 characters
-           </div>
-         </div>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="lastNameclt" type="text" placeholder="Last Name" required >
+          <mat-error *ngIf="formErrors.lastNameclt">{{formErrors.lastNameclt}}</mat-error>
+        </mat-form-field>
 
-        </div>
-          <div class="form-group"><label for="phone">Phone Number</label>
-            <input type="text" class="form-control"
-            id="telclt" placeholder="Phone Number"
-            name="phone"
-            [(ngModel)]="form.telclt"
-            required size="8"
-            #telclt="ngModel"
-            >
-            <div class="alert-danger" *ngIf="f.submitted && telclt.invalid">
-              <div *ngIf="telclt.errors.required">phone is required</div>
-              <div *ngIf="telclt.errors.size">
-                phone must be 8 numbers
-              </div>
+        <mat-form-field class="half-width">
 
-            </div>
-          </div>
-            <div class="form-group"><label for="adresse">Adresse</label>
-               <input type="text" class="form-control"
-              id="adresseclt" placeholder="adresse"
-              [(ngModel)]="form.adresseclt"
-             required
-             minlength="3"
-             maxlength="20"
-             #adresseclt="ngModel"
-              >
-              <div class="alert-danger" *ngIf="f.submitted && adresseclt.invalid">
-               <div *ngIf="adresseclt.errors.required">adresse is required</div>
-               <div *ngIf="adresseclt.errors.minlength">
-                adresse must be at least 3 characters
-               </div>
-               <div *ngIf="adresseclt.errors.maxlength">
-                adresse must be at most 20 characters
-               </div>
-             </div>
-            </div>
-            <div class="form-group">
+            <input matInput formControlName="telclt" type="tel" placeholder="Phone Number" pattern="[0-9]*" required >
+            <mat-error *ngIf="formErrors.telclt">{{formErrors.telclt}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="half-width">
+               <input matInput formControlName="adresseclt" type="text" placeholder="adresse" required>
+               <mat-error *ngIf="formErrors.adresseclt">{{formErrors.adresseclt}}</mat-error>
+            </mat-form-field>
+
+
+
+
+
+          <div class="form-group">
 
               <label for="file">Photo</label>
 
               <input
 
-                  formControlName="file"
+                  formControlName="photoclt"
 
                   id="file"
 
@@ -158,9 +82,9 @@
 
                   (change)="onFileChange($event)">
 
-              <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+              <div *ngIf="f.photoclt.touched && f.photoclt.invalid" class="alert alert-danger">
 
-                  <div *ngIf="f.file.errors.required">File is required.</div>
+                  <div *ngIf="f.photoclt.errors.required">File is required.</div>
 
               </div>
 
@@ -168,7 +92,7 @@
 
 
 
-          <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width:500px">
+          <img [src]="imageSrc" *ngIf="imageSrc" style="height: 100px; width:300px">
 
 
 
@@ -176,10 +100,11 @@
 
 
 </div>
-<div class="form-group mb-0">
-  <button type="submit" class="btn btn-danger mt-3">Save</button></div>
 
-    </div>
+
+  <button type="submit" mat-button class="btn btn-danger mt-3" >Save</button></div>
+
+
     </form>
   </div>
 </div>

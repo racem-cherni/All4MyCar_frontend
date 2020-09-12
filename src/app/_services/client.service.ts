@@ -50,5 +50,11 @@ edit_client(client): Observable<any> {
   }, httpOptions);
 }
 
+submiteditprofil(client: Client): Observable<Client> {
+  return this.http.put<Client>(this.baseUrluser + '/edit_client' , client, httpOptions);
+}
 
 }
+
+
+

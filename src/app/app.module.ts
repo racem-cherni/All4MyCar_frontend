@@ -34,7 +34,6 @@ import {MatNativeDateModule} from '@angular/material/core';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
-import {CalendarModule} from 'primeng/calendar';
 
 
 
@@ -61,7 +60,6 @@ import {CalendarModule} from 'primeng/calendar';
 
   ],
   imports: [
-    CalendarModule,
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

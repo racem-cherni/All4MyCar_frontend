@@ -7,7 +7,8 @@ lastNameclt: string	;
 emailclt: string ;
 photoclt: string ;
 CIN: number;
-datepermis: Date ;
+// tslint:disable-next-line: variable-name
+date_permis: Date ;
 telclt: number ;
 adresseclt: string ;
 
