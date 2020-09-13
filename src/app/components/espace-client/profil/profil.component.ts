@@ -120,9 +120,12 @@ myForm = new FormGroup({
      private route: ActivatedRoute , private fb: FormBuilder ) {
       this.createformprofil() ;
 
+
       }
+  clientt: Client;
 
-
+  selectedFiles: FileList;
+  currentFile: File;
 
   get f(){
 
@@ -134,7 +137,9 @@ myForm = new FormGroup({
   onFileChange(event) {
 
     const reader = new FileReader();
-    if (event.target.files && event.target.files.length) {
+    this.selectedFiles = event.target.files;
+
+  /*  if (event.target.files && event.target.files.length) {
 
       const [file] = event.target.files;
 
@@ -153,11 +158,15 @@ myForm = new FormGroup({
 
 
       };
-    }
+    }*/
   }
 
 
   ngOnInit(): void {
+
+    this.clientt = new Client();
+    this.clientService.getclient()
+   .subscribe((data) => {this.clientt = data, console.log(data)} , error => console.log(error));
 
   }
 
@@ -220,9 +229,10 @@ this.onValueChanged();
 
   // tslint:disable-next-line: typedef
   onsubmitt() {
+    this.currentFile = this.selectedFiles.item(0);
     this.client = this.form.value;
     console.log(this.client);
-    this.clientService.submiteditprofil(this.client)
+    this.clientService.submiteditprofil(this.client,  this.currentFile)
     .subscribe(client => {
       this.clientcopy = client ;
       this.client = null ;

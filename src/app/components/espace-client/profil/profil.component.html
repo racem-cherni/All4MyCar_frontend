@@ -12,23 +12,23 @@
     <div class="row no-gutters">
       <div class="col-12 col-lg-7 col-xl-5">
         <mat-form-field class="half-width" >
-           <input matInput formControlName="firstNameclt" type="text"  id="firstNameclt" placeholder="First Name" required defalut  >
+           <input matInput formControlName="firstNameclt" type="text"  id="firstNameclt" placeholder="First Name" required [(ngModel)]="clientt.firstNameclt"  >
            <mat-error *ngIf="formErrors.firstNameclt">{{formErrors.firstNameclt}}</mat-error>
            </mat-form-field>
 
            <mat-form-field class="half-width">
-          <input matInput formControlName="emailclt" type="email" id="emailclt" placeholder="Email Address"required email>
+          <input matInput formControlName="emailclt" type="email" id="emailclt" placeholder="Email Address"required email [(ngModel)]="clientt.emailclt" >
           <mat-error *ngIf="formErrors.emailclt">{{formErrors.emailclt}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="half-width">
-              <input matInput formControlName="cin" type="tel" placeholder="Numero CIN" pattern="[0-9]*" required >
+              <input matInput formControlName="cin" type="tel" placeholder="Numero CIN" pattern="[0-9]*" required [(ngModel)]="clientt.cin"  >
               <mat-error *ngIf="formErrors.cin">{{formErrors.cin}}</mat-error>
               </mat-form-field>
 
 
                <mat-form-field class="half-width">
-                <input matInput formControlName="date_permis" [matDatepicker]="picker" placeholder="Date permis"  required  >
+                <input matInput formControlName="date_permis" [matDatepicker]="picker" placeholder="Date permis"  required [(ngModel)]="clientt.date_permis"  >
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
                 <mat-error *ngIf="formErrors.date_permis">{{formErrors.date_permis}}</mat-error>
@@ -42,18 +42,18 @@
       </div>
       <div class="col-12 col-lg-7 col-xl-5">
         <mat-form-field class="half-width">
-          <input matInput formControlName="lastNameclt" type="text" placeholder="Last Name" required >
+          <input matInput formControlName="lastNameclt" type="text" placeholder="Last Name" required [(ngModel)]="clientt.lastNameclt" >
           <mat-error *ngIf="formErrors.lastNameclt">{{formErrors.lastNameclt}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="half-width">
 
-            <input matInput formControlName="telclt" type="tel" placeholder="Phone Number" pattern="[0-9]*"  required >
+            <input matInput formControlName="telclt" type="tel" placeholder="Phone Number" pattern="[0-9]*"  required [(ngModel)]="clientt.telclt" >
             <mat-error *ngIf="formErrors.telclt">{{formErrors.telclt}}</mat-error>
           </mat-form-field>
 
           <mat-form-field class="half-width">
-               <input matInput formControlName="adresseclt" type="text" placeholder="adresse" required>
+               <input matInput formControlName="adresseclt" type="text" placeholder="adresse" required [(ngModel)]="clientt.adresseclt"  >
                <mat-error *ngIf="formErrors.adresseclt">{{formErrors.adresseclt}}</mat-error>
             </mat-form-field>
 
@@ -87,7 +87,7 @@
 
 
 
-          <img [src]="imageSrc" *ngIf="imageSrc" style="height: 100px; width:300px">
+          <img [src]="imageSrc" *ngIf="imageSrc" style="height: 100px; width:300px" >
 
 
 

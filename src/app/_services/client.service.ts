@@ -50,8 +50,21 @@ edit_client(client): Observable<any> {
   }, httpOptions);
 }
 
-submiteditprofil(client: Client): Observable<Client> {
-  return this.http.put<Client>(this.baseUrluser + '/edit_client' , client, httpOptions);
+
+
+
+submiteditprofil(client: Client, currentfile: File): Observable<Client> {
+  const formData: FormData = new FormData();
+
+    // tslint:disable-next-line: align
+    formData.append('file', currentfile);
+    // tslint:disable-next-line: align
+  return this.http.post<Client>(this.baseUrluser + '/edit_client1/'  + `${client.firstNameclt}`  + "/" + `${client.lastNameclt}` + "/" + `${client.emailclt}`
+
+  + "/" + `${client.adresseclt}` + "/" + `${client.telclt}` + "/" + `${client.cin}` + "/" + `${client.date_permis}` , formData
+
+    ,  {headers: this.header} );
+
 }
 
 }
