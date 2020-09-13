@@ -17,7 +17,7 @@ import { AuthGuardService as AuthGuard } from './_services/auth-guard.service';
 const routes: Routes = [
 
   { path: 'register', component: RegisterComponent },
-  { path: 'tmp', component: LayoutComponent , children: [
+  { path: 'All4MyCar', component: LayoutComponent , children: [
     { path: 'espace-client', component: EspaceClientComponent, canActivate: [AuthGuard] ,  children: [
       {path: 'vehicules', component: VehiculesComponent},
       {path: 'dashboard', component: DashboardComponent},
@@ -27,7 +27,7 @@ const routes: Routes = [
   ]},
   { path: 'espace-prestataire', component: EspacePrestataireComponent },
   { path: 'vehicules', component: VehiculesComponent },
-  { path: '', redirectTo: 'tmp/home', pathMatch: 'full' }
+  { path: '', redirectTo: 'All4MyCar/home', pathMatch: 'full' }
 ];
 
 @NgModule({

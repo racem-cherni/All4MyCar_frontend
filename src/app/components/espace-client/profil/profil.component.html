@@ -1,3 +1,5 @@
+
+
 <div class="card">
   <div class="card-header">
     <h5>Edit Profile</h5>
@@ -9,8 +11,8 @@
     novalidate [formGroup]="form" #fform="ngForm"(ngSubmit)="onsubmitt()" *ngIf="showclientForm">
     <div class="row no-gutters">
       <div class="col-12 col-lg-7 col-xl-5">
-        <mat-form-field class="half-width">
-           <input matInput formControlName="firstNameclt" type="text"  id="firstNameclt" placeholder="First Name" required>
+        <mat-form-field class="half-width" >
+           <input matInput formControlName="firstNameclt" type="text"  id="firstNameclt" placeholder="First Name" required defalut  >
            <mat-error *ngIf="formErrors.firstNameclt">{{formErrors.firstNameclt}}</mat-error>
            </mat-form-field>
 
@@ -20,25 +22,18 @@
         </mat-form-field>
 
         <mat-form-field class="half-width">
-              <input matInput formControlName="CIN" type="tel" placeholder="cin" pattern="[0-9]*" required >
-              <mat-error *ngIf="formErrors.CIN">{{formErrors.CIN}}</mat-error>
+              <input matInput formControlName="cin" type="tel" placeholder="Numero CIN" pattern="[0-9]*" required >
+              <mat-error *ngIf="formErrors.cin">{{formErrors.cin}}</mat-error>
               </mat-form-field>
 
 
                <mat-form-field class="half-width">
-                  <label for="date_permis">Date permis</label>
-                <input matInput formControlName="date_permis" [matDatepicker]="picker" placeholder="Choose a date" type="date" required  >
+                <input matInput formControlName="date_permis" [matDatepicker]="picker" placeholder="Date permis"  required  >
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
                 <mat-error *ngIf="formErrors.date_permis">{{formErrors.date_permis}}</mat-error>
                 </mat-form-field>
 
-            <!--    <div class="p-field p-col-12 p-md-4">
-                  <label for="icon">Icon</label>
-                  <p-calendar formControlName="date_permis" [showIcon]="true" type="date" inputId="icon">
-                    <mat-error *ngIf="formErrors.date_permis">{{formErrors.date_permis}}</mat-error>
-                  </p-calendar>
-              </div>-->
 
       </div>
 
@@ -53,7 +48,7 @@
 
         <mat-form-field class="half-width">
 
-            <input matInput formControlName="telclt" type="tel" placeholder="Phone Number" pattern="[0-9]*" required >
+            <input matInput formControlName="telclt" type="tel" placeholder="Phone Number" pattern="[0-9]*"  required >
             <mat-error *ngIf="formErrors.telclt">{{formErrors.telclt}}</mat-error>
           </mat-form-field>
 
@@ -102,7 +97,7 @@
 </div>
 
 
-  <button type="submit" mat-button class="btn btn-danger mt-3" >Save</button></div>
+  <button type="submit" mat-button  [disabled]="!form.valid" class="btn btn-outline-danger mt-3" >Save</button></div>
 
 
     </form>

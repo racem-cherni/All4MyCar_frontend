@@ -30,7 +30,7 @@ formErrors = {
         // tslint:disable-next-line: object-literal-key-quotes
     'emailclt': '',
         // tslint:disable-next-line: object-literal-key-quotes
-    'CIN': '',
+    'cin': '',
         // tslint:disable-next-line: object-literal-key-quotes
     'date_permis': '',
         // tslint:disable-next-line: object-literal-key-quotes
@@ -63,13 +63,15 @@ validationMessages = {
     'maxlength':     'Last Name cannot be more than 25 characters long.'
   },
   // tslint:disable-next-line: object-literal-key-quotes
-  'CIN': {
+  'cin': {
     // tslint:disable-next-line: object-literal-key-quotes
     'required':      'cin is required.',
     // tslint:disable-next-line: object-literal-key-quotes
     'pattern':       'cin must contain only numbers.',
     // tslint:disable-next-line: object-literal-key-quotes
-    'size':         'cin must contain  8 numbers'
+    'minlength':         'cin must contain  8 numbers',
+    // tslint:disable-next-line: object-literal-key-quotes
+    'maxlength':  'cin must contain 8 numbers'
   },
   // tslint:disable-next-line: object-literal-key-quotes
   'emailclt': {
@@ -85,7 +87,9 @@ validationMessages = {
     // tslint:disable-next-line: object-literal-key-quotes
     'pattern':       'Tel. number must contain only numbers.',
      // tslint:disable-next-line: object-literal-key-quotes
-     'size':         'Tel. number must contain  8 numbers'
+     'minlength':         'cin must contain  8 numbers',
+     // tslint:disable-next-line: object-literal-key-quotes
+     'maxlength':  'cin must contain 8 numbers'
   },
   // tslint:disable-next-line: object-literal-key-quotes
   'adresseclt': {
@@ -115,6 +119,7 @@ myForm = new FormGroup({
      // tslint:disable-next-line: align
      private route: ActivatedRoute , private fb: FormBuilder ) {
       this.createformprofil() ;
+
       }
 
 
@@ -153,6 +158,7 @@ myForm = new FormGroup({
 
 
   ngOnInit(): void {
+
   }
 
   onSubmit(): void {
@@ -173,16 +179,16 @@ myForm = new FormGroup({
 this.form = this.fb.group({
   firstNameclt:  ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ] ,
   emailclt: ['', [Validators.required, Validators.email] ] ,
-  CIN: ['', [Validators.required, Validators.pattern] ]  ,
+  cin: ['', [Validators.required, Validators.pattern , Validators.minLength(8) , Validators.maxLength(8)] ]  ,
   date_permis: ['', [Validators.required] ]  ,
   lastNameclt: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ] ,
-  telclt: ['', [Validators.required, Validators.pattern] ] ,
+  telclt: ['', [Validators.required, Validators.pattern , Validators.minLength(8) , Validators.maxLength(8)] ] ,
   adresseclt: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
-  name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+ // name: new FormControl('', [Validators.required, Validators.minLength(3)]),
 
     photoclt: new FormControl('', [Validators.required]),
 
-    fileSource: new FormControl('', [Validators.required])
+  //  fileSource: new FormControl('', [Validators.required])
 });
 this.form.valueChanges
 .subscribe(data => this.onValueChanged(data));

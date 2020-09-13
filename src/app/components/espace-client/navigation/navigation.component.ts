@@ -15,17 +15,17 @@ export class NavigationComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   gotovehicules()
-  {this.router.navigate(['tmp/espace-client/vehicules']);
+  {this.router.navigate(['All4MyCar/espace-client/vehicules']);
 }
 
 // tslint:disable-next-line: typedef
 gotodashbord(){
-  this.router.navigate(['tmp/espace-client/dashboard']);
+  this.router.navigate(['All4MyCar/espace-client/dashboard']);
 }
 
 // tslint:disable-next-line: typedef
 gotoprofil(){
-this.router.navigate(['tmp/espace-client/profil']);
+this.router.navigate(['All4MyCar/espace-client/profil']);
 }
 
 }

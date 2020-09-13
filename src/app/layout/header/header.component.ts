@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.tokenStorageService.signOut();
-    window.location.href = '/tmp/home';  }
+    window.location.href = '/All4MyCar/home';  }
 
   onSubmit(): void {
     this.authService.login(this.form).subscribe(
@@ -57,10 +57,10 @@ export class HeaderComponent implements OnInit {
         this.roles = this.tokenStorageService.getUser().roles;
       //  this.reloadPage();
         if (this.roles.includes('ROLE_USER')){
-          window.location.href = '/tmp/espace-client/dashboard';
+          window.location.href = '/All4MyCar/home';
          }
          else if (this.roles.includes('ROLE_PRESTATAIRE')){
-          window.location.href = '/espace-prestataire';
+          window.location.href = '/All4MyCar/home';
          }
         },
       err => {
