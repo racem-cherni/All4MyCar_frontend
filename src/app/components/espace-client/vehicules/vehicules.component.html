@@ -52,88 +52,50 @@
   </div>
   <div class="card-divider"></div>
   <div class="card-body card-body--padding--2">
-    <form>
+    <form [formGroup]="form" >
     <div class="vehicle-form vehicle-form--layout--account">
-      <div class="vehicle-form__item vehicle-form__item--select"><select
-          class="form-control form-control-select2 select2-hidden-accessible" aria-label="Year" data-select2-id="13"
-          tabindex="-1" aria-hidden="true">
-          <option value="none" data-select2-id="15">Select Year</option>
-          <option>2010</option>
-          <option>2011</option>
-          <option>2012</option>
-          <option>2013</option>
-          <option>2014</option>
-          <option>2015</option>
-          <option>2016</option>
-          <option>2017</option>
-          <option>2018</option>
-          <option>2019</option>
-          <option>2020</option>
-        </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="14"><span
-            class="selection"><span class="select2-selection select2-selection--single" role="combobox"
-              aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false"
-              aria-labelledby="select2-mrmq-container"><span class="select2-selection__rendered"
-                id="select2-mrmq-container" role="textbox" aria-readonly="true" title="Select Year">Select
-                Year</span><span class="select2-selection__arrow" role="presentation"><b
-                  role="presentation"></b></span></span></span><span class="dropdown-wrapper"
-            aria-hidden="true"></span></span></div>
-      <div class="vehicle-form__item vehicle-form__item--select"><select
-          class="form-control form-control-select2 select2-hidden-accessible" aria-label="Brand" disabled=""
-          data-select2-id="16" tabindex="-1" aria-hidden="true">
-          <option value="none" data-select2-id="18">Select Brand</option>
-          <option>Audi</option>
-          <option>BMW</option>
-          <option>Ferrari</option>
-          <option>Ford</option>
-          <option>KIA</option>
-          <option>Nissan</option>
-          <option>Tesla</option>
-          <option>Toyota</option>
-        </select><span class="select2 select2-container select2-container--default select2-container--disabled"
-          dir="ltr" data-select2-id="17"><span class="selection"><span
-              class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true"
-              aria-expanded="false" tabindex="-1" aria-disabled="true" aria-labelledby="select2-k78k-container"><span
-                class="select2-selection__rendered" id="select2-k78k-container" role="textbox" aria-readonly="true"
-                title="Select Brand">Select Brand</span><span class="select2-selection__arrow" role="presentation"><b
-                  role="presentation"></b></span></span></span><span class="dropdown-wrapper"
-            aria-hidden="true"></span></span></div>
-      <div class="vehicle-form__item vehicle-form__item--select"><select
-          class="form-control form-control-select2 select2-hidden-accessible" aria-label="Model" disabled=""
-          data-select2-id="19" tabindex="-1" aria-hidden="true">
-          <option value="none" data-select2-id="21">Select Model</option>
-          <option>Explorer</option>
-          <option>Focus S</option>
-          <option>Fusion SE</option>
-          <option>Mustang</option>
-        </select><span class="select2 select2-container select2-container--default select2-container--disabled"
-          dir="ltr" data-select2-id="20"><span class="selection"><span
-              class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true"
-              aria-expanded="false" tabindex="-1" aria-disabled="true" aria-labelledby="select2-vwqh-container"><span
-                class="select2-selection__rendered" id="select2-vwqh-container" role="textbox" aria-readonly="true"
-                title="Select Model">Select Model</span><span class="select2-selection__arrow" role="presentation"><b
-                  role="presentation"></b></span></span></span><span class="dropdown-wrapper"
-            aria-hidden="true"></span></span></div>
-      <div class="vehicle-form__item vehicle-form__item--select"><select
-          class="form-control form-control-select2 select2-hidden-accessible" aria-label="Engine" disabled=""
-          data-select2-id="22" tabindex="-1" aria-hidden="true">
-          <option value="none" data-select2-id="24">Select Engine</option>
-          <option>Gas 1.6L 125 hp AT/L4</option>
-          <option>Diesel 2.5L 200 hp AT/L5</option>
-          <option>Diesel 3.0L 250 hp MT/L5</option>
-        </select><span class="select2 select2-container select2-container--default select2-container--disabled"
-          dir="ltr" data-select2-id="23"><span class="selection"><span
-              class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true"
-              aria-expanded="false" tabindex="-1" aria-disabled="true" aria-labelledby="select2-wq75-container"><span
-                class="select2-selection__rendered" id="select2-wq75-container" role="textbox" aria-readonly="true"
-                title="Select Engine">Select Engine</span><span class="select2-selection__arrow" role="presentation"><b
-                  role="presentation"></b></span></span></span><span class="dropdown-wrapper"
-            aria-hidden="true"></span></span></div>
+     
 
+      <div class="row">
+        <div class="col-md-2">
+          <label>MARQUE</label>
+          
+        </div>
+      <div class="col-md-9">
+        <div class="input-space">
+          <select formControleName="marque" [(ngModel)]="selectedMarque" [ngModelOptions]="{standalone: true}"
+          (ngModelChange)="getModel()">
+           <option *ngFor=" let marque of vehiculemarque" [ngValue]="marque" >
+            {{marque.name}}
+          </option>
+          
+        </select>
+        </div>
+      </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label>Modele</label>
+          
+        </div>
+      <div class="col-md-9">
+        <div class="input-space">
+          <select formControleName="model">
+          <option *ngFor=" let model of vehiculemodel" [ngValue]="model" >
+            {{ model.name}}
+          </option>
+         
+        </select>
+        </div>
+      </div>
+      </div>
+
+       </div>
+     
+</form>
       <div class="vehicle-form__divider">Or</div>
       <div class="vehicle-form__item"><input type="text" class="form-control" placeholder="Enter VIN number"
           aria-label="VIN number"></div>
-    </div>
     <div class="mt-4 pt-3"><a href="#" class="btn btn-sm btn-primary">Add A Vehicle</a></div>
-  </form>
   </div>
 </div>

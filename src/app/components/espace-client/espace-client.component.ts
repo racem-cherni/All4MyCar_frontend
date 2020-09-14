@@ -10,6 +10,8 @@ export class EspaceClientComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+    
   }
 
 }
