@@ -32,7 +32,11 @@ import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
 
 
+
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+
 
 
 
@@ -60,6 +64,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
   ],
   imports: [
+    MatRadioModule,
+    MatSelectModule,
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

@@ -20,11 +20,11 @@ export class DashboardComponent implements OnInit {
 
     // tslint:disable-next-line: no-string-literal
     this.clientservice.getUser()
-   .subscribe((data) => {this.user = data, console.log(data)} , error => console.log(error));
+   .subscribe((data) => {this.user = data, console.log(data); } , error => console.log(error));
 
   // tslint:disable-next-line: align
   this.clientservice.getclient()
-   .subscribe((data) => {this.client = data, console.log(data)} , error => console.log(error));
+   .subscribe((data) => {this.client = data, console.log(data); } , error => console.log(error));
 
  }
   }

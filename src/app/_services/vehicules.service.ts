@@ -4,6 +4,8 @@ import { VehiculeMarque } from '../entities/vehicule-marque';
 import { Observable } from 'rxjs';
 import { VehiculeModel } from '../entities/vehicule-model';
 import { map } from 'rxjs/operators';
+import { Vehicule } from '../entities/vehicule';
+
 
 
 const httpOptions = {
@@ -22,7 +24,7 @@ export class VehiculesService {
 });
 
 private baseUrluser = 'http://localhost:8081/api';
-private marqueUrl = 'http://localhost:8081/api/marque';
+private marqueUrl = 'http://localhost:8081/api/marque?page=0&size=121';
 
 
 getAllVehiculeMarqueModel(): Observable<VehiculeMarque[]> {
@@ -34,7 +36,7 @@ getAllVehiculeMarqueModel(): Observable<VehiculeMarque[]> {
   //return this.http.get(this.baseUrluser +'/getVehiculeMarqueModel', { responseType: 'text' },);
 return this.http.get<GetResponseMarque>(this.marqueUrl).pipe(
     map(response => response._embedded.marque));
- 
+
 }
 
 getModels(MarqueName : string) : Observable<VehiculeModel[]> {
@@ -43,17 +45,64 @@ getModels(MarqueName : string) : Observable<VehiculeModel[]> {
   .pipe(map(response => response._embedded.vehicule_models));
 }
 
+submitevehicule(vehicule : Vehicule): Observable<Vehicule>{
+  return this.http.post<Vehicule>(this.baseUrluser + '/addvehicule' , vehicule, httpOptions);
+}
+
+getVehicules(idclient : number) : Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/vehicules/search/findByClientId?id=${idclient}`;
+ return this.http.get<GetResponseVehicules>(searchModelUrl)
+ .pipe(map(response => response._embedded.vehicules));
+}
+
+getVehiculess(): Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/getVehiculeOfClient`;
+  return this.http.get(searchModelUrl, {
+    headers: this.header});
+  }
+
+  removeVehicule(idVehicule : number) : Observable<any> {
+    const searchModelUrl = `${this.baseUrluser}/deleteById/${idVehicule}`;
+    return this.http.delete(searchModelUrl, {
+      headers: this.header});
+
+
+  }
+getmarquevehicule(idvehicule : number) : Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/vehicules/${idvehicule}/marque`;
+  return this.http.get(searchModelUrl, {
+    headers: this.header});
 
 }
+
+getclient(): Observable<any> {
+
+  return this.http.get(this.baseUrluser + '/getVehiculeOfClient'  , {
+    headers: this.header});
+}
+
+
+}
+
+
+
 
 interface GetResponseModels {
   _embedded : {
     vehicule_models : VehiculeModel[];
   }
 }
+  // tslint:disable-next-line: align
   interface GetResponseMarque{
-    _embedded : {
+    _embedded: {
       marque : VehiculeMarque[];
+    }
+  }
+
+  // tslint:disable-next-line: align
+  interface GetResponseVehicules {
+    _embedded : {
+      vehicules : Vehicule[];
     }
   }
 

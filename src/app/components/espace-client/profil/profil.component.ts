@@ -139,7 +139,7 @@ myForm = new FormGroup({
     const reader = new FileReader();
     this.selectedFiles = event.target.files;
 
-  /*  if (event.target.files && event.target.files.length) {
+    if (event.target.files && event.target.files.length) {
 
       const [file] = event.target.files;
 
@@ -158,7 +158,7 @@ myForm = new FormGroup({
 
 
       };
-    }*/
+    }
   }
 
 
@@ -251,7 +251,7 @@ this.onValueChanged();
               photoclt: ''
         });
         // tslint:disable-next-line: align
-        this.formFormDirective.reset();
+      //  this.formFormDirective.reset();
     }
 
 

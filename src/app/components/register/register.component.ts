@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   errorMessage = '';
   buttonType: any;
 
+
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {

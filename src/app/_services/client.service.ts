@@ -33,7 +33,7 @@ getUser(): Observable<any> {
 
 getclient(): Observable<any> {
 
-  return this.http.get(this.baseUrluser + '/FindclientById/'  , {
+  return this.http.get(this.baseUrluser + '/FindclientById'  , {
     headers: this.header});
 }
 
