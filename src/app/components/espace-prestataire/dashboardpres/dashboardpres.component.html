@@ -1,0 +1,45 @@
+<div class="dashboard">
+    <div class="dashboard__profile card profile-card">
+      <div class="card-body profile-card__body">
+        <div class="profile-card__avatar"><img src="assets/images/avatars/avat.jpg" alt=""></div>
+
+
+
+
+
+
+
+
+        <div class="profile-card__name">{{ prestataire.firstNamepres}} {{prestataire.lastNamepres}} </div>
+
+
+
+
+
+
+
+        <div class="profile-card__email">{{ prestataire.emailpres}}</div>
+        <div class="profile-card__edit"><a routerLink="/All4MyCar/espace-prestataire/profilpres" class="btn btn-secondary btn-sm">Edit Profile</a></div></div></div>
+        <div class="dashboard__address card address-card address-card--featured">
+          <div class="address-card__badge tag-badge tag-badge--theme">Customer</div>
+          <div class="address-card__body">
+          <div class="address-card__name">{{ prestataire.firstNamepres}} {{prestataire.lastNamepres}}</div>
+          <div class="address-card__row">
+          <div class="address-card__row-title">Addresse</div>
+          <div class="address-card__row-content">{{prestataire.adressepres}}</div>
+        </div>
+          <div class="address-card__row">
+            <div class="address-card__row-title">Phone Number</div>
+          <div class="address-card__row-content">{{prestataire.telpres}}</div>
+          </div>
+          <div class="address-card__row">
+            <div class="address-card__row-title">Numero CIN</div>
+          <div class="address-card__row-content">{{prestataire.telpres}}</div>
+          </div>
+         
+
+          </div></div>
+          <div class="dashboard__orders card"><div class="card-header"><h5>Recent Orders</h5></div>
+          <div class="card-divider"></div><div class="card-table"><div class="table-responsive-sm"><table><thead><tr><th>Order</th><th>Date</th><th>Status</th><th>Total</th></tr></thead><tbody><tr><td><a href="#">#8132</a></td><td>02 April, 2019</td><td>Pending</td><td>$2,719.00 for 5 item(s)</td></tr><tr><td><a href="#">#7592</a></td><td>28 March, 2019</td><td>Pending</td><td>$374.00 for 3 item(s)</td></tr><tr><td><a href="#">#7192</a></td><td>15 March, 2019</td><td>Shipped</td><td>$791.00 for 4 item(s)</td></tr></tbody></table></div></div></div></div>
+<!-----ok-->
+

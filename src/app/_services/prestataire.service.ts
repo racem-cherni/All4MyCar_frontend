@@ -1,0 +1,70 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TokenStorageService } from './token-storage.service';
+import { Prestataire } from '../entities/prestataire';
+import { Observable } from 'rxjs';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+@Injectable({
+  providedIn: 'root'
+})
+export class PrestataireService {
+
+  constructor(private http: HttpClient, private token: TokenStorageService) { }
+  header = new HttpHeaders({
+    // tslint:disable-next-line: object-literal-key-quotes
+    'Authorization': 'Bearer ' + this.token.getToken()
+});
+
+private baseUrluser = 'http://localhost:8081/api';
+
+prestataire: Prestataire ;
+
+getUser(): Observable<any> {
+
+  return this.http.get(this.baseUrluser + '/FinduserrById', {
+    headers: this.header});
+}
+
+getprestataire(): Observable<any> {
+
+  return this.http.get(this.baseUrluser + '/FindpresById/'  , {
+    headers: this.header});
+}
+
+edit_prestataire(prestataire): Observable<any> {
+
+  return this.http.post(this.baseUrluser + '/edit_prestataire', {
+    firstNamepres: prestataire.firstNamepres,
+    lastNamepres: prestataire.lastNamepres,
+    adressepres: prestataire.adressepres,
+    adresseprof: prestataire.adresseprof,
+    emailpres: prestataire.emailpres,
+   
+   // datepermis: client.datepermis,
+   
+    telpres: prestataire.telpres,
+    
+    photopres: prestataire.photopres
+  }, httpOptions);
+}
+
+
+
+
+submiteditprofil(prestataire: Prestataire, currentfile: File): Observable<Prestataire> {
+  const formData: FormData = new FormData();
+
+    // tslint:disable-next-line: align
+    formData.append('file', currentfile);
+    // tslint:disable-next-line: align
+  return this.http.post<Prestataire>(this.baseUrluser + '/edit_prestataire1/'  + `${prestataire.firstNamepres}`  + "/" + `${prestataire.lastNamepres}` + "/" + `${prestataire.adressepres}`
+
+  + "/" + `${prestataire.adresseprof}` + "/" + `${prestataire.emailpres}` + "/" + `${prestataire.telpres}` , formData
+
+    ,  {headers: this.header} );
+
+}
+}
