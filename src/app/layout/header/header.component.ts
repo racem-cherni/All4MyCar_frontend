@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/_services/auth.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { Router } from '@angular/router';
+import { TransferService } from 'src/app/_services/transfer.service';
 
 
 
@@ -19,11 +20,15 @@ export class HeaderComponent implements OnInit {
   showAdminBoard = false;
   showModeratorBoard = false;
   username: string = null;
+  role: string = null;
   ////////////////////
   form: any = {};
   errorMessage = '';
   isLoginFailed = false;
-  constructor(private router: Router , private authService: AuthService, private tokenStorageService: TokenStorageService) { }
+  position : number = null;
+  message : number;
+  constructor(private router: Router , private authService: AuthService,
+    private transfereService:TransferService, private tokenStorageService: TokenStorageService,) { }
 
   ngOnInit(): void {
 
@@ -37,9 +42,13 @@ export class HeaderComponent implements OnInit {
 
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
       this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-
+      this.role=this.roles[0];
       this.username = user.username;
     }
+
+
+
+    this.transfereService.currentMessage.subscribe(message => this.message = message)
   }
 
   logout(): void {
@@ -57,10 +66,10 @@ export class HeaderComponent implements OnInit {
         this.roles = this.tokenStorageService.getUser().roles;
       //  this.reloadPage();
         if (this.roles.includes('ROLE_USER')){
-          window.location.href = '/All4MyCar/home';
+          window.location.href = '/All4MyCar/client/home';
          }
          else if (this.roles.includes('ROLE_PRESTATAIRE')){
-          window.location.href = '/All4MyCar/home';
+          window.location.href = '/All4MyCar/prestataire/home';
          }
         },
       err => {
@@ -69,11 +78,44 @@ export class HeaderComponent implements OnInit {
       }
     );
   }
+  
 
   reloadPage(): void {
     window.location.reload();
   }
 
+  gotodashboardc(){
+    
+   // this.transfereService.changeMessage(1);
 
+   window.location.href ='/All4MyCar/client/espace-client/dashboard';
+  }
 
+  gotodashboardp(){
+   /* this.position = 1;
+
+    this.transfereService.setData(this.position);*/
+    window.location.href ='/All4MyCar/prestataire/espace-prestataire/dashboardpres';
+
+  }
+
+  gotoprofil(){
+
+   // this.transfereService.changeMessage(3);
+    window.location.href ='/All4MyCar/client/espace-client/profil';
+    
+
+  }
+
+  gotoprofilp(){
+   // this.position = 3;
+
+    //this.transfereService.setData(this.position);
+    window.location.href ='/All4MyCar/prestataire/espace-prestataire/profilpres';
+
+  }
+
+  getPositionValue(){
+    return this.position;
+  }
 }

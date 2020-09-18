@@ -1,0 +1,64 @@
+
+<div class="block-space block-space--layout--after-header"></div>
+
+
+<div class="block">
+  <div class="container container--max--xl">
+  <div class="row">
+    <div class="col-12 col-lg-3 d-flex">
+      <div class="account-nav flex-grow-1">
+
+
+
+
+
+        <h4 class="account-nav__title">Navigation</h4>
+        <ul class="account-nav__list">
+          <li class="account-nav__item " (click)="gotodashboard()">
+           <!-- <a (click)="gotodashbord()">Dashboard</a></li>-->
+
+            <a routerLink="/All4MyCar/client/espace-client/dashboard"  routerLinkActive=" account-nav__item--active">Dashboard</a>
+
+
+
+            <li class="account-nav__item" (click)="gotovehicules()"><a routerLink="/All4MyCar/client/espace-client/vehicules" routerLinkActive=" account-nav__item--active" >Véhicules</a></li>
+            <li class="account-nav__item" (click)="gotoprofil()"  ><a routerLink="/All4MyCar/client/espace-client/profil" routerLinkActive=" account-nav__item--active" >Edit Profile</a></li>
+            <li class="account-nav__item"><a >Order History</a></li>
+            <li class="account-nav__item"><a >Password</a></li>
+            <li class="account-nav__divider" role="presentation"></li><li class="account-nav__item"><a>Logout</a></li></ul>
+
+
+
+
+
+
+
+</div>
+    </div>
+
+  <div class="col-12 col-lg-9 mt-4 mt-lg-0">
+    <div *ngIf="position == 1">
+      <app-dashboard></app-dashboard>
+   </div>
+
+   <div *ngIf="position == 2">
+     <app-vehicules></app-vehicules>
+  </div>
+
+  <div *ngIf="position == 3">
+    <app-profil></app-profil>
+  </div>
+
+</div>
+  </div>
+  <div class="block-space block-space--layout--before-footer"></div>
+
+</div></div>
+
+
+
+
+
+
+
+

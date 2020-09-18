@@ -152,9 +152,18 @@
             <div class="account-menu__user-email">{{username}}@gmail.com</div></div></a>
             <div class="account-menu__divider"></div>
             <ul class="account-menu__links">
-              <li><a routerLink="/All4MyCar/espace-client/dashboard" >Dashboard</a></li>
-              <li><a href="account-dashboard.html">Garage</a></li>
-              <li><a href="account-profile.html">Edit Profile</a></li>
+              <div *ngIf="role == 'ROLE_USER' ">
+              <li (click)="gotodashboardc()"><a  >Dashboard</a></li>
+            </div>
+            <div *ngIf="role == 'ROLE_PRESTATAIRE' ">
+              <li (click)="gotodashboardp()"><a >Dashboard</a></li>
+            </div>
+            <div *ngIf="role == 'ROLE_USER' ">
+              <li (click)="gotoprofil()"><a>Edit Profile</a></li>
+            </div>
+            <div *ngIf="role == 'ROLE_PRESTATAIRE' ">
+              <li (click)="gotoprofilp()"><a routerLink="/All4MyCar/prestataire/espace-prestataire/profilpres">Edit Profile</a></li>
+            </div>
               <li><a href="account-orders.html">Order History</a></li>
               <li><a href="account-addresses.html">Addresses</a></li></ul>
               <div class="account-menu__divider"></div>

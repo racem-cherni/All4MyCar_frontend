@@ -1,0 +1,168 @@
+<div class="card">
+    <div class="card-header">
+      <h5>Véhicules</h5>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-body card-body--padding--2">
+      <div class="vehicles-list vehicles-list--layout--account">
+        <div class="vehicles-list__body" >
+  
+          <div class="vehicles-list__item"*ngFor="let vehicule of Vehicules"   >
+            <div class="vehicles-list__item-info"  >
+              <div class="vehicles-list__item-name" >{{vehicule.model.marque.name}} {{vehicule.model.name}}</div>
+              <div class="vehicles-list__item-details">{{vehicule.carburant}}</div>
+              <div class="vehicles-list__item-links"><a (click)="openDialog()">Show Details</a></div></div>
+              <button type="button" class="vehicles-list__item-remove" (click)="removeVehicule(vehicule.id)"><svg width="16" height="16">
+                <path d="M2,4V2h3V1h6v1h3v2H2z M13,13c0,1.1-0.9,2-2,2H5c-1.1,0-2-0.9-2-2V5h10V13z"></path></svg>
+              </button>
+            </div>
+  <!--{{vehicule.annee_de_sortie}} {{vehicule.marque.name}} {{vehicule.model.name}}-->
+        </div>
+      </div>
+    </div>
+  
+    <div class="card-divider"></div>
+    <div class="card-header">
+      <h5>Add A Vehicle</h5>
+    </div>
+  
+    <div class="card-divider"></div>
+    <div class="card-body card-body--padding--2">
+      <form novalidate [formGroup]="form" (ngSubmit)="onsubmit()" *ngIf="showvehiculeForm"   >
+  
+      <div class="vehicle-form vehicle-form--layout--account">
+  
+  
+  
+     <!--
+    <mat-form-field >
+    <mat-label>Select the marque</mat-label>
+    <select matNativeControl id="mySelectmarqueId" formControleName="marque" [(ngModel)]="selectedMarque" [ngModelOptions]="{standalone: true}"
+    (ngModelChange)="getModel()" >
+    <option *ngFor=" let marque of vehiculemarque" [ngValue]="marque" >
+      {{marque.name}}
+    </option>
+    </select>
+  </mat-form-field>-->
+  <mat-form-field >
+    <mat-label>Marque vehicule</mat-label>
+    <mat-select matNativeControl id="mySelectmarqueId" formControleName="marque" [(ngModel)]="selectedMarque" [ngModelOptions]="{standalone: true}"
+    (ngModelChange)="getModel()">
+      <mat-option *ngFor=" let marque of vehiculemarque"  [value]="marque"  >
+        {{marque.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  &nbsp;
+  &nbsp;
+  
+  <!--
+  <mat-form-field >
+    <mat-label>Select the modele</mat-label>
+    <select matNativeControl id="mySelectmodeleId" formControleName="model" >
+      <option *ngFor=" let model of vehiculemodel" [ngValue]="model" >
+        {{ model.name}}
+      </option>
+    </select>
+  </mat-form-field>-->
+  <mat-form-field >
+    <mat-label>Modéle vehicule</mat-label>
+    <mat-select matNativeControl id="mySelectmodeleId" formControleName="model" [(ngModel)]="selectedModel" [ngModelOptions]="{standalone: true}"
+    (ngModelChange)="setModelValue()" >
+      <mat-option *ngFor=" let model of vehiculemodel" [value]="model"  >
+        {{ model.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  &nbsp;
+  &nbsp;
+  
+  <!--
+  <mat-form-field >
+    <mat-label>Select engine</mat-label>
+    <select matNativeControl>
+      <option></option>
+      <optgroup label="Diesel">
+        <option value="dieselv9">dieselv9</option>
+        <option value="dieselv8">dieselv10</option>
+      </optgroup>
+      <optgroup label="Essense">
+        <option value="essencev7">essencev8</option>
+        <option value="essencev5">essencev9</option>
+      </optgroup>
+    </select>
+  </mat-form-field>-->
+  
+  <mat-form-field >
+    <mat-label>carburant vehicule</mat-label>
+    <mat-select [formControl]="pokemonControl" id="abc" formControlName="carburant" [(ngModel)]="selectedCarburant"
+    (ngModelChange)="setCarburantValue()" >
+      <mat-optgroup *ngFor="let group of pokemonGroups" [label]="group.name"
+                    >
+        <mat-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
+          {{pokemon.viewValue}}
+        </mat-option>
+      </mat-optgroup>
+    </mat-select>
+  </mat-form-field>
+  &nbsp;
+  &nbsp;
+  <mat-form-field class="half-width">
+    <input matInput formControlName="date_immatriculation" [matDatepicker]="picker" placeholder="date_immatriculation"  required  >
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  <div class="vehicle-form__divider">Other informations</div>
+  <div class="vehicle-form__item">
+    &nbsp;
+  
+      <mat-form-field class="example-full-width" >
+        <input matInput formControlName="immatriculation" type="text"  id="immatriculation" placeholder="immatriculation" required   >
+        </mat-form-field>
+        &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;&nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  
+  <mat-label>Type vehicule</mat-label>
+  
+        <mat-radio-group aria-label="Select an option" formControlName="type_vehicule">
+          &nbsp;
+          <mat-radio-button value="Personnel">Personnel</mat-radio-button>
+          <mat-radio-button value="Sociéte">Sociéte</mat-radio-button>
+        </mat-radio-group>
+  
+  
+        <mat-form-field class="half-width">
+          <input matInput formControlName="date_assurance" [matDatepicker]="pickerr" placeholder="Date_assurance"  required  >
+          <mat-datepicker-toggle matSuffix [for]="pickerr"></mat-datepicker-toggle>
+          <mat-datepicker #pickerr></mat-datepicker>
+          </mat-form-field>
+          &nbsp;
+  &nbsp;
+          <mat-form-field class="half-width">
+            <input matInput formControlName="assureur" type="text" placeholder="assureur" required  >
+          </mat-form-field>
+          &nbsp;
+  &nbsp;
+          <mat-form-field class="example-full-width">
+            <input matInput formControlName="num_contrat_assurance" type="text" placeholder="num_contrat_assurance" required  >
+          </mat-form-field>
+          </div>
+  
+  </div>
+  
+  
+  
+  
+      <button type="submit" mat-button   class="btn btn-outline-danger mt-3"  >Add A Vehicle</button>
+  
+    </form>
+  
+    </div>
+  </div>
+  
