@@ -75,6 +75,13 @@ getmarquevehicule(idvehicule : number) : Observable<any> {
 
 }
 
+getvehiculebyid(idvehicule : number) : Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/getVehicule/${idvehicule}`;
+  return this.http.get(searchModelUrl, {
+    headers: this.header});
+
+}
+
 getclient(): Observable<any> {
 
   return this.http.get(this.baseUrluser + '/getVehiculeOfClient'  , {

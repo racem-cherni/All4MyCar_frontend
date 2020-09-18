@@ -14,17 +14,16 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 
 
-import { EspaceClientComponent } from 'src/app/components/espace-client/espace-client.component';
-import { EspacePrestataireComponent } from './components/espace-prestataire/espace-prestataire.component';
-import { VehiculesComponent } from 'src/app/components/espace-client/vehicules/vehicules.component';
-import { DashboardComponent } from 'src/app/components/espace-client/dashboard/dashboard.component';
+import { EspaceClientComponent } from 'src/app/components/interface-client/espace-client/espace-client.component';
+import { EspacePrestataireComponent } from './components/interface-prestataire/espace-prestataire/espace-prestataire.component';
+import { DashboardComponent } from 'src/app/components/interface-client/espace-client/dashboard/dashboard.component';
 import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 
 
-import { NavigationComponent } from 'src/app/components/espace-client/navigation/navigation.component';
-import { ProfilComponent } from 'src/app/components/espace-client/profil/profil.component';
+import { NavigationComponent } from 'src/app/components/interface-client/espace-client/navigation/navigation.component';
+import { ProfilComponent } from 'src/app/components/interface-client/espace-client/profil/profil.component';
 import { JwtModule, JwtModuleOptions, JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -32,13 +31,23 @@ import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
 
 
-
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
+
+
+import { NavigationpresComponent } from './components/interface-prestataire/espace-prestataire/navigationpres/navigationpres.component';
+import { GarageComponent } from './components/interface-prestataire/espace-prestataire/garage/garage.component';
+import { DashboardpresComponent } from './components/interface-prestataire/espace-prestataire/dashboardpres/dashboardpres.component';
+import { ProfilpresComponent } from './components/interface-prestataire/espace-prestataire/profilpres/profilpres.component';
+import { DialogvehiculeComponent } from 'src/app/components/interface-client/espace-client/vehicules/dialogvehicule/dialogvehicule.component';
+
+
+import { InterfaceClientComponent } from './components/interface-client/interface-client.component';
+import { InterfacePrestataireComponent } from './components/interface-prestataire/interface-prestataire.component';
+import { HomeclientComponent } from './components/interface-client/homeclient/homeclient.component';
+import { HomepresComponent } from './components/interface-prestataire/homepres/homepres.component';
+import {MatSelectModule} from '@angular/material/select';
+import { VehiculesComponent } from './components/interface-client/espace-client/vehicules/vehicules.component';
 import { MatRadioModule } from '@angular/material/radio';
-
-
-
 
 
 
@@ -54,13 +63,24 @@ import { MatRadioModule } from '@angular/material/radio';
     HomeComponent,
     EspaceClientComponent,
     EspacePrestataireComponent,
-    VehiculesComponent,
     DashboardComponent,
     LayoutComponent,
     NavigationComponent,
     ProfilComponent,
+    FooterComponent,
+    DashboardpresComponent,
+    NavigationpresComponent,
+    ProfilpresComponent,
+    GarageComponent,
+    InterfaceClientComponent,
+    InterfacePrestataireComponent,
+    HomeclientComponent,
+    HomepresComponent,
+    VehiculesComponent,
     HeaderComponent,
-    FooterComponent
+    DialogvehiculeComponent
+
+
 
   ],
   imports: [

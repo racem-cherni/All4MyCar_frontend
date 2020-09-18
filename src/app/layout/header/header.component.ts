@@ -28,7 +28,8 @@ export class HeaderComponent implements OnInit {
   position : number = null;
   message : number;
   constructor(private router: Router , private authService: AuthService,
-    private transfereService:TransferService, private tokenStorageService: TokenStorageService,) { }
+    // tslint:disable-next-line: align
+    private tokenStorageService: TokenStorageService , private transfereService: TransferService) { }
 
   ngOnInit(): void {
 
@@ -78,14 +79,14 @@ export class HeaderComponent implements OnInit {
       }
     );
   }
-  
+
 
   reloadPage(): void {
     window.location.reload();
   }
 
   gotodashboardc(){
-    
+
    // this.transfereService.changeMessage(1);
 
    window.location.href ='/All4MyCar/client/espace-client/dashboard';
@@ -103,7 +104,7 @@ export class HeaderComponent implements OnInit {
 
    // this.transfereService.changeMessage(3);
     window.location.href ='/All4MyCar/client/espace-client/profil';
-    
+
 
   }
 

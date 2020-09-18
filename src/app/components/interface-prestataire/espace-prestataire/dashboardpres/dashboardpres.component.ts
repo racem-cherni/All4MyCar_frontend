@@ -16,7 +16,7 @@ export class DashboardpresComponent implements OnInit {
   prestataire: Prestataire;
   user: User;
   ngOnInit(): void {
-    
+
     // tslint:disable-next-line: no-string-literal
     this.prestataireservice.getUser()
    .subscribe((data) => {this.user = data, console.log(data)} , error => console.log(error));

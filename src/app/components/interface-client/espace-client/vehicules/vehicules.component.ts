@@ -10,6 +10,7 @@ import { VehiculeModel } from 'src/app/entities/vehicule-model';
 import { ClientService } from 'src/app/_services/client.service';
 import { VehiculesService } from 'src/app/_services/vehicules.service';
 import {MatDialog} from '@angular/material/dialog';
+import { DialogvehiculeComponent } from 'src/app/components/interface-client/espace-client/vehicules/dialogvehicule/dialogvehicule.component';
 
 
 
@@ -67,8 +68,13 @@ validationMessages = {
   constructor(public dialog: MatDialog , private http: HttpClient, private clientService: ClientService , private vehiculesService: VehiculesService ,private router: Router ,
     // tslint:disable-next-line: align
     private route: ActivatedRoute , private fb: FormBuilder ) { }
-    openDialog() {
+    openDialog(nut: number) {
+      this.dialog.open(DialogvehiculeComponent, {
+        data: nut
+      });
     }
+
+
   ngOnInit(): void {
 
     this.CreateVehiculeForm();

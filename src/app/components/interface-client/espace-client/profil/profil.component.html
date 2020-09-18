@@ -17,14 +17,15 @@
            </mat-form-field>
 
            <mat-form-field class="half-width">
+            <input matInput formControlName="cin" type="tel" placeholder="Numero CIN" pattern="[0-9]*" required [(ngModel)]="clientt.cin"  >
+            <mat-error *ngIf="formErrors.cin">{{formErrors.cin}}</mat-error>
+            </mat-form-field>
+           <mat-form-field class="half-width">
           <input matInput formControlName="emailclt" type="email" id="emailclt" placeholder="Email Address"required email [(ngModel)]="clientt.emailclt" >
           <mat-error *ngIf="formErrors.emailclt">{{formErrors.emailclt}}</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="half-width">
-              <input matInput formControlName="cin" type="tel" placeholder="Numero CIN" pattern="[0-9]*" required [(ngModel)]="clientt.cin"  >
-              <mat-error *ngIf="formErrors.cin">{{formErrors.cin}}</mat-error>
-              </mat-form-field>
+
 
 
                <mat-form-field class="half-width">
@@ -52,7 +53,7 @@
             <mat-error *ngIf="formErrors.telclt">{{formErrors.telclt}}</mat-error>
           </mat-form-field>
 
-          <mat-form-field class="half-width">
+          <mat-form-field class="example-full-width">
                <input matInput formControlName="adresseclt" type="text" placeholder="adresse" required [(ngModel)]="clientt.adresseclt"  >
                <mat-error *ngIf="formErrors.adresseclt">{{formErrors.adresseclt}}</mat-error>
             </mat-form-field>

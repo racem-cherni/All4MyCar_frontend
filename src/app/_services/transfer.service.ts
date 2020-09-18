@@ -13,7 +13,7 @@ export class TransferService {
 
   private messageSource = new BehaviorSubject(1);
   currentMessage = this.messageSource.asObservable();
-  
+
   private data;
 
   changeMessage(message: number) {

@@ -12,8 +12,27 @@ import { PrestataireService } from 'src/app/_services/prestataire.service';
 })
 export class ProfilpresComponent implements OnInit {
 
+  specialisationss : string[] = [
+  'concessionnaires' ,
+   'mécanicien' ,
+  'électricien auto',
+  'Tôlier' ,
+  'Lavage (normal, appro …)' ,
+  'entretiens' ,
+  'Roues (pneus, jantes …)',
+  'Décoration voiture pour évènement' ,
+  'habillage voiture' ,
+  'Tuning ',
+  'Vente matériel',
+  'diagnostique' ,
+  'Assurance' ,
+  'Location Voiture' ,
+  'Dépannage et Assistance',
+  'accessoires auto'];
+  specialisat: string ;
   isSuccessful = false;
   errorMessage = '';
+  isSignUpFailed = false;
 
   imageSrc: string;
  // date3: Date;
@@ -23,6 +42,7 @@ prestataire: Prestataire ;
 prestatairecopy: Prestataire = null ;
 showprestataireForm = true;
 errMess: string;
+selectspecx : string;
 @ViewChild('fform') formFormDirective ;
 
 formErrors = {
@@ -39,8 +59,11 @@ formErrors = {
         // tslint:disable-next-line: object-literal-key-quotes
     'telpres': '',
         // tslint:disable-next-line: object-literal-key-quotes
-    'adressepres': ''
+    'adressepres': '',
     // tslint:disable-next-line: object-literal-key-quotes
+    'specialisations': '',
+     // tslint:disable-next-line: object-literal-key-quotes
+     'cin': ''
 
 };
 
@@ -100,6 +123,23 @@ validationMessages = {
       // tslint:disable-next-line: object-literal-key-quotes
       'maxlength':     'adresse cannot be more than 25 characters long.'
     },
+    // tslint:disable-next-line: object-literal-key-quotes
+    'specialisations': {
+      // tslint:disable-next-line: object-literal-key-quotes
+      'required':      'adresse is required.',
+      // tslint:disable-next-line: object-literal-key-quotes
+    },
+    // tslint:disable-next-line: object-literal-key-quotes
+  'cin': {
+    // tslint:disable-next-line: object-literal-key-quotes
+    'required':      'cin is required.',
+    // tslint:disable-next-line: object-literal-key-quotes
+    'pattern':       'cin must contain only numbers.',
+    // tslint:disable-next-line: object-literal-key-quotes
+    'minlength':         'cin must contain  8 numbers',
+    // tslint:disable-next-line: object-literal-key-quotes
+    'maxlength':  'cin must contain 8 numbers'
+  },
 };
 
 /*
@@ -139,7 +179,7 @@ myForm = new FormGroup({
     const reader = new FileReader();
     this.selectedFiles = event.target.files;
 
-  /*  if (event.target.files && event.target.files.length) {
+    if (event.target.files && event.target.files.length) {
 
       const [file] = event.target.files;
 
@@ -158,7 +198,7 @@ myForm = new FormGroup({
 
 
       };
-    }*/
+    }
   }
 
 
@@ -171,6 +211,8 @@ myForm = new FormGroup({
   }
 
   onSubmit(): void {
+    this.form.value.specialisations = this.specialisat;
+
     this.prestataireservice.edit_prestataire(this.form).subscribe(
       data => {
         console.log(data);
@@ -184,6 +226,10 @@ myForm = new FormGroup({
 
   }
 
+  setSpecializationValue(){
+this.selectspecx = this.specialisat;
+  }
+
   createformprofil(): void{
 this.form = this.fb.group({
   firstNamepres:  ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ] ,
@@ -193,14 +239,18 @@ this.form = this.fb.group({
   emailpres: ['', [Validators.required, Validators.email] ] ,
   telpres: ['', [Validators.required, Validators.pattern , Validators.minLength(8) , Validators.maxLength(8)] ] ,
   photopres: new FormControl('', [Validators.required]),
+  specialisations: ['', [Validators.required] ] ,
+  cin: ['', [Validators.required, Validators.pattern , Validators.minLength(8) , Validators.maxLength(8)] ]  ,
 
-  
-  
-  
- 
+
+
+
+
+
+
  // name: new FormControl('', [Validators.required, Validators.minLength(3)]),
 
-   
+
   //  fileSource: new FormControl('', [Validators.required])
 });
 this.form.valueChanges
@@ -235,6 +285,10 @@ this.onValueChanged();
   onsubmitt() {
     this.currentFile = this.selectedFiles.item(0);
     this.prestataire = this.form.value;
+    this.isSuccessful = true;
+    this.isSignUpFailed = false;
+
+    this.form.value.specialisations = this.selectspecx;
     console.log(this.prestataire);
     this.prestataireservice.submiteditprofil(this.prestataire,  this.currentFile)
     .subscribe(client => {
@@ -244,18 +298,8 @@ this.onValueChanged();
         this.prestatairecopy = null; this.showprestataireForm = true; }, 5000);     },
         error => console.log(error.status, error.message));
         // tslint:disable-next-line: align
-        this.form.reset({
-          firstNamepres: '',
-          emailpres: '',
-          
-             lastNamepres: '',
-             telpres: '',
-             adressepres: '',
-             adresseprof: '',
-             photopres: ''
-        });
         // tslint:disable-next-line: align
-        this.formFormDirective.reset();
+      //  this.formFormDirective.reset();
     }
 
 
