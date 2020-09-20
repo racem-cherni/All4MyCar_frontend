@@ -23,6 +23,8 @@
     "@angular/platform-browser-dynamic": "~10.1.0",
     "@angular/router": "~10.1.0",
     "@auth0/angular-jwt": "^5.0.1",
+    "@nebular/auth": "^6.1.0",
+    "@nebular/theme": "^6.1.0",
     "bootstrap": "^4.0.0",
     "font-awesome": "^4.7.0",
     "primeicons": "^4.0.0",

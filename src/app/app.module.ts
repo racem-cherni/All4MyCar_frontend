@@ -29,6 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -48,6 +50,12 @@ import { HomepresComponent } from './components/interface-prestataire/homepres/h
 import {MatSelectModule} from '@angular/material/select';
 import { VehiculesComponent } from './components/interface-client/espace-client/vehicules/vehicules.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AdminComponent } from './admin/admin.component';
+import { LayoutadminComponent } from './admin/layoutadmin/layoutadmin.component';
+import { AdminfooterComponent } from './admin/layoutadmin/adminfooter/adminfooter.component';
+import { AdminheaderComponent } from './admin/layoutadmin/adminheader/adminheader.component';
+
 
 
 
@@ -78,12 +86,19 @@ import { MatRadioModule } from '@angular/material/radio';
     HomepresComponent,
     VehiculesComponent,
     HeaderComponent,
-    DialogvehiculeComponent
+    DialogvehiculeComponent,
+    AdminComponent,
+    LayoutadminComponent,
+    AdminfooterComponent,
+    AdminheaderComponent
+
 
 
 
   ],
   imports: [
+    MatProgressSpinnerModule,
+    MatToolbarModule,
     MatRadioModule,
     MatSelectModule,
     BrowserModule,

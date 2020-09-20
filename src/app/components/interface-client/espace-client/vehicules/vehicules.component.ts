@@ -22,6 +22,7 @@ import { DialogvehiculeComponent } from 'src/app/components/interface-client/esp
   styleUrls: ['./vehicules.component.css']
 })
 export class VehiculesComponent implements OnInit {
+  errMess: string;
 
 
   pokemonControl = new FormControl();
@@ -54,18 +55,18 @@ export class VehiculesComponent implements OnInit {
 };
 validationMessages = {
 };
-  vehiculemarque: VehiculeMarque[] =[];
-  vehiculemodel: VehiculeModel[] =[];
+  vehiculemarque: VehiculeMarque[] = [];
+  vehiculemodel: VehiculeModel[] = [];
   selectedMarque: VehiculeMarque;
   selectedModel : VehiculeModel;
   selectedCarburant : Vehicule['carburant'];
   search: any;
-  Vehicules: Vehicule[] =[];
+  Vehicules: Vehicule[] = [];
   vehiculmarque: VehiculeMarque ;
 
   // tslint:disable-next-line: whitespace
   // tslint:disable-next-line: max-line-length
-  constructor(public dialog: MatDialog , private http: HttpClient, private clientService: ClientService , private vehiculesService: VehiculesService ,private router: Router ,
+  constructor(public dialog: MatDialog , private http: HttpClient, private clientService: ClientService , private vehiculesService: VehiculesService , private router: Router ,
     // tslint:disable-next-line: align
     private route: ActivatedRoute , private fb: FormBuilder ) { }
     openDialog(nut: number) {
@@ -90,7 +91,7 @@ validationMessages = {
     this.clientService.getclient()
      .subscribe((data) => {this.clientt = data, console.log(data),
       this.vehiculesService.getVehiculess().subscribe((data) => {
-        this.Vehicules = data, console.log(data)} ,
+        this.Vehicules = data,  console.log(data)} ,
 
         error => console.log(error));
     } , error => console.log(error));
@@ -115,16 +116,16 @@ validationMessages = {
   // tslint:disable-next-line: typedef
   CreateVehiculeForm(){
     this.form = this.fb.group({
-      marque:[''],
-      model:[''],
-      date_immatriculation:[''],
-      date_assurance:[''],
-      type_vehicule:[''],
-      carburant:[''],
-      immatriculation:[''],
-      galerie_photo:[''],
-      assureur:[''],
-      num_contrat_assurance:[''],
+      marque: [''],
+      model: [''],
+      date_immatriculation: [''],
+      date_assurance: [''],
+      type_vehicule: [''],
+      carburant: [''],
+      immatriculation: [''],
+      galerie_photo: [''],
+      assureur: [''],
+      num_contrat_assurance: [''],
     });
     this.form.valueChanges
 .subscribe(data => this.onValueChanged(data));
@@ -144,7 +145,7 @@ this.onValueChanged();
     console.log(this.selectAge);
 
   //const vehiculename = this.form.value;
-    const vehiculename =this.form.value.marque.name;
+    const vehiculename = this.form.value.marque.name;
  // this.form.controls.myControl.setValue(curItem)
 
     this.vehiculesService.getModels(this.selectAge.name.toString()).subscribe(

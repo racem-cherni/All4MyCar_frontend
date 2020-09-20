@@ -21,9 +21,12 @@ import { InterfacePrestataireComponent } from './components/interface-prestatair
 import { HomeclientComponent } from './components/interface-client/homeclient/homeclient.component';
 import { HomepresComponent } from './components/interface-prestataire/homepres/homepres.component';
 import { VehiculesComponent } from './components/interface-client/espace-client/vehicules/vehicules.component';
+import { AdminComponent } from './admin/admin.component';
+import { LayoutadminComponent } from './admin/layoutadmin/layoutadmin.component';
 const routes: Routes = [
 
   { path: 'register', component: RegisterComponent },
+  { path: 'All4MyCarAdmin', component: LayoutadminComponent},
   { path: 'All4MyCar', component: LayoutComponent , children: [
     { path: 'client', component: InterfaceClientComponent, children: [
       {path: 'home', component: HomeclientComponent},

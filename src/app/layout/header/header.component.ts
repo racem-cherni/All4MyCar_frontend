@@ -72,6 +72,9 @@ export class HeaderComponent implements OnInit {
          else if (this.roles.includes('ROLE_PRESTATAIRE')){
           window.location.href = '/All4MyCar/prestataire/home';
          }
+         else if (this.roles.includes('ROLE_ADMIN')){
+          window.location.href = '/All4MyCarAdmin';
+         }
         },
       err => {
         this.errorMessage = err.error.message;
