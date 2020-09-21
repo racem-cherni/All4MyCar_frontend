@@ -34,6 +34,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 import { ReactiveFormsModule } from '@angular/forms';
+import {PanelMenuModule} from 'primeng/panelmenu';
+import {MenubarModule} from 'primeng/menubar';
 
 
 import { NavigationpresComponent } from './components/interface-prestataire/espace-prestataire/navigationpres/navigationpres.component';
@@ -55,6 +57,8 @@ import { AdminComponent } from './admin/admin.component';
 import { LayoutadminComponent } from './admin/layoutadmin/layoutadmin.component';
 import { AdminfooterComponent } from './admin/layoutadmin/adminfooter/adminfooter.component';
 import { AdminheaderComponent } from './admin/layoutadmin/adminheader/adminheader.component';
+
+
 
 
 
@@ -97,6 +101,8 @@ import { AdminheaderComponent } from './admin/layoutadmin/adminheader/adminheade
 
   ],
   imports: [
+    MenubarModule,
+    PanelMenuModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
     MatRadioModule,

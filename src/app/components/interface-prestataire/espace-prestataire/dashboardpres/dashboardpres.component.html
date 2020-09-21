@@ -1,10 +1,11 @@
 <div class="dashboard">
   <div class="dashboard__profile card profile-card">
     <div class="card-body profile-card__body">
-      <div class="profile-card__avatar"><img src="assets/images/avatars/avat.jpg" alt=""></div>
+      <div class="profile-card__avatar">
+        <!--<img src="assets/images/avatars/avat.jpg" alt="">-->
+        <img src="http://localhost:8081/api/api/image/logo/{{prestataire.photopres}}" class="rounded" alt="Grokonez-About Image" width="250px" height="auto">
 
-
-
+      </div>
 
 
 
@@ -37,6 +38,9 @@
               <div class="address-card__row-content">{{prestataire.cin}}</div>
               </div>
 </div>
+
+
+
         </div>
         <br>
         <div class="address-card__row">
