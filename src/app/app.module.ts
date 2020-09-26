@@ -18,8 +18,6 @@ import { EspaceClientComponent } from 'src/app/components/interface-client/espac
 import { EspacePrestataireComponent } from './components/interface-prestataire/espace-prestataire/espace-prestataire.component';
 import { DashboardComponent } from 'src/app/components/interface-client/espace-client/dashboard/dashboard.component';
 import { LayoutComponent } from './layout/layout.component';
-import { HeaderComponent } from './layout/header/header.component';
-import { FooterComponent } from './layout/footer/footer.component';
 
 
 import { NavigationComponent } from 'src/app/components/interface-client/espace-client/navigation/navigation.component';
@@ -32,10 +30,9 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 
-
+import {MatTooltipModule} from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
-import {PanelMenuModule} from 'primeng/panelmenu';
-import {MenubarModule} from 'primeng/menubar';
+
 
 
 import { NavigationpresComponent } from './components/interface-prestataire/espace-prestataire/navigationpres/navigationpres.component';
@@ -58,18 +55,39 @@ import { LayoutadminComponent } from './admin/layoutadmin/layoutadmin.component'
 import { AdminfooterComponent } from './admin/layoutadmin/adminfooter/adminfooter.component';
 import { AdminheaderComponent } from './admin/layoutadmin/adminheader/adminheader.component';
 
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 
 
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 
 
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { TableListComponent } from './table-list/table-list.component';
+import { TypographyComponent } from './typography/typography.component';
+import { IconsComponent } from './icons/icons.component';
+import { MapsComponent } from './maps/maps.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { UpgradeComponent } from './upgrade/upgrade.component';
+import { from } from 'rxjs';
 
 
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
+import { FooterAdminComponent } from './layouts/admin-layout/footer-admin/footer-admin.component';
+import {NavbarAdminComponent  } from './layouts/admin-layout/navbar-admin/navbar-admin.component';
+import {SidebarAdminComponent} from './layouts/admin-layout/sidebar-admin/sidebar-admin.component';
 
 
 @NgModule({
   declarations: [
+    UpgradeComponent,
+    TypographyComponent,
+    TableListComponent,
+    NotificationsComponent,
+    MapsComponent,
+    IconsComponent,
     AppComponent,
     RegisterComponent,
     HomeComponent,
@@ -94,16 +112,20 @@ import { AdminheaderComponent } from './admin/layoutadmin/adminheader/adminheade
     AdminComponent,
     LayoutadminComponent,
     AdminfooterComponent,
-    AdminheaderComponent
+    AdminheaderComponent,
+    AdminLayoutComponent,
+    DashboardAdminComponent,
+    UserProfileComponent,
+    FooterAdminComponent,
+    SidebarAdminComponent,
+    NavbarAdminComponent
 
 
 
 
   ],
   imports: [
-    MenubarModule,
-    PanelMenuModule,
-    MatProgressSpinnerModule,
+   MatProgressSpinnerModule,
     MatToolbarModule,
     MatRadioModule,
     MatSelectModule,
@@ -117,7 +139,9 @@ import { AdminheaderComponent } from './admin/layoutadmin/adminheader/adminheade
     FormsModule,
     HttpClientModule,
     JwtModule,
-    BrowserAnimationsModule ],
+    BrowserAnimationsModule,
+    MatTooltipModule
+   ],
   providers: [authInterceptorProviders, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService  ],
   bootstrap: [AppComponent]
 })

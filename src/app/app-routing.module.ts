@@ -23,8 +23,63 @@ import { HomepresComponent } from './components/interface-prestataire/homepres/h
 import { VehiculesComponent } from './components/interface-client/espace-client/vehicules/vehicules.component';
 import { AdminComponent } from './admin/admin.component';
 import { LayoutadminComponent } from './admin/layoutadmin/layoutadmin.component';
-const routes: Routes = [
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import {UserProfileComponent} from'./user-profile/user-profile.component';
 
+import { from } from 'rxjs';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { TableListComponent } from './table-list/table-list.component';
+import { IconsComponent } from './icons/icons.component';
+import { TypographyComponent } from './typography/typography.component';
+import { MapsComponent } from './maps/maps.component';
+const routes: Routes = [
+  {
+    path: 'dash',
+    component: AdminLayoutComponent,
+    children: [{
+      path: 'admiin',
+      component: UserProfileComponent ,
+
+    },
+  {
+    path:'notifications',
+    component:NotificationsComponent,
+    
+
+  },
+  {
+    path:'dashboard',
+    component:DashboardAdminComponent,
+    
+
+  },
+  {
+    path:'table-list',
+    component:TableListComponent,
+    
+
+  },
+  {
+    path:'icons',
+    component:IconsComponent,
+    
+
+  } ,
+  {
+    path:'typographie',
+    component:TypographyComponent,
+    
+
+  },
+  {
+    path:'maps',
+    component:MapsComponent,
+    
+
+  }]
+
+  },
   { path: 'register', component: RegisterComponent },
   { path: 'All4MyCarAdmin', component: LayoutadminComponent},
   { path: 'All4MyCar', component: LayoutComponent , children: [
@@ -53,7 +108,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes )],
+  exports: [RouterModule],
+
 })
 export class AppRoutingModule { }

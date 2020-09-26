@@ -88,6 +88,16 @@ getclient(): Observable<any> {
     headers: this.header});
 }
 
+getMarqueVehiculess(): Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/getlistVehicule`;
+  return this.http.get(searchModelUrl, {
+    headers: this.header});
+  }
+  getModelsVehiculess(name :string): Observable<any> {
+    const searchModelUrl = `${this.baseUrluser}/getlistVehiculeMarque/${name}`;
+    return this.http.get(searchModelUrl, {
+      headers: this.header});
+    }
 
 }
 

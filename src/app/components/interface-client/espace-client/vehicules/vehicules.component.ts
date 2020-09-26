@@ -80,7 +80,7 @@ validationMessages = {
 
     this.CreateVehiculeForm();
 
-    this.vehiculesService.getAllVehiculeMarqueModel()
+    this.vehiculesService.getMarqueVehiculess()
     .subscribe(
       (data) => {
         this.vehiculemarque = data;
@@ -107,7 +107,7 @@ validationMessages = {
 
 
   // tslint:disable-next-line: align
-  this.vehiculesService.getAllVehiculeMarqueModel()
+  this.vehiculesService.getMarqueVehiculess()
    .subscribe((data) => {this.vehiculemarque = data, console.log(data)});
 
 
@@ -148,7 +148,7 @@ this.onValueChanged();
     const vehiculename = this.form.value.marque.name;
  // this.form.controls.myControl.setValue(curItem)
 
-    this.vehiculesService.getModels(this.selectAge.name.toString()).subscribe(
+    this.vehiculesService.getModelsVehiculess(this.selectAge.name.toString()).subscribe(
     data => {
       this.vehiculemodel = data;
 
