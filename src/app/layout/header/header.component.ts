@@ -3,6 +3,13 @@ import { AuthService } from 'src/app/_services/auth.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { Router } from '@angular/router';
 import { TransferService } from 'src/app/_services/transfer.service';
+import { ClientService } from 'src/app/_services/client.service';
+import { Client } from 'src/app/entities/client';
+import { PrestataireService } from 'src/app/_services/prestataire.service';
+import { Prestataire } from 'src/app/entities/prestataire';
+import { MatDialog } from '@angular/material/dialog';
+import { RegistredialogComponent } from 'src/app/components/registredialog/registredialog.component';
+
 
 
 
@@ -27,11 +34,29 @@ export class HeaderComponent implements OnInit {
   isLoginFailed = false;
   position : number = null;
   message : number;
-  constructor(private router: Router , private authService: AuthService,
-    // tslint:disable-next-line: align
-    private tokenStorageService: TokenStorageService , private transfereService: TransferService) { }
+  client: Client;
+  prestataire: Prestataire ;
+
+
+  constructor(public dialog: MatDialog,private router: Router , private authService: AuthService,private clientservice: ClientService,private tokenStorageService: TokenStorageService
+     , private prestataireservice: PrestataireService,private transfereService: TransferService) { }
+
+
+     openDialog() {
+      this.dialog.open(RegistredialogComponent, {
+      });
+    }
+
 
   ngOnInit(): void {
+
+
+    // tslint:disable-next-line: align
+  this.clientservice.getclient()
+  .subscribe((data) => {this.client = data, console.log(data); } , error => console.log(error));
+
+  this.prestataireservice.getprestataire()
+   .subscribe((data) => {this.prestataire = data, console.log(data)} , error => console.log(error));
 
 
     this.isLoggedIn = !!this.tokenStorageService.getToken();

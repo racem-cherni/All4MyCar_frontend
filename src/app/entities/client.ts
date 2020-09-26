@@ -5,7 +5,7 @@ id: number;
 firstNameclt: string;
 lastNameclt: string	;
 emailclt: string ;
-photoclt: string ;
+photoclt: string = null;
 cin: number;
 // tslint:disable-next-line: variable-name
 date_permis: Date ;

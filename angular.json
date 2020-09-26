@@ -29,10 +29,13 @@
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "src/assets/admin/scss/material-dashboard.scss",
-              "src/assets/admin/css/demo.css"
+              "src/assets/admin/css/demo.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+  "node_modules/primeng/resources/primeng.min.css",
+  "node_modules/primeicons/primeicons.css"
             ],
             "scripts": [
-              
+
               "node_modules/popper.js/dist/umd/popper.js",
               "node_modules/bootstrap-material-design/dist/js/bootstrap-material-design.min.js",
               "node_modules/arrive/src/arrive.js",

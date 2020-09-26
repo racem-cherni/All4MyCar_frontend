@@ -5,8 +5,11 @@
   <div class="card-divider"></div>
   <div class="card-body card-body--padding--2">
     <div class="vehicles-list vehicles-list--layout--account">
-      <div class="vehicles-list__body "   >
 
+      <div class="vehicles-list__body " *ngIf="Vehicules.length == 0"   >
+        <p-progressSpinner class="center"></p-progressSpinner>
+      </div>
+      <div class="vehicles-list__body "  *ngIf="Vehicules !== null" >
         <div class="vehicles-list__item"  *ngFor="let vehicule of Vehicules"   >
           <div class="vehicles-list__item-info"  >
             <div class="vehicles-list__item-name" >{{vehicule.model.marque.name}} {{vehicule.model.name}}</div>
@@ -162,14 +165,56 @@
         <mat-form-field class="example-full-width">
           <input matInput formControlName="num_contrat_assurance" type="text" placeholder="num_contrat_assurance" required  >
         </mat-form-field>
-        </div>
+
+
+        <div class="row ">
+
+        <div class="form-group col-12 col-lg-7 col-xl-6 ">
+
+          <label for="file">Photo</label>
+
+          <input  formControlName="galerie_photo" id="file" type="file" class="form-control "
+              (change)="onFileChange($event)">
+
+          <div *ngIf="f.galerie_photo.touched && f.galerie_photo.invalid" class="alert alert-danger">
+
+              <div *ngIf="f.galerie_photo.errors.required">Photo is required.</div>
+
+          </div>
+
+      </div>
+    <!--  <img [src]="imageSrc" *ngIf="imageSrc" style="height: 150px; width:150px">-->
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+
+      <button type="submit" mat-button   class="btn btn-outline-danger mt-3"   >Add A Vehicle</button>
+
+      </div>
+
+  </div>
 
 </div>
 
 
 
 
-    <button type="submit" mat-button   class="btn btn-outline-danger mt-3"  >Add A Vehicle</button>
 
   </form>
 

@@ -6,7 +6,7 @@ export class Prestataire {
     adresseprof:string;
     emailpres:string;
     telpres:number;
-    photopres: string ;
+    photopres: string = '' ;
     specialisations: string;
     cin: number;
 

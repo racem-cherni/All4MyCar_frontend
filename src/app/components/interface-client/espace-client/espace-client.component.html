@@ -4,8 +4,22 @@
 
 <div class="block">
   <div class="container container--max--xl">
+    <div class="section-header">
+      <div class="section-header__body">
+        <h2 class="section-header__title"><ul class="section-header__groups">
+          <li class="section-header__groups-item">
+            <button type="button" class="section-header__groups-button " routerLink="/All4MyCar/client/home"> Home</button></li>
+          <li class="section-header__groups-item"><button type="button" class="section-header__groups-button section-header__groups-button--active">Espace client
+              </button></li>
+        </ul></h2>
+        <div class="section-header__divider"></div>
+
+      </div>
+    </div>
   <div class="row">
+
     <div class="col-12 col-lg-3 d-flex">
+
       <div class="account-nav flex-grow-1">
 
 
@@ -17,7 +31,7 @@
           <li class="account-nav__item " (click)="gotodashboard()">
            <!-- <a (click)="gotodashbord()">Dashboard</a></li>-->
 
-            <a routerLink="/All4MyCar/client/espace-client/dashboard"  routerLinkActive=" account-nav__item--active">Dashboard</a>
+            <a routerLink="/All4MyCar/client/espace-client/dashboard"  routerLinkActive=" account-nav__item--active">Dashboard</a></li>
 
 
 

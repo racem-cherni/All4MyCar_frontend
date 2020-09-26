@@ -98,6 +98,21 @@ getMarqueVehiculess(): Observable<any> {
     return this.http.get(searchModelUrl, {
       headers: this.header});
     }
+addvehiculewithphto(vehicule : Vehicule ,currentfile: File): Observable<Vehicule> {
+ const formData: FormData = new FormData();
+
+    // tslint:disable-next-line: align
+ formData.append('file', currentfile);
+    // tslint:disable-next-line: align
+  return this.http.post<Vehicule>(this.baseUrluser + '/addvehiculewithphoto/'  + `${vehicule.model.id}` + "/" + `${vehicule.date_immatriculation}` + "/" + `${vehicule.date_assurance}`
+
+  + "/" + `${vehicule.immatriculation}` + "/" + `${vehicule.assureur}` + "/" + `${vehicule.num_contrat_assurance}`+ "/" + `${vehicule.type_vehicule}` + "/" + `${vehicule.carburant}`
+
+    , formData,  {
+      headers: this.header} );
+
+}
+
 
 }
 

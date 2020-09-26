@@ -28,10 +28,24 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MultiSelectModule} from 'primeng/multiselect';
+
+
 import { ReactiveFormsModule } from '@angular/forms';
+import {PanelMenuModule} from 'primeng/panelmenu';
+import {MenubarModule} from 'primeng/menubar';
+import {DialogModule} from 'primeng/dialog';
+import {ButtonModule} from 'primeng/button';
+import {DropdownModule} from 'primeng/dropdown';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 
@@ -54,9 +68,12 @@ import { AdminComponent } from './admin/admin.component';
 import { LayoutadminComponent } from './admin/layoutadmin/layoutadmin.component';
 import { AdminfooterComponent } from './admin/layoutadmin/adminfooter/adminfooter.component';
 import { AdminheaderComponent } from './admin/layoutadmin/adminheader/adminheader.component';
+import { RegistredialogComponent } from './components/registredialog/registredialog.component';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
@@ -118,18 +135,32 @@ import {SidebarAdminComponent} from './layouts/admin-layout/sidebar-admin/sideba
     UserProfileComponent,
     FooterAdminComponent,
     SidebarAdminComponent,
-    NavbarAdminComponent
+    NavbarAdminComponent,
 
+    RegistredialogComponent
 
 
 
   ],
   imports: [
    MatProgressSpinnerModule,
+    ProgressSpinnerModule,
+    AutoCompleteModule,
+    MatAutocompleteModule,
+    DropdownModule,
+    ButtonModule,
+    DialogModule,
+    MatCheckboxModule,
+    MultiSelectModule,
+    MatDialogModule,
+    MenubarModule,
+    PanelMenuModule,
+    MatProgressSpinnerModule,
     MatToolbarModule,
     MatRadioModule,
     MatSelectModule,
     BrowserModule,
+    MatCardModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
@@ -143,6 +174,10 @@ import {SidebarAdminComponent} from './layouts/admin-layout/sidebar-admin/sideba
     MatTooltipModule
    ],
   providers: [authInterceptorProviders, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService  ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
+  ]
 })
 export class AppModule { }

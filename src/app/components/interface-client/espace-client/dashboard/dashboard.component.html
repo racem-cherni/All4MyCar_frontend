@@ -1,29 +1,28 @@
+
   <div class="dashboard">
     <div class="dashboard__profile card profile-card">
       <div class="card-body profile-card__body">
-        <div class="profile-card__avatar">
-       <!--   <img src="assets/images/avatars/avat.jpg" alt="">-->
-       <img src="http://localhost:8081/api/apii/image/logo/{{client.photoclt}}" class="rounded" alt="Grokonez-About Image" width="250px" height="auto">
+        <img *ngIf="client.photoclt == null " src="assets/images/avatars/avat.jpg" alt="" height="150" width="150">
 
-        </div>
-
-
-
+          <!--   <img src="assets/images/avatars/avat.jpg" alt="">-->
+        <!--  <img src="http://localhost:8081/api/apii/image/logo/{{client.photoclt}}" class="rounded"
+   alt="Grokonez-About Image" width="200px" height="150">-->
+             <img  *ngIf="client.photoclt !== null " mat-card-image src="http://localhost:8081/api/apii/image/logo/{{client.photoclt}}" class="rounded" alt="Photo of a Shiba Inu" height="150" width="150">
 
 
 
+<br>
+           <div class="profile-card__name">{{ client.firstNameclt }} {{client.lastNameclt}} </div>
+    <div class="profile-card__email">{{ client.emailclt}}</div>
 
-
-        <div class="profile-card__name">{{ client.firstNameclt }} {{client.lastNameclt}} </div>
-
-
+           <div class="profile-card__edit"><a routerLink="/All4MyCar/client/espace-client/profil" class="btn btn-secondary btn-sm">Edit Profile</a></div></div></div>
 
 
 
 
 
-        <div class="profile-card__email">{{ client.emailclt}}</div>
-        <div class="profile-card__edit"><a routerLink="/All4MyCar/client/espace-client/profil" class="btn btn-secondary btn-sm">Edit Profile</a></div></div></div>
+
+
         <div class="dashboard__address card address-card address-card--featured">
           <div class="address-card__badge tag-badge tag-badge--theme">Customer</div>
           <div class="address-card__body">

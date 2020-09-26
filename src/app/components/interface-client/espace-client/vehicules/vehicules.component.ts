@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Client } from 'src/app/entities/client';
 import { Vehicule } from 'src/app/entities/vehicule';
@@ -30,15 +30,15 @@ export class VehiculesComponent implements OnInit {
     {
       name: 'Diesel',
       pokemon: [
-        {value: 'Diesel 2.5L 200 hp AT/L5', viewValue: 'Diesel 2.5L 200 hp AT/L5'},
-        {value: 'Diesel 3.0L 250 hp MT/L5', viewValue: 'Diesel 3.0L 250 hp MT/L5'}
+        {value: 'Diesel 2.5L 200 hp AT_L5', viewValue: 'Diesel 2.5L 200 hp AT/L5'},
+        {value: 'Diesel 3.0L 250 hp MT_L5', viewValue: 'Diesel 3.0L 250 hp MT/L5'}
       ]
     },
     {
       name: 'Essence',
       pokemon: [
-        {value: 'Essence 2.5L 250 hp MT/L5', viewValue: 'Essence 2.5L 250 hp MT/L5'},
-        {value: 'Essence 3.0L 250 hp MT/L5', viewValue: 'Essence 3.0L 250 hp MT/L5'}
+        {value: 'Essence 2.5L 250 hp MT_L5', viewValue: 'Essence 2.5L 250 hp MT/L5'},
+        {value: 'Essence 3.0L 250 hp MT_L5', viewValue: 'Essence 3.0L 250 hp MT/L5'}
       ]
     }
   ];
@@ -69,6 +69,48 @@ validationMessages = {
   constructor(public dialog: MatDialog , private http: HttpClient, private clientService: ClientService , private vehiculesService: VehiculesService , private router: Router ,
     // tslint:disable-next-line: align
     private route: ActivatedRoute , private fb: FormBuilder ) { }
+
+    selectedFiles: FileList;
+    currentFile: File;
+    imageSrc: string;
+
+
+    get f(){
+
+      return this.form.controls;
+
+    }
+
+    // tslint:disable-next-line: typedef
+    onFileChange(event) {
+
+      const reader = new FileReader();
+      this.selectedFiles = event.target.files;
+
+      if (event.target.files && event.target.files.length) {
+
+        const [file] = event.target.files;
+
+        reader.readAsDataURL(file);
+
+        reader.onload = () => {
+
+
+          this.imageSrc = reader.result as string;
+
+          this.form.patchValue({
+
+            fileSource: reader.result
+
+          });
+
+
+        };
+      }
+    }
+
+
+
     openDialog(nut: number) {
       this.dialog.open(DialogvehiculeComponent, {
         data: nut
@@ -123,7 +165,7 @@ validationMessages = {
       type_vehicule: [''],
       carburant: [''],
       immatriculation: [''],
-      galerie_photo: [''],
+      galerie_photo: new FormControl('', [Validators.required]),
       assureur: [''],
       num_contrat_assurance: [''],
     });
@@ -200,13 +242,14 @@ this.refrech();
   }
 
   onsubmit(){
-    this.vehicule = this.form.value;
+   this.currentFile = this.selectedFiles.item(0);
     this.form.value.marque = this.selectAge;
     this.form.value.model   = this.selectmodelx;
     this.form.value.carburant   = this.selectedCarburantx;
+    this.vehicule = this.form.value;
 
-    console.log(this.vehicule);
-    this.vehiculesService.submitevehicule(this.vehicule)
+    console.log(this.vehicule.carburant);
+    this.vehiculesService.addvehiculewithphto(this.vehicule ,this.currentFile )
     .subscribe(vehicule => {
       this.vehiculecopy = vehicule ;
       this.vehicule = null ;
