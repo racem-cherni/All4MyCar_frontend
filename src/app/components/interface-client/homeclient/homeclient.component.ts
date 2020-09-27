@@ -92,7 +92,7 @@ adressecites: Adressecities[] = [];
 
     this.clientt = new Client();
     this.clientService.getclient()
-     .subscribe((data) => {this.clientt = data, console.log(data),
+     .subscribe((data) => {this.clientt = data, console.log(typeof(data.date_inscrip)),
       this.vehiculesService.getVehiculess().subscribe((data) => {
         this.Vehicules = data,  console.log(data)} ,
 

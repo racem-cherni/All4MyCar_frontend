@@ -12,4 +12,9 @@ export class HomepresComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  gotordv(){
+    window.location.href ='/All4MyCar/prestataire/rdv';
+
+  }
+
 }

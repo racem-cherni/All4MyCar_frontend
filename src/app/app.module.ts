@@ -30,7 +30,6 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
@@ -76,6 +75,13 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
+import { RdvpresComponent } from './components/interface-prestataire/rdvpres/rdvpres.component';
+import { DisponibilteComponent } from './components/interface-prestataire/espace-prestataire/disponibilte/disponibilte.component';
+
+import { MatCheckboxModule} from '@angular/material/checkbox';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+
+import {CalendarModule} from 'primeng/calendar';    
 
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 
@@ -138,6 +144,8 @@ import { PrestationsComponent } from './components/interface-client/prestations/
     FooterAdminComponent,
     SidebarAdminComponent,
     NavbarAdminComponent,
+    RdvpresComponent,
+    DisponibilteComponent,
 
     RegistredialogComponent,
 
@@ -160,6 +168,7 @@ import { PrestationsComponent } from './components/interface-client/prestations/
     MatDialogModule,
     MenubarModule,
     PanelMenuModule,
+  
     MatProgressSpinnerModule,
     MatToolbarModule,
     MatRadioModule,
@@ -176,8 +185,10 @@ import { PrestationsComponent } from './components/interface-client/prestations/
     HttpClientModule,
     JwtModule,
     BrowserAnimationsModule,
-    MatTooltipModule
-   ],
+    MatTooltipModule,
+    MatCheckboxModule,
+    NgxMaterialTimepickerModule ,
+    CalendarModule  ],
   providers: [authInterceptorProviders, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService  ],
   bootstrap: [AppComponent],
   schemas: [

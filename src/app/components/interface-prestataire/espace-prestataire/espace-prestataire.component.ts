@@ -23,6 +23,10 @@ export class EspacePrestataireComponent implements OnInit {
     this.position=3;
     }  }  
 
+    gotodisponibilte(){
+      this.position=4;
+    }
+
   gotogarage(){
     this.position=2;
 

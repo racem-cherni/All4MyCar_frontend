@@ -971,8 +971,8 @@
             owlCarousel.owlCarousel({
                 dots: false,
                 margin: 20,
-                loop: true,
-                items: 4,
+                loop: false,
+                items: 1,
                 rtl: isRTL(),
                 responsive: {
                     1400: {items: 4, margin: 20},

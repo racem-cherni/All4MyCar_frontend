@@ -36,6 +36,8 @@ import { MapsComponent } from './maps/maps.component';
 
 import { PrestationsComponent } from './components/interface-client/prestations/prestations.component';
 
+import { RdvpresComponent } from './components/interface-prestataire/rdvpres/rdvpres.component';
+import { DisponibilteComponent } from './components/interface-prestataire/espace-prestataire/disponibilte/disponibilte.component';
 const routes: Routes = [
   {
     path: 'dash',
@@ -100,10 +102,13 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'prestataire', component: InterfacePrestataireComponent, children: [
       {path: 'home', component: HomepresComponent},
+      {path: 'rdv', component: RdvpresComponent},
     { path: 'espace-prestataire', component: EspacePrestataireComponent , canActivate: [AuthGuard] ,  children: [
       {path: 'garage', component: GarageComponent},
       {path: 'dashboardpres', component: DashboardpresComponent},
       {path: 'profilpres', component: ProfilpresComponent},
+      {path: 'disponibilte', component: DisponibilteComponent},
+
 
 
     ] },]},

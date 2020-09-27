@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TokenStorageService } from './token-storage.service';
 import { Prestataire } from '../entities/prestataire';
 import { Observable } from 'rxjs';
+import { Disponibilte } from '../entities/disponibilte';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -67,4 +68,20 @@ submiteditprofil(prestataire: Prestataire, currentfile: File): Observable<Presta
     ,  {headers: this.header} );
 
 }
+
+
+
+getDisponibilte() : Observable<any> {
+  return this.http.get(this.baseUrluser + '/FinddispoByPres/'  , {
+    headers: this.header});
+}
+
+modif_dispo(disponibilte: Disponibilte): Observable<any> {
+  return this.http.post( this.baseUrluser + '/modifier_dispojour/' /*+ `${disponibilte.heuredam}`+"/"+
+  `${disponibilte.heurefam}`+"/"+`${disponibilte.heuredm}`+"/"+`${disponibilte.heurefm}`+"/"
+  +`${disponibilte.jour}`+"/"+`${disponibilte.jour_actif}`*/ ,disponibilte
+  ,{ headers: this.header});
+}
+
+
 }

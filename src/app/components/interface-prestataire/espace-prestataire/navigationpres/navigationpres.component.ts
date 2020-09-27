@@ -19,6 +19,10 @@ export class NavigationpresComponent implements OnInit {
   {this.router.navigate(['All4MyCar/prestataire/espace-prestataire/garage']);
 }
 
+gotodisponibilte(){
+  this.router.navigate(['All4MyCar/prestataire/espace-prestataire/disponibilte']);
+}
+
 // tslint:disable-next-line: typedef
 gotodashbordpres(){
   this.router.navigate(['All4MyCar/prestataire/espace-prestataire/dashboardpres']);

@@ -17,7 +17,7 @@
 
             <li class="account-nav__item" (click)="gotogarage()"><a routerLink="/All4MyCar/prestataire/espace-prestataire/garage" routerLinkActive=" account-nav__item--active" >Garage</a></li>
             <li class="account-nav__item" (click)="gotoprofilpres()"  ><a routerLink="/All4MyCar/prestataire/espace-prestataire/profilpres"  routerLinkActive=" account-nav__item--active" >Edit Profile</a></li>
-            <li class="account-nav__item"><a >Order History</a></li>
+            <li class="account-nav__item" (click)="gotodisponibilte()"><a routerLink="/All4MyCar/prestataire/espace-prestataire/disponibilte"  routerLinkActive=" account-nav__item--active">Disponibilté</a></li>
             <li class="account-nav__item"><a >Password</a></li>
             <li class="account-nav__divider" role="presentation"></li><li class="account-nav__item"><a>Logout</a></li></ul>
 </div>
@@ -34,7 +34,13 @@
 
   <div *ngIf="position == 3">
     <app-profilpres></app-profilpres>
-  </div></div>
+  </div>
+
+  <div *ngIf="position == 4">
+    <app-disponibilte></app-disponibilte>
+  </div>
+
+</div>
   </div>
   <div class="block-space block-space--layout--before-footer"></div>
 
