@@ -33,6 +33,9 @@ import { TableListComponent } from './table-list/table-list.component';
 import { IconsComponent } from './icons/icons.component';
 import { TypographyComponent } from './typography/typography.component';
 import { MapsComponent } from './maps/maps.component';
+
+import { PrestationsComponent } from './components/interface-client/prestations/prestations.component';
+
 const routes: Routes = [
   {
     path: 'dash',
@@ -45,37 +48,37 @@ const routes: Routes = [
   {
     path:'notifications',
     component:NotificationsComponent,
-    
+
 
   },
   {
     path:'dashboard',
     component:DashboardAdminComponent,
-    
+
 
   },
   {
     path:'table-list',
     component:TableListComponent,
-    
+
 
   },
   {
     path:'icons',
     component:IconsComponent,
-    
+
 
   } ,
   {
     path:'typographie',
     component:TypographyComponent,
-    
+
 
   },
   {
     path:'maps',
     component:MapsComponent,
-    
+
 
   }]
 
@@ -85,6 +88,7 @@ const routes: Routes = [
   { path: 'All4MyCar', component: LayoutComponent , children: [
     { path: 'client', component: InterfaceClientComponent, children: [
       {path: 'home', component: HomeclientComponent},
+      {path: 'prestations', component: PrestationsComponent},
     { path: 'espace-client', component: EspaceClientComponent, canActivate: [AuthGuard] ,  children: [
       {path: 'vehicules', component: VehiculesComponent},
       {path: 'dashboard', component: DashboardComponent},

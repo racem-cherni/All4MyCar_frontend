@@ -45,7 +45,7 @@
                 <!--    <span
                   class="block-slideshow__item-button">Comparer les garages</span>-->
                 <!--  <p-button (click)="showBasicDialog()" icon="pi pi-external-link"   label="Comparer les garages"></p-button>-->
-                <button pRipple (click)="showBasicDialog()" pButton type="button" label="Comparer les garages"
+                <button pRipple (click)="showBasicDialog()" pButton type="button" label="Comparer les garages" pTooltip="comparer les garages" tooltipPosition="bottom"
                   icon="pi pi-external-link" style="width:250px" class="p-button-danger p-button-rounded"></button>
 
 
@@ -59,14 +59,16 @@
 
           </div>
         </div>
+        <form class="block-finder__form " novalidate [formGroup]="form" (ngSubmit)="onsubmit()">
         <p-dialog header="Quelles prestations souhaitez-vous réaliser ?" [(visible)]="displayBasic" [modal]="true" [draggable]="false"
           [resizable]="false" [style]="{width: '50vw'}" [baseZIndex]="10000">
           <br>
-          <form class="block-finder__form " novalidate [formGroup]="form" (ngSubmit)="onsubmit()">
 
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-            <mat-form-field >
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="row">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div class="col-md-auto">
+            <mat-form-field class="examplevehicule" >
               <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
               <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
                 [(ngModel)]="selectedVehicule" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
@@ -76,14 +78,8 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
-
-            &nbsp;
-            &nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-
+          </div>
+          <div class="col">
             <mat-form-field class="example-full-width" >
               <mat-label> &nbsp;&nbsp;&nbsp; Prestations</mat-label>
               <mat-select [disabled]="selectedVehicule == null" matNativeControl id="abc" [(ngModel)]="selectedMarque"
@@ -96,27 +92,34 @@
                 </mat-optgroup>
               </mat-select>
             </mat-form-field>
+            </div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
 
 
-          </form>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <div class="block-space block-space--layout--divider-xs"></div>
 
 
           <ng-template pTemplate="footer">
-            <p-button icon="pi pi-check" (onClick)="showDialog()" label="valider" styleClass="p-button-text">
+            <p-button *ngIf=" selectedVehicule == null && selectedMarque == null  "    icon="pi pi-check"  pTooltip="completer informations" tooltipPosition="bottom" label="valider" styleClass="p-button-text">
 
             </p-button>
+
+            <p-button *ngIf=" selectedVehicule !== null && selectedMarque == null " icon="pi pi-check"  pTooltip="choisir prestation(s)" tooltipPosition="bottom" label="valider" styleClass="p-button-text">
+
+            </p-button>
+            <p-button *ngIf=" selectedVehicule !== null && selectedMarque !== null " icon="pi pi-check" (onClick)="showDialog()" pTooltip="cliquer pour continuer" tooltipPosition="bottom" label="valider" styleClass="p-button-text">
+</p-button>
             <button pButton type="button" icon="pi pi-times" (click)="displayBasic=false" class="p-button-danger"
-              label="Cancel"></button>
+              label="Annuler" pTooltip="annuler" ></button>
 
           </ng-template>
 
         </p-dialog>
         <p-dialog header="Où cherchez-vous un garage ?" [(visible)]="display" [modal]="true" [draggable]="false"
         [resizable]="false" [style]="{width: '50vw'}" [baseZIndex]="10000">
-        <br>
+
         <!--  <form class="block-finder__form" novalidate [formGroup]="form">
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -136,44 +139,54 @@
           </mat-form-field>
           </form>-->
 
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <div class="row">
+            <div class="col">
           <mat-form-field class="examplellllll" >
             <mat-label>Pays</mat-label>
-            <mat-select matNativeControl id="mySelectpaysId"  [(ngModel)]="selectedpays" [ngModelOptions]="{standalone: true}"
+            <mat-select matNativeControl id="mySelectpaysId" formControlName="pays"  [(ngModel)]="selectedpays" [ngModelOptions]="{standalone: true}"
             (ngModelChange)="getville()">
               <mat-option *ngFor=" let marque of pays"  [value]="marque"  >
                 {{marque.name}}
               </mat-option>
             </mat-select>
+
           </mat-form-field>
+        </div>
           &nbsp;
-          &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
-          <mat-form-field >
+
+          <div class="col-sm">
+          <mat-form-field class="examplellllll" >
             <mat-label>Ville</mat-label>
-            <mat-select matNativeControl [disabled]="selectedpays == null" id="mySelectvilleId"  [(ngModel)]="selectedville" [ngModelOptions]="{standalone: true}"
+            <mat-select matNativeControl [disabled]="selectedpays == null" formControlName="ville" id="mySelectvilleId"  [(ngModel)]="selectedville" [ngModelOptions]="{standalone: true}"
             (ngModelChange)="setvilleValue()" >
               <mat-option *ngFor=" let model of adressevilles" [value]="model"  >
                 {{ model.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
+          </div>
           &nbsp;
-          &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
-          <mat-form-field >
+
+
+          <div class="col">
+          <mat-form-field class="examplellllll" >
             <mat-label>cité</mat-label>
-            <mat-select matNativeControl [disabled]="selectedville == null" id="mySelectcitéId"  [(ngModel)]="selectedcite" [ngModelOptions]="{standalone: true}"
+            <mat-select matNativeControl [disabled]="selectedville == null" id="mySelectcitéId" formControlName="cite"  [(ngModel)]="selectedcite" [ngModelOptions]="{standalone: true}"
             (ngModelChange)="setciteValue()" >
               <mat-option *ngFor=" let model of adressecites" [value]="model">
                 {{ model.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
+          </div>
+          </div>
           &nbsp;
           &nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <div class="block-space block-space--layout--divider-xs"></div>
           <ng-template pTemplate="footer">
-            <p-button icon="pi pi-check"  label="valider" styleClass="p-button-text">
+            <p-button icon="pi pi-check" type="submit"  label="valider" styleClass="p-button-text" routerLink="All4MyCar/client/prestations">
 
             </p-button>
             <button pButton type="button" icon="pi pi-times" (click)="display=false" class="p-button-danger"
@@ -181,6 +194,7 @@
 
           </ng-template>
         </p-dialog>
+        </form>
 
         <div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span
               aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span

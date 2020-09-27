@@ -46,6 +46,7 @@ import {ButtonModule} from 'primeng/button';
 import {DropdownModule} from 'primeng/dropdown';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {TooltipModule} from 'primeng/tooltip';
 
 
 
@@ -95,6 +96,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { FooterAdminComponent } from './layouts/admin-layout/footer-admin/footer-admin.component';
 import {NavbarAdminComponent  } from './layouts/admin-layout/navbar-admin/navbar-admin.component';
 import {SidebarAdminComponent} from './layouts/admin-layout/sidebar-admin/sidebar-admin.component';
+import { PrestationsComponent } from './components/interface-client/prestations/prestations.component';
 
 
 @NgModule({
@@ -137,12 +139,15 @@ import {SidebarAdminComponent} from './layouts/admin-layout/sidebar-admin/sideba
     SidebarAdminComponent,
     NavbarAdminComponent,
 
-    RegistredialogComponent
+    RegistredialogComponent,
+
+    PrestationsComponent
 
 
 
   ],
   imports: [
+    TooltipModule,
    MatProgressSpinnerModule,
     ProgressSpinnerModule,
     AutoCompleteModule,

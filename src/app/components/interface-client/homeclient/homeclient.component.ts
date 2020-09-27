@@ -43,10 +43,10 @@ showDialog() {
   Vehicules: Vehicule[] = [];
   specialisations: Specialisation[] = [];
   detailsspecialisation: DetailSpecialisation[] = [];
-  selectedMarque: DetailSpecialisation[] = [];
+  selectedMarque: DetailSpecialisation[] = null;
   selectedModel : DetailSpecialisation;
     detailss: DetailSpecialisation[] = [];
-    selectedVehicule: Vehicule;
+    selectedVehicule: Vehicule = null;
 
 
   form: FormGroup; v
@@ -122,7 +122,7 @@ adressecites: Adressecities[] = [];
   selectvillex : Adressevilles;
   setvilleValue(){
     this.selectvillex = this.selectedville;
-    console.log(this.selectmodelx);
+    console.log(this.selectvillex);
     this.adresseService.getcitiesofville(this.selectvillex.id).subscribe(
       data => {
         this.adressecites = data;
@@ -133,7 +133,7 @@ adressecites: Adressecities[] = [];
   selectcitex : Adressecities;
   setciteValue(){
     this.selectcitex = this.selectedcite;
-    console.log(this.selectmodelx);
+    console.log(this.selectcitex);
   }
 
   selectAge: Specialisation;
@@ -177,7 +177,10 @@ adressecites: Adressecities[] = [];
     this.form = this.fb.group({
       vehicule: [''],
       specialisations: [''],
-      jour: ['']
+      pays: [''],
+      ville: [''],
+      cite: ['']
+
     });
     this.form.valueChanges
 .subscribe(data => this.onValueChanged(data));
@@ -208,6 +211,9 @@ this.onValueChanged();
   onsubmit(){
     this.form.value.vehicule = this.selectvec;
     this.form.value.specialisations = this.selectspec ;
+    this.form.value.pays = this.selectpays;
+    this.form.value.ville = this.selectvillex;
+    this.form.value.cite = this.selectcitex;
 
 
 
