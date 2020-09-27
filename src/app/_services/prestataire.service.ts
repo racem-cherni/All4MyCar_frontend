@@ -63,7 +63,7 @@ submiteditprofil(prestataire: Prestataire, currentfile: File): Observable<Presta
     // tslint:disable-next-line: align
   return this.http.post<Prestataire>(this.baseUrluser + '/edit_prestataire1/'  + `${prestataire.firstNamepres}`  + "/" + `${prestataire.lastNamepres}` + "/" + `${prestataire.adressepres}`
 
-  + "/" + `${prestataire.adresseprof}` + "/" + `${prestataire.emailpres}` + "/" + `${prestataire.telpres}`+ "/" + `${prestataire.specialisations}`+ "/" + `${prestataire.cin}` , formData
+   + "/" + `${prestataire.emailpres}` + "/" + `${prestataire.telpres}`+ "/" + `${prestataire.specialisations}`+ "/" + `${prestataire.cin}` , formData
 
     ,  {headers: this.header} );
 

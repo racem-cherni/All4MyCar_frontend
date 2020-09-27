@@ -51,8 +51,7 @@ formErrors = {
         // tslint:disable-next-line: object-literal-key-quotes
     'emailpres': '',
         // tslint:disable-next-line: object-literal-key-quotes
-    'adresseprof': '',
-        // tslint:disable-next-line: object-literal-key-quotes
+    
     'date_permis': '',
         // tslint:disable-next-line: object-literal-key-quotes
     'lastNamepres': '',
@@ -116,14 +115,7 @@ validationMessages = {
     'maxlength':     'adresse cannot be more than 25 characters long.'
   },
     // tslint:disable-next-line: object-literal-key-quotes
-    'adresseprof': {
-      // tslint:disable-next-line: object-literal-key-quotes
-      'required':      'adresse is required.',
-      // tslint:disable-next-line: object-literal-key-quotes
-      'minlength':     'adresse must be at least 2 characters long.',
-      // tslint:disable-next-line: object-literal-key-quotes
-      'maxlength':     'adresse cannot be more than 25 characters long.'
-    },
+   
     // tslint:disable-next-line: object-literal-key-quotes
     'specialisations': {
       // tslint:disable-next-line: object-literal-key-quotes
@@ -236,7 +228,6 @@ this.form = this.fb.group({
   firstNamepres:  ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ] ,
   lastNamepres: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ] ,
   adressepres: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
-  adresseprof: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
   emailpres: ['', [Validators.required, Validators.email] ] ,
   telpres: ['', [Validators.required, Validators.pattern , Validators.minLength(8) , Validators.maxLength(8)] ] ,
   photopres: new FormControl('', [Validators.required]),

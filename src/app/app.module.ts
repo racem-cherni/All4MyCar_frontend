@@ -79,7 +79,7 @@ import { RdvpresComponent } from './components/interface-prestataire/rdvpres/rdv
 import { DisponibilteComponent } from './components/interface-prestataire/espace-prestataire/disponibilte/disponibilte.component';
 
 import { MatCheckboxModule} from '@angular/material/checkbox';
-import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+
 
 import {CalendarModule} from 'primeng/calendar';    
 
@@ -187,7 +187,7 @@ import { PrestationsComponent } from './components/interface-client/prestations/
     BrowserAnimationsModule,
     MatTooltipModule,
     MatCheckboxModule,
-    NgxMaterialTimepickerModule ,
+  
     CalendarModule  ],
   providers: [authInterceptorProviders, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService  ],
   bootstrap: [AppComponent],
