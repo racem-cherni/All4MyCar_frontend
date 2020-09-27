@@ -1,4 +1,5 @@
 import { Client } from './client';
+import { Prestataire } from './prestataire';
 
 export class User {
 
@@ -10,5 +11,6 @@ export class User {
    username: string;
    email: string;
    client: Client;
+   prestataire:Prestataire;
 
 }

@@ -20,6 +20,7 @@ export class DashboardpresComponent implements OnInit {
 
   prestataire: Prestataire;
   user: User;
+ 
   ngOnInit(): void {
     // tslint:disable-next-line: no-string-literal
     this.prestataireservice.getUser()
@@ -28,6 +29,7 @@ export class DashboardpresComponent implements OnInit {
   // tslint:disable-next-line: align
   this.prestataireservice.getprestataire()
    .subscribe((data) => {this.prestataire = data, console.log(data)} , error => console.log(error));
+  
 
  }
 

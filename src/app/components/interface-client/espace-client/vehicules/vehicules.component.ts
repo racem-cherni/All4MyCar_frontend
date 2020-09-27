@@ -122,13 +122,7 @@ validationMessages = {
 
     this.CreateVehiculeForm();
 
-    this.vehiculesService.getMarqueVehiculess()
-    .subscribe(
-      (data) => {
-        this.vehiculemarque = data;
-      //  console.log('Retrives marques : ' + JSON.stringify(data));
-
-    });
+   
     this.clientt = new Client();
     this.clientService.getclient()
      .subscribe((data) => {this.clientt = data, console.log(data),
@@ -149,7 +143,7 @@ validationMessages = {
 
 
   // tslint:disable-next-line: align
-  this.vehiculesService.getMarqueVehiculess()
+  this.vehiculesService.getListVehicule()
    .subscribe((data) => {this.vehiculemarque = data, console.log(data)});
 
 
@@ -190,7 +184,7 @@ this.onValueChanged();
     const vehiculename = this.form.value.marque.name;
  // this.form.controls.myControl.setValue(curItem)
 
-    this.vehiculesService.getModelsVehiculess(this.selectAge.name.toString()).subscribe(
+    this.vehiculesService.getListVehiculeModel(this.selectAge.name.toString()).subscribe(
     data => {
       this.vehiculemodel = data;
 
