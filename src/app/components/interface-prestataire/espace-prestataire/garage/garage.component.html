@@ -1,6 +1,182 @@
-<div class="card">
+<div class="card ">
   <div class="card-header">
-      <h5>Garage</h5>
+    <div class="row">
+      <div class="col">    <h5>Garage</h5>
+      </div>
+      <div class="col">
+
+
+      </div>
+    </div>
+</div>
+  <div class="card-divider "></div>
+  <div class="card-body card-body--padding--2 center">
+    <p-card  *ngIf="garagee == null" header=""  [style]="{width: '360px'}"  styleClass="p-card-shadow">
+      <p-header>
+        <img alt="Card"  src="assets/images/avatars/garageinconnu.jpg">
+
+      </p-header>
+    </p-card>
+      <p-card *ngIf="garagee !== null" header="Advanced Card" subheader="Card Subheader" [style]="{width: '360px'}" class="center" styleClass="p-card-shadow">
+        <p-header>
+
+           <img alt="Card"  src="http://localhost:8081/api/afficheimagegarage/image/logo/{{garagee.photo_garage}}">
+        </p-header>
+
+
+  </p-card>
+
+  <p-button  icon="pi pi-check" (onClick)="showgarageDialog()" tooltipPosition="bottom" label="Editer garage" class="top" styleClass="p-button-text">
+  </p-button>
+
+  <form class="block-finder__form" novalidate [formGroup]="form" (ngSubmit)="onsubmit()" *ngIf="showGarageForm"   >
+
+  <p-dialog header="Editer votre garage " [(visible)]="displaygarage" [modal]="true" [draggable]="false"
+  [resizable]="false" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <br>
+
+      <div class="vehicle-form vehicle-form--layout--account">
+
+
+
+  &nbsp;
+  &nbsp;
+
+
+  <mat-form-field class="half-width">
+    <input matInput formControlName="Nbr_Mecaniciens" type="number" placeholder="Nombres mécaniciens" pattern="[0-9]*" required   >
+   <!-- <mat-error *ngIf="formErrors.cin">{{formErrors.cin}}</mat-error>-->
+    </mat-form-field>
+  &nbsp;
+  &nbsp;
+
+
+
+  <mat-form-field class="half-width">
+    <input matInput formControlName="année_Experience" type="number" placeholder="Années experiences" pattern="[0-9]*" required   >
+   <!-- <mat-error *ngIf="formErrors.cin">{{formErrors.cin}}</mat-error>-->
+    </mat-form-field>
+  &nbsp;
+  &nbsp;
+  <mat-form-field class="half-width">
+    <input matInput formControlName="date_ouverture" [matDatepicker]="picker" placeholder="date ouverture"  required  >
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  <div class="vehicle-form__divider"></div>
+  <div class="vehicle-form__item">
+
+  <!--  <div class="row">
+      <div class="col">
+    <mat-form-field class="examplellllll" >
+      <mat-label>Pays</mat-label>
+      <mat-select matNativeControl id="mySelectpaysId"   [(ngModel)]="selectedpays" [ngModelOptions]="{standalone: true}"
+      (ngModelChange)="getville()">
+        <mat-option *ngFor=" let marque of pays"  [value]="marque"  >
+          {{marque.name}}
+        </mat-option>
+      </mat-select>
+
+    </mat-form-field>
   </div>
-  <div class="card-divider"></div>
+    &nbsp;
+
+    <div class="col-sm">
+    <mat-form-field class="examplellllll" >
+      <mat-label>Ville</mat-label>
+      <mat-select matNativeControl [disabled]="selectedpays == null"  id="mySelectvilleId"  [(ngModel)]="selectedville" [ngModelOptions]="{standalone: true}"
+      (ngModelChange)="setvilleValue()" >
+        <mat-option *ngFor=" let model of adressevilles" [value]="model"  >
+          {{ model.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    </div>
+    &nbsp;
+
+
+    <div class="col">
+    <mat-form-field class="examplellllll" >
+      <mat-label>cité</mat-label>
+      <mat-select matNativeControl [disabled]="selectedville == null" id="mySelectcitéId" formControlName="adressecite"  [(ngModel)]="selectedcite" [ngModelOptions]="{standalone: true}"
+      (ngModelChange)="setciteValue()" >
+        <mat-option *ngFor=" let model of adressecites" [value]="model">
+          {{ model.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    </div>
+    </div>-->
+    &nbsp;
+
+
+    <div class="row">
+      <!--
+  <div class="col">
+      <mat-form-field  >
+        <input matInput formControlName="addresse" type="text"  id="adresse" placeholder="adresse" required   >
+        </mat-form-field>
+
+  </div>-->
+  <div class="col">
+    <mat-form-field  >
+      <mat-label>Description</mat-label>
+
+      <textarea matInput  formControlName="description" type="text"  id="description" placeholder="description" required   >
+        </textarea>
+        </mat-form-field>
+      </div>
+
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+  &nbsp;
+
+
   </div>
+
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+
+
+    </div>
+
+  </div>
+
+  <div class="row ">
+    <div class="col">
+   <div class="form-group col-12 col-lg-7 col-xl-6 ">
+
+     <label for="file"> Upload photo</label>
+
+     <input  formControlName="photo_garage" id="file" type="file" class="form-control "
+         (change)="onFileChange($event)">
+
+     <div *ngIf="f.photo_garage.touched && f.photo_garage.invalid" class="alert alert-danger">
+
+         <div *ngIf="f.photo_garage.errors.required">Photo is required.</div>
+
+     </div>
+   </div>
+  </div>
+
+  </div>
+  <ng-template pTemplate="footer">
+
+    <p-button  icon="pi pi-check" type="submit"  tooltipPosition="bottom" label="valider" styleClass="p-button-text">
+</p-button>
+    <button pButton type="button" icon="pi pi-times" (click)="displayBasic=false" class="p-button-danger"
+      label="Annuler" pTooltip="annuler" ></button>
+
+  </ng-template>
+
+</p-dialog>
+
+</form>
+</div>
+
+</div>
