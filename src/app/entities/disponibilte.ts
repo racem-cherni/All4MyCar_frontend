@@ -8,5 +8,5 @@ export class Disponibilte {
     heurefm:Date;
     jour:string;
     jour_actif:Boolean;
-
+    periodedeux_actif:Boolean;
 }
