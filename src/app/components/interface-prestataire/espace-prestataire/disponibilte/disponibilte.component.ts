@@ -67,22 +67,6 @@ validationMessages = {
 
   }
   
- 
-
-  onSubmit(): void {
-
-    this.prestataireservice.edit_prestataire(this.form).subscribe(
-      data => {
-        console.log(data);
-        this.isSuccessful = true;
-
-      },
-      err => {
-        this.errorMessage = err.error.message;
-      }
-    );
-
-  }
 
   createformprofil(): void{
     this.form = this.fb.group({
@@ -124,67 +108,6 @@ jour_actif : ['']
           }
         }
       }
-
-      onsubmitt(valeur : string,num:Number) {
-     //   this.isSuccessful = true;
-     this.form.value.jour = valeur ;
-     
-       this.dispo = this.form.value;
-       const ss : Disponibilte = (this.form.value.heuredm0,this.form.value.heurefm0,this.form.value.heuredam0,
-        this.form.value.heurefam0);
-        console.log(ss)
-       console.log(typeof(this.form.value.heuredam)+" "+this.form.value.heuredam);
-       var registerModel: Disponibilte={
-        id : null,heuredam: null,heuredm: null,heurefam :null,heurefm :null,jour :null,jour_actif : true,periodedeux_actif:true};
-       if (num==0){
-       registerModel={
-         id : null,heuredam: this.form.value.heuredam0,heuredm: this.form.value.heuredm0,
-        heurefam :this.form.value.heurefam0,heurefm :this.form.value.heurefm0,jour :this.form.value.jour,jour_actif : this.isShown11,periodedeux_actif:this.isShown12,
-      };}
-      if (num==1){
-        registerModel={
-          id : null,heuredam: this.form.value.heuredam1,heuredm: this.form.value.heuredm1,
-         heurefam :this.form.value.heurefam1,heurefm :this.form.value.heurefm1,jour :this.form.value.jour,jour_actif : this.isShown21,periodedeux_actif:this.isShown22,
-       };}
-       if (num==2){
-        registerModel={
-          id : null,heuredam: this.form.value.heuredam2,heuredm: this.form.value.heuredm2,
-         heurefam :this.form.value.heurefam2,heurefm :this.form.value.heurefm2,jour :this.form.value.jour,jour_actif : this.isShown31,periodedeux_actif:this.isShown32,
-       };}
-       if (num==3){
-        registerModel={
-          id : null,heuredam: this.form.value.heuredam3,heuredm: this.form.value.heuredm3,
-         heurefam :this.form.value.heurefam3,heurefm :this.form.value.heurefm3,jour :this.form.value.jour,jour_actif : this.isShown41,periodedeux_actif:this.isShown42,
-       };}
-       if (num==4){
-        registerModel={
-          id : null,heuredam: this.form.value.heuredam4,heuredm: this.form.value.heuredm4,
-         heurefam :this.form.value.heurefam4,heurefm :this.form.value.heurefm4,jour :this.form.value.jour,jour_actif : this.isShown51,periodedeux_actif:this.isShown52,
-       };}
-       if (num==5){
-        registerModel={
-          id : null,heuredam: this.form.value.heuredam5,heuredm: this.form.value.heuredm5,
-         heurefam :this.form.value.heurefam5,heurefm :this.form.value.heurefm5,jour :this.form.value.jour,jour_actif : this.isShown61,periodedeux_actif:this.isShown62,
-       };}
-       if (num==6){
-        registerModel={
-          id : null,heuredam: this.form.value.heuredam6,heuredm: this.form.value.heuredm6,
-         heurefam :this.form.value.heurefam6,heurefm :this.form.value.heurefm6,jour :this.form.value.jour,jour_actif : this.isShown71,periodedeux_actif:this.isShown72,
-       };}
-      console.log(registerModel);
-       
-      //  console.log(this.prestataire);
-      this.prestataireservice.modif_dispo(registerModel)
-        .subscribe(client => {
-          this.dispocopy = client ;
-          this.dispo = null ;
-          setTimeout(() => {
-            this.dispocopy = null; this.showdisponibilteForm = true; }, 5000);     },
-            error => console.log(error.status, error.message));
-            // tslint:disable-next-line: align
-            // tslint:disable-next-line: align
-          //  this.formFormDirective.reset();
-        }
     
 
         clicked(){
