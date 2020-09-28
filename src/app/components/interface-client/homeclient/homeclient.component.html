@@ -47,23 +47,23 @@
                   <!--  <p-button (click)="showBasicDialog()" icon="pi pi-external-link"   label="Comparer les garages"></p-button>-->
                   <button pRipple (click)="showBasicDialog()" pButton type="button" label="Comparer les garages" pTooltip="comparer les garages" tooltipPosition="bottom"
                     icon="pi pi-external-link" style="width:250px" class="p-button-danger p-button-rounded"></button>
-  
-  
+
+
                 </a></div>
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
             </div>
           </div>
           <form class="block-finder__form " novalidate [formGroup]="form" (ngSubmit)="onsubmit()">
           <p-dialog header="Quelles prestations souhaitez-vous réaliser ?" [(visible)]="displayBasic" [modal]="true" [draggable]="false"
             [resizable]="false" [style]="{width: '50vw'}" [baseZIndex]="10000">
             <br>
-  
+
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <div class="row">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -95,33 +95,33 @@
               </div>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </div>
-  
-  
+
+
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div class="block-space block-space--layout--divider-xs"></div>
-  
-  
+
+
             <ng-template pTemplate="footer">
               <p-button *ngIf=" selectedVehicule == null && selectedMarque == null  "    icon="pi pi-check"  pTooltip="completer informations" tooltipPosition="bottom" label="valider" styleClass="p-button-text">
-  
+
               </p-button>
-  
-              <p-button *ngIf=" selectedVehicule !== null && selectedMarque == null " icon="pi pi-check"  pTooltip="choisir prestation(s)" tooltipPosition="bottom" label="valider" styleClass="p-button-text">
-  
+
+              <p-button *ngIf=" selectedVehicule !== null && selectedMarque == null " icon="pi pi-check"  pTooltip="completer informations" tooltipPosition="bottom" label="valider" styleClass="p-button-text">
+
               </p-button>
               <p-button *ngIf=" selectedVehicule !== null && selectedMarque !== null " icon="pi pi-check" (onClick)="showDialog()" pTooltip="cliquer pour continuer" tooltipPosition="bottom" label="valider" styleClass="p-button-text">
   </p-button>
               <button pButton type="button" icon="pi pi-times" (click)="displayBasic=false" class="p-button-danger"
                 label="Annuler" pTooltip="annuler" ></button>
-  
+
             </ng-template>
-  
+
           </p-dialog>
           <p-dialog header="Où cherchez-vous un garage ?" [(visible)]="display" [modal]="true" [draggable]="false"
           [resizable]="false" [style]="{width: '50vw'}" [baseZIndex]="10000">
-  
+
           <!--  <form class="block-finder__form" novalidate [formGroup]="form">
-  
+
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <mat-form-field class="example-full-wid">
@@ -138,7 +138,7 @@
               </mat-autocomplete>
             </mat-form-field>
             </form>-->
-  
+
             &nbsp; &nbsp; &nbsp; &nbsp;
             <div class="row">
               <div class="col">
@@ -150,11 +150,11 @@
                   {{marque.name}}
                 </mat-option>
               </mat-select>
-  
+
             </mat-form-field>
           </div>
             &nbsp;
-  
+
             <div class="col-sm">
             <mat-form-field class="examplellllll" >
               <mat-label>Ville</mat-label>
@@ -167,8 +167,8 @@
             </mat-form-field>
             </div>
             &nbsp;
-  
-  
+
+
             <div class="col">
             <mat-form-field class="examplellllll" >
               <mat-label>cité</mat-label>
@@ -186,16 +186,27 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div class="block-space block-space--layout--divider-xs"></div>
             <ng-template pTemplate="footer">
-              <p-button icon="pi pi-check" type="submit"  label="valider" styleClass="p-button-text" routerLink="/All4MyCar/client/prestations">
-  
+              <p-button *ngIf=" selectedville == null && selectedcite == null && selectedpays == null "    icon="pi pi-check"  pTooltip="completer informations" tooltipPosition="bottom" label="valider" styleClass="p-button-text">
+
+              </p-button>
+
+              <p-button *ngIf=" selectedville == null && selectedcite == null && selectedpays !== null "    icon="pi pi-check"  pTooltip="completer informations" tooltipPosition="bottom" label="valider" styleClass="p-button-text">
+
+              </p-button>
+
+              <p-button *ngIf=" selectedville !== null && selectedcite == null && selectedpays !== null "    icon="pi pi-check"  pTooltip="completer informations" tooltipPosition="bottom" label="valider" styleClass="p-button-text">
+
+              </p-button>
+              <p-button *ngIf=" selectedville !== null && selectedcite !== null && selectedpays !== null " icon="pi pi-check" type="submit" pTooltip="valider" tooltipPosition="bottom"  label="valider" styleClass="p-button-text" routerLink="/All4MyCar/client/prestations">
+
               </p-button>
               <button pButton type="button" icon="pi pi-times" (click)="display=false" class="p-button-danger"
                 label="Cancel"></button>
-  
+
             </ng-template>
           </p-dialog>
           </form>
-  
+
           <div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span
                 aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span
                 aria-label="Next">›</span></button></div>
@@ -206,35 +217,35 @@
     </div>
   </div>
   <div class="block-space block-space--layout--divider-nl"></div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <!--
   <div class="block-finder block">
     <div class="decor block-finder__decor decor--type--bottom">
       <div class="decor__body">
         <div class="decor__start">
-  
+
         </div>
         <div class="decor__end">
-  
+
         </div>
         <div class="decor__center">
-  
+
         </div>
       </div>
     </div>
@@ -245,7 +256,7 @@
         le meilleur !
       </div>
       <form class="block-finder__form" novalidate [formGroup]="form" (ngSubmit)="onsubmit()">
-  
+
         <mat-form-field>
           <mat-label>Vehicule</mat-label>
           <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule" [(ngModel)]="selectedVehicule"
@@ -255,7 +266,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-  
+
         &nbsp;
         &nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;
@@ -271,17 +282,17 @@
           </mat-select>
         </mat-form-field>
         &nbsp;&nbsp;&nbsp;
-  
+
         <button class="block-finder__form-control block-finder__form-control--button" type="submit">Comparer les
           garages</button>
       </form>
     </div>
   </div>
   -->
-  
-  
-  
-  
+
+
+
+
   <div class="block-features block block-features--layout--top-strip">
     <div class="container">
       <ul class="block-features__list">

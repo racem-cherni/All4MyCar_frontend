@@ -80,7 +80,7 @@
 </mat-form-field>-->
 <mat-form-field >
   <mat-label>Modéle vehicule</mat-label>
-  <mat-select matNativeControl id="mySelectmodeleId" formControleName="model" [(ngModel)]="selectedModel" [ngModelOptions]="{standalone: true}"
+  <mat-select matNativeControl [disabled]="selectedMarque == null" id="mySelectmodeleId" formControleName="model" [(ngModel)]="selectedModel" [ngModelOptions]="{standalone: true}"
   (ngModelChange)="setModelValue()" >
     <mat-option *ngFor=" let model of vehiculemodel" [value]="model"  >
       {{ model.name}}
@@ -108,7 +108,7 @@
 
 <mat-form-field >
   <mat-label>carburant vehicule</mat-label>
-  <mat-select [formControl]="pokemonControl" id="abc" formControlName="carburant" [(ngModel)]="selectedCarburant"
+  <mat-select [formControl]="pokemonControl" [disabled]="selectedModel == null" id="abc" formControlName="carburant" [(ngModel)]="selectedCarburant"
   (ngModelChange)="setCarburantValue()" >
     <mat-optgroup *ngFor="let group of pokemonGroups" [label]="group.name"
                   >
@@ -128,18 +128,29 @@
 <div class="vehicle-form__divider">Other informations</div>
 <div class="vehicle-form__item">
   &nbsp;
-
-    <mat-form-field class="example-full-width" >
+  <div class="row">
+<div class="col">
+    <mat-form-field  >
       <input matInput formControlName="immatriculation" type="text"  id="immatriculation" placeholder="immatriculation" required   >
       </mat-form-field>
-      &nbsp;
+
+</div>
 &nbsp;
 &nbsp;
 &nbsp;
-&nbsp;&nbsp;
 &nbsp;
 &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;&nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
 &nbsp;
+
+<div class="col">
 
 <mat-label>Type vehicule</mat-label>
 
@@ -148,30 +159,43 @@
         <mat-radio-button value="Personnel">Personnel</mat-radio-button>
         <mat-radio-button value="Sociéte">Sociéte</mat-radio-button>
       </mat-radio-group>
-
-
-      <mat-form-field class="half-width">
+</div>
+</div>
+    <div class="row">
+      <div class="col">
+      <mat-form-field class="example-full-width">
         <input matInput formControlName="date_assurance" [matDatepicker]="pickerr" placeholder="Date_assurance"  required  >
         <mat-datepicker-toggle matSuffix [for]="pickerr"></mat-datepicker-toggle>
         <mat-datepicker #pickerr></mat-datepicker>
         </mat-form-field>
+        </div>
         &nbsp;
 &nbsp;
-        <mat-form-field class="half-width">
+<div class="col">
+
+        <mat-form-field class="example-full-width">
           <input matInput formControlName="assureur" type="text" placeholder="assureur" required  >
         </mat-form-field>
+        </div>
         &nbsp;
 &nbsp;
+<div class="col">
+
         <mat-form-field class="example-full-width">
           <input matInput formControlName="num_contrat_assurance" type="text" placeholder="num_contrat_assurance" required  >
         </mat-form-field>
-
-
+</div>
+    </div>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
         <div class="row ">
-
+         <div class="col">
         <div class="form-group col-12 col-lg-7 col-xl-6 ">
 
-          <label for="file">Photo</label>
+          <label for="file"> Upload photo</label>
 
           <input  formControlName="galerie_photo" id="file" type="file" class="form-control "
               (change)="onFileChange($event)">
@@ -183,30 +207,46 @@
           </div>
 
       </div>
+         </div>
     <!--  <img [src]="imageSrc" *ngIf="imageSrc" style="height: 150px; width:150px">-->
     &nbsp;
     &nbsp;
     &nbsp;
     &nbsp;
+    &nbsp;&nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;&nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;&nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;&nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;&nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;&nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;&nbsp;
     &nbsp;
     &nbsp;
     &nbsp;
     &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
+  <div class="col">
 
       <button type="submit" mat-button   class="btn btn-outline-danger mt-3"   >Add A Vehicle</button>
-
-      </div>
+         </div>
+         </div>
 
   </div>
 

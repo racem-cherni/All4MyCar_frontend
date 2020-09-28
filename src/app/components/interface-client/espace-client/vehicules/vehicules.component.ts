@@ -57,8 +57,8 @@ validationMessages = {
 };
   vehiculemarque: VehiculeMarque[] = [];
   vehiculemodel: VehiculeModel[] = [];
-  selectedMarque: VehiculeMarque;
-  selectedModel : VehiculeModel;
+  selectedMarque: VehiculeMarque = null;
+  selectedModel : VehiculeModel = null;
   selectedCarburant : Vehicule['carburant'];
   search: any;
   Vehicules: Vehicule[] = [];
@@ -122,7 +122,7 @@ validationMessages = {
 
     this.CreateVehiculeForm();
 
-   
+
     this.clientt = new Client();
     this.clientService.getclient()
      .subscribe((data) => {this.clientt = data, console.log(data),

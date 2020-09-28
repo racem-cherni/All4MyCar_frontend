@@ -57,9 +57,9 @@ validationMessages = {
 };
 
 pays: Adressepays[] = [];
-selectedpays: Adressepays;
-selectedville : Adressevilles;
-selectedcite: Adressecities;
+selectedpays: Adressepays = null;
+selectedville : Adressevilles = null;
+selectedcite: Adressecities = null;
 adressevilles: Adressevilles[] = [];
 adressecites: Adressecities[] = [];
   constructor(private fb: FormBuilder ,private adresseService: AdresseService,private userService: UserService, private clientService: ClientService , private vehiculesService: VehiculesService , private specialisationService: SpecialisationService) {

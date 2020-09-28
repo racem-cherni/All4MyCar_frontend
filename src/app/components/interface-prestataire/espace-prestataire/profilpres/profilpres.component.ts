@@ -51,7 +51,7 @@ formErrors = {
         // tslint:disable-next-line: object-literal-key-quotes
     'emailpres': '',
         // tslint:disable-next-line: object-literal-key-quotes
-    
+
     'date_permis': '',
         // tslint:disable-next-line: object-literal-key-quotes
     'lastNamepres': '',
@@ -115,7 +115,7 @@ validationMessages = {
     'maxlength':     'adresse cannot be more than 25 characters long.'
   },
     // tslint:disable-next-line: object-literal-key-quotes
-   
+
     // tslint:disable-next-line: object-literal-key-quotes
     'specialisations': {
       // tslint:disable-next-line: object-literal-key-quotes

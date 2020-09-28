@@ -12,7 +12,7 @@ import { HomeComponent } from 'src/app/components/home/home.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
-
+import {CardModule} from 'primeng/card';
 
 import { EspaceClientComponent } from 'src/app/components/interface-client/espace-client/espace-client.component';
 import { EspacePrestataireComponent } from './components/interface-prestataire/espace-prestataire/espace-prestataire.component';
@@ -81,7 +81,7 @@ import { DisponibilteComponent } from './components/interface-prestataire/espace
 import { MatCheckboxModule} from '@angular/material/checkbox';
 
 
-import {CalendarModule} from 'primeng/calendar';    
+import {CalendarModule} from 'primeng/calendar';
 
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 
@@ -168,7 +168,7 @@ import { PrestationsComponent } from './components/interface-client/prestations/
     MatDialogModule,
     MenubarModule,
     PanelMenuModule,
-  
+
     MatProgressSpinnerModule,
     MatToolbarModule,
     MatRadioModule,
@@ -184,10 +184,11 @@ import { PrestationsComponent } from './components/interface-client/prestations/
     FormsModule,
     HttpClientModule,
     JwtModule,
+    CardModule,
     BrowserAnimationsModule,
     MatTooltipModule,
     MatCheckboxModule,
-  
+
     CalendarModule  ],
   providers: [authInterceptorProviders, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService  ],
   bootstrap: [AppComponent],

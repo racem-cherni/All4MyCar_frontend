@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <h5>Edit Profile</h5>
+        <h5>Disponibilité</h5>
     </div>
     <div class="card-divider"></div>
     <div class="card-body card-body--padding--2">
@@ -13,22 +13,23 @@
                     <mat-checkbox (ngModelChange)="toggleShow(11)" [(ngModel)] ="isShown11" class="example-margin" formControlName="jour">Lundi</mat-checkbox>
                 </div>
                     <div class="col-3" *ngIf="isShown11"   >
-                      heure debut 
+                      heure debut
                       <p-calendar  formControlName="heuredm0" [timeOnly]="true"></p-calendar>
-                       heure fin 
+                       heure fin
                        <p-calendar  formControlName="heurefm0" [timeOnly]="true"></p-calendar>
 </div>
 <div *ngIf="isShown11" class="col-2">
     <mat-checkbox (ngModelChange)="toggleShow(12)" [ngModelOptions]="{standalone: true}" [(ngModel)] ="isShown12" class="example-margin">2eme periode</mat-checkbox>
 </div>
     <div class="col-3" *ngIf="isShown12"   >
-        heure debut            
+        heure debut
         <p-calendar  formControlName="heuredam0" [timeOnly]="true"></p-calendar>
- heure fin 
+ heure fin
  <p-calendar  formControlName="heurefam0" [timeOnly]="true"></p-calendar>
 </div>
+<div class="col-2">
 <button *ngIf="isShown11" (click)="onsubmitt('LUNDI',0)" mat-button
-class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
+class="btn btn-outline-danger mt-3">Ajouter </button></div>&nbsp;&nbsp;
 <br>
 </div>
 
@@ -43,7 +44,7 @@ class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
 </div>
   <div class="col-3" *ngIf="isShown21"   >
  heure debut  <p-calendar  formControlName="heuredm1" [timeOnly]="true"></p-calendar>
- heure fin 
+ heure fin
  <p-calendar  formControlName="heurefm1" [timeOnly]="true"></p-calendar>
 </div>
 <div *ngIf="isShown21" class="col-2">
@@ -51,12 +52,14 @@ class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
 </div>
 <div class="col-3" *ngIf="isShown22"   >
 heure debut  <p-calendar  formControlName="heuredam1" [timeOnly]="true"></p-calendar>
-heure fin 
+heure fin
 <p-calendar  formControlName="heurefam1" [timeOnly]="true"></p-calendar>
 
 </div>
+<div class="col-2">
+
 <button *ngIf="isShown21" (click)="onsubmitt('MARDI',1)" mat-button
-class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
+class="btn btn-outline-danger mt-3">Ajouter</button></div>&nbsp;&nbsp;
 </div>
 
 
@@ -70,7 +73,7 @@ class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
 </div>
   <div class="col-3" *ngIf="isShown31"   >
  heure debut  <p-calendar  formControlName="heuredm2" [timeOnly]="true"></p-calendar>
- heure fin 
+ heure fin
  <p-calendar  formControlName="heurefm2" [timeOnly]="true"></p-calendar>
 
 </div>
@@ -80,12 +83,14 @@ class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
 
 <div class="col-3" *ngIf="isShown32"  >
 heure debut <p-calendar  formControlName="heuredam2" [timeOnly]="true"></p-calendar>
-heure fin 
+heure fin
 <p-calendar  formControlName="heurefam2" [timeOnly]="true"></p-calendar>
 
 </div>
+<div class="col-2">
+
 <button *ngIf="isShown31" (click)="onsubmitt('MERECREDI',2)" mat-button
-class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
+class="btn btn-outline-danger mt-3">Ajouter</button></div>&nbsp;&nbsp;
 </div>
 
 
@@ -99,7 +104,7 @@ class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
 </div>
   <div class="col-3" *ngIf="isShown41"   >
  heure debut  <p-calendar  formControlName="heuredm3" [timeOnly]="true"></p-calendar>
- heure fin 
+ heure fin
  <p-calendar  formControlName="heurefm3" [timeOnly]="true"></p-calendar>
 </div>
 <div *ngIf="isShown41" class="col-2">
@@ -107,12 +112,14 @@ class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
 </div>
 <div class="col-3" *ngIf="isShown42"   >
 heure debut  <p-calendar  formControlName="heuredam3" [timeOnly]="true"></p-calendar>
-heure fin 
+heure fin
 <p-calendar  formControlName="heurefam3" [timeOnly]="true"></p-calendar>
 
 </div>
+<div class="col-2">
+
 <button *ngIf="isShown41" (click)="onsubmitt('JEUDI',3)" mat-button
-class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
+class="btn btn-outline-danger mt-3">Ajouter</button></div>&nbsp;&nbsp;
 </div>
 
 
@@ -126,7 +133,7 @@ class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
 </div>
   <div class="col-3" *ngIf="isShown51"   >
  heure debut  <p-calendar  formControlName="heuredm4" [timeOnly]="true"></p-calendar>
- heure fin 
+ heure fin
  <p-calendar  formControlName="heurefm4" [timeOnly]="true"></p-calendar>
 
 </div>
@@ -135,12 +142,14 @@ class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
 </div>
 <div class="col-3" *ngIf="isShown52"   >
 heure debut  <p-calendar  formControlName="heuredam4" [timeOnly]="true"></p-calendar>
-heure fin 
+heure fin
 <p-calendar  formControlName="heurefam4" [timeOnly]="true"></p-calendar>
 
 </div>
+<div class="col-2">
+
 <button *ngIf="isShown51" (click)="onsubmitt('VENDREDI',4)" mat-button
-class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
+class="btn btn-outline-danger mt-3">Ajouter</button></div>&nbsp;&nbsp;
 </div>
 
 
@@ -154,7 +163,7 @@ class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
 </div>
   <div class="col-3" *ngIf="isShown61"   >
  heure debut  <p-calendar  formControlName="heuredm5" [timeOnly]="true"></p-calendar>
- heure fin 
+ heure fin
  <p-calendar  formControlName="heurefm5" [timeOnly]="true"></p-calendar>
 
 </div>
@@ -163,12 +172,14 @@ class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
 </div>
 <div class="col-3" *ngIf="isShown62"   >
 heure debut  <p-calendar  formControlName="heuredam5" [timeOnly]="true"></p-calendar>
-heure fin 
+heure fin
 <p-calendar  formControlName="heurefam5" [timeOnly]="true"></p-calendar>
 
 </div>
+<div class="col-2">
+
 <button *ngIf="isShown61" (click)="onsubmitt('SAMEDI',5)" mat-button
-class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
+class="btn btn-outline-danger mt-3">Ajouter</button></div>&nbsp;&nbsp;
 </div>
 
 
@@ -182,7 +193,7 @@ class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
 </div>
   <div class="col-3" *ngIf="isShown71"   >
  heure debut  <p-calendar  formControlName="heuredm6" [timeOnly]="true"></p-calendar>
- heure fin 
+ heure fin
  <p-calendar  formControlName="heurefm6" [timeOnly]="true"></p-calendar>
 </div>
 <div *ngIf="isShown71" class="col-2">
@@ -190,12 +201,14 @@ class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
 </div>
 <div class="col-3" *ngIf="isShown72"   >
 heure debut  <p-calendar  formControlName="heuredam6" [timeOnly]="true"></p-calendar>
-heure fin 
+heure fin
 <p-calendar  formControlName="heurefam6" [timeOnly]="true"></p-calendar>
 
 </div>
+<div class="col-2">
+
 <button *ngIf="isShown71" (click)="onsubmitt('DIMANCHE',6)" mat-button
-class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
+class="btn btn-outline-danger mt-3">Ajouter</button></div>&nbsp;&nbsp;
 </div>
 
 

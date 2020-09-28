@@ -14,12 +14,12 @@ import { PrestataireService } from 'src/app/_services/prestataire.service';
 export class DisponibilteComponent implements OnInit {
 
   formErrors = {
-    
+
 
 };
 
 validationMessages = {
-  
+
 };
 
 
@@ -30,7 +30,7 @@ validationMessages = {
   showhide : boolean ;
   showhidepregnant: boolean;
   isShown11: boolean = false ; isShown12: boolean = false ;isShown21: boolean = false ; isShown22: boolean = false ;isShown31: boolean = false ; isShown32: boolean = false ;
-  isShown41: boolean = false ; isShown42: boolean = false ;isShown51: boolean = false ; isShown52: boolean = false ;  
+  isShown41: boolean = false ; isShown42: boolean = false ;isShown51: boolean = false ; isShown52: boolean = false ;
   isShown61: boolean = false ; isShown62: boolean = false ;isShown71: boolean = false ; isShown72: boolean = false ;
   dispos: Disponibilte[];
  dispo : Disponibilte;
@@ -64,8 +64,8 @@ validationMessages = {
 
 
   }
-  
- 
+
+
 
   onSubmit(): void {
 
@@ -91,16 +91,16 @@ validationMessages = {
      heuredam4: ['' ],heuredm4: ['' ],heurefam4: ['' ],heurefm4: ['' ],
      heuredam5: ['' ],heuredm5: ['' ],heurefam5: ['' ],heurefm5: ['' ],
      heuredam6: ['' ],heuredm6: ['' ],heurefam6: ['' ],heurefm6: ['' ],
-     
+
 jour: ['' ],
 jour_actif : ['']
-    
+
     });
     this.form.valueChanges
     .subscribe(data => this.onValueChanged(data));
-    
+
     this.onValueChanged();
-    
+
       }
 
       onValueChanged(data?: any) {
@@ -126,7 +126,7 @@ jour_actif : ['']
       onsubmitt(valeur : string,num:Number) {
      //   this.isSuccessful = true;
      this.form.value.jour = valeur ;
-     
+
        this.dispo = this.form.value;
        const ss : Disponibilte = (this.form.value.heuredm0,this.form.value.heurefm0,this.form.value.heuredam0,
         this.form.value.heurefam0);
@@ -170,7 +170,7 @@ jour_actif : ['']
          heurefam :this.form.value.heurefam6,heurefm :this.form.value.heurefm6,jour :this.form.value.jour,jour_actif : true,
        };}
       console.log(registerModel);
-       
+
       //  console.log(this.prestataire);
       this.prestataireservice.modif_dispo(registerModel)
         .subscribe(client => {
@@ -183,14 +183,14 @@ jour_actif : ['']
             // tslint:disable-next-line: align
           //  this.formFormDirective.reset();
         }
-    
+
 
 
 
   toggleShow(i : number) {
     if ( i==11){
     this.isShown11 = ! this.isShown11;
-  
+
     this.isShown12 = false ;
     }
     if ( i==12){
@@ -239,7 +239,7 @@ jour_actif : ['']
                             if ( i==72){
                               this.isShown72 = ! this.isShown72;
                               }
-    
-    
+
+
     }
 }
