@@ -82,6 +82,8 @@ import { MatCheckboxModule} from '@angular/material/checkbox';
 
 
 import {CalendarModule} from 'primeng/calendar';
+import {TableModule} from 'primeng/table';
+
 
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 
@@ -188,6 +190,7 @@ import { PrestationsComponent } from './components/interface-client/prestations/
     BrowserAnimationsModule,
     MatTooltipModule,
     MatCheckboxModule,
+    TableModule,
 
     CalendarModule  ],
   providers: [authInterceptorProviders, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService  ],
