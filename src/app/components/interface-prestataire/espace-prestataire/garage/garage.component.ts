@@ -113,7 +113,8 @@ validationMessages = {
       addresse: [''],
       photo_garage: new FormControl('', [Validators.required]),
       adressecite: [''],
-      description:['']
+      description:[''],
+      nom:['']
 
     });
     this.form.valueChanges

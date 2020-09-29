@@ -3,6 +3,7 @@ import { Adressecities } from './adressecities';
 export class Garage {
 
     id:number;
+    nom:string;
     Nbr_Mecaniciens: number;
     date_ouverture:Date;
     année_Experience:number;

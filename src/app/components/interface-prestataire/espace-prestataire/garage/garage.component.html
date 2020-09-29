@@ -17,7 +17,7 @@
 
       </p-header>
     </p-card>
-      <p-card *ngIf="garagee !== null" header="Advanced Card" subheader="Card Subheader" [style]="{width: '360px'}" class="center" styleClass="p-card-shadow">
+      <p-card *ngIf="garagee !== null" header="" subheader="Card Subheader" [style]="{width: '360px'}" class="center" styleClass="p-card-shadow">
         <p-header>
 
            <img alt="Card"  src="http://localhost:8081/api/afficheimagegarage/image/logo/{{garagee.photo_garage}}">
@@ -42,7 +42,11 @@
   &nbsp;
   &nbsp;
 
-
+  <mat-form-field  >
+    <input matInput formControlName="nom" type="text"  id="nom" placeholder="Nom" required   >
+    </mat-form-field>
+    &nbsp;
+    &nbsp;
   <mat-form-field class="half-width">
     <input matInput formControlName="Nbr_Mecaniciens" type="number" placeholder="Nombres mécaniciens" pattern="[0-9]*" required   >
    <!-- <mat-error *ngIf="formErrors.cin">{{formErrors.cin}}</mat-error>-->

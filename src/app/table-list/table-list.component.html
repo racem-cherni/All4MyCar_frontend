@@ -25,24 +25,27 @@
 
                                 </thead>
                                 <tbody>
-                                    <tr>
+
+                                    <tr *ngFor="let clt  of userclient" >
                                         <td>
-                                            1
+                                            {{clt.id}}
                                         </td>
                                         <td>
-                                            Dakota Rice
+                                            {{clt.username}}
                                         </td>
                                         <td>
-                                            Niger
+                                            {{clt.email}}
                                         </td>
                                         <td>
-                                            Oud-Turnhout
+                                          <form novalidate [formGroup]="form" #fform="ngForm" >
+                                            <mat-checkbox class="example-margin">Checked</mat-checkbox>
+                                          </form>
                                         </td>
-                                       
+
                                     </tr>
-                                   
-                                   
-                                   
+
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -73,24 +76,26 @@
 
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr *ngFor="let pres of userprestataire">
                                         <td>
-                                            1
+                                            {{pres.id}}
                                         </td>
                                         <td>
-                                            Dakota Rice
+                                            {{pres.username}}
                                         </td>
                                         <td>
-                                            Niger
+                                            {{pres.email}}
                                         </td>
                                         <td>
-                                            Oud-Turnhout
+                                          <form novalidate [formGroup]="form" #fform="ngForm" >
+                                            <mat-checkbox class="example-margin" >Checked</mat-checkbox>
+                                          </form>
                                         </td>
-                                       
+
                                     </tr>
-                                   
-                                   
-                                   
+
+
+
                                 </tbody>
                             </table>
                         </div>

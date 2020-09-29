@@ -23,7 +23,7 @@ submiteditgarage(prestataire: Garage ,currentfile: File): Observable<Garage> {
     // tslint:disable-next-line: align
    formData.append('file', currentfile);
     // tslint:disable-next-line: align
-  return this.http.post<Garage>(this.baseUrluser + '/addgaragee/'  + `${prestataire.Nbr_Mecaniciens}`  + "/" + `${prestataire.date_ouverture}` + "/" + `${prestataire.année_Experience}`
+  return this.http.post<Garage>(this.baseUrluser + '/addgaragee/'  + `${prestataire.nom}`  + "/" +`${prestataire.Nbr_Mecaniciens}`  + "/" + `${prestataire.date_ouverture}` + "/" + `${prestataire.année_Experience}`
 
    + "/" + `${prestataire.addresse}`+"/"+`${prestataire.adressecite.id}`+"/"+`${prestataire.description}`
 

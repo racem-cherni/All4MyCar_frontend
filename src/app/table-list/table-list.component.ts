@@ -1,17 +1,24 @@
 
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Table } from 'primeng/table';
+import { Component, OnInit,} from '@angular/core';
+import { User } from '../entities/user';
+import { AdminService } from '../_services/admin.service';
 @Component({
   selector: 'app-table-list',
   templateUrl: './table-list.component.html',
   styleUrls: ['./table-list.component.css']
 })
 export class TableListComponent implements OnInit {
-  @ViewChild('dt') table: Table;
-  constructor() { }
+  constructor(private adminservice: AdminService) { }
+
+userclient: User[]=[];
+userprestataire: User[]=[];
 
   ngOnInit() {
-    
+    this.adminservice.getClientt()
+    .subscribe((data) => {this.userclient = data, console.log(data)} , error => console.log(error));
+    this.adminservice.getPrestataire()
+    .subscribe((data) => {this.userprestataire = data, console.log(data)} , error => console.log(error));
+
   }
 
 }
