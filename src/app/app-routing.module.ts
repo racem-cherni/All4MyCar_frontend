@@ -40,7 +40,7 @@ import { RdvpresComponent } from './components/interface-prestataire/rdvpres/rdv
 import { DisponibilteComponent } from './components/interface-prestataire/espace-prestataire/disponibilte/disponibilte.component';
 const routes: Routes = [
   {
-    path: 'dash',
+    path: 'dash', canActivate: [AuthGuard] ,
     component: AdminLayoutComponent,
     children: [{
       path: 'admiin',

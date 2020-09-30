@@ -3,6 +3,10 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar-admin/sidebar-admin.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { AdminService } from 'src/app/_services/admin.service';
+import { AdminComponent } from 'src/app/admin/admin.component';
+import { Admin } from 'src/app/entities/admin';
 
 @Component({
   selector: 'app-navbar-admin',
@@ -13,16 +17,20 @@ export class NavbarAdminComponent implements OnInit {
 
   private listTitles: any[];
     location: Location;
+    admin : Admin;
       mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    constructor(location: Location,  private element: ElementRef, private router: Router) {
+    constructor(location: Location,  private element: ElementRef, private router: Router,private tokenStorageService: TokenStorageService , private adminservice : AdminService) {
       this.location = location;
           this.sidebarVisible = false;
     }
 
     ngOnInit(){
+      this.adminservice.getadmin()
+      .subscribe((data) => {this.admin = data, console.log(data)} , error => console.log(error));
+
       this.listTitles = ROUTES.filter(listTitle => listTitle);
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
@@ -124,5 +132,9 @@ export class NavbarAdminComponent implements OnInit {
       }
       return 'Dashboard';
     }
+
+    logout(): void {
+      this.tokenStorageService.signOut();
+      window.location.href = '/All4MyCar/home';  }
 
 }

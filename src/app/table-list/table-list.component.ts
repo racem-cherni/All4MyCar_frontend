@@ -1,7 +1,11 @@
 
 import { Component, OnInit,} from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { User } from '../entities/user';
 import { AdminService } from '../_services/admin.service';
+
+
+
 @Component({
   selector: 'app-table-list',
   templateUrl: './table-list.component.html',
@@ -12,6 +16,19 @@ export class TableListComponent implements OnInit {
 
 userclient: User[]=[];
 userprestataire: User[]=[];
+checked: boolean = false;
+formErrors = {
+
+
+};
+
+validationMessages = {
+
+};
+
+
+  form: FormGroup;
+  isSuccessful = false;
 
   ngOnInit() {
     this.adminservice.getClientt()

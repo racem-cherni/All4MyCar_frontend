@@ -47,6 +47,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {TooltipModule} from 'primeng/tooltip';
+import {CheckboxModule} from 'primeng/checkbox';
 
 
 
@@ -159,6 +160,7 @@ import { PrestationsComponent } from './components/interface-client/prestations/
   ],
   imports: [
     TooltipModule,
+    CheckboxModule,
    MatProgressSpinnerModule,
     ProgressSpinnerModule,
     AutoCompleteModule,

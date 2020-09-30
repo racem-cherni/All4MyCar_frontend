@@ -45,13 +45,98 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">
-                        <i class="material-icons">person</i>
-                        <p>
-                            <span class="d-lg-none d-md-block">Account</span>
-                        </p>
+                    <a class="nav-link indicator indicator--trigger--click  " href="javascript:void(0)">
+                      <a  class="indicator__button">
+                        <a
+                        class="indicator__icon" width="32" height="32">
+                        <i class="material-icons " >person</i></a>
+                        <span class="indicator__title" >Hello admin</span>
+                        <span class="indicator__value">My
+                          Account</span>
+                      </a>
+                        <div class="indicator__content">
+
+                          <div class="account-menu" id="ki">
+                            <div class="account-menu__divider"></div>
+                            <div>
+                              <a class="account-menu__user">
+                                <div class="account-menu__user-avatar" >
+                                  <img  src="assets/images/avatars/avat.jpg" alt="">
+                                </div>
+                                <div class="account-menu__user-info">
+                                  <div class="account-menu__user-name">{{ admin.firstNameclt }}</div>
+                                  <div class="account-menu__user-email">{{admin.emailclt}}</div>
+                                </div>
+                              </a>
+                              <div class="account-menu__divider"></div>
+                              <ul class="account-menu__links">
+
+                                <div >
+                                  <li ><a>Dashboard</a></li>
+                                </div>
+                                <div >
+                                  <li ><a>Edit Profile</a></li>
+                                </div>
+                                <li><a href="account-orders.html">Order History</a></li>
+                                <li><a href="account-addresses.html">Addresses</a></li>
+                              </ul>
+                              <div class="account-menu__divider"></div>
+                              <ul class="account-menu__links">
+                                <li><a (click)="logout()">Logout</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+
                     </a>
                 </li>
+             <!--   <li class="nav-item">
+                  <div class="header__indicators">
+
+                    <div class="indicator indicator--trigger--click"><a  class="indicator__button"><span
+                          class="indicator__icon"><svg width="32" height="32">
+                            <path d="M16,18C9.4,18,4,23.4,4,30H2c0-6.2,4-11.5,9.6-13.3C9.4,15.3,8,12.8,8,10c0-4.4,3.6-8,8-8s8,3.6,8,8c0,2.8-1.5,5.3-3.6,6.7
+                C26,18.5,30,23.8,30,30h-2C28,23.4,22.6,18,16,18z M22,10c0-3.3-2.7-6-6-6s-6,2.7-6,6s2.7,6,6,6S22,13.3,22,10z"></path>
+                          </svg> </span>
+                        </a>
+                      <div class="indicator__content">
+
+                        <div class="account-menu" id="ki">
+                          <div class="account-menu__divider"></div>
+                          <div >
+                            <a class="account-menu__user">
+                              <div class="account-menu__user-avatar" >
+                                <img  src="assets/images/avatars/avat.jpg" alt="">
+                              </div>
+                              <div class="account-menu__user-info">
+                                <div class="account-menu__user-name">{{ username }}</div>
+                                <div class="account-menu__user-email">{{username}}@gmail.com</div>
+                              </div>
+                            </a>
+                            <div class="account-menu__divider"></div>
+                            <ul class="account-menu__links">
+
+                              <div >
+                                <li ><a>Dashboard</a></li>
+                              </div>
+                              <div >
+                                <li ><a>Edit Profile</a></li>
+                              </div>
+                              <li><a href="account-orders.html">Order History</a></li>
+                              <li><a href="account-addresses.html">Addresses</a></li>
+                            </ul>
+                            <div class="account-menu__divider"></div>
+                            <ul class="account-menu__links">
+                              <li><a (click)="logout()">Logout</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </li>-->
             </ul>
         </div>
     </div>
@@ -112,3 +197,9 @@
         </div>
     </div>
 </nav> -->
+
+
+
+
+
+

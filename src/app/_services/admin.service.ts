@@ -31,4 +31,10 @@ getPrestataire(): Observable<any> {
   return this.http.get(this.baseUrluser + '/getprestataireinactifs', {
     headers: this.header});
 }
+
+getadmin(): Observable<any> {
+
+  return this.http.get(this.baseUrluser + '/Findadmin'  , {
+    headers: this.header});
+}
 }

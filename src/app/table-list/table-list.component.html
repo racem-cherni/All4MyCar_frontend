@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
-                                <thead class=" text-primary">
+                                <thead >
                                     <th>
                                         ID
                                     </th>
@@ -27,6 +27,7 @@
                                 <tbody>
 
                                     <tr *ngFor="let clt  of userclient" >
+
                                         <td>
                                             {{clt.id}}
                                         </td>
@@ -37,13 +38,10 @@
                                             {{clt.email}}
                                         </td>
                                         <td>
-                                          <form novalidate [formGroup]="form" #fform="ngForm" >
-                                            <mat-checkbox class="example-margin">Checked</mat-checkbox>
-                                          </form>
+
                                         </td>
 
                                     </tr>
-
 
 
                                 </tbody>
@@ -60,7 +58,7 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
-                                <thead class=" text-primary">
+                                <thead >
                                     <th>
                                         ID
                                     </th>
@@ -87,9 +85,7 @@
                                             {{pres.email}}
                                         </td>
                                         <td>
-                                          <form novalidate [formGroup]="form" #fform="ngForm" >
-                                            <mat-checkbox class="example-margin" >Checked</mat-checkbox>
-                                          </form>
+
                                         </td>
 
                                     </tr>
