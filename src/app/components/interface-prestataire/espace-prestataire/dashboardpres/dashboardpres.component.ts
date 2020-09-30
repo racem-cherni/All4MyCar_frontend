@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Prestataire } from 'src/app/entities/prestataire';
 import { User } from 'src/app/entities/user';
 import { PrestataireService } from 'src/app/_services/prestataire.service';
+import { EspacePrestataireComponent } from '../espace-prestataire.component';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class DashboardpresComponent implements OnInit {
   // tslint:disable-next-line: whitespace
   // tslint:disable-next-line: typedef-whitespace
   // tslint:disable-next-line: max-line-length
-  constructor(private prestataireservice: PrestataireService , private router: Router , private route: ActivatedRoute  ) { }
+  constructor(private prestataireservice: PrestataireService ,private espacepres: EspacePrestataireComponent, private router: Router , private route: ActivatedRoute  ) { }
   id: number ;
 
   prestataire: Prestataire;
@@ -31,6 +32,11 @@ export class DashboardpresComponent implements OnInit {
    .subscribe((data) => {this.prestataire = data, console.log(data)} , error => console.log(error));
   
 
+ }
+ gotoprofilp(){
+ 
+  this.router.navigateByUrl('/All4MyCar/prestataire/espace-prestataire/profilpres');
+  this.espacepres.ngOnInit();
  }
 
   }

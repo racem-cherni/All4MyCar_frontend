@@ -16,8 +16,8 @@
       <div class="profile-card__name">{{ client.firstNameclt }} {{client.lastNameclt}} </div>
       <div class="profile-card__email">{{ client.emailclt}}</div>
 
-      <div class="profile-card__edit"><a routerLink="/All4MyCar/client/espace-client/profil"
-          class="btn btn-secondary btn-sm">Edit Profile</a></div>
+      <div class="profile-card__edit"><a (click)="gotoprofil()"><a routerLink="/All4MyCar/client/espace-client/profil"
+          class="btn btn-secondary btn-sm">Edit Profile</a></a></div>
     </div>
   </div>
 

@@ -23,7 +23,7 @@ import { DialogvehiculeComponent } from 'src/app/components/interface-client/esp
 })
 export class VehiculesComponent implements OnInit {
   errMess: string;
-
+  private vc : VehiculesComponent;
 
   pokemonControl = new FormControl();
   pokemonGroups: PokemonGroup[] = [
@@ -68,7 +68,11 @@ validationMessages = {
   // tslint:disable-next-line: max-line-length
   constructor(public dialog: MatDialog , private http: HttpClient, private clientService: ClientService , private vehiculesService: VehiculesService , private router: Router ,
     // tslint:disable-next-line: align
-    private route: ActivatedRoute , private fb: FormBuilder ) { }
+    private route: ActivatedRoute , private fb: FormBuilder ) { 
+      //this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.CreateVehiculeForm();
+
+    }
 
     selectedFiles: FileList;
     currentFile: File;
@@ -120,7 +124,6 @@ validationMessages = {
 
   ngOnInit(): void {
 
-    this.CreateVehiculeForm();
 
 
     this.clientt = new Client();
@@ -208,12 +211,17 @@ this.onValueChanged();
   removeVehicule(number : number){
 this.vehiculesService.removeVehicule(number).subscribe(data => {
   console.log(data);
+  this.ngOnInit();
+
 });
 /*setTimeout(() => {
   console.log("Delete ");
 });*/
-this.refrech();
-  }
+/*this.router.routeReuseStrategy.shouldReuseRoute = function () {return false;};
+this.router.navigateByUrl('/All4MyCar/client/espace-client/vehicules');
+this.ngOnInit();*/
+//.reload();
+}
   // tslint:disable-next-line: typedef
   onValueChanged(data?: any) {
     if (!this.form) { return; }
@@ -248,7 +256,7 @@ this.refrech();
       this.vehiculecopy = vehicule ;
       this.vehicule = null ;
       setTimeout(() => {
-        this.vehiculecopy = null; this.showvehiculeForm = true; }, 5000);     },
+        this.vehiculecopy = null; this.showvehiculeForm = true; }, 5000);   this.ngOnInit();      },
         error => console.log(error.status, error.message));
         // tslint:disable-next-line: align
         this.form.reset({
@@ -263,8 +271,14 @@ this.refrech();
             assureur: '',
             num_contrat_assurance: '',
         });
-
-this.refrech();
+       /* this.router.routeReuseStrategy.shouldReuseRoute = function () {
+          return false;
+        };
+        this.router.navigateByUrl('/All4MyCar/client/espace-client/vehicules');
+        
+        */
+       // this.reload();
+       this.ngOnInit();
 
   }
 
@@ -280,7 +294,12 @@ refrech(){
 
     }
 
+reload(){
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['/All4MyCar/client/espace-client/vehicules']);
 
+}
 
 
 

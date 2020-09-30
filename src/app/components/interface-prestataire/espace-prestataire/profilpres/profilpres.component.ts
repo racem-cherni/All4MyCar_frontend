@@ -33,6 +33,8 @@ export class ProfilpresComponent implements OnInit {
   isSuccessful = false;
   errorMessage = '';
   isSignUpFailed = false;
+  specialisathou: string[] ;
+
 
   imageSrc: string;
  // date3: Date;
@@ -42,6 +44,7 @@ prestataire: Prestataire ;
 prestatairecopy: Prestataire = null ;
 showprestataireForm = true;
 errMess: string;
+photopress : string ='';
 selectspecx : string;
 @ViewChild('fform') formFormDirective ;
 
@@ -159,6 +162,8 @@ myForm = new FormGroup({
 
   selectedFiles: FileList;
   currentFile: File;
+  filee : File;
+
 
   get f(){
 
@@ -199,8 +204,11 @@ myForm = new FormGroup({
 
     this.press = new Prestataire();
     this.prestataireservice.getprestataire()
-   .subscribe((data) => {this.press = data, console.log(data)} , error => console.log(error));
-
+   .subscribe((data) => {this.press = data, console.log(data)
+   console.log("sal "+this.press.specialisations.toString());
+    this.specialisathou =this.press.specialisations.split(',');
+    this.photopress = this.press.photopres;
+  } , error => console.log(error));
   }
 
   onSubmit(): void {
@@ -220,7 +228,7 @@ myForm = new FormGroup({
   }
 
   setSpecializationValue(){
-this.selectspecx = this.specialisat;
+this.selectspecx = this.specialisathou.toString();
   }
 
   createformprofil(): void{
@@ -276,11 +284,16 @@ this.onValueChanged();
   // tslint:disable-next-line: typedef
   onsubmitt() {
     this.currentFile = this.selectedFiles.item(0);
+   
+
+    
     this.prestataire = this.form.value;
     this.isSuccessful = true;
     this.isSignUpFailed = false;
 
+    if ( this.selectspecx != null){
     this.form.value.specialisations = this.selectspecx;
+    }else this.form.value.specialisations = this.specialisathou;
     console.log(this.prestataire);
     this.prestataireservice.submiteditprofil(this.prestataire,  this.currentFile)
     .subscribe(client => {

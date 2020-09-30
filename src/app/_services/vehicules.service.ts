@@ -64,7 +64,7 @@ getVehiculess(): Observable<any> {
   removeVehicule(idVehicule : number) : Observable<any> {
     const searchModelUrl = `${this.baseUrluser}/deleteById/${idVehicule}`;
     return this.http.delete(searchModelUrl, {
-      headers: this.header});
+      headers: this.header, responseType: 'text'});
 
 
   }
@@ -108,8 +108,7 @@ addvehiculewithphto(vehicule : Vehicule ,currentfile: File): Observable<Vehicule
 
   + "/" + `${vehicule.immatriculation}` + "/" + `${vehicule.assureur}` + "/" + `${vehicule.num_contrat_assurance}`+ "/" + `${vehicule.type_vehicule}` + "/" + `${vehicule.carburant}`
 
-    , formData,  {
-      headers: this.header} );
+    , formData );
 
 }
 

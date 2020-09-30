@@ -29,7 +29,7 @@
 
                     <label for="file">Photo</label>
 
-                    <input  formControlName="photopres" id="file" type="file" class="form-control"
+                    <input   formControlName="photopres" id="file" type="file" class="form-control"
                         (change)="onFileChange($event)">
 
                     <div *ngIf="f.photopres.touched && f.photopres.invalid" class="alert alert-danger">
@@ -37,7 +37,12 @@
                         <div *ngIf="f.photopres.errors.required">Photo is required.</div>
 
                     </div>
-
+                    <div *ngIf="press.photopres !== '';else contenu_pas_bon">
+                      <img
+                        src="http://localhost:8081/api/api/image/logo/{{press.photopres}}" class="rounded"
+                        alt="Photo of a Shiba Inu" height="150" width="150"></div>
+                    <ng-template #contenu_pas_bon> <img src="assets/images/avatars/avat.jpg" alt="" height="150" width="150">
+                    </ng-template>
                 </div>
 
 
@@ -72,8 +77,8 @@
                 <mat-form-field class="example-full-width" >
                   <mat-label>Specialisation</mat-label>
                   <mat-select matNativeControl id="specialisations" formControleName="specialisations"
-                   [(ngModel)]="specialisat"  [ngModelOptions]="{standalone: true}"
-                  multiple [(ngModel)]="press.specialisations" (ngModelChange)="setSpecializationValue()" >
+                   [(ngModel)]="specialisathou"  [ngModelOptions]="{standalone: true}"
+                  multiple (ngModelChange)="setSpecializationValue()" >
                     <mat-option *ngFor=" let space of specialisationss"  [value]="space" >
                       {{space}}
                     </mat-option>

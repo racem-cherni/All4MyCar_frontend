@@ -12,8 +12,13 @@ export class RdvpresComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
+
   }
 
+  refrech(){
+    window.location.href ='/All4MyCar/prestataire/rdv';
+  }
   ShowAll(){
     this.showVar =1;
   }

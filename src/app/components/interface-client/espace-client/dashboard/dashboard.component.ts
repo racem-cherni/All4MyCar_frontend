@@ -3,6 +3,7 @@ import { ClientService } from 'src/app/_services/client.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Client } from 'src/app/entities/client';
 import { User } from 'src/app/entities/user';
+import { EspaceClientComponent } from '../espace-client.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +12,7 @@ import { User } from 'src/app/entities/user';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private clientservice: ClientService , private router: Router , private route: ActivatedRoute) { }
+  constructor(private clientservice: ClientService , private router: Router , private espaceclient : EspaceClientComponent, private route: ActivatedRoute) { }
  id: number ;
  client: Client;
  user: User;
@@ -26,6 +27,12 @@ export class DashboardComponent implements OnInit {
   this.clientservice.getclient()
    .subscribe((data) => {this.client = data, console.log(data); } , error => console.log(error));
 
+ }
+
+ gotoprofil(){
+ 
+  this.router.navigateByUrl('/All4MyCar/prestataire/espace-prestataire/profil');
+  this.espaceclient.ngOnInit();
  }
   }
 
