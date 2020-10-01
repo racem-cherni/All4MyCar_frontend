@@ -14,6 +14,9 @@ import { Admin } from 'src/app/entities/admin';
   styleUrls: ['./navbar-admin.component.css']
 })
 export class NavbarAdminComponent implements OnInit {
+  cities: City[];
+
+    selectedCity1: City;
 
   private listTitles: any[];
     location: Location;
@@ -25,7 +28,18 @@ export class NavbarAdminComponent implements OnInit {
     constructor(location: Location,  private element: ElementRef, private router: Router,private tokenStorageService: TokenStorageService , private adminservice : AdminService) {
       this.location = location;
           this.sidebarVisible = false;
-    }
+
+
+
+          this.cities = [
+            {name: 'New York', code: 'NY'},
+            {name: 'Rome', code: 'RM'},
+            {name: 'London', code: 'LDN'},
+            {name: 'Istanbul', code: 'IST'},
+            {name: 'Paris', code: 'PRS'}
+        ];
+
+        }
 
     ngOnInit(){
       this.adminservice.getadmin()
@@ -137,4 +151,8 @@ export class NavbarAdminComponent implements OnInit {
       this.tokenStorageService.signOut();
       window.location.href = '/All4MyCar/home';  }
 
+}
+interface City {
+  name: string;
+  code: string;
 }

@@ -231,7 +231,9 @@ this.onValueChanged();
   onsubmitt() {
     this.currentFile = this.selectedFiles.item(0);
     this.client = this.form.value;
-    console.log(this.client);
+    console.log(typeof(this.form.value.date_permis));
+
+  //  console.log(this.client);
     this.clientService.submiteditprofil(this.client,  this.currentFile)
     .subscribe(client => {
       this.clientcopy = client ;
@@ -239,19 +241,6 @@ this.onValueChanged();
       setTimeout(() => {
         this.clientcopy = null; this.showclientForm = true; }, 5000);     },
         error => console.log(error.status, error.message));
-        // tslint:disable-next-line: align
-        this.form.reset({
-            firstNameclt: '',
-            emailclt: '',
-            CIN: '',
-             datepermis: '',
-            lastNameclt: '',
-             telclt: '',
-           adresseclt: '',
-              photoclt: ''
-        });
-        // tslint:disable-next-line: align
-      //  this.formFormDirective.reset();
     }
 
 

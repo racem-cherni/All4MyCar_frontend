@@ -21,9 +21,18 @@ import { FooterAdminComponent } from './footer-admin/footer-admin.component';
 import { HeaderAdminComponent } from './header-admin/header-admin.component';
 import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
 import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule} from '@angular/material/checkbox';
+import {DropdownModule} from 'primeng/dropdown';
+
+
+
 
 @NgModule({
   imports: [
+    DropdownModule,
+    MatCheckboxModule,
+    MatRadioModule,
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,

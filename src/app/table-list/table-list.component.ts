@@ -14,8 +14,8 @@ import { AdminService } from '../_services/admin.service';
 export class TableListComponent implements OnInit {
   constructor(private adminservice: AdminService) { }
 
-userclient: User[]=[];
-userprestataire: User[]=[];
+userclient: User[]= null;
+userprestataire: User[]= null ;
 checked: boolean = false;
 formErrors = {
 
@@ -37,5 +37,32 @@ validationMessages = {
     .subscribe((data) => {this.userprestataire = data, console.log(data)} , error => console.log(error));
 
   }
+
+  activateclient(idclt: number){
+    this.adminservice.activateuserclient(idclt).subscribe(data => {
+      console.log(data);
+      this.ngOnInit();
+    });
+
+  }
+  activateprestataire(idpres: number){
+    this.adminservice.activateuserprestataire(idpres).subscribe(data => {
+      console.log(data);
+      this.ngOnInit();
+    });
+  }
+  refuseclient(idclt: number){
+      this.adminservice.removeuserclient(idclt).subscribe(data => {
+        console.log(data);
+        this.ngOnInit();
+      });
+}
+  refuseprestataire(idpres: number){
+    this.adminservice.removeuserprestataire(idpres).subscribe(data => {
+      console.log(data);
+      this.ngOnInit();
+    });
+  }
+
 
 }

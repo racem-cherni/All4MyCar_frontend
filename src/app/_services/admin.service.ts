@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Client } from '../entities/client';
 import { TokenStorageService } from './token-storage.service';
 
 
@@ -37,4 +38,42 @@ getadmin(): Observable<any> {
   return this.http.get(this.baseUrluser + '/Findadmin'  , {
     headers: this.header});
 }
+
+removeuserclient(idclient : number) : Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/deleteuserclient/${idclient}`;
+  return this.http.delete(searchModelUrl, {
+    headers: this.header, responseType: 'text'});
+
+
+}
+
+removeuserprestataire(idpres : number) : Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/deleteuserprestataire/${idpres}`;
+  return this.http.delete(searchModelUrl, {
+    headers: this.header, responseType: 'text'});
+
+
+}
+
+activateuserclient(idclient : number): Observable<any>{
+  const searchModelUrl = `${this.baseUrluser}/adduserclient/${idclient}`;
+  return this.http.post(searchModelUrl, {
+    headers: this.header});
+
+}
+
+submitevehicule(idclient: number): Observable<Client>{
+  return this.http.post<Client>(`${this.baseUrluser}/adduserclient/${idclient}`,{
+    headers: this.header});
+}
+
+
+activateuserprestataire(idpres : number): Observable<any>{
+  const searchModelUrl = `${this.baseUrluser}/adduserprestataire/${idpres}`;
+  return this.http.post(searchModelUrl, {
+    headers: this.header});
+
+}
+
+
 }
