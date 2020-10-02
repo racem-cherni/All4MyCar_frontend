@@ -173,7 +173,7 @@ myForm = new FormGroup({
 
   // tslint:disable-next-line: typedef
   onFileChange(event) {
-
+    console.log("houssem miboun " + event.target.files);
     const reader = new FileReader();
     this.selectedFiles = event.target.files;
 
@@ -201,7 +201,7 @@ myForm = new FormGroup({
 
 
   ngOnInit(): void {
-
+    this.selectedFiles = null ;
     this.press = new Prestataire();
     this.prestataireservice.getprestataire()
    .subscribe((data) => {this.press = data, console.log(data)
@@ -238,7 +238,7 @@ this.form = this.fb.group({
   adressepres: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
   emailpres: ['', [Validators.required, Validators.email] ] ,
   telpres: ['', [Validators.required, Validators.pattern , Validators.minLength(8) , Validators.maxLength(8)] ] ,
-  photopres: new FormControl('', [Validators.required]),
+  photopres: new FormControl(''),
   specialisations: ['', [Validators.required] ] ,
   cin: ['', [Validators.required, Validators.pattern , Validators.minLength(8) , Validators.maxLength(8)] ]  ,
 
@@ -283,17 +283,16 @@ this.onValueChanged();
 
   // tslint:disable-next-line: typedef
   onsubmitt() {
-    this.currentFile = this.selectedFiles.item(0);
-   
 
-    
+    if (this.selectedFiles !== null){
+    this.currentFile = this.selectedFiles.item(0);
     this.prestataire = this.form.value;
     this.isSuccessful = true;
     this.isSignUpFailed = false;
 
     if ( this.selectspecx != null){
     this.form.value.specialisations = this.selectspecx;
-    }else this.form.value.specialisations = this.specialisathou;
+    }else{ this.form.value.specialisations = this.specialisathou; }
     console.log(this.prestataire);
     this.prestataireservice.submiteditprofil(this.prestataire,  this.currentFile)
     .subscribe(client => {
@@ -305,8 +304,29 @@ this.onValueChanged();
         // tslint:disable-next-line: align
         // tslint:disable-next-line: align
       //  this.formFormDirective.reset();
-    }
+    }else {
+    this.prestataire = this.form.value;
+    this.isSuccessful = true;
+    this.isSignUpFailed = false;
 
+    if ( this.selectspecx != null){
+    this.form.value.specialisations = this.selectspecx;
+    }else{ this.form.value.specialisations = this.specialisathou; }
+    console.log(this.prestataire);
+    this.prestataireservice.submiteditprofilwithoutphoto(this.prestataire)
+    .subscribe(client => {
+      this.prestatairecopy = client ;
+      this.prestataire = null ;
+      setTimeout(() => {
+        this.prestatairecopy = null; this.showprestataireForm = true; }, 5000);     },
+        error => console.log(error.status, error.message));
+        // tslint:disable-next-line: align
+        // tslint:disable-next-line: align
+      //  this.formFormDirective.reset();
+
+
+    }
+  }
 
 
 }

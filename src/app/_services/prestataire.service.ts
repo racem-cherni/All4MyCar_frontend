@@ -69,6 +69,14 @@ submiteditprofil(prestataire: Prestataire, currentfile: File): Observable<Presta
 
 }
 
+submiteditprofilwithoutphoto(prestataire: Prestataire): Observable<Prestataire> {
+  return this.http.post<Prestataire>(this.baseUrluser + '/edit_prestataire12/'  + `${prestataire.firstNamepres}`  + "/" + `${prestataire.lastNamepres}` + "/" + `${prestataire.adressepres}`
+
+   + "/" + `${prestataire.emailpres}` + "/" + `${prestataire.telpres}`+ "/" + `${prestataire.specialisations}`+ "/" + `${prestataire.cin}`
+
+    ,  {headers: this.header} );
+}
+
 
 
 getDisponibilte() : Observable<any> {

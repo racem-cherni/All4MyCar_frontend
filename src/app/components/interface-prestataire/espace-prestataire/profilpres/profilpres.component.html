@@ -23,13 +23,13 @@
                           placeholder="Email Address" required email [(ngModel)]="press.emailpres">
                       <mat-error *ngIf="formErrors.emailpres">{{formErrors.emailpres}}</mat-error>
                   </mat-form-field>
-                 
+
 
                 <div class="form-group">
 
                     <label for="file">Photo</label>
 
-                    <input   formControlName="photopres" id="file" type="file" class="form-control"
+                    <input  formControlName="photopres" id="file" type="file" class="form-control"
                         (change)="onFileChange($event)">
 
                     <div *ngIf="f.photopres.touched && f.photopres.invalid" class="alert alert-danger">
