@@ -173,7 +173,7 @@ myForm = new FormGroup({
 
   // tslint:disable-next-line: typedef
   onFileChange(event) {
-    console.log("houssem miboun " + event.target.files);
+    console.log("houssem  " + event.target.files);
     const reader = new FileReader();
     this.selectedFiles = event.target.files;
 

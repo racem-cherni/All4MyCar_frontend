@@ -66,6 +66,19 @@ submiteditprofil(client: Client, currentfile: File): Observable<Client> {
     ,  {headers: this.header} );
 
 }
+submiteditprofilwithoutphoto(client: Client): Observable<Client> {
+  
+
+    // tslint:disable-next-line: align
+   
+    // tslint:disable-next-line: align
+  return this.http.post<Client>(this.baseUrluser + '/edit_client12/'  + `${client.firstNameclt}`  + "/" + `${client.lastNameclt}` + "/" + `${client.emailclt}`
+
+  + "/" + `${client.adresseclt}` + "/" + `${client.telclt}` + "/" + `${client.cin}` + "/" + `${client.date_permis}` 
+
+    ,  {headers: this.header} );
+
+}
 
 }
 

@@ -163,7 +163,7 @@ myForm = new FormGroup({
 
 
   ngOnInit(): void {
-
+    this.selectedFiles = null;
     this.clientt = new Client();
     this.clientService.getclient()
    .subscribe((data) => {this.clientt = data, console.log(data)} , error => console.log(error));
@@ -195,7 +195,7 @@ this.form = this.fb.group({
   adresseclt: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
  // name: new FormControl('', [Validators.required, Validators.minLength(3)]),
 
-    photoclt: new FormControl('', [Validators.required]),
+    photoclt: new FormControl(''),
 
   //  fileSource: new FormControl('', [Validators.required])
 });
@@ -229,6 +229,8 @@ this.onValueChanged();
 
   // tslint:disable-next-line: typedef
   onsubmitt() {
+    if (this.selectedFiles !== null){
+      
     this.currentFile = this.selectedFiles.item(0);
     this.client = this.form.value;
     console.log(typeof(this.form.value.date_permis));
@@ -241,6 +243,22 @@ this.onValueChanged();
       setTimeout(() => {
         this.clientcopy = null; this.showclientForm = true; }, 5000);     },
         error => console.log(error.status, error.message));
+      }
+      else{
+        this.client = this.form.value;
+        console.log(typeof(this.form.value.date_permis));
+    
+      //  console.log(this.client);
+        this.clientService.submiteditprofilwithoutphoto(this.client)
+        .subscribe(client => {
+          this.clientcopy = client ;
+          this.client = null ;
+          setTimeout(() => {
+            this.clientcopy = null; this.showclientForm = true; }, 5000);     },
+            error => console.log(error.status, error.message));
+         
+
+      }
     }
 
 
