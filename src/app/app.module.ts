@@ -108,7 +108,6 @@ import {NavbarAdminComponent  } from './layouts/admin-layout/navbar-admin/navbar
 import {SidebarAdminComponent} from './layouts/admin-layout/sidebar-admin/sidebar-admin.component';
 import { PrestationsComponent } from './components/interface-client/prestations/prestations.component';
 
-
 @NgModule({
   declarations: [
     UpgradeComponent,

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as Chartist from 'chartist';
+import { Client } from '../entities/client';
+import { Prestataire } from '../entities/prestataire';
+import { AdminService } from '../_services/admin.service';
 @Component({
   selector: 'app-dashboard-admin',
   templateUrl: './dashboard-admin.component.html',
@@ -8,7 +11,9 @@ import * as Chartist from 'chartist';
 })
 export class DashboardAdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private adminservice :AdminService) { }
+  client:Client[] = [];
+  prestataire:Prestataire[] = [];
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -66,6 +71,11 @@ export class DashboardAdminComponent implements OnInit {
       seq2 = 0;
   };
   ngOnInit() {
+    this.adminservice.getAllClient()
+    .subscribe((data) => {this.client = data, console.log(data)} , error => console.log(error));
+    this.adminservice.getAllPrestataire()
+    .subscribe((data) => {this.prestataire = data, console.log(data)} , error => console.log(error));
+
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
       const dataDailySalesChart: any = {
@@ -146,6 +156,18 @@ export class DashboardAdminComponent implements OnInit {
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
   }
+  deletclient(idclient: number){
+    this.adminservice.removeclient(idclient).subscribe(data => {
+      console.log(data);
+      this.ngOnInit();
+    });
+}
+deleteprestataire(idpres: number){
+  this.adminservice.removeprestataire(idpres).subscribe(data => {
+    console.log(data);
+    this.ngOnInit();
+  });
+}
 
 }
 

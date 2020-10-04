@@ -74,6 +74,30 @@ activateuserprestataire(idpres : number): Observable<any>{
     headers: this.header});
 
 }
+getAllPrestataire(): Observable<any> {
+
+  return this.http.get(this.baseUrluser + '/getAllPrestataire', {
+    headers: this.header});
+}
+getAllClient(): Observable<any> {
+
+  return this.http.get(this.baseUrluser + '/getAllClient', {
+    headers: this.header});
+}
+removeprestataire(idpres : number) : Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/deleteprestataire/${idpres}`;
+  return this.http.delete(searchModelUrl, {
+    headers: this.header, responseType: 'text'});
+
+
+}
+removeclient(idclient : number) : Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/deleteclient/${idclient}`;
+  return this.http.delete(searchModelUrl, {
+    headers: this.header, responseType: 'text'});
+
+
+}
 
 
 }

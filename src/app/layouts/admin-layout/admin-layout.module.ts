@@ -25,7 +25,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule} from '@angular/material/checkbox';
 import {DropdownModule} from 'primeng/dropdown';
 
-
+import {TableModule} from 'primeng/table';
 
 
 @NgModule({
@@ -43,6 +43,7 @@ import {DropdownModule} from 'primeng/dropdown';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    TableModule
   ],
   declarations: [
     DashboardComponent,

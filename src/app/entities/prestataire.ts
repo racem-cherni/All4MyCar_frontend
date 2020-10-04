@@ -9,6 +9,7 @@ export class Prestataire {
     photopres: string = '' ;
     specialisations: string;
     cin: number;
+    date_inscrip:Date;
 
 
 }

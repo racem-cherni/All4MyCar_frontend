@@ -11,5 +11,5 @@ cin: number;
 date_permis: Date ;
 telclt: number ;
 adresseclt: string ;
-
+date_inscrip:Date;
 }
