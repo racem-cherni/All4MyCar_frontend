@@ -4,15 +4,23 @@ import * as Chartist from 'chartist';
 import { Client } from '../entities/client';
 import { Prestataire } from '../entities/prestataire';
 import { AdminService } from '../_services/admin.service';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-dashboard-admin',
   templateUrl: './dashboard-admin.component.html',
-  styleUrls: ['./dashboard-admin.component.css']
+  styleUrls: ['./dashboard-admin.component.css'],
+  providers: [MessageService, ConfirmationService]
 })
 export class DashboardAdminComponent implements OnInit {
+  clientDialog: boolean;
+  prestataireDialog: boolean;
 
-  constructor(private adminservice :AdminService) { }
+  constructor(private adminservice :AdminService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
   client:Client[] = [];
+
+  cltt: Client;
+  press: Prestataire;
   prestataire:Prestataire[] = [];
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
@@ -167,6 +175,49 @@ deleteprestataire(idpres: number){
     console.log(data);
     this.ngOnInit();
   });
+}
+
+deleteclient(client: Client) {
+  this.confirmationService.confirm({
+      message: 'Etes-vous sûr que vous voulez supprimer  ' + client.firstNameclt  +' ' +client.lastNameclt + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.adminservice.removeclient(client.id).subscribe(data => {
+          console.log(data);
+          this.ngOnInit();
+        });
+          this.messageService.add({severity:'success', summary: 'Successful', detail: 'Client Supprimé', life: 3000});
+      }
+  });
+}
+
+deletepres(pres: Prestataire) {
+  this.confirmationService.confirm({
+      message: 'Etes-vous sûr que vous voulez supprimer  ' + pres.firstNamepres  +' ' +pres.lastNamepres + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.adminservice.removeprestataire(pres.id).subscribe(data => {
+          console.log(data);
+          this.ngOnInit();
+        });
+          this.messageService.add({severity:'success', summary: 'Successful', detail: 'Prestataire Supprimé', life: 3000});
+      }
+  });
+}
+
+profilclient(client: Client){
+   this.cltt = client ;
+  this.clientDialog = true;
+
+}
+
+
+profilprestataire(prestataire: Prestataire){
+   this.press = prestataire ;
+  this.prestataireDialog = true;
+
 }
 
 }

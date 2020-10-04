@@ -99,5 +99,19 @@ removeclient(idclient : number) : Observable<any> {
 
 }
 
+detailclient(idclient : number) : Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/getClientbyid/${idclient}`;
+  return this.http.get(searchModelUrl, {headers: this.header});
+
+
+}
+
+detailprestataire(idpres : number) : Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/getPrestatairebyid/${idpres}`;
+  return this.http.get(searchModelUrl, {headers: this.header});
+
+
+}
+
 
 }

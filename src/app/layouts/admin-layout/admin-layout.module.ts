@@ -26,11 +26,13 @@ import { MatCheckboxModule} from '@angular/material/checkbox';
 import {DropdownModule} from 'primeng/dropdown';
 
 import {TableModule} from 'primeng/table';
-
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   imports: [
     DropdownModule,
+    ConfirmDialogModule,
     MatCheckboxModule,
     MatRadioModule,
     CommonModule,
@@ -43,7 +45,8 @@ import {TableModule} from 'primeng/table';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    TableModule
+    TableModule,
+    ToastModule
   ],
   declarations: [
     DashboardComponent,
@@ -57,7 +60,7 @@ import {TableModule} from 'primeng/table';
     FooterAdminComponent,
     HeaderAdminComponent,
     NavbarAdminComponent,
-    SidebarAdminComponent,
+    SidebarAdminComponent ,
   ]
 })
 

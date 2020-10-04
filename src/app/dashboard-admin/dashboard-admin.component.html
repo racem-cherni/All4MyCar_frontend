@@ -1,3 +1,4 @@
+
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
@@ -69,120 +70,197 @@
                 </div>
             </div>
         </div>
+        <p-toast></p-toast>
         <div class="row">
-            
+          &nbsp;
+          &nbsp;
+
+
               <div class="card">
-                <div class="card-header card-header-danger card-header-icon">
-                  <div class="card-icon"><i class="material-icons">assignment</i></div>
-                  <h4 class="card-title">Demandes Clients</h4>
+                <div class="card-header card-header-danger">
+                  <h4 class="card-title">Clients</h4>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table table-striped">
-                      <thead>
+                    <p-table class="table table-striped" [value]="client"   [scrollable]="true" scrollHeight="300px" >
+                      <ng-template pTemplate="header" >
                         <tr>
-                          <th class="text-center">#</th>
-                          <th>UserName</th>
+
+                          <th >Nom & Prenom</th>
+
                           <th>Email</th>
                           <th>Date inscription</th>
-                          <th class="text-right">Actions</th>
+                          <th class="text-right" >Actions</th>
                         </tr>
-                      </thead>
-                      <tbody *ngIf="client === null">
+                      </ng-template>
+                      <ng-template pTemplate="body"  *ngIf="client === null">
                         <tr>                    <td class="text-center"> aucune registration récente</td>
-      
+
                         </tr>
-                      </tbody>
-                      <tbody *ngIf="client !== null">
-                        <tr *ngFor="let clt  of client">
-                          <td class="text-center"> {{clt.firstNameclt}}</td>
-                          <td>{{clt.lastNameclt}}</td>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-clt *ngIf="client !== null">
+                        <tr >
+                          <td ><img *ngIf="clt.photoclt !== null " mat-card-image
+                            src="http://localhost:8081/api/apii/image/logo/{{clt.photoclt}}" class="rounded-circle" alt="Photo of a Shiba Inu"
+                            height="60" width="60">&nbsp;&nbsp;
+                             {{clt.firstNameclt}}&nbsp;&nbsp;
+                          {{clt.lastNameclt}}</td>
                           <td>{{clt.emailclt}}</td>
                           <td>{{clt.date_inscrip}}</td>
-                          <td class="td-actions text-right">
-                            <button mat-raised-button="" type="button" pTooltip="editer" tooltipPosition="bottom" 
-                              class="mat-raised-button mat-button-base btn btn-success btn-round">
-                              <span class="mat-button-wrapper"><i class="material-icons">create</i></span>
-                              <div matripple="" class="mat-ripple mat-button-ripple"></div>
-                              <div class="mat-button-focus-overlay"></div>
-                            </button>
+                          <td class="td-actions text-right ">
+                            <button pButton pRipple icon="pi-info-circle" class="p-button-rounded p-button-success p-mr-2" (click)="profilclient(clt)"></button>
+
                             &nbsp;
-                            <button mat-raised-button="" type="button" pTooltip="supprimer" tooltipPosition="bottom" (click)="deletclient(clt.id)"
-                              class="mat-raised-button mat-button-base btn btn-danger btn-round"><span
-                                class="mat-button-wrapper"><i class="material-icons">delete</i></span>
-                              <div matripple="" class="mat-ripple mat-button-ripple"></div>
-                              <div class="mat-button-focus-overlay"></div>
-                            </button></td>
+
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteclient(clt)"></button>
+                          </td>
                         </tr>
-      
-      
-      
-      
+
+
+
+
                         <!---->
-                      </tbody>
-                    </table>
+                      </ng-template>
+                      <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                          Au total, il y a
+                          {{client ? client.length : 0 }} clients.
+                        </div>
+                    </ng-template>
+                    </p-table>
                   </div>
                 </div>
               </div>
+
         </div>
-            
-      
+
             <div class="row">
               <div class="card">
-                <div class="card-header card-header-danger card-header-icon">
-                  <div class="card-icon"><i class="material-icons">assignment</i></div>
-                  <h4 class="card-title">Demandes prestataire</h4>
+                <div class="card-header card-header-danger">
+                  <h4 class="card-title">Prestataires</h4>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table table-striped">
-                      <thead>
+                    <p-table class="table table-striped" [value]="prestataire"   [scrollable]="true" scrollHeight="300px" >
+                      <ng-template pTemplate="header" >
                         <tr>
-                          <th class="text-center">#</th>
-                          <th>UserName</th>
+                          <th >Nom & Prenom</th>
                           <th>Email</th>
                           <th>Date inscription</th>
                           <th class="text-right">Actions</th>
                         </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let pres of prestataire">
-                          <td class="text-center"> {{pres.firstNamepres}}</td>
-                          <td>{{pres.lastNamepres}}</td>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-pres >
+                        <tr>
+                          <td ><img *ngIf="pres.photopres !== null " mat-card-image
+                            src="http://localhost:8081/api/api/image/logo/{{pres.photopres}}" class="rounded-circle" alt="Photo of a Shiba Inu"
+                            height="60" width="60">&nbsp;&nbsp;
+                             {{pres.firstNamepres}}&nbsp;&nbsp;
+                          {{pres.lastNamepres}}</td>
                           <td>{{pres.emailpres}}</td>
                           <td>{{pres.date_inscrip}}</td>
                           <td class="td-actions text-right">
-                            <button mat-raised-button="" type="button" pTooltip="editer" tooltipPosition="bottom"
-                              class="mat-raised-button mat-button-base btn btn-success btn-round">
-                              <span class="mat-button-wrapper"><i class="material-icons">create</i></span>
-                              <div matripple="" class="mat-ripple mat-button-ripple"></div>
-                              <div class="mat-button-focus-overlay"></div>
-                            </button>
+
+                            <button pButton pRipple icon="pi-info-circle" class="p-button-rounded p-button-success p-mr-2" (click)="profilprestataire(pres)" ></button>
+
                             &nbsp;
-                            <button mat-raised-button="" type="button" pTooltip="supprimer" tooltipPosition="bottom" (click)="deleteprestataire(pres.id)"
-                              class="mat-raised-button mat-button-base btn btn-danger btn-round"><span
-                                class="mat-button-wrapper"><i class="material-icons">delete</i></span>
-                              <div matripple="" class="mat-ripple mat-button-ripple"></div>
-                              <div class="mat-button-focus-overlay"></div>
-                            </button></td>
+
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletepres(pres)"></button>
+                            </td>
+
                         </tr>
-      
-      
-      
-      
-      
-      
+
+
+
+
+
+
                         <!---->
-                      </tbody>
-                    </table>
+                      </ng-template>
+                      <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                          Au total, il y a
+                          {{prestataire ? prestataire.length : 0 }} prestataires.
+                        </div>
+                    </ng-template>
+                    </p-table>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-      
+
        </div>
-       
-    
-       
-       
+
+
+       <p-dialog [(visible)]="clientDialog" [style]="{width: '450px'}" header="Client Details" [modal]="true" styleClass="p-fluid">
+        <ng-template pTemplate="content">
+           <img [src]="'http://localhost:8081/api/apii/image/logo/' + cltt.photoclt" [alt]="cltt.photoclt" class="center" height="150px" width="100px">
+           <br>
+            <div class="p-field">
+              <label for="name">Nom & Prenom&nbsp;&nbsp;</label>
+              {{cltt.firstNameclt}} {{cltt.lastNameclt}}
+              </div>
+              <div class="p-field">
+                <label for="name">Numero telephone&nbsp;&nbsp;</label>
+                  +216{{cltt.telclt}}
+                </div>
+                <div class="p-field">
+                  <label for="name">Email&nbsp;&nbsp;</label>
+                    {{cltt.emailclt}}
+                  </div>
+                  <div class="p-field">
+                    <label for="name">CIN&nbsp;&nbsp;</label>
+                      {{cltt.cin}}
+                    </div>
+                    <div class="p-field">
+                      <label for="name">Adresse&nbsp;&nbsp;</label>
+                        {{cltt.adresseclt}}
+                      </div>
+                      <div class="p-field">
+                        <label for="name">Date inscription&nbsp;&nbsp;</label>
+                          {{cltt.date_inscrip}}
+                        </div>
+        </ng-template>
+
+
+    </p-dialog>
+
+
+    <p-dialog [(visible)]="prestataireDialog" [style]="{width: '450px'}" header="Prestataire Details" [modal]="true" styleClass="p-fluid">
+      <ng-template pTemplate="content">
+       <img [src]="'http://localhost:8081/api/api/image/logo/' + press.photopres" [alt]="press.photopres" class="center" height="150px" width="100px" >
+       <br>
+            <div class="p-field">
+              <label for="name">Nom & Prenom&nbsp;&nbsp;</label>
+              {{press.firstNamepres}} {{press.lastNamepres}}
+              </div>
+              <div class="p-field">
+                <label for="name">Numero telephone&nbsp;&nbsp;</label>
+                  +216{{press.telpres}}
+                </div>
+                <div class="p-field">
+                  <label for="name">Email&nbsp;&nbsp;</label>
+                    {{press.emailpres}}
+                  </div>
+                  <div class="p-field">
+                    <label for="name">CIN&nbsp;&nbsp;</label>
+                      {{press.cin}}
+                    </div>
+                    <div class="p-field">
+                      <label for="name">Adresse&nbsp;&nbsp;</label>
+                        {{press.adressepres}}
+                      </div>
+                      <div class="p-field">
+                        <label for="name">Date inscription&nbsp;&nbsp;</label>
+                          {{press.date_inscrip}}
+                        </div>
+
+
+      </ng-template>
+
+
+  </p-dialog>
+
+       <p-confirmDialog [style]="{width: '500px'}"></p-confirmDialog>
+

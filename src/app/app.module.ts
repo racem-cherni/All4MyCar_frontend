@@ -48,7 +48,7 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {TooltipModule} from 'primeng/tooltip';
 import {CheckboxModule} from 'primeng/checkbox';
-
+import {ToastModule} from 'primeng/toast';
 
 
 import { NavigationpresComponent } from './components/interface-prestataire/espace-prestataire/navigationpres/navigationpres.component';
@@ -108,6 +108,8 @@ import {NavbarAdminComponent  } from './layouts/admin-layout/navbar-admin/navbar
 import {SidebarAdminComponent} from './layouts/admin-layout/sidebar-admin/sidebar-admin.component';
 import { PrestationsComponent } from './components/interface-client/prestations/prestations.component';
 
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+
 @NgModule({
   declarations: [
     UpgradeComponent,
@@ -159,6 +161,7 @@ import { PrestationsComponent } from './components/interface-client/prestations/
   ],
   imports: [
     TooltipModule,
+    ConfirmDialogModule,
     CheckboxModule,
    MatProgressSpinnerModule,
     ProgressSpinnerModule,
@@ -172,7 +175,7 @@ import { PrestationsComponent } from './components/interface-client/prestations/
     MatDialogModule,
     MenubarModule,
     PanelMenuModule,
-
+    ToastModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
     MatRadioModule,
