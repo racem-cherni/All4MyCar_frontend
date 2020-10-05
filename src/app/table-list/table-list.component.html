@@ -3,30 +3,27 @@
     <div class="row">
       <div class="col-md-6">
         <div class="card">
-          <div class="card-header card-header-danger card-header-icon">
+   <div class="card-header card-header-danger card-header-icon">
             <div class="card-icon"><i class="material-icons">assignment</i></div>
             <h4 class="card-title">Demandes Clients</h4>
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-striped">
-                <thead>
+              <p-table class="table table-striped" [value]="userclient"   [scrollable]="true" scrollHeight="300px" >
+
+                <ng-template pTemplate="header" >
                   <tr>
-                    <th class="text-center">#</th>
+
                     <th>UserName</th>
                     <th>Email</th>
                     <th>Date inscription</th>
                     <th class="text-right">Actions</th>
                   </tr>
-                </thead>
-                <tbody *ngIf="userclient === null">
-                  <tr>                    <td class="text-center"> aucune registration récente</td>
+                </ng-template>
 
-                  </tr>
-                </tbody>
-                <tbody *ngIf="userclient !== null">
-                  <tr *ngFor="let clt  of userclient">
-                    <td class="text-center"> {{clt.id}}</td>
+                <ng-template pTemplate="body" let-clt >
+                  <tr >
+
                     <td>{{clt.username}}</td>
                     <td>{{clt.email}}</td>
                     <td>{{clt.date_registration}}</td>
@@ -50,8 +47,14 @@
 
 
                   <!---->
-                </tbody>
-              </table>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                  <div class="p-d-flex p-ai-center p-jc-between">
+                    Au total, il y a
+                    {{userclient ? userclient.length : 0 }} demandes clients.
+                  </div>
+              </ng-template>
+              </p-table>
             </div>
           </div>
         </div>
@@ -65,19 +68,17 @@
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-striped">
-                <thead>
+              <p-table class="table table-striped" [value]="userprestataire"   [scrollable]="true" scrollHeight="200px" >
+                <ng-template pTemplate="header" >
                   <tr>
-                    <th class="text-center">#</th>
                     <th>UserName</th>
                     <th>Email</th>
                     <th>Date inscription</th>
                     <th class="text-right">Actions</th>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let pres of userprestataire">
-                    <td class="text-center"> {{pres.id}}</td>
+              </ng-template>
+              <ng-template pTemplate="body" let-pres>
+                  <tr >
                     <td>{{pres.username}}</td>
                     <td>{{pres.email}}</td>
                     <td>{{pres.date_registration}}</td>
@@ -103,8 +104,14 @@
 
 
                   <!---->
-                </tbody>
-              </table>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                  <div class="p-d-flex p-ai-center p-jc-between">
+                    Au total, il y a
+                    {{userprestataire ? userprestataire.length : 0 }} demandes prestataires.
+                  </div>
+              </ng-template>
+              </p-table>
             </div>
           </div>
         </div>

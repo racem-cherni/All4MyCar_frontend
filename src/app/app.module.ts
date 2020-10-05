@@ -109,6 +109,8 @@ import {SidebarAdminComponent} from './layouts/admin-layout/sidebar-admin/sideba
 import { PrestationsComponent } from './components/interface-client/prestations/prestations.component';
 
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { ClientsadminComponent } from './clientsadmin/clientsadmin.component';
+import { PrestatairesadminComponent } from './prestatairesadmin/prestatairesadmin.component';
 
 @NgModule({
   declarations: [
@@ -154,7 +156,11 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
     RegistredialogComponent,
 
-    PrestationsComponent
+    PrestationsComponent,
+
+    ClientsadminComponent,
+
+    PrestatairesadminComponent
 
 
 

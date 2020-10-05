@@ -1,0 +1,167 @@
+<p-toast></p-toast>
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-warning card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">content_copy</i>
+                      </div>
+                      <p class="card-category">Used Space</p>
+                      <h3 class="card-title">49/50
+                          <small>GB</small>
+                      </h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons text-danger">warning</i>
+                          <a href="javascript:void(0)">Get More Space...</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">store</i>
+                      </div>
+                      <p class="card-category">Revenue</p>
+                      <h3 class="card-title">$34,245</h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">date_range</i> Last 24 Hours
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-danger card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">info_outline</i>
+                      </div>
+                      <p class="card-category">Fixed Issues</p>
+                      <h3 class="card-title">75</h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">local_offer</i> Tracked from Github
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-info card-header-icon">
+                      <div class="card-icon">
+                          <i class="fa fa-twitter"></i>
+                      </div>
+                      <p class="card-category">Followers</p>
+                      <h3 class="card-title">+245</h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">update</i> Just Updated
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+
+
+            <div class="card">
+              <div class="card-header card-header-danger">
+                <h4 class="card-title">Clients</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <p-table class="table table-striped" [value]="client"   [scrollable]="true" scrollHeight="300px" >
+                    <ng-template pTemplate="header" >
+                      <tr>
+
+                        <th >Nom & Prenom</th>
+
+                        <th>Email</th>
+                        <th>Date inscription</th>
+                        <th class="text-right" >Actions</th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body"  *ngIf="client === null">
+                      <tr>                    <td class="text-center"> aucune registration récente</td>
+
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-clt *ngIf="client !== null">
+                      <tr >
+                        <td ><img *ngIf="clt.photoclt !== null " mat-card-image
+                          src="http://localhost:8081/api/apii/image/logo/{{clt.photoclt}}" class="rounded-circle" alt="Photo of a Shiba Inu"
+                          height="60" width="60">&nbsp;&nbsp;
+                           {{clt.firstNameclt}}&nbsp;
+                        {{clt.lastNameclt}}</td>
+                        <td>{{clt.emailclt}}</td>
+                        <td>{{clt.date_inscrip}}</td>
+                        <td class="td-actions text-right ">
+                          <button pButton pRipple icon="pi pi-info-circle" class="p-button-rounded p-button-info" (click)="profilclient(clt)"></button>
+
+                          &nbsp;
+
+                          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteclient(clt)"></button>
+                        </td>
+                      </tr>
+
+
+
+
+                      <!---->
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                      <div class="p-d-flex p-ai-center p-jc-between">
+                        Au total, il y a
+                        {{client ? client.length : 0 }} clients.
+                      </div>
+                  </ng-template>
+                  </p-table>
+                </div>
+              </div>
+            </div>
+
+      </div>
+      </div>
+      </div>
+      <p-dialog [(visible)]="clientDialog" [style]="{width: '450px'}" header="Client Details" [modal]="true" styleClass="p-fluid">
+        <ng-template pTemplate="content">
+           <img [src]="'http://localhost:8081/api/apii/image/logo/' + cltt.photoclt" [alt]="cltt.photoclt" class="center" height="150px" width="100px">
+           <br>
+            <div class="p-field">
+              <label for="name">Nom & Prenom&nbsp;&nbsp;</label>
+              {{cltt.firstNameclt}} {{cltt.lastNameclt}}
+              </div>
+              <div class="p-field">
+                <label for="name">Numero telephone&nbsp;&nbsp;</label>
+                  +216{{cltt.telclt}}
+                </div>
+                <div class="p-field">
+                  <label for="name">Email&nbsp;&nbsp;</label>
+                    {{cltt.emailclt}}
+                  </div>
+                  <div class="p-field">
+                    <label for="name">CIN&nbsp;&nbsp;</label>
+                      {{cltt.cin}}
+                    </div>
+                    <div class="p-field">
+                      <label for="name">Adresse&nbsp;&nbsp;</label>
+                        {{cltt.adresseclt}}
+                      </div>
+                      <div class="p-field">
+                        <label for="name">Date inscription&nbsp;&nbsp;</label>
+                          {{cltt.date_inscrip}}
+                        </div>
+        </ng-template>
+
+
+    </p-dialog>
+    <p-confirmDialog [style]="{width: '500px'}"></p-confirmDialog>

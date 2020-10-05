@@ -38,6 +38,8 @@ import { PrestationsComponent } from './components/interface-client/prestations/
 
 import { RdvpresComponent } from './components/interface-prestataire/rdvpres/rdvpres.component';
 import { DisponibilteComponent } from './components/interface-prestataire/espace-prestataire/disponibilte/disponibilte.component';
+import { ClientsadminComponent } from './clientsadmin/clientsadmin.component';
+import { PrestatairesadminComponent } from './prestatairesadmin/prestatairesadmin.component';
 const routes: Routes = [
   {
     path: 'dash', canActivate: [AuthGuard] ,
@@ -60,7 +62,19 @@ const routes: Routes = [
 
   },
   {
-    path:'table-list',
+    path:'clients',
+    component:ClientsadminComponent,
+
+
+  },
+  {
+    path:'prestataires',
+    component:PrestatairesadminComponent,
+
+
+  },
+  {
+    path:'demandes_inscriptions',
     component:TableListComponent,
 
 

@@ -46,6 +46,9 @@ export class NavbarAdminComponent implements OnInit {
       .subscribe((data) => {this.admin = data, console.log(data)} , error => console.log(error));
 
       this.listTitles = ROUTES.filter(listTitle => listTitle);
+      console.log(this.listTitles[0].path);
+      console.log( this.location.prepareExternalUrl(this.location.path()));
+
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
       this.router.events.subscribe((event) => {
@@ -135,12 +138,10 @@ export class NavbarAdminComponent implements OnInit {
 
     getTitle(){
       var titlee = this.location.prepareExternalUrl(this.location.path());
-      if(titlee.charAt(0) === '#'){
-          titlee = titlee.slice( 1 );
-      }
+
 
       for(var item = 0; item < this.listTitles.length; item++){
-          if(this.listTitles[item].path === titlee){
+          if("/dash" + this.listTitles[item].path === titlee){
               return this.listTitles[item].title;
           }
       }

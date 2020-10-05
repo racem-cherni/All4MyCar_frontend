@@ -1,0 +1,170 @@
+<p-toast></p-toast>
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-warning card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">content_copy</i>
+                      </div>
+                      <p class="card-category">Used Space</p>
+                      <h3 class="card-title">49/50
+                          <small>GB</small>
+                      </h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons text-danger">warning</i>
+                          <a href="javascript:void(0)">Get More Space...</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">store</i>
+                      </div>
+                      <p class="card-category">Revenue</p>
+                      <h3 class="card-title">$34,245</h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">date_range</i> Last 24 Hours
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-danger card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">info_outline</i>
+                      </div>
+                      <p class="card-category">Fixed Issues</p>
+                      <h3 class="card-title">75</h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">local_offer</i> Tracked from Github
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-info card-header-icon">
+                      <div class="card-icon">
+                          <i class="fa fa-twitter"></i>
+                      </div>
+                      <p class="card-category">Followers</p>
+                      <h3 class="card-title">+245</h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">update</i> Just Updated
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Prestataires</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <p-table class="table table-striped" [value]="prestataire"   [scrollable]="true" scrollHeight="300px" >
+                <ng-template pTemplate="header" >
+                  <tr>
+                    <th >Nom & Prenom</th>
+                    <th>Email</th>
+                    <th>Date inscription</th>
+                    <th>Specialisation</th>
+                    <th class="text-right">Actions</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-pres >
+                  <tr>
+                    <td ><img *ngIf="pres.photopres !== null " mat-card-image
+                      src="http://localhost:8081/api/api/image/logo/{{pres.photopres}}" class="rounded-circle" alt="Photo of a Shiba Inu"
+                      height="60" width="60">&nbsp;&nbsp;
+                       {{pres.firstNamepres}}&nbsp;
+                    {{pres.lastNamepres}}</td>
+                    <td>{{pres.emailpres}}</td>
+                    <td>{{pres.date_inscrip}}</td>
+                    <td>{{pres.specialisations}}</td>
+                    <td class="td-actions text-right">
+
+                      <button pButton pRipple icon="pi pi-info-circle" class="p-button-rounded p-button-info" (click)="profilprestataire(pres)" ></button>
+
+                      &nbsp;
+
+                      <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletepres(pres)"></button>
+                      </td>
+
+                  </tr>
+
+
+
+
+
+
+                  <!---->
+                </ng-template>
+                <ng-template pTemplate="summary">
+                  <div class="p-d-flex p-ai-center p-jc-between">
+                    Au total, il y a
+                    {{prestataire ? prestataire.length : 0 }} prestataires.
+                  </div>
+              </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      <p-dialog [(visible)]="prestataireDialog" [style]="{width: '450px'}" header="Prestataire Details" [modal]="true" styleClass="p-fluid">
+        <ng-template pTemplate="content">
+         <img [src]="'http://localhost:8081/api/api/image/logo/' + press.photopres" [alt]="press.photopres" class="center" height="150px" width="100px" >
+         <br>
+              <div class="p-field">
+                <label for="name">Nom & Prenom&nbsp;&nbsp;</label>
+                {{press.firstNamepres}} {{press.lastNamepres}}
+                </div>
+                <div class="p-field">
+                  <label for="name">Numero telephone&nbsp;&nbsp;</label>
+                    +216{{press.telpres}}
+                  </div>
+                  <div class="p-field">
+                    <label for="name">Email&nbsp;&nbsp;</label>
+                      {{press.emailpres}}
+                    </div>
+                    <div class="p-field">
+                      <label for="name">CIN&nbsp;&nbsp;</label>
+                        {{press.cin}}
+                      </div>
+                      <div class="p-field">
+                        <label for="name">Adresse&nbsp;&nbsp;</label>
+                          {{press.adressepres}}
+                        </div>
+                        <div class="p-field">
+                          <label for="name">Specialisations&nbsp;&nbsp;</label>
+                           <p> {{press.specialisations}} </p>
+                          </div>
+                        <div class="p-field">
+                          <label for="name">Date inscription&nbsp;&nbsp;</label>
+                            {{press.date_inscrip}}
+                          </div>
+
+
+        </ng-template>
+
+
+    </p-dialog>
+
+         <p-confirmDialog [style]="{width: '500px'}"></p-confirmDialog>
