@@ -79,8 +79,8 @@
                   <mat-select matNativeControl id="specialisations" formControleName="specialisations"
                    [(ngModel)]="specialisathou"  [ngModelOptions]="{standalone: true}"
                   multiple (ngModelChange)="setSpecializationValue()" >
-                    <mat-option *ngFor=" let space of specialisationss"  [value]="space" >
-                      {{space}}
+                    <mat-option *ngFor=" let space of specialisations"  [value]="space.name"   >
+                      {{space.name}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>

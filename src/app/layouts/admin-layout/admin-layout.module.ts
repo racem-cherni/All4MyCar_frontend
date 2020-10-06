@@ -28,9 +28,15 @@ import {DropdownModule} from 'primeng/dropdown';
 import {TableModule} from 'primeng/table';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ToastModule} from 'primeng/toast';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {MatIconModule } from '@angular/material/icon';
+
+
 
 @NgModule({
   imports: [
+    MultiSelectModule,
+    MatIconModule,
     DropdownModule,
     ConfirmDialogModule,
     MatCheckboxModule,

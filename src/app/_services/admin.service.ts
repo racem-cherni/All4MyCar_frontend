@@ -113,5 +113,26 @@ detailprestataire(idpres : number) : Observable<any> {
 
 }
 
+getallclientsbydateinscription(dateinscrip : Date) : Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/getallClientbydateinscription/${dateinscrip}`;
+  return this.http.get(searchModelUrl, {headers: this.header});
+
+
+}
+
+getallprestatairesbydateinscription(dateinscrip : Date) : Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/getallprestatairesbydateinscription/${dateinscrip}`;
+  return this.http.get(searchModelUrl, {headers: this.header});
+
+
+}
+
+getallprestatairesbyspecialisations(specialisations : String ) : Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/getallprestatairesbyspecialisations/${specialisations}`;
+  return this.http.get(searchModelUrl, {headers: this.header});
+
+
+}
+
 
 }

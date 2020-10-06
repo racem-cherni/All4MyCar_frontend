@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { Prestataire } from '../entities/prestataire';
+import { Specialisation } from '../entities/specialisation';
 import { AdminService } from '../_services/admin.service';
+import { SpecialisationService } from '../_services/specialisation.service';
 @Component({
   selector: 'app-prestatairesadmin',
   templateUrl: './prestatairesadmin.component.html',
@@ -10,15 +13,24 @@ import { AdminService } from '../_services/admin.service';
   providers: [MessageService, ConfirmationService]
 })
 export class PrestatairesadminComponent implements OnInit {
+
+  selectedspecialities: string;
+
+  specialisationss: Specialisation[] = [];
   prestataireDialog: boolean;
+  loading: boolean = true;
+  @ViewChild('dt') table: Table;
 
 
-  constructor(private adminservice :AdminService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
+  constructor(private adminservice :AdminService, private confirmationService: ConfirmationService, private messageService: MessageService,private specialisationService: SpecialisationService) { }
   press: Prestataire;
   prestataire:Prestataire[] = [];
   ngOnInit(): void {
     this.adminservice.getAllPrestataire()
-    .subscribe((data) => {this.prestataire = data, console.log(data)} , error => console.log(error));
+    .subscribe((data) => {this.prestataire = data, console.log(data), this.loading = false;} , error => console.log(error));
+    this.specialisationService.getspecialisations()
+   .subscribe((data) => {this.specialisationss = data, console.log(data); });
+
   }
 
   deletepres(pres: Prestataire) {
@@ -38,6 +50,29 @@ export class PrestatairesadminComponent implements OnInit {
   profilprestataire(prestataire: Prestataire){
     this.press = prestataire ;
    this.prestataireDialog = true;
+
+ }
+
+ cleartable(){
+  this.ngOnInit();
+ }
+ getallprestatairesbydate(d){
+  this.adminservice.getallprestatairesbydateinscription(d)
+  .subscribe((data) => {this.prestataire = data, console.log(data)} , error => console.log(error));
+ }
+
+ onRepresentativeChange(event) {
+  this.table.filter(event.value, 'specialisations', 'in')
+}
+
+getallprestatairesbyspec(){
+  this.adminservice.getallprestatairesbyspecialisations(this.selectedspecialities)
+  .subscribe((data) => {this.prestataire = data, console.log(data)} , error => console.log(error));
+ }
+
+ cleartablee(){
+  this.ngOnInit();
+  this.selectedspecialities= undefined;
 
  }
 

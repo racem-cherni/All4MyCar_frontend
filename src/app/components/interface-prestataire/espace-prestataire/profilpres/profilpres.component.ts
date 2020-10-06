@@ -3,7 +3,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Prestataire } from 'src/app/entities/prestataire';
+import { Specialisation } from 'src/app/entities/specialisation';
 import { PrestataireService } from 'src/app/_services/prestataire.service';
+import { SpecialisationService } from 'src/app/_services/specialisation.service';
 
 @Component({
   selector: 'app-profilpres',
@@ -12,23 +14,8 @@ import { PrestataireService } from 'src/app/_services/prestataire.service';
 })
 export class ProfilpresComponent implements OnInit {
 
-  specialisationss : string[] = [
-  'concessionnaires' ,
-   'mécanicien' ,
-  'électricien auto',
-  'Tôlier' ,
-  'Lavage (normal, appro …)' ,
-  'entretiens' ,
-  'Roues (pneus, jantes …)',
-  'Décoration voiture pour évènement' ,
-  'habillage voiture' ,
-  'Tuning ',
-  'Vente matériel',
-  'diagnostique' ,
-  'Assurance' ,
-  'Location Voiture' ,
-  'Dépannage et Assistance',
-  'accessoires auto'];
+  specialisations: Specialisation[] = [];
+
   specialisat: string ;
   isSuccessful = false;
   errorMessage = '';
@@ -151,9 +138,9 @@ myForm = new FormGroup({
 
 
   // tslint:disable-next-line: whitespace
-  constructor(private http: HttpClient, private prestataireservice: PrestataireService ,private router: Router ,
+  constructor(private http: HttpClient, private prestataireservice: PrestataireService ,private router: Router ,private specialisationService: SpecialisationService
      // tslint:disable-next-line: align
-     private route: ActivatedRoute , private fb: FormBuilder ) {
+     ,private route: ActivatedRoute , private fb: FormBuilder ) {
       this.createformprofil() ;
 
 
@@ -202,6 +189,8 @@ myForm = new FormGroup({
 
   ngOnInit(): void {
     this.selectedFiles = null ;
+    this.specialisationService.getspecialisations()
+    .subscribe((data) => {this.specialisations = data, console.log(data); });
     this.press = new Prestataire();
     this.prestataireservice.getprestataire()
    .subscribe((data) => {this.press = data, console.log(data)

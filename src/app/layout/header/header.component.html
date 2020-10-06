@@ -1228,7 +1228,7 @@
                 </div>
 
                 <div class="account-menu__user-avatar" *ngIf="role == 'ROLE_PRESTATAIRE'">
-                  <div *ngIf="prestataire.photopres !== '';else contenu_pas_bon"><img
+                  <div *ngIf="prestataire.photopres !== null;else contenu_pas_bon"><img
                       src="http://localhost:8081/api/api/image/logo/{{prestataire.photopres}}" alt="" height="50"></div>
                   <ng-template #contenu_pas_bon> <img src="assets/images/avatars/avat.jpg" alt=""></ng-template>
 

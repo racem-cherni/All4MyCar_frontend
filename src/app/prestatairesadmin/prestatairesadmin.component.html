@@ -72,28 +72,83 @@
       </div>
       <div class="row">
         <div class="card">
-          <div class="card-header card-header-danger">
-            <h4 class="card-title">Prestataires</h4>
+
+              <div class="card-header card-header-danger card-header-icon">
+                <div class="card-icon"><i class="material-icons">person</i></div>
+                <h4 class="card-title">Listes Prestataires </h4>
+          <br>
+            <div class="row ">
+              &nbsp;&nbsp;&nbsp;              &nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+
+                <input  pInputText type="text" (input)="dt.filter($event.target.value, 'firstNamepres', 'startsWith')" placeholder="Rechercher par nom" >
+                &nbsp;&nbsp;&nbsp;                 &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+
+
+
+                <p-calendar  (onSelect)="getallprestatairesbydate($event)" (onClearClick)="cleartable()" [showButtonBar]="true" styleClass="p-column-filter" placeholder="Date inscription" [readonlyInput]="true" dateFormat="yy-mm-dd"></p-calendar>
+                &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+
+              <mat-form-field class="example-full-width" appearance="fill" >
+       <mat-label>Specialisation</mat-label>
+       <mat-select matNativeControl id="specialisations"
+        [(ngModel)]="selectedspecialities"  [ngModelOptions]="{standalone: true}"
+       multiple (ngModelChange)="getallprestatairesbyspec()" >
+         <mat-option *ngFor=" let space of specialisationss"  [value]="space.name"   >
+           {{space.name}}
+         </mat-option>
+       </mat-select>
+       <button mat-button *ngIf="selectedspecialities" matSuffix mat-icon-button aria-label="Clear"
+    (click)="cleartablee();$event.stopPropagation()">
+    <mat-icon>close</mat-icon>
+  </button>
+     </mat-form-field>
+  </div>
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <p-table class="table table-striped" [value]="prestataire"   [scrollable]="true" scrollHeight="300px" >
+              <p-table  #dt [value]="prestataire"   [scrollable]="true" scrollHeight="300px"
+              [rowHover]="true" [globalFilterFields]="['firstNamepres','specialisations']" [loading]="loading"
+              [rows]="4" [showCurrentPageReport]="true"
+              [paginator]="true" currentPageReportTemplate="Affichage de {first} à {last} entrées sur {totalRecords}"
+              [filterDelay]="0"
+
+
+
+              >
                 <ng-template pTemplate="header" >
                   <tr>
-                    <th >Nom & Prenom</th>
+                    <th pSortableColumn="firstNamepres">Nom & Prenom <p-sortIcon field="firstNamepres"></p-sortIcon></th>
+
                     <th>Email</th>
-                    <th>Date inscription</th>
-                    <th>Specialisation</th>
+                    <th pSortableColumn="date_inscrip">Date inscription <p-sortIcon field="date_inscrip"></p-sortIcon></th>
+
+                    <th pSortableColumn="specialisations">Specialisation <p-sortIcon field="specialisations"></p-sortIcon></th>
                     <th class="text-right">Actions</th>
                   </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-pres >
                   <tr>
-                    <td ><img *ngIf="pres.photopres !== null " mat-card-image
-                      src="http://localhost:8081/api/api/image/logo/{{pres.photopres}}" class="rounded-circle" alt="Photo of a Shiba Inu"
-                      height="60" width="60">&nbsp;&nbsp;
-                       {{pres.firstNamepres}}&nbsp;
-                    {{pres.lastNamepres}}</td>
+
+
+                    <td>
+                      <img [alt]="pres.firstNamepres" *ngIf="pres.photopres !== null;else contenu_pas_bon" src="http://localhost:8081/api/api/image/logo/{{pres.photopres}}" width="50" class="rounded-circle" style="vertical-align: middle" />
+                      <ng-template #contenu_pas_bon> <img src="assets/images/avatars/avat.jpg" alt="" width="50" class="rounded-circle" style="vertical-align: middle"></ng-template>
+                      &nbsp;
+                      <span class="image-text">{{pres.firstNamepres}}&nbsp;
+                      {{pres.lastNamepres}}</span>
+
+                      </td>
                     <td>{{pres.emailpres}}</td>
                     <td>{{pres.date_inscrip}}</td>
                     <td>{{pres.specialisations}}</td>
@@ -121,6 +176,11 @@
                     {{prestataire ? prestataire.length : 0 }} prestataires.
                   </div>
               </ng-template>
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="8">Aucun prestataire trouvé</td>
+                </tr>
+            </ng-template>
               </p-table>
             </div>
           </div>

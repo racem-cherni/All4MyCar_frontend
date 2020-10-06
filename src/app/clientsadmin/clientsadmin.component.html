@@ -74,19 +74,52 @@
 
 
             <div class="card">
-              <div class="card-header card-header-danger">
-                <h4 class="card-title">Clients</h4>
+             <div class="card-header card-header-danger card-header-icon">
+              <div class="card-icon"><i class="material-icons">person</i></div>
+                <h4 class="card-title">Listes Clients </h4>
+                  <br>
+                  <div class="row ">
+                    &nbsp;&nbsp;&nbsp;              &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+
+                    <input pInputText type="text" (input)="dt.filter($event.target.value, 'firstNameclt', 'startsWith')" placeholder="Rechercher par nom" class="p-column-filter">
+                    &nbsp;&nbsp;&nbsp;                 &nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+
+
+
+                      <p-calendar  (onSelect)="getallclientsbydate($event)" (onClearClick)="cleartable()" [showButtonBar]="true" styleClass="p-column-filter" placeholder="Date inscription" [readonlyInput]="true" dateFormat="yy-mm-dd"></p-calendar>
+                      &nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+
+
+        </div>
+
+
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <p-table class="table table-striped" [value]="client"   [scrollable]="true" scrollHeight="300px" >
+                  <p-table  #dt  [value]="client"   [scrollable]="true" scrollHeight="300px"
+                  [rowHover]="true" [globalFilterFields]="['firstNameclt']" [loading]="loading"
+        [rows]="4" [showCurrentPageReport]="true"
+        [paginator]="true" currentPageReportTemplate="Affichage de {first} à {last} entrées sur {totalRecords}"
+        [filterDelay]="0"
+                  >
                     <ng-template pTemplate="header" >
                       <tr>
 
-                        <th >Nom & Prenom</th>
-
+                        <th pSortableColumn="firstNameclt">Nom & Prenom <p-sortIcon field="firstNameclt"></p-sortIcon></th>
                         <th>Email</th>
-                        <th>Date inscription</th>
+                        <th pSortableColumn="date_inscrip">Date inscription <p-sortIcon field="date_inscrip"></p-sortIcon></th>
                         <th class="text-right" >Actions</th>
                       </tr>
                     </ng-template>
@@ -97,11 +130,15 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-clt *ngIf="client !== null">
                       <tr >
-                        <td ><img *ngIf="clt.photoclt !== null " mat-card-image
-                          src="http://localhost:8081/api/apii/image/logo/{{clt.photoclt}}" class="rounded-circle" alt="Photo of a Shiba Inu"
-                          height="60" width="60">&nbsp;&nbsp;
-                           {{clt.firstNameclt}}&nbsp;
-                        {{clt.lastNameclt}}</td>
+
+                        <td>
+                          <img [alt]="clt.firstNameclt" *ngIf="clt.photoclt !== null;else contenu_pas_bon" src="http://localhost:8081/api/apii/image/logo/{{clt.photoclt}}" width="50" class="rounded-circle" style="vertical-align: middle" />
+                          <ng-template #contenu_pas_bon> <img src="assets/images/avatars/avat.jpg" alt="" width="50" class="rounded-circle" style="vertical-align: middle"></ng-template>
+                          &nbsp;
+                          <span class="image-text">{{clt.firstNameclt}}&nbsp;
+                            {{clt.lastNameclt}}</span>
+
+                          </td>
                         <td>{{clt.emailclt}}</td>
                         <td>{{clt.date_inscrip}}</td>
                         <td class="td-actions text-right ">
@@ -124,9 +161,14 @@
                         {{client ? client.length : 0 }} clients.
                       </div>
                   </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="8">Aucun client trouvé</td>
+                    </tr>
+                </ng-template>
                   </p-table>
-                </div>
-              </div>
+                  </div>
+      </div>
             </div>
 
       </div>

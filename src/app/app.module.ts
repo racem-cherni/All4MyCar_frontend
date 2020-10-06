@@ -81,10 +81,13 @@ import { RdvpresComponent } from './components/interface-prestataire/rdvpres/rdv
 import { DisponibilteComponent } from './components/interface-prestataire/espace-prestataire/disponibilte/disponibilte.component';
 
 import { MatCheckboxModule} from '@angular/material/checkbox';
+import {MatIconModule } from '@angular/material/icon';
+
 
 
 import {CalendarModule} from 'primeng/calendar';
 import {TableModule} from 'primeng/table';
+
 
 
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
@@ -167,6 +170,7 @@ import { PrestatairesadminComponent } from './prestatairesadmin/prestatairesadmi
   ],
   imports: [
     TooltipModule,
+    MatIconModule,
     ConfirmDialogModule,
     CheckboxModule,
    MatProgressSpinnerModule,
