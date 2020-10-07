@@ -15,8 +15,7 @@ export class ProfilComponent implements OnInit {
   errorMessage = '';
 
   imageSrc: string;
- // date3: Date;
-//  value7: string;
+
 form: FormGroup;
 client: Client ;
 clientcopy: Client = null ;
@@ -116,7 +115,6 @@ myForm = new FormGroup({
 
   // tslint:disable-next-line: whitespace
   constructor(private http: HttpClient, private clientService: ClientService ,private router: Router ,
-     // tslint:disable-next-line: align
      private route: ActivatedRoute , private fb: FormBuilder ) {
       this.createformprofil() ;
 

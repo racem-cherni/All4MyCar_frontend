@@ -3,6 +3,7 @@ import { TokenStorageService } from './token-storage.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Client } from '../entities/client';
 import { Observable } from 'rxjs';
+import { User } from '../entities/user';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -28,6 +29,12 @@ client: Client ;
 getUser(): Observable<any> {
 
   return this.http.get(this.baseUrluser + '/FinduserById', {
+    headers: this.header});
+}
+
+getUserr(id : number): Observable<any> {
+
+  return this.http.get(this.baseUrluser + '/Finduserr/'+`${id}`, {
     headers: this.header});
 }
 
@@ -66,6 +73,28 @@ submiteditprofil(client: Client, currentfile: File): Observable<Client> {
     ,  {headers: this.header} );
 
 }
+
+submiteditprofil_completeprofil(client: Client, currentfile: File,images :FileList): Observable<Client> {
+  const formData: FormData = new FormData();
+
+    // tslint:disable-next-line: align
+    formData.append('file', currentfile);
+    for(let i=0; i<images.length; i++){
+      const file= images[i];
+    formData.append('images[]', file, file.name);
+    }
+    console.log(formData);
+
+    
+
+    // tslint:disable-next-line: align
+  return this.http.post<Client>(this.baseUrluser + '/ajoutclt_sansverif/'  + `${client.firstNameclt}`  + "/" + `${client.lastNameclt}` + "/" + `${client.emailclt}`
+
+  + "/" + `${client.adresseclt}` + "/" + `${client.telclt}` + "/" + `${client.cin}` + "/" + `${client.date_permis}` , formData
+
+    ,  {headers: this.header} );
+
+}
 submiteditprofilwithoutphoto(client: Client): Observable<Client> {
   
 
@@ -77,6 +106,21 @@ submiteditprofilwithoutphoto(client: Client): Observable<Client> {
   + "/" + `${client.adresseclt}` + "/" + `${client.telclt}` + "/" + `${client.cin}` + "/" + `${client.date_permis}` 
 
     ,  {headers: this.header} );
+
+}
+
+
+submiteditprofilwithoutphoto_completeprofil(client: Client): Observable<Client> {
+  
+
+  // tslint:disable-next-line: align
+ 
+  // tslint:disable-next-line: align
+return this.http.post<Client>(this.baseUrluser + '/ajoutclt_sansverif2/'  + `${client.firstNameclt}`  + "/" + `${client.lastNameclt}` + "/" + `${client.emailclt}`
+
++ "/" + `${client.adresseclt}` + "/" + `${client.telclt}` + "/" + `${client.cin}` + "/" + `${client.date_permis}` 
+
+  ,  {headers: this.header} );
 
 }
 

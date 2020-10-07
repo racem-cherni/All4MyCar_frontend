@@ -11,6 +11,6 @@ export class Garage {
    adressecite:Adressecities;
     addresse:string;
     description:string;
-
+    etat : number;
 
 }

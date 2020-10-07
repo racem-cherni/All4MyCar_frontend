@@ -49,6 +49,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {TooltipModule} from 'primeng/tooltip';
 import {CheckboxModule} from 'primeng/checkbox';
 import {ToastModule} from 'primeng/toast';
+import {FileUploadModule} from 'primeng/fileupload';
+
 
 
 import { NavigationpresComponent } from './components/interface-prestataire/espace-prestataire/navigationpres/navigationpres.component';
@@ -114,6 +116,11 @@ import { PrestationsComponent } from './components/interface-client/prestations/
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { ClientsadminComponent } from './clientsadmin/clientsadmin.component';
 import { PrestatairesadminComponent } from './prestatairesadmin/prestatairesadmin.component';
+import { CompleteprofilComponent } from './components/interface-client/completeprofil/completeprofil.component';
+import { CompleteprofilpresComponent } from './components/interface-prestataire/completeprofilpres/completeprofilpres.component';
+import {StepsModule} from 'primeng/steps';
+import { CompleteprofilfromComponent } from './components/interface-client/completeprofil/completeprofilfrom/completeprofilfrom.component';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -163,7 +170,13 @@ import { PrestatairesadminComponent } from './prestatairesadmin/prestatairesadmi
 
     ClientsadminComponent,
 
-    PrestatairesadminComponent
+    PrestatairesadminComponent,
+    CompleteprofilComponent,
+
+    CompleteprofilpresComponent,
+
+    CompleteprofilfromComponent,
+
 
 
 
@@ -206,7 +219,9 @@ import { PrestatairesadminComponent } from './prestatairesadmin/prestatairesadmi
     MatTooltipModule,
     MatCheckboxModule,
     TableModule,
-
+    FileUploadModule,
+    StepsModule,
+    MatStepperModule,
     CalendarModule  ],
   providers: [authInterceptorProviders, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService  ],
   bootstrap: [AppComponent],

@@ -92,4 +92,22 @@ modif_dispo(disponibilte: Disponibilte): Observable<any> {
 }
 
 
+submiteditprofil_completeprofil(prestataire: Prestataire, currentfile: File,images :FileList): Observable<Prestataire> {
+  const formData: FormData = new FormData();
+
+    // tslint:disable-next-line: align
+    formData.append('file', currentfile);
+    for(let i=0; i<images.length; i++){
+      const file= images[i];
+    formData.append('images[]', file, file.name);
+    }
+    // tslint:disable-next-line: align
+  return this.http.post<Prestataire>(this.baseUrluser + '/ajoutprofilpres_sansverif/'  + `${prestataire.firstNamepres}`  + "/" + `${prestataire.lastNamepres}` + "/" + `${prestataire.adressepres}`
+
+   + "/" + `${prestataire.emailpres}` + "/" + `${prestataire.telpres}`+ "/" + `${prestataire.specialisations}`+ "/" + `${prestataire.cin}` , formData
+
+    ,  {headers: this.header} );
+
+}
+
 }

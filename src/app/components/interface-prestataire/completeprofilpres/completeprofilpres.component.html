@@ -1,0 +1,360 @@
+<style>
+    p{  text-align: center;}
+    .card-s {
+  background-color: rgb(235, 229, 229);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.09);
+  border: none;
+  border-radius: 0;
+}
+.card-s-header-s{
+  background-color: rgb(255, 255, 255);
+
+}
+.custom-file-upload {
+  background-color: rgb(253, 253, 253);
+  color:rgb(150, 153, 150);
+
+  border: 1px solid rgb(150, 153, 150);
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.img-wrap {
+  position: relative;
+  display: inline-block;
+  border: 1px red solid;
+  font-size: 0;
+}
+.img-wrap .close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  z-index: 100;
+  background-color: #FFF;
+  padding: 5px 2px 2px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: .2;
+  text-align: center;
+  font-size: 22px;
+  line-height: 10px;
+  border-radius: 50%;
+}
+.img-wrap:hover .close {
+  opacity: 1;
+}
+</style>
+<div class="block-space block-space--layout--after-header"></div>
+  <mat-horizontal-stepper [linear]="isLinear" [selectedIndex]="selectedIndex" #stepper>
+      <div class="mat-step-text-label ng-star-inserted">
+    <mat-step [stepControl]="firstFormGroup" completed="true" >
+        <ng-template matStepLabel>Register</ng-template>
+        <p>Vous etes maintenant enregistrer , veuillez compléter votre profil pou activer votre 
+            form
+        </p>
+
+        
+    </mat-step>
+      </div>
+    <mat-step [stepControl]="form" *ngIf="!profileSubmitted" completed="false" label="Completer votre profil">
+      <div class="row" >
+        <div class="offset-4 col-12 col-lg-7 col-xl-5">
+
+        <div class="card">
+            <div class="card-header">
+                <h5>Complete profile</h5>
+            </div>
+            <div class="card-divider"></div>
+            <div  class="card-body card-body--padding--2">
+          
+                <form novalidate [formGroup]="form" #fform="ngForm" (ngSubmit)="onsubmitt()" *ngIf="showprestataireForm">
+                    <div class="row no-gutters">
+                        <div class="col-12 col-lg-7 col-xl-5">
+                            <mat-form-field class="half-width">
+                                <input matInput formControlName="firstNamepres" type="text" id="firstNamepres"
+                                    placeholder="First Name" required [(ngModel)]="press.firstNamepres">
+                                <mat-error *ngIf="formErrors.firstNamepres">{{formErrors.firstNamepres}}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="half-width">
+                              <input matInput formControlName="cin" type="tel" placeholder="Numero CIN" pattern="[0-9]*" required [(ngModel)]="press.cin"  >
+                              <mat-error *ngIf="formErrors.cin">{{formErrors.cin}}</mat-error>
+                              </mat-form-field>
+          
+                            <mat-form-field class="half-width">
+                                <input matInput formControlName="emailpres" type="email" id="emailpres"
+                                    placeholder="Email Address" required email [(ngModel)]="press.emailpres">
+                                <mat-error *ngIf="formErrors.emailpres">{{formErrors.emailpres}}</mat-error>
+                            </mat-form-field>
+          
+          
+                         
+          
+          
+          
+          
+          
+                        </div>
+          
+          
+                        <div class="col-12 col-lg-7 col-xl-1">
+                        </div>
+                        <div class="col-12 col-lg-7 col-xl-5">
+                            <mat-form-field class="half-width">
+                                <input matInput formControlName="lastNamepres" type="text" placeholder="Last Name" required
+                                    [(ngModel)]="press.lastNamepres">
+                                <mat-error *ngIf="formErrors.lastNamepres">{{formErrors.lastNamepres}}</mat-error>
+                            </mat-form-field>
+          
+                            <mat-form-field class="half-width">
+          
+                                <input matInput formControlName="telpres" type="tel" placeholder="Phone Number" pattern="[0-9]*"
+                                    required [(ngModel)]="press.telpres">
+                                <mat-error *ngIf="formErrors.telpres">{{formErrors.telpres}}</mat-error>
+                            </mat-form-field>
+          
+                          <mat-form-field class="example-full-width">
+                            <input matInput formControlName="adressepres" type="text" placeholder="adresse personnelle" required
+                                [(ngModel)]="press.adressepres" >
+                            <mat-error *ngIf="formErrors.adressepres">{{formErrors.adressepres}}</mat-error>
+                        </mat-form-field>
+          
+                          <mat-form-field class="example-full-width" >
+                            <mat-label>Specialisation</mat-label>
+                            <mat-select matNativeControl id="specialisations" formControleName="specialisations"
+                             [(ngModel)]="specialisathou"  [ngModelOptions]="{standalone: true}"
+                            multiple (ngModelChange)="setSpecializationValue()" >
+                              <mat-option *ngFor=" let space of specialisationss"  [value]="space" >
+                                {{space}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                           
+                        
+          
+          
+          
+          
+          
+                        </div>
+          
+          
+                        
+          
+          
+                    </div>
+          <div class="row">
+
+        <div class="col-12 col-lg-5 col-xl-5">
+
+            <label class="custom-file-upload">
+              <input   formControlName="photopres" id="file" type="file" 
+              (change)="onFileChange($event)"    class="form-control"
+               accept="image/*"  />
+Upload Photo profil
+            </label>  
+            <div *ngIf="f.photopres.touched && f.photopres.invalid" class="alert alert-danger">
+
+                <div *ngIf="f.photopres.errors.required">Photo is required.</div>
+
+            </div>
+            <div class="card-s">
+              <div class="card-s-header-s"></div>
+                <li class="list-group-item">
+
+                <div *ngIf="press.photopres !== '';else contenu_pas_bon">
+                    <span   class="close" >&times;</span>
+                    <img 
+                      src="http://localhost:8081/api/api/image/logo/{{press.photopres}}" class="rounded"
+                      alt="Photo of a Shiba Inu" height="150" width="150"></div>
+                  <ng-template *ngIf="!uploadedphoto" #contenu_pas_bon > <img src="assets/images/avatars/avat.jpg" alt="" height="150" width="150">
+                  </ng-template>
+              <img [src]="imageSrc" *ngIf="imageSrc" style="height: 150px; width:150px">
+
+                </li>
+                </div>
+            </div>
+            <div class="col-12 col-lg-7 col-xl-2">
+            </div>
+
+            <div class="col-12 col-lg-5 col-xl-5">
+                
+            <label class="custom-file-upload">
+                <input   formControlName="photocin"    class="form-control"
+                type="file" accept="image/*" multiple (change)="selectFiles($event)" />
+  Upload votre cin
+              </label>  
+              <div class="card-s">
+                <div class="card-s-header-s"></div>
+                <div  *ngFor="let url of images" class="img-wrap">
+                  <li class="list-group-item">
+  
+                  <span   class="close" >&times;</span>
+                    <img   [src]="url" height="150" width="150px" style="margin: 3px;"> <br/>
+                    <p>&nbsp;&nbsp;</p>
+  
+                  </li>
+                  </div>
+              </div>
+            </div>
+</div>
+              
+
+                    <button type="submit" mat-button
+                    class="btn btn-outline-danger mt-3">Save</button>&nbsp;&nbsp;
+                    <br>
+                </form>
+                <div class="alert alert-success example-width" *ngIf="isSuccessful">
+                  Profil is updated!
+                </div>
+          
+            </div>
+
+          </div>
+          </div>
+          
+          <div class="col-12 col-lg-5 col-xl-2">
+        </div>
+
+     
+</div>
+    </mat-step>
+   
+    <mat-step [stepControl]="form"  *ngIf="profileSubmitted" completed="true" label="Completer votre profil">
+   <p>Merci pour avoir terminer votre profil<br>
+Veuillez svp terminer votre garage</p>
+    </mat-step>
+    <mat-step [stepControl]="form"  *ngIf="!profileSubmitted && !garageSubmitted" completed="false" label="Completer les données de Garage">
+        <p>veuillez svp completer votre profil</p>
+    </mat-step>
+    <mat-step [stepControl]="form"  *ngIf="profileSubmitted && !garageSubmitted" completed="false" label="Completer les données de Garage">
+        <div class="offset-4 col-12 col-lg-3 col-xl-5" *ngIf="profileSubmitted">
+
+
+
+
+
+            <div class="card ">
+                <div class="card-header">
+                    <h5>Garage</h5>
+                  </div>
+              <div class="card-divider "></div>
+              <div class="card-body card-body--padding--2">
+                
+                
+                
+                  <form novalidate [formGroup]="formm" (ngSubmit)="onsubmit()" *ngIf="showGarageForm"   >
+                
+                
+                
+            
+                <div class="row">
+                    <div class="col-12 col-lg-3 col-xl-5">
+                  <mat-form-field class="half-width">
+                    <input matInput formControlName="Nbr_Mecaniciens" type="number" placeholder="Nombres mécaniciens" pattern="[0-9]*" required   >
+                   <!-- <mat-error *ngIf="formErrors.cin">{{formErrors.cin}}</mat-error>-->
+                    </mat-form-field>
+                
+                </div>
+                <div class="col-12 col-lg-3 col-xl-1">
+
+                    </div>
+                <div class="col-12 col-lg-3 col-xl-5">
+
+                
+                  <mat-form-field class="half-width">
+                    <input matInput formControlName="année_Experience" type="number" placeholder="Années experiences" pattern="[0-9]*" required   >
+                   <!-- <mat-error *ngIf="formErrors.cin">{{formErrors.cin}}</mat-error>-->
+                    </mat-form-field>
+               
+                  </div>
+                </div>
+                <div class="row">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+
+                  <mat-form-field >
+                    <input matInput formControlName="date_ouverture" [matDatepicker]="picker" placeholder="date ouverture"  required  >
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    
+                </div>
+
+                <div class="row">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                      <mat-form-field class="abc">
+                        <mat-label>Description</mat-label>
+                  
+                        <textarea matInput  formControlName="description" type="text"  id="description" placeholder="description" required   >
+                          </textarea>
+                          </mat-form-field>
+                       
+                  
+                    
+                  
+                  
+                    </div>
+
+                
+                  <div class="row ">
+                   <div class="col-12 col-lg-7 col-xl-6 ">
+                
+                    <label class="custom-file-upload">
+
+                     <input  formControlName="photo_garage" id="file" type="file" accept="image/*" class="form-control "
+                     multiple (change)="onFileChangee($event)">
+                 Upload photos de garage
+                    </label>
+                    <div class="card-s">
+                        <div class="card-s-header-s">List of Images</div>
+                        <div class="row" >
+                        <div  *ngFor="let url of imagess" class="img-wrap">
+                          <li class="list-group-item">
+          
+                          <span   class="close" >&times;</span>
+                            <img   [src]="url" height="100" width="100px" style="margin: 3px;"> 
+                            <p>&nbsp;&nbsp;</p>
+          
+                          </li>
+                          </div>
+                        </div>
+                      </div>
+                   <!-- <div *ngIf="ff.photo_garage.touched && ff.photo_garage.invalid" class="alert alert-danger">
+                
+                         <div *ngIf="ff.photo_garage.errors.required">Photo is required.</div>
+                
+                     </div>--> 
+                  </div>
+                
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 col-lg-5 col-xl-3">
+        
+                    <button mat-button type="submit"  [disabled]="!formm.valid" class="btn btn-outline-danger mt-3" >Save</button>
+                  </div>
+                  </div>
+
+                </form>
+            </div>
+            
+  </div>
+  </div>
+    </mat-step>
+    <mat-step [stepControl]="form"  *ngIf="garageSubmitted" completed="true" label="Completer les données de Garage">
+<p>Merci pour avoir completer votre garage</p>
+    </mat-step>
+    <mat-step completed="false" >
+      <div *ngIf="garageSubmitted">
+      <ng-template matStepLabel>Attente</ng-template>
+      <p>Attente de confirmation de votre compte</p>
+    </div>
+    <div *ngIf="!garageSubmitted">
+      <ng-template matStepLabel>Attente</ng-template>
+      <p>Priére de compléter les etapes suivantes</p>
+    </div>
+
+    </mat-step>
+  </mat-horizontal-stepper>
+  <div class="block-space block-space--layout--before-footer"></div>

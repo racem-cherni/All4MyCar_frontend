@@ -9,6 +9,7 @@ import { PrestataireService } from 'src/app/_services/prestataire.service';
 import { Prestataire } from 'src/app/entities/prestataire';
 import { MatDialog } from '@angular/material/dialog';
 import { RegistredialogComponent } from 'src/app/components/registredialog/registredialog.component';
+import { User } from 'src/app/entities/user';
 
 
 
@@ -35,9 +36,12 @@ export class HeaderComponent implements OnInit {
   position : number = null;
   message : number;
   client: Client;
+  user: User;
+  u : User;
+
   prestataire: Prestataire ;
-
-
+  etat : Boolean ;
+  id : number;
   constructor(public dialog: MatDialog,private router: Router , private authService: AuthService,private clientservice: ClientService,private tokenStorageService: TokenStorageService
      , private prestataireservice: PrestataireService,private transfereService: TransferService) { }
 
@@ -65,7 +69,6 @@ export class HeaderComponent implements OnInit {
       this.isLoggedIn = true;
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
-
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
       this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
       this.role=this.roles[0];
@@ -90,16 +93,34 @@ export class HeaderComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorageService.getUser().roles;
+        this.id = this.tokenStorageService.getUser().id;
+        console.log(this.id);
+     // u = this.clientservice.getUserr(this.id);
+      this.clientservice.getUserr(this.id)
+   .subscribe((data) => {this.u = data, console.log(data); console.log(this.u);
+    this.etat = this.u.etat;console.log(this.etat);
+       
+       
       //  this.reloadPage();
-        if (this.roles.includes('ROLE_USER')){
+        if (this.roles.includes('ROLE_USER') && this.etat===true){
           window.location.href = '/All4MyCar/client/home';
          }
-         else if (this.roles.includes('ROLE_PRESTATAIRE')){
+         else
+         if (this.roles.includes('ROLE_USER') && this.etat === false){
+          window.location.href = '/All4MyCar/client/completeprofil';
+         }
+         else
+          if (this.roles.includes('ROLE_PRESTATAIRE') && this.etat===true ){
           window.location.href = '/All4MyCar/prestataire/home';
          }
-         else if (this.roles.includes('ROLE_ADMIN')){
+         else
+        if (this.roles.includes('ROLE_PRESTATAIRE') && this.etat===false){
+          window.location.href = '/All4MyCar/prestataire/completeprofil';
+         }else
+          if (this.roles.includes('ROLE_ADMIN')){
           window.location.href = '/dash/dashboard';
          }
+        } , error => console.log(error),);
         },
       err => {
         this.errorMessage = err.error.message;

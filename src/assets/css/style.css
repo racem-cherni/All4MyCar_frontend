@@ -455,6 +455,44 @@ h6 {
     display: none;
   }
 }
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
+.mat-horizontal-stepper{
+  background-color:rgb(238,238,238);
+
+}
+.mat-horizontal-content-container{
+  background-color:rgb(238,238,238);
+
+}
+.mat-stepper-horizontal {
+  margin-top: 30px;
+}
+.mat-horizontal-content {
+  background-color:rgb(238,238,238);
+}
+
+.mat-horizontal-stepper-header-container{
+  background-color:rgb(238,238,238);
+}
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, 
+.mat-step-header .mat-step-icon-state-edit {
+    background-color: green !important;
+}
+.mat-form-field {
+  margin-top: 16px;
+}
+
+
 .breadcrumb__spaceship-safe-area {
   display: block;
   height: 21px;

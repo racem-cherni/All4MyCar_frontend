@@ -70,58 +70,11 @@
   <div class="vehicle-form__divider"></div>
   <div class="vehicle-form__item">
 
-  <!--  <div class="row">
-      <div class="col">
-    <mat-form-field class="examplellllll" >
-      <mat-label>Pays</mat-label>
-      <mat-select matNativeControl id="mySelectpaysId"   [(ngModel)]="selectedpays" [ngModelOptions]="{standalone: true}"
-      (ngModelChange)="getville()">
-        <mat-option *ngFor=" let marque of pays"  [value]="marque"  >
-          {{marque.name}}
-        </mat-option>
-      </mat-select>
-
-    </mat-form-field>
-  </div>
-    &nbsp;
-
-    <div class="col-sm">
-    <mat-form-field class="examplellllll" >
-      <mat-label>Ville</mat-label>
-      <mat-select matNativeControl [disabled]="selectedpays == null"  id="mySelectvilleId"  [(ngModel)]="selectedville" [ngModelOptions]="{standalone: true}"
-      (ngModelChange)="setvilleValue()" >
-        <mat-option *ngFor=" let model of adressevilles" [value]="model"  >
-          {{ model.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    </div>
-    &nbsp;
-
-
-    <div class="col">
-    <mat-form-field class="examplellllll" >
-      <mat-label>cité</mat-label>
-      <mat-select matNativeControl [disabled]="selectedville == null" id="mySelectcitéId" formControlName="adressecite"  [(ngModel)]="selectedcite" [ngModelOptions]="{standalone: true}"
-      (ngModelChange)="setciteValue()" >
-        <mat-option *ngFor=" let model of adressecites" [value]="model">
-          {{ model.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    </div>
-    </div>-->
     &nbsp;
 
 
     <div class="row">
-      <!--
-  <div class="col">
-      <mat-form-field  >
-        <input matInput formControlName="addresse" type="text"  id="adresse" placeholder="adresse" required   >
-        </mat-form-field>
-
-  </div>-->
+   
   <div class="col">
     <mat-form-field  >
       <mat-label>Description</mat-label>

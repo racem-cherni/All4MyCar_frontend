@@ -37,4 +37,23 @@ getGarage(): Observable<any> {
   return this.http.get(this.baseUrluser + '/getgarage'  , {
     headers: this.header});
 }
+
+
+submiteditgarage_completeprofile(prestataire: Garage ,images :FileList): Observable<Garage> {
+  const formData: FormData = new FormData();
+    console.log(images);    // tslint:disable-next-line: align
+    for(let i=0; i<images.length; i++){
+      const file= images[i];
+    formData.append('images[]', file, file.name);
+    }    // tslint:disable-next-line: align
+  return this.http.post<Garage>(this.baseUrluser + '/addgaragee_sansverif/' +`${prestataire.Nbr_Mecaniciens}`  + "/" + `${prestataire.date_ouverture}` + "/" + `${prestataire.année_Experience}`
+
+  +"/"+`${prestataire.description}`
+
+
+
+   , formData  ,  {headers: this.header} );
+
+}
+
 }

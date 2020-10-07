@@ -10,6 +10,7 @@ export class Prestataire {
     specialisations: string;
     cin: number;
     date_inscrip:Date;
+    etat : number ;
 
 
 }
