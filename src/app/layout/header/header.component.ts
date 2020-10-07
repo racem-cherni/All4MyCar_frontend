@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
       this.dialog.open(RegistredialogComponent, {
       });
     }
-
+//try
 
   ngOnInit(): void {
 
