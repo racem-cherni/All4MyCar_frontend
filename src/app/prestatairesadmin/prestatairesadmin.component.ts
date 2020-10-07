@@ -66,8 +66,14 @@ export class PrestatairesadminComponent implements OnInit {
 }
 
 getallprestatairesbyspec(){
+  if (this.selectedspecialities !== undefined ) {
   this.adminservice.getallprestatairesbyspecialisations(this.selectedspecialities)
   .subscribe((data) => {this.prestataire = data, console.log(data)} , error => console.log(error));
+  }else {
+    this.adminservice.getAllPrestataire()
+    .subscribe((data) => {this.prestataire = data, console.log(data), this.loading = false;} , error => console.log(error));
+
+  }
  }
 
  cleartablee(){
