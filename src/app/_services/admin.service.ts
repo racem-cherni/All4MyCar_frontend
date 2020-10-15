@@ -27,9 +27,33 @@ getClientt(): Observable<any> {
   return this.http.get(this.baseUrluser + '/getclientsinactifs', {
     headers: this.header});
 }
+
+getnbrdemandesinscriptionsnotifs(): Observable<any> {
+
+  return this.http.get(this.baseUrluser + '/getnbrdemandesinscriptionsnotifications', {
+    headers: this.header});
+}
 getPrestataire(): Observable<any> {
 
   return this.http.get(this.baseUrluser + '/getprestataireinactifs', {
+    headers: this.header});
+}
+
+getClientinscripnotifs(): Observable<any> {
+
+  return this.http.get(this.baseUrluser + '/getclientsinactifsnotifications', {
+    headers: this.header});
+}
+
+getprestatairesinscripnotifs(): Observable<any> {
+
+  return this.http.get(this.baseUrluser + '/getprestataireinactifsnotifications', {
+    headers: this.header});
+}
+
+setdemandesinsriptsnotifications(): Observable<any> {
+
+  return this.http.put(this.baseUrluser + '/setdemandesnotifications', {
     headers: this.header});
 }
 

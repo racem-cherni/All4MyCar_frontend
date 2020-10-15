@@ -7,9 +7,12 @@ import { Adressepays } from 'src/app/entities/adressepays';
 import { Adressevilles } from 'src/app/entities/adressevilles';
 import { Garage } from 'src/app/entities/garage';
 import { Prestataire } from 'src/app/entities/prestataire';
+import { Specialisation } from 'src/app/entities/specialisation';
+import { User } from 'src/app/entities/user';
 import { AdresseService } from 'src/app/_services/adresse.service';
 import { GarageService } from 'src/app/_services/garage.service';
 import { PrestataireService } from 'src/app/_services/prestataire.service';
+import { SpecialisationService } from 'src/app/_services/specialisation.service';
 
 @Component({
   selector: 'app-completeprofilpres',
@@ -18,29 +21,14 @@ import { PrestataireService } from 'src/app/_services/prestataire.service';
 })
 export class CompleteprofilpresComponent implements OnInit {
 
-  specialisationss : string[] = [
-    'concessionnaires' ,
-     'mécanicien' ,
-    'électricien auto',
-    'Tôlier' ,
-    'Lavage (normal, appro …)' ,
-    'entretiens' ,
-    'Roues (pneus, jantes …)',
-    'Décoration voiture pour évènement' ,
-    'habillage voiture' ,
-    'Tuning ',
-    'Vente matériel',
-    'diagnostique' ,
-    'Assurance' ,
-    'Location Voiture' ,
-    'Dépannage et Assistance',
-    'accessoires auto'];
+  specialisations: Specialisation[] = [];
+
     specialisat: string ;
     isSuccessful = false;
     errorMessage = '';
     isSignUpFailed = false;
     specialisathou: string[] ;
-  
+
     garageSubmitted : boolean;
     imageSrc: string;
     profileSubmitted: boolean;
@@ -71,7 +59,7 @@ export class CompleteprofilpresComponent implements OnInit {
           // tslint:disable-next-line: object-literal-key-quotes
       'emailpres': '',
           // tslint:disable-next-line: object-literal-key-quotes
-  
+
       'date_permis': '',
           // tslint:disable-next-line: object-literal-key-quotes
       'lastNamepres': '',
@@ -83,10 +71,10 @@ export class CompleteprofilpresComponent implements OnInit {
       'specialisations': '',
        // tslint:disable-next-line: object-literal-key-quotes
        'cin': ''
-  
-  
+
+
   };
-  
+
   validationMessages = {
     // tslint:disable-next-line: object-literal-key-quotes
     'firstNamepres': {
@@ -106,7 +94,7 @@ export class CompleteprofilpresComponent implements OnInit {
       // tslint:disable-next-line: object-literal-key-quotes
       'maxlength':     'Last Name cannot be more than 25 characters long.'
     },
-  
+
     // tslint:disable-next-line: object-literal-key-quotes
     'emailpres': {
       // tslint:disable-next-line: object-literal-key-quotes
@@ -135,7 +123,7 @@ export class CompleteprofilpresComponent implements OnInit {
       'maxlength':     'adresse cannot be more than 25 characters long.'
     },
       // tslint:disable-next-line: object-literal-key-quotes
-  
+
       // tslint:disable-next-line: object-literal-key-quotes
       'specialisations': {
         // tslint:disable-next-line: object-literal-key-quotes
@@ -154,73 +142,75 @@ export class CompleteprofilpresComponent implements OnInit {
       'maxlength':  'cin must contain 8 numbers'
     },
   };
-  
+
   /*
   myForm = new FormGroup({
-  
+
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-  
+
       file: new FormControl('', [Validators.required]),
-  
+
       fileSource: new FormControl('', [Validators.required])
-  
+
     });*/
-  
-  
+
+
     // tslint:disable-next-line: whitespace
-    constructor(private http: HttpClient, private prestataireservice: PrestataireService ,private router: Router ,
+    constructor(private http: HttpClient, private prestataireservice: PrestataireService ,private router: Router ,private specialisationService: SpecialisationService,
        // tslint:disable-next-line: align
        private route: ActivatedRoute , private fb: FormBuilder ,
        private garageService: GarageService,private adresseService: AdresseService,) {
         this.createformprofil() ;
-  
-  
+
+
         }
     press: Prestataire;
-  
+    user: User;
     selectedFiles: FileList;
     currentFile: File;
     filee : File;
-  
-  
+
+
     get f(){
-  
+
       return this.form.controls;
-  
+
     }
-  
+
     // tslint:disable-next-line: typedef
     onFileChange(event) {
-      
+
       console.log("houssem  " + event.target.files);
       const reader = new FileReader();
       this.selectedFiles = event.target.files;
-  
+
       if (event.target.files && event.target.files.length) {
-  
+
         const [file] = event.target.files;
-  
+
         reader.readAsDataURL(file);
-  
+
         reader.onload = () => {
-  
-  
+
+
           this.imageSrc = reader.result as string;
-  
+
           this.form.patchValue({
-  
+
             fileSource: reader.result
-  
+
           });
-  
-  
+
+
         };
       }
       this.uploadedphoto=true;
     }
-  
-  
+
+
     ngOnInit(): void {
+
+
       this.profileSubmitted=false;
       this.garageSubmitted=false;
       this.uploadedphoto = false;
@@ -232,13 +222,16 @@ export class CompleteprofilpresComponent implements OnInit {
       });
       this.selectedFiles = null ;
       this.press = new Prestataire();
-      this.selectedIndex=1;  
-
+      this.selectedIndex=1;
+      this.prestataireservice.getUser()
+      .subscribe((data) => {this.user = data, console.log(data)});
+      this.specialisationService.getspecialisations()
+      .subscribe((data) => {this.specialisations = data, console.log(data); });
       this.prestataireservice.getprestataire()
      .subscribe((data) => {this.presss = data, console.log(data);
       if (this.presss!=null){
         this.press = this.presss;
-     
+
      console.log("sal "+this.press.specialisations.toString());
       this.specialisathou =this.press.specialisations.split(',');
       this.photopress = this.press.photopres;
@@ -247,7 +240,7 @@ export class CompleteprofilpresComponent implements OnInit {
     this.profileSubmitted=true;
     this.selectedIndex=2 ;
   }
- 
+
     } , error => console.log(error));
 
     /////////////////////////////////
@@ -263,7 +256,7 @@ export class CompleteprofilpresComponent implements OnInit {
       }
       console.log(this.garageSubmitted);});
   console.log("garage :"+this.garagee);
-   
+
 
 
 
@@ -277,27 +270,27 @@ export class CompleteprofilpresComponent implements OnInit {
   }
 
 
-  
+
     onSubmit(): void {
       this.form.value.specialisations = this.specialisat;
-  
+
       this.prestataireservice.edit_prestataire(this.form).subscribe(
         data => {
           console.log(data);
           this.isSuccessful = true;
-  
+
         },
         err => {
           this.errorMessage = err.error.message;
         }
       );
-  
+
     }
-  
+
     setSpecializationValue(){
   this.selectspecx = this.specialisathou.toString();
     }
-  
+
     createformprofil(): void{
   this.form = this.fb.group({
     firstNamepres:  ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ] ,
@@ -308,7 +301,7 @@ export class CompleteprofilpresComponent implements OnInit {
     photopres: new FormControl(''),
     specialisations: ['', [Validators.required] ] ,
     cin: ['', [Validators.required, Validators.pattern , Validators.minLength(8) , Validators.maxLength(8)] ]  ,
-    
+
     photocin: new FormControl(''),
 
 
@@ -316,11 +309,11 @@ export class CompleteprofilpresComponent implements OnInit {
   });
   this.form.valueChanges
   .subscribe(data => this.onValueChanged(data));
-  
+
   this.onValueChanged();
-  
+
     }
-  
+
     // tslint:disable-next-line: typedef
     onValueChanged(data?: any) {
       if (!this.form) { return; }
@@ -341,16 +334,16 @@ export class CompleteprofilpresComponent implements OnInit {
         }
       }
     }
-  
+
     // tslint:disable-next-line: typedef
     onsubmitt() {
-  
+
       if (this.selectedFiles !== null && this.selectedFiless !== null){
       this.currentFile = this.selectedFiles.item(0);
       this.prestataire = this.form.value;
       this.isSuccessful = true;
       this.isSignUpFailed = false;
-  
+
       if ( this.selectspecx != null){
       this.form.value.specialisations = this.selectspecx;
       }else{ this.form.value.specialisations = this.specialisathou; }
@@ -369,7 +362,7 @@ export class CompleteprofilpresComponent implements OnInit {
       this.prestataire = this.form.value;
       this.isSuccessful = true;
       this.isSignUpFailed = false;
-  
+
       if ( this.selectspecx != null){
       this.form.value.specialisations = this.selectspecx;
       }else{ this.form.value.specialisations = this.specialisathou; }
@@ -384,47 +377,47 @@ export class CompleteprofilpresComponent implements OnInit {
           // tslint:disable-next-line: align
           // tslint:disable-next-line: align
         //  this.formFormDirective.reset();
-  
-  
+
+
       }
       this.selectedIndex=2;
       this.profileSubmitted=true;
     }
-  
+
 
     selectFiles(event): void {
       this.selectedFiless = event.target.files;
       console.log(this.selectedFiless);
       if (event.target.files && event.target.files[0]) {
-    
+
         var filesAmount = event.target.files.length;
-    
+
         for (let i = 0; i < filesAmount; i++) {
-    
+
                 var reader = new FileReader();
                 reader.onload = (event:any) => {
-    
+
                   console.log(event.target.result);
-    
-                   this.images.push(event.target.result); 
-    
+
+                   this.images.push(event.target.result);
+
                    console.log("image"+this.images);
                    this.form.patchValue({
-    
+
                       fileSource: this.images
-    
+
                    });
-    
+
                 }
-    
-    
-    
+
+
+
                 reader.readAsDataURL(event.target.files[i]);
-    
+
         }
-    
+
     }
-    
+
     }
 
 ///////////
@@ -437,7 +430,7 @@ export class CompleteprofilpresComponent implements OnInit {
     showgarageDialog() {
       this.displaygarage = true;
   }
-  
+
     garagecopy: Garage = null ;
     pays: Adressepays[] = [];
     selectedpays: Adressepays = null;
@@ -448,7 +441,7 @@ export class CompleteprofilpresComponent implements OnInit {
     showGarageForm = true;
     garage: Garage;
     garagee: Garage=null;
-  
+
     formm: FormGroup;
     formErrorss = {
     }
@@ -471,31 +464,31 @@ export class CompleteprofilpresComponent implements OnInit {
     this.selecteddFiles = event.target.files;
     console.log(this.selecteddFiles);
     if (event.target.files && event.target.files[0]) {
-  
+
       var filesAmount = event.target.files.length;
-  
+
       for (let i = 0; i < filesAmount; i++) {
-  
+
               var reader = new FileReader();
               reader.onload = (event:any) => {
-  
+
                 console.log(event.target.result);
-  
-                 this.imagess.push(event.target.result); 
-  
+
+                 this.imagess.push(event.target.result);
+
                  console.log("image"+this.imagess);
                  this.form.patchValue({
-  
+
                     fileSource: this.imagess
-  
+
                  });
-  
+
               }
-  
-  
-  
+
+
+
               reader.readAsDataURL(event.target.files[i]);
-  
+
             }
   }
 }
@@ -507,6 +500,9 @@ export class CompleteprofilpresComponent implements OnInit {
       année_Experience: [''],
       date_ouverture: [''],
       description:[''],
+      pays: [''],
+      ville: [''],
+      adressecite: ['']
 
     });
     this.formm.valueChanges
@@ -578,7 +574,7 @@ console.log(this.formm.value);
      .subscribe(garage => {
        this.garagecopy = garage ;
        this.garage = null ;
-       
+
        setTimeout(() => {
          this.garagecopy = null; this.showGarageForm = true;  }, 5000);     },
          error => console.log(error.status, error.message));
@@ -586,6 +582,6 @@ console.log(this.formm.value);
          this.garageSubmitted=true;
          this.selectedIndex=3;
    }
-   
+
 
 }

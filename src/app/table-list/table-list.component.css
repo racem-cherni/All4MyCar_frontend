@@ -3,3 +3,16 @@
 }
 
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+
+
+.example-full-width {
+  width: 20%;
+  height: 4px;
+}

@@ -7,6 +7,7 @@ import { ClientService } from 'src/app/_services/client.service';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { Observable } from 'rxjs';
 
+
 @Component({
   selector: 'app-completeprofil',
   templateUrl: './completeprofil.component.html',
@@ -125,11 +126,11 @@ validationMessages = {
 
     selectedFiles: FileList;
     currentFile: File;
-  
+
     get f(){
-  
+
       return this.form.controls;
-  
+
     }
 
 
@@ -144,8 +145,8 @@ validationMessages = {
 
     this.selectedFiles = null;
     this.clientt = new Client();
-     
-    this.selectedIndex=1;  
+
+    this.selectedIndex=1;
 
     this.clientService.getclient()
    .subscribe((data) => {this.clienttt = data, console.log(data);
@@ -154,7 +155,7 @@ validationMessages = {
     }
   if (this.clienttt.etat===0){
   this.profileSubmitted=true;
-  this.selectedIndex=2  
+  this.selectedIndex=2
 }
 } , error => console.log(error));
 
@@ -184,7 +185,7 @@ validationMessages = {
       telclt: ['', [Validators.required, Validators.pattern , Validators.minLength(8) , Validators.maxLength(8)] ] ,
       adresseclt: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
      // name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    
+
         photoclt: new FormControl(''),
         photos: new FormControl(''),
 
@@ -192,9 +193,9 @@ validationMessages = {
     });
     this.form.valueChanges
     .subscribe(data => this.onValueChanged(data));
-    
+
     this.onValueChanged();
-    
+
       }
 
       onValueChanged(data?: any) {
@@ -219,21 +220,21 @@ validationMessages = {
 
       onsubmitt() {
         if (this.selectedFiles !== null && this.selectedFiless!=null){
-        
+
         this.currentFile = this.selectedFiles.item(0);
         this.client = this.form.value;
         console.log(typeof(this.form.value.date_permis));
-    
+
       //  console.log(this.client);
         this.clientService.submiteditprofil_completeprofil(this.client,  this.currentFile,this.selectedFiless)
         .subscribe(client => {
           this.clientcopy = client ;
           this.client = null ;
-         
+
 
           setTimeout(() => {
             this.clientcopy = null; this.showclientForm = true;
-          }, 5000);  
+          }, 5000);
           //  this.reload();
           this.profileSubmitted =true;
 
@@ -244,7 +245,7 @@ validationMessages = {
           else{
             this.client = this.form.value;
             console.log(typeof(this.form.value.date_permis));
-        
+
           //  console.log(this.client);
             this.clientService.submiteditprofilwithoutphoto_completeprofil(this.client)
             .subscribe(client => {
@@ -252,18 +253,19 @@ validationMessages = {
               this.client = null ;
               setTimeout(() => {
                 this.clientcopy = null; this.showclientForm = true;
-              }, 5000);   
+              }, 5000);
                // this.reload();
                this.profileSubmitted =true;
 
                this.ngOnInit();
               },
                 error => console.log(error.status, error.message));
-             
-    
+
+
           }
          this.selectedIndex=2;
          this.profileSubmitted=true;
+
 
         }
 
@@ -271,14 +273,14 @@ validationMessages = {
           this.router.routeReuseStrategy.shouldReuseRoute = () => false;
           this.router.onSameUrlNavigation = 'reload';
           this.router.navigate(['/All4MyCar/client/completeprofil']);
-      
+
       }
 
-     
+
 /*urls=[];
 onselecte(e){
   this.selectedFiless = e.target.files;
- 
+
 
   if(e.target.files){
     for(let i=0; i<File.length;i++){
@@ -338,7 +340,7 @@ selectFiles(event): void {
 
               console.log(event.target.result);
 
-               this.images.push(event.target.result); 
+               this.images.push(event.target.result);
 
                console.log("image"+this.images);
                this.form.patchValue({

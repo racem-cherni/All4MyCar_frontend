@@ -1,21 +1,21 @@
+<p-toast></p-toast>
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6">
         <div class="card">
    <div class="card-header card-header-danger card-header-icon">
-            <div class="card-icon"><i class="material-icons">assignment</i></div>
-            <h4 class="card-title">Demandes Clients</h4>
+            <div class="card-icon"><i class="material-icons">assignment_ind</i></div>
+            <h4 class="card-title">Demandes Clients&nbsp;({{userclient ? userclient.length : 0 }})</h4>
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <p-table class="table table-striped" [value]="userclient"   [scrollable]="true" scrollHeight="300px" >
+              <p-table  [value]="userclient"    [scrollable]="true" scrollHeight="500px" [rowHover]="true" [loading]="loading" >
 
                 <ng-template pTemplate="header" >
                   <tr>
 
-                    <th>UserName</th>
-                    <th>Email</th>
+                    <th>Nom & Prenom</th>
                     <th>Date inscription</th>
                     <th class="text-right">Actions</th>
                   </tr>
@@ -24,11 +24,17 @@
                 <ng-template pTemplate="body" let-clt >
                   <tr >
 
-                    <td>{{clt.username}}</td>
-                    <td>{{clt.email}}</td>
-                    <td>{{clt.date_registration}}</td>
+                    <td>
+                      <img [alt]="clt.firstNameclt" *ngIf="clt.photoclt !== null;else contenu_pas_bon" src="http://localhost:8081/api/apii/image/logo/{{clt.photoclt}}" width="50" class="rounded-circle" style="vertical-align: middle" />
+                      <ng-template #contenu_pas_bon> <img src="assets/images/avatars/avat.jpg" alt="" width="50" class="rounded-circle" style="vertical-align: middle"></ng-template>
+                      &nbsp;
+                      <span class="image-text">{{clt.firstNameclt}}&nbsp;
+                        {{clt.lastNameclt}}</span>
+
+                    </td>
+                    <td>{{clt.date_inscrip}}</td>
                     <td class="td-actions text-right">
-                      <button mat-raised-button="" type="button" pTooltip="accepter" tooltipPosition="bottom" (click)="activateclient(clt.id)"
+                    <!--  <button mat-raised-button="" type="button" pTooltip="accepter" tooltipPosition="bottom" (click)="activateclient(clt.id)"
                         class="mat-raised-button mat-button-base btn btn-success btn-round">
                         <span class="mat-button-wrapper"><i class="material-icons">done</i></span>
                         <div matripple="" class="mat-ripple mat-button-ripple"></div>
@@ -40,7 +46,10 @@
                           class="mat-button-wrapper"><i class="material-icons">close</i></span>
                         <div matripple="" class="mat-ripple mat-button-ripple"></div>
                         <div class="mat-button-focus-overlay"></div>
-                      </button></td>
+                      </button>-->
+                      <button pButton pRipple icon="pi pi-cog" class="p-button-rounded p-button-info" (click)="profilclient(clt)"   pTooltip="outils" ></button>
+
+                    </td>
                   </tr>
 
 
@@ -54,6 +63,11 @@
                     {{userclient ? userclient.length : 0 }} demandes clients.
                   </div>
               </ng-template>
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="8" class="center">Aucune demande récente</td>
+                </tr>
+            </ng-template>
               </p-table>
             </div>
           </div>
@@ -63,27 +77,32 @@
       <div class="col-md-6">
         <div class="card">
           <div class="card-header card-header-danger card-header-icon">
-            <div class="card-icon"><i class="material-icons">assignment</i></div>
-            <h4 class="card-title">Demandes prestataire</h4>
+            <div class="card-icon"><i class="material-icons">assignment_ind</i></div>
+            <h4 class="card-title">Demandes prestataire&nbsp;({{userprestataire ? userprestataire.length : 0 }})</h4>
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <p-table class="table table-striped" [value]="userprestataire"   [scrollable]="true" scrollHeight="200px" >
+              <p-table #dt  [value]="userprestataire"    [scrollable]="true" scrollHeight="500px" [rowHover]="true" [loading]="loading" >
                 <ng-template pTemplate="header" >
                   <tr>
-                    <th>UserName</th>
-                    <th>Email</th>
+                    <th>Nom & Prenom</th>
                     <th>Date inscription</th>
                     <th class="text-right">Actions</th>
                   </tr>
               </ng-template>
               <ng-template pTemplate="body" let-pres>
                   <tr >
-                    <td>{{pres.username}}</td>
-                    <td>{{pres.email}}</td>
-                    <td>{{pres.date_registration}}</td>
+                    <td>
+                      <img [alt]="pres.firstNamepres" *ngIf="pres.photopres !== null;else contenu_pas_bon" src="http://localhost:8081/api/api/image/logo/{{pres.photopres}}" width="50" class="rounded-circle" style="vertical-align: middle" />
+                      <ng-template #contenu_pas_bon> <img src="assets/images/avatars/avat.jpg" alt="" width="50" class="rounded-circle" style="vertical-align: middle"></ng-template>
+                      &nbsp;
+                      <span class="image-text">{{pres.firstNamepres}}&nbsp;
+                      {{pres.lastNamepres}}</span>
+
+                    </td>
+                    <td>{{pres.date_inscrip}}</td>
                     <td class="td-actions text-right">
-                      <button mat-raised-button="" type="button" pTooltip="accepter" tooltipPosition="bottom" (click)="activateprestataire(pres.id)"
+                    <!--  <button mat-raised-button="" type="button" pTooltip="accepter" tooltipPosition="bottom" (click)="activateprestataire(pres.id)"
                         class="mat-raised-button mat-button-base btn btn-success btn-round">
                         <span class="mat-button-wrapper"><i class="material-icons">done</i></span>
                         <div matripple="" class="mat-ripple mat-button-ripple"></div>
@@ -95,7 +114,10 @@
                           class="mat-button-wrapper"><i class="material-icons">close</i></span>
                         <div matripple="" class="mat-ripple mat-button-ripple"></div>
                         <div class="mat-button-focus-overlay"></div>
-                      </button></td>
+                      </button>-->
+                      <button pButton pRipple icon="pi pi-cog" class="p-button-rounded p-button-info"   (click)="profilprestataire(pres)"  pTooltip="Details" ></button>
+
+                    </td>
                   </tr>
 
 
@@ -111,6 +133,11 @@
                     {{userprestataire ? userprestataire.length : 0 }} demandes prestataires.
                   </div>
               </ng-template>
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="8" class="center">Aucune demande récente</td>
+                </tr>
+            </ng-template>
               </p-table>
             </div>
           </div>
@@ -121,3 +148,81 @@
 
   </div>
 </div>
+
+
+<p-dialog [(visible)]="prestataireDialog" [style]="{width: '450px'}" header="Prestataire Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+   <img [src]="'http://localhost:8081/api/api/image/logo/' + press.photopres" [alt]="press.photopres" class="center" height="150px" width="100px" >
+   <br>
+        <div class="p-field">
+          <label for="name">Nom & Prenom&nbsp;&nbsp;</label>
+          {{press.firstNamepres}} {{press.lastNamepres}}
+          </div>
+          <div class="p-field">
+            <label for="name">Numero telephone&nbsp;&nbsp;</label>
+              +216{{press.telpres}}
+            </div>
+            <div class="p-field">
+              <label for="name">Email&nbsp;&nbsp;</label>
+                {{press.emailpres}}
+              </div>
+              <div class="p-field">
+                <label for="name">CIN&nbsp;&nbsp;</label>
+                  {{press.cin}}
+                </div>
+                <div class="p-field">
+                  <label for="name">Adresse&nbsp;&nbsp;</label>
+                    {{press.adressepres}}
+                  </div>
+                  <div class="p-field">
+                    <label for="name">Specialisations&nbsp;&nbsp;</label>
+                     <p> {{press.specialisations}} </p>
+                    </div>
+                  <div class="p-field">
+                    <label for="name">Date inscription&nbsp;&nbsp;</label>
+                      {{press.date_inscrip}}
+                    </div>
+
+
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hidepresDialog()"></button>
+    <button pButton pRipple label="Approuver" icon="pi pi-check" class="p-button-text" (click)="activateprestataire(press.id)" ></button>
+</ng-template>
+
+</p-dialog>
+<p-dialog [(visible)]="clientDialog" [style]="{width: '450px'}" header="Client Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+     <img [src]="'http://localhost:8081/api/apii/image/logo/' + cltt.photoclt" [alt]="cltt.photoclt" class="center" height="150px" width="100px">
+     <br>
+      <div class="p-field">
+        <label for="name">Nom & Prenom&nbsp;&nbsp;</label>
+        {{cltt.firstNameclt}} {{cltt.lastNameclt}}
+        </div>
+        <div class="p-field">
+          <label for="name">Numero telephone&nbsp;&nbsp;</label>
+            +216{{cltt.telclt}}
+          </div>
+          <div class="p-field">
+            <label for="name">Email&nbsp;&nbsp;</label>
+              {{cltt.emailclt}}
+            </div>
+            <div class="p-field">
+              <label for="name">CIN&nbsp;&nbsp;</label>
+                {{cltt.cin}}
+              </div>
+              <div class="p-field">
+                <label for="name">Adresse&nbsp;&nbsp;</label>
+                  {{cltt.adresseclt}}
+                </div>
+                <div class="p-field">
+                  <label for="name">Date inscription&nbsp;&nbsp;</label>
+                    {{cltt.date_inscrip}}
+                  </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hidecltDialog()"></button>
+    <button pButton pRipple label="Approuver" icon="pi pi-check" class="p-button-text" (click)="activateclient(cltt.id)" ></button>
+</ng-template>
+
+</p-dialog>

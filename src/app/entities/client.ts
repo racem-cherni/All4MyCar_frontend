@@ -13,4 +13,5 @@ telclt: number ;
 adresseclt: string ;
 date_inscrip:Date;
 etat : number ;
+notif_etat : boolean;
 }

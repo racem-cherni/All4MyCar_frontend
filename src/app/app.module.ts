@@ -38,6 +38,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MultiSelectModule} from 'primeng/multiselect';
 
 
+
 import { ReactiveFormsModule } from '@angular/forms';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import {MenubarModule} from 'primeng/menubar';
@@ -50,6 +51,8 @@ import {TooltipModule} from 'primeng/tooltip';
 import {CheckboxModule} from 'primeng/checkbox';
 import {ToastModule} from 'primeng/toast';
 import {FileUploadModule} from 'primeng/fileupload';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 
 
@@ -121,6 +124,8 @@ import { CompleteprofilpresComponent } from './components/interface-prestataire/
 import {StepsModule} from 'primeng/steps';
 import { CompleteprofilfromComponent } from './components/interface-client/completeprofil/completeprofilfrom/completeprofilfrom.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import { ContactsComponent } from './components/contacts/contacts.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -177,12 +182,18 @@ import {MatStepperModule} from '@angular/material/stepper';
 
     CompleteprofilfromComponent,
 
+    ContactsComponent,
+
+    AboutComponent,
+
 
 
 
   ],
   imports: [
     TooltipModule,
+    MessageModule,
+    MessagesModule,
     MatIconModule,
     ConfirmDialogModule,
     CheckboxModule,

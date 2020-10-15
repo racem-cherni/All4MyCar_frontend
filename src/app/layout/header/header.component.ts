@@ -99,8 +99,8 @@ export class HeaderComponent implements OnInit {
       this.clientservice.getUserr(this.id)
    .subscribe((data) => {this.u = data, console.log(data); console.log(this.u);
     this.etat = this.u.etat;console.log(this.etat);
-       
-       
+
+
       //  this.reloadPage();
         if (this.roles.includes('ROLE_USER') && this.etat===true){
           window.location.href = '/All4MyCar/client/home';

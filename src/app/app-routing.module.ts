@@ -43,7 +43,9 @@ import { PrestatairesadminComponent } from './prestatairesadmin/prestatairesadmi
 
 import { CompleteprofilComponent } from './components/interface-client/completeprofil/completeprofil.component';
 import { CompleteprofilpresComponent } from './components/interface-prestataire/completeprofilpres/completeprofilpres.component';
-import { CompleteprofilfromComponent } from './components/interface-client/completeprofil/completeprofilfrom/completeprofilfrom.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
+import { AboutComponent } from './components/about/about.component';
+
 
 
 const routes: Routes = [
@@ -110,6 +112,7 @@ const routes: Routes = [
   { path: 'All4MyCar', component: LayoutComponent , children: [
     { path: 'client', component: InterfaceClientComponent, children: [
       {path: 'home', component: HomeclientComponent},
+
       {path: 'completeprofil', component: CompleteprofilComponent},
       {path: 'prestations', component: PrestationsComponent},
     { path: 'espace-client', component: EspaceClientComponent, canActivate: [AuthGuard] ,  children: [
@@ -121,6 +124,10 @@ const routes: Routes = [
     ] },]},
      { path: 'register', component: RegisterComponent },
     { path: 'home', component: HomeComponent },
+    {path: 'contacts', component: ContactsComponent},
+    {path: 'aboutus', component: AboutComponent},
+
+
     { path: 'prestataire', component: InterfacePrestataireComponent, children: [
       {path: 'home', component: HomepresComponent},
       {path: 'rdv', component: RdvpresComponent},

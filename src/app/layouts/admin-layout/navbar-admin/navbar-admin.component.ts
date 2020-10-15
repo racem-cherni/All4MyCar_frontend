@@ -7,6 +7,8 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { AdminService } from 'src/app/_services/admin.service';
 import { AdminComponent } from 'src/app/admin/admin.component';
 import { Admin } from 'src/app/entities/admin';
+import { Client } from 'src/app/entities/client';
+import { Prestataire } from 'src/app/entities/prestataire';
 
 @Component({
   selector: 'app-navbar-admin',
@@ -17,8 +19,11 @@ export class NavbarAdminComponent implements OnInit {
   cities: City[];
 
     selectedCity1: City;
-
+   nbrdemandesinscripsnotifs: number ;
+   clientdemandesnotifs: Client[]= null;
+prestatairedemandesnotifs: Prestataire[]= null ;
   private listTitles: any[];
+
     location: Location;
     admin : Admin;
       mobile_menu_visible: any = 0;
@@ -44,6 +49,13 @@ export class NavbarAdminComponent implements OnInit {
     ngOnInit(){
       this.adminservice.getadmin()
       .subscribe((data) => {this.admin = data, console.log(data)} , error => console.log(error));
+      this.adminservice.getClientinscripnotifs()
+      .subscribe((data) => {this.clientdemandesnotifs = data, console.log(data)} , error => console.log(error));
+      this.adminservice.getprestatairesinscripnotifs()
+      .subscribe((data) => {this.prestatairedemandesnotifs = data, console.log(data) } , error => console.log(error));
+
+    this.adminservice.getnbrdemandesinscriptionsnotifs()
+    .subscribe((data) => {this.nbrdemandesinscripsnotifs = data, console.log(data)} , error => console.log(error));
 
       this.listTitles = ROUTES.filter(listTitle => listTitle);
       console.log(this.listTitles[0].path);
@@ -151,6 +163,13 @@ export class NavbarAdminComponent implements OnInit {
     logout(): void {
       this.tokenStorageService.signOut();
       window.location.href = '/All4MyCar/home';  }
+
+      demandesnotificationssupprimes(){
+        this.adminservice.setdemandesinsriptsnotifications()
+        .subscribe((data) => {this.nbrdemandesinscripsnotifs = data, console.log(data)} , error => console.log(error));
+
+      // this.ngOnInit();
+      }
 
 }
 interface City {

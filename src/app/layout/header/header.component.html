@@ -29,7 +29,7 @@
 	c-0.8-0.4-1.1-1.3-0.7-2.1l0.4-0.9c0.4-0.7,1.2-1,1.8-0.6c0.6,0.3,1.2,0.7,1.6,1.2c1,1.1,1.7,2.5,1.7,4c0,3.3-2.9,6-6.5,6
 	c-2.8,0-5.5-1.7-6.4-4C116.7,15.1,117.4,14,118.4,14z"></path>
           </svg><!-- mobile-logo / end --></a>
-        <div class="mobile-header__search mobile-search">
+      <!--  <div class="mobile-header__search mobile-search">
           <form class="mobile-search__body"><input type="text" class="mobile-search__input"
               placeholder="Enter keyword or part number"> <button type="button" class="mobile-search__vehicle-picker"
               aria-label="Select Vehicle"><svg width="20" height="20">
@@ -52,7 +52,7 @@
               </svg></button>
             <div class="mobile-search__field"></div>
           </form>
-        </div>
+        </div>-->
         <div class="mobile-header__indicators">
           <div class="mobile-indicator mobile-indicator--search d-md-none"><button type="button"
               class="mobile-indicator__button"><span class="mobile-indicator__icon"><svg width="20" height="20">
@@ -90,10 +90,10 @@
     <div class="header__topbar-start-bg"></div>
     <div class="header__topbar-start">
       <div class="topbar topbar--spaceship-start">
-        <div class="topbar__item-text d-none d-xxl-flex">Call Us: (800) 060-0730</div>
-        <div class="topbar__item-text"><a class="topbar__link" href="about-us.html">About Us</a></div>
-        <div class="topbar__item-text"><a class="topbar__link" href="contact-us-v1.html">Contacts</a></div>
-        <div class="topbar__item-text"><a class="topbar__link" href="track-order.html">Track Order</a></div>
+        <div class="topbar__item-text ">Appelez-nous : +21622060730</div>
+        <div class="topbar__item-text"><a class="topbar__link" href="" routerLink="/All4MyCar/home" >Accueil</a></div>
+        <div class="topbar__item-text"><a class="topbar__link" href="" routerLink="/All4MyCar/aboutus" >À propos</a></div>
+        <div class="topbar__item-text"><a class="topbar__link" href="" routerLink="/All4MyCar/contacts" >Nous Contacter</a></div>
       </div>
     </div>
     <div class="header__topbar-end-bg">
@@ -101,7 +101,7 @@
     </div>
     <div class="header__topbar-end">
       <div class="topbar topbar--spaceship-end">
-        <div class="topbar__item-button"><a href="#" class="topbar__button"><span
+       <!-- <div class="topbar__item-button"><a href="#" class="topbar__button"><span
               class="topbar__button-label">Compare:</span> <span class="topbar__button-title">5</span></a></div>
         <div class="topbar__item-button topbar__menu"><button
             class="topbar__button topbar__button--has-arrow topbar__menu-button" type="button"><span
@@ -114,7 +114,7 @@
           <div class="topbar__menu-body"><a class="topbar__menu-item" href="#">€ Euro</a> <a class="topbar__menu-item"
               href="#">£ Pound Sterling</a> <a class="topbar__menu-item" href="#">$ US Dollar</a> <a
               class="topbar__menu-item" href="#">₽ Russian Ruble</a></div>
-        </div>
+        </div>-->
         <div class="topbar__menu"><button class="topbar__button topbar__button--has-arrow topbar__menu-button"
             type="button"><span class="topbar__button-label">Language:</span> <span
               class="topbar__button-title">EN</span> <span class="topbar__button-arrow"><svg width="7px" height="5px">
@@ -123,16 +123,16 @@
                 </path>
               </svg></span></button>
           <div class="topbar__menu-body"><a class="topbar__menu-item" href="#"><img
-                src="images/languages/language-1.png" alt=""><span>English</span> </a><a class="topbar__menu-item"
-              href="#"><img src="images/languages/language-2.png" alt=""><span>French</span> </a><a
-              class="topbar__menu-item" href="#"><img src="images/languages/language-3.png" alt=""><span>German</span>
-            </a><a class="topbar__menu-item" href="#"><img src="images/languages/language-4.png"
+                src="assets/images/languages/language-1.png" alt=""><span>English</span> </a><a class="topbar__menu-item"
+              href="#"><img src="assets/images/languages/language-2.png" alt=""><span>French</span> </a><a
+              class="topbar__menu-item" href="#"><img src="assets/images/languages/language-3.png" alt=""><span>German</span>
+            </a><a class="topbar__menu-item" href="#"><img src="assets/images/languages/language-4.png"
                 alt=""><span>Russian</span> </a><a class="topbar__menu-item" href="#"><img
-                src="images/languages/language-5.png" alt=""><span>Italian</span></a></div>
+                src="assets/images/languages/language-5.png" alt=""><span>Italian</span></a></div>
         </div>
       </div>
     </div>
-    <div class="header__navbar">
+  <!--  <div class="header__navbar">
       <div class="header__navbar-departments">
         <div class="departments"><button class="departments__button" type="button"><span
               class="departments__button-icon"><svg width="16px" height="12px">
@@ -892,13 +892,13 @@
           </ul>
         </div>
       </div>
-    </div>
+    </div>-->
     <div class="header__logo">
       <div class="logo">
-
+       <br>
         <div *ngIf="username == null" class="logo__image " routerLink="/All4MyCar/home">
           <!-- logo -->
-          <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ">ALL <span
+          <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif " href="" >ALL <span
               style="color:red;"> 4 </span> MYCAR</h1> <!-- logo / end -->
         </div>
 
@@ -921,7 +921,7 @@
 
       </div>
     </div>
-    <div class="header__search">
+   <!-- <div class="header__search">
       <div class="search">
         <form action="#" class="search__body">
           <div class="search__shadow"></div><input class="search__input" type="text"
@@ -1145,28 +1145,29 @@
           </div>
         </form>
       </div>
-    </div>
+    </div>-->
     <div class="header__indicators">
-      <div class="indicator"><a href="wishlist.html" class="indicator__button"><span class="indicator__icon"><svg
+   <!--   <div class="indicator"><a href="wishlist.html" class="indicator__button"><span class="indicator__icon"><svg
               width="32" height="32">
               <path d="M23,4c3.9,0,7,3.1,7,7c0,6.3-11.4,15.9-14,16.9C13.4,26.9,2,17.3,2,11c0-3.9,3.1-7,7-7c2.1,0,4.1,1,5.4,2.6l1.6,2l1.6-2
 	C18.9,5,20.9,4,23,4 M23,2c-2.8,0-5.4,1.3-7,3.4C14.4,3.3,11.8,2,9,2c-5,0-9,4-9,9c0,8,14,19,16,19s16-11,16-19C32,6,28,2,23,2L23,2
 	z"></path>
-            </svg></span></a></div>
+            </svg></span></a></div>-->
+            <div class="indicator"></div>
       <div class="indicator indicator--trigger--click"><a href="account-login.html" class="indicator__button"><span
             class="indicator__icon"><svg width="32" height="32">
               <path d="M16,18C9.4,18,4,23.4,4,30H2c0-6.2,4-11.5,9.6-13.3C9.4,15.3,8,12.8,8,10c0-4.4,3.6-8,8-8s8,3.6,8,8c0,2.8-1.5,5.3-3.6,6.7
 	C26,18.5,30,23.8,30,30h-2C28,23.4,22.6,18,16,18z M22,10c0-3.3-2.7-6-6-6s-6,2.7-6,6s2.7,6,6,6S22,13.3,22,10z"></path>
-            </svg> </span><span class="indicator__title" *ngIf="username !== null">Hello,{{username}}</span>
-          <span class="indicator__title" *ngIf="username == null">Hello, Log In</span> <span class="indicator__value">My
-            Account</span></a>
+            </svg> </span><span class="indicator__title" *ngIf="username !== null">Hello,{{username}}</span><span *ngIf="username !== null" class="indicator__value">Mon compte </span>
+          <span class="indicator__title" *ngIf="username == null">hello</span> <span *ngIf="username == null" class="indicator__value">Se connecter </span></a>
         <div class="indicator__content">
 
           <div class="account-menu" id="ki">
 
             <form class="account-menu__form" *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()"
               #f="ngForm" novalidate>
-              <div class="account-menu__form-title">Log In to Your Account</div>
+              <div class="account-menu__form-title">Connectez-vous à votre compte
+              </div>
               <div class="form-group">
                 <label for="header-signin-email" class="sr-only">Username</label>
                 <input id="header-signin-email" type="text" class="form-control form-control-sm"
@@ -1201,19 +1202,21 @@
                         <svg width="9px" height="7px">
                           <path d="M9,1.395L3.46,7L0,3.5L1.383,2.095L3.46,4.2L7.617,0L9,1.395Z"></path>
                         </svg> </span></span></span>
-                  <label class="form-check-label" for="signin-remember">Remember Me</label>
+                 <!-- <label class="form-check-label" for="signin-remember">Remember Me</label>-->
                 </div>
               </div>
 
               <div class="form-group account-menu__form-button">
-                <button type="submit" class="btn btn-danger btn-sm">Login</button></div>
+                <button type="submit" class="btn btn-danger btn-sm">s'identifier
+                </button></div>
               <div class="form-group">
                 <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
                   Login failed: {{ errorMessage }}
                 </div>
               </div>
 
-              <p class="account-menu__form-link"><a (click)="openDialog()">Create An Account</a></p>
+              <p class="account-menu__form-link"><a (click)="openDialog()" >Créer un compte
+              </a></p>
             </form>
             <div class="account-menu__divider"></div>
             <div *ngIf="username !== null">
@@ -1259,13 +1262,22 @@
               </ul>
               <div class="account-menu__divider"></div>
               <ul class="account-menu__links">
-                <li><a (click)="logout()">Logout</a></li>
+                <li><a (click)="logout()" href="#">Se déconnecter
+                </a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
-      <div class="indicator indicator--trigger--click">
+
+      <div class="indicator indicator--trigger--click"*ngIf="username == null"><a href="account-login.html" class="indicator__button"(click)="openDialog()"><span
+        class="indicator__icon"><svg width="32" height="32">
+          <path d="M16,18C9.4,18,4,23.4,4,30H2c0-6.2,4-11.5,9.6-13.3C9.4,15.3,8,12.8,8,10c0-4.4,3.6-8,8-8s8,3.6,8,8c0,2.8-1.5,5.3-3.6,6.7
+C26,18.5,30,23.8,30,30h-2C28,23.4,22.6,18,16,18z M22,10c0-3.3-2.7-6-6-6s-6,2.7-6,6s2.7,6,6,6S22,13.3,22,10z"></path>
+        </svg> </span><span class="indicator__title" >hello</span>
+       <span class="indicator__value" >S'inscrire </span></a>
+      </div>
+   <!--   <div class="indicator indicator--trigger--click">
         <a href="cart.html" class="indicator__button"><span class="indicator__icon"><svg width="32" height="32">
               <circle cx="10.5" cy="27.5" r="2.5"></circle>
               <circle cx="23.5" cy="27.5" r="2.5"></circle>
@@ -1361,7 +1373,7 @@
                 href="checkout.html" class="btn btn-primary">Checkout</a></div>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
   <!---->

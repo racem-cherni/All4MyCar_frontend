@@ -1,12 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 declare var $: any;
+declare var ol: any;
+
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.css']
 })
-export class NotificationsComponent implements OnInit {
 
+export class NotificationsComponent implements OnInit {
+  latitude: number = 18.5204;
+  longitude: number = 73.8567;
+
+  map: any;
   constructor() { }
   showNotification(from, align){
       const type = ['','info','success','warning','danger'];
@@ -37,6 +43,18 @@ export class NotificationsComponent implements OnInit {
       });
   }
   ngOnInit() {
+    this.map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([73.8567, 18.5204]),
+        zoom: 8
+      })
+    });
   }
 
 }

@@ -3,7 +3,7 @@ export class Prestataire {
     firstNamepres: string;
     lastNamepres:string;
     adressepres:string;
-   
+
     emailpres:string;
     telpres:number;
     photopres: string = '' ;
@@ -12,5 +12,6 @@ export class Prestataire {
     date_inscrip:Date;
     etat : number ;
 
+    notif_etat : boolean;
 
 }
