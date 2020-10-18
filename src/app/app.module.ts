@@ -126,6 +126,7 @@ import { CompleteprofilfromComponent } from './components/interface-client/compl
 import {MatStepperModule} from '@angular/material/stepper';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { AboutComponent } from './components/about/about.component';
+import { MentionslegalesComponent } from './components/mentionslegales/mentionslegales.component';
 
 @NgModule({
   declarations: [
@@ -185,6 +186,8 @@ import { AboutComponent } from './components/about/about.component';
     ContactsComponent,
 
     AboutComponent,
+
+    MentionslegalesComponent,
 
 
 

@@ -46,6 +46,7 @@ import { CompleteprofilpresComponent } from './components/interface-prestataire/
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { AboutComponent } from './components/about/about.component';
 
+import { MentionslegalesComponent } from './components/mentionslegales/mentionslegales.component';
 
 
 const routes: Routes = [
@@ -126,6 +127,8 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     {path: 'contacts', component: ContactsComponent},
     {path: 'aboutus', component: AboutComponent},
+    {path: 'termes-et-conditions', component: MentionslegalesComponent},
+
 
 
     { path: 'prestataire', component: InterfacePrestataireComponent, children: [

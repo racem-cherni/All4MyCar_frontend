@@ -1159,12 +1159,12 @@
               <path d="M16,18C9.4,18,4,23.4,4,30H2c0-6.2,4-11.5,9.6-13.3C9.4,15.3,8,12.8,8,10c0-4.4,3.6-8,8-8s8,3.6,8,8c0,2.8-1.5,5.3-3.6,6.7
 	C26,18.5,30,23.8,30,30h-2C28,23.4,22.6,18,16,18z M22,10c0-3.3-2.7-6-6-6s-6,2.7-6,6s2.7,6,6,6S22,13.3,22,10z"></path>
             </svg> </span><span class="indicator__title" *ngIf="username !== null">Hello,{{username}}</span><span *ngIf="username !== null" class="indicator__value">Mon compte </span>
-          <span class="indicator__title" *ngIf="username == null">hello</span> <span *ngIf="username == null" class="indicator__value">Se connecter </span></a>
+          <span class="indicator__title" *ngIf="username == null">hello</span> <span *ngIf="username == null" class="indicator__value" (click)="dialoglogin()" >Se connecter </span></a>
         <div class="indicator__content">
 
           <div class="account-menu" id="ki">
 
-            <form class="account-menu__form" *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()"
+            <!--<form class="account-menu__form" *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()"
               #f="ngForm" novalidate>
               <div class="account-menu__form-title">Connectez-vous à votre compte
               </div>
@@ -1202,7 +1202,6 @@
                         <svg width="9px" height="7px">
                           <path d="M9,1.395L3.46,7L0,3.5L1.383,2.095L3.46,4.2L7.617,0L9,1.395Z"></path>
                         </svg> </span></span></span>
-                 <!-- <label class="form-check-label" for="signin-remember">Remember Me</label>-->
                 </div>
               </div>
 
@@ -1217,7 +1216,7 @@
 
               <p class="account-menu__form-link"><a (click)="openDialog()" >Créer un compte
               </a></p>
-            </form>
+            </form>-->
             <div class="account-menu__divider"></div>
             <div *ngIf="username !== null">
               <a class="account-menu__user">
@@ -1231,8 +1230,8 @@
                 </div>
 
                 <div class="account-menu__user-avatar" *ngIf="role == 'ROLE_PRESTATAIRE'">
-                  <div *ngIf="prestataire.photopres !== null;else contenu_pas_bon"><img
-                      src="http://localhost:8081/api/api/image/logo/{{prestataire.photopres}}" alt="" height="50"></div>
+                  <div *ngIf="prestataire.photopres !== null;else contenu_pas_bon">
+                    <img src="http://localhost:8081/api/api/image/logo/{{prestataire.photopres}}" alt="" height="50"></div>
                   <ng-template #contenu_pas_bon> <img src="assets/images/avatars/avat.jpg" alt=""></ng-template>
 
 
@@ -1270,7 +1269,7 @@
         </div>
       </div>
 
-      <div class="indicator indicator--trigger--click"*ngIf="username == null"><a href="account-login.html" class="indicator__button"(click)="openDialog()"><span
+      <div class="indicator indicator--trigger--click"*ngIf="username == null"><a href="account-login.html" class="indicator__button"(click)="dialogpegister()"><span
         class="indicator__icon"><svg width="32" height="32">
           <path d="M16,18C9.4,18,4,23.4,4,30H2c0-6.2,4-11.5,9.6-13.3C9.4,15.3,8,12.8,8,10c0-4.4,3.6-8,8-8s8,3.6,8,8c0,2.8-1.5,5.3-3.6,6.7
 C26,18.5,30,23.8,30,30h-2C28,23.4,22.6,18,16,18z M22,10c0-3.3-2.7-6-6-6s-6,2.7-6,6s2.7,6,6,6S22,13.3,22,10z"></path>
@@ -1378,3 +1377,88 @@ C26,18.5,30,23.8,30,30h-2C28,23.4,22.6,18,16,18z M22,10c0-3.3-2.7-6-6-6s-6,2.7-6
   </div>
   <!---->
 </header>
+
+<p-dialog [(visible)]="registerpDialog" [style]="{width: '510px'}" header="&nbsp;"   [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <h1 class="offset-2" style=" font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif " href="" >ALL <span style="color:red;"> 4 </span> MYCAR</h1>
+
+   <form novalidate [formGroup]="registerform" #fform="ngForm"  (ngSubmit)="registerform.valid && onSubmitt(buttonType)" *ngIf="showregisterForm"
+
+   >
+   <mat-form-field class="example-full-width">
+    <input matInput formControlName="username" type="text"  id="username" placeholder="Nom Utilisateur" required  >
+           <mat-error *ngIf="formErrors.username">{{formErrors.username}}</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Adresse email</mat-label>
+    <input matInput formControlName="email" type="email" id="email" placeholder="username@example.com" required email  >
+          <mat-error *ngIf="formErrors.email">{{formErrors.email}}</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" >
+    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" placeholder="Mot de passe" required>
+    <mat-error *ngIf="formErrors.password">{{formErrors.password}}</mat-error>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+   <br>
+     <mat-checkbox formControlName="termes" class="example-margin"  required>Vous acceptez<a href="#" style="color :red;" (click)="termesetconditions()" routerLink="/All4MyCar//termes-et-conditions"> les termes et conditions</a> de notre site</mat-checkbox>
+     <br>
+
+           <span class="flex-spacer"></span>
+               <button type="submit" [disabled]="!registerform.valid"  (click)="onSubmitt('Next')"  class="btn btn-outline-danger mt-3" routerLink="/home">Vous étes client </button>
+             &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+             <button type="submit" [disabled]="!registerform.valid" (click)="onSubmitt('Previous')" class="btn btn-outline-danger mt-3" routerLink="/home" >Vous étes prestataire </button>
+            <div class="alert alert-warning" *ngIf="fform.submitted && isSignUpFailed ">
+              Inscription échouée!<br />{{ errorMessage }}
+            </div>
+
+         </form>
+         <div class="alert alert-success" *ngIf="isSuccessful">
+           Merci ! veuillez s'identifier pour compléter votre profil
+         </div>
+         <hr>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;   Déjà inscrit(e) ?&nbsp;&nbsp;&nbsp;<a  style="color: red;" (click)="dialogplogin()" >S’identifier</a>
+
+  </ng-template>
+
+
+</p-dialog>
+
+<p-dialog [(visible)]="loginpDialog" [style]="{width: '500px'}" header="&nbsp;" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <h1 class="offset-2" style=" font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif " href="" >ALL <span style="color:red;"> 4 </span> MYCAR</h1>
+
+    &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Bon retour parmi nous
+   <form novalidate [formGroup]="loginform" #l="ngForm" (ngSubmit)="loginform.valid && onSubmit()"  *ngIf="!isloginSuccessful">
+    <mat-form-field class="example-full-width">
+      <input matInput formControlName="username" type="text"  id="username" placeholder="Nom Utilisateur" required  >
+             <mat-error *ngIf="formErrors.username">{{formErrors.username}}</mat-error>
+    </mat-form-field>
+
+  <mat-form-field class="example-full-width" >
+    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" placeholder="Mot de passe" required>
+    <mat-error *ngIf="formErrors.password">{{formErrors.password}}</mat-error>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+           <span class="flex-spacer"></span>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+               <button type="submit" class="btn btn-outline-danger mt-3" [disabled]="!loginform.valid" >S'identifier </button>
+               <div class="form-group">
+                <div class="alert alert-danger" role="alert" *ngIf="l.submitted && isLoginFailed">
+                  Échec de la connexion : {{ errorMessage }}
+                </div>
+              </div>
+         </form>
+         <hr>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <a style="color: red;"> Mot de passe oublié</a>
+          <br><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;   Nouveau sur All4MyCar?&nbsp; <a  style="color: red;" (click)="returnregister()" > S’inscrire</a>
+
+
+  </ng-template>
+
+
+</p-dialog>

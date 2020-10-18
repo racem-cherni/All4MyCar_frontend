@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/_services/auth.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import { Prestataire } from 'src/app/entities/prestataire';
 import { MatDialog } from '@angular/material/dialog';
 import { RegistredialogComponent } from 'src/app/components/registredialog/registredialog.component';
 import { User } from 'src/app/entities/user';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 
@@ -20,10 +21,74 @@ import { User } from 'src/app/entities/user';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  hide = true;
+  buttonType: any;
 
+  isSuccessful = false;
+  isSignUpFailed = false;
+  isloginSuccessful = false;
+  isloginFailed = false;
 
+registerform: FormGroup;
+loginform: FormGroup;
+userregister: User ;
+userlogin: User ;
+usercopy: User = null ;
+showregisterForm = true;
+
+errMess: string;
+@ViewChild('fform') formFormDirective ;
+
+formErrors = {
+  // tslint:disable-next-line: object-literal-key-quotes
+  'username': '',
+      // tslint:disable-next-line: object-literal-key-quotes
+  'email': '',
+      // tslint:disable-next-line: object-literal-key-quotes
+  'password': '',
+      // tslint:disable-next-line: object-literal-key-quotes
+      'termes': ''
+      // tslint:disable-next-line: object-literal-key-quotes
+};
+
+validationMessages = {
+  // tslint:disable-next-line: object-literal-key-quotes
+  'username': {
+    // tslint:disable-next-line: object-literal-key-quotes
+    'required':      'Nom utilisateur est nécessaire.',
+    // tslint:disable-next-line: object-literal-key-quotes
+    'minlength':     'Nom utilisateur doit comporter au moins 2 caractères.',
+    // tslint:disable-next-line: object-literal-key-quotes
+    'maxlength':     'Nom utilisateur ne peut pas contenir plus de 25 caractères'
+  },
+
+  // tslint:disable-next-line: object-literal-key-quotes
+  'email': {
+    // tslint:disable-next-line: object-literal-key-quotes
+    'required':      'Email est requis',
+    // tslint:disable-next-line: object-literal-key-quotes
+    'email':         'mail n est pas au format valide.'
+  },
+  // tslint:disable-next-line: object-literal-key-quotes
+    'password': {
+     // tslint:disable-next-line: object-literal-key-quotes
+    'required':      'Mot de passe est requis',
+    // tslint:disable-next-line: object-literal-key-quotes
+    'minlength':     'Mot de passe doit comporter au moins 6 caractères',
+    // tslint:disable-next-line: object-literal-key-quotes
+    'maxlength':     'mot de passe ne peut pas contenir plus de 20 caractères'
+  },
+    // tslint:disable-next-line: object-literal-key-quotes
+    'termes': {
+    // tslint:disable-next-line: object-literal-key-quotes
+    'required': ' vérifications est requis',
+    // tslint:disable-next-line: object-literal-key-quotes
+  }
+};
 
   private roles: string[];
+  registerpDialog : boolean;
+  loginpDialog : boolean;
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
@@ -43,7 +108,118 @@ export class HeaderComponent implements OnInit {
   etat : Boolean ;
   id : number;
   constructor(public dialog: MatDialog,private router: Router , private authService: AuthService,private clientservice: ClientService,private tokenStorageService: TokenStorageService
-     , private prestataireservice: PrestataireService,private transfereService: TransferService) { }
+     , private prestataireservice: PrestataireService,private transfereService: TransferService, private fb: FormBuilder) {
+
+      }
+
+      createregisterform(): void{
+        this.registerform = this.fb.group({
+          username:  ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)] ] ,
+          email: ['', [Validators.required, Validators.email] ] ,
+          password: ['', [Validators.required , Validators.minLength(6) , Validators.maxLength(20)] ]  ,
+          termes: ['', [Validators.required] ] ,
+        });
+        this.registerform.valueChanges
+        .subscribe(data => this.onValueChanged(data));
+
+        this.onValueChanged();
+
+          }
+          createloginform(): void{
+            this.loginform = this.fb.group({
+              username:  ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)] ] ,
+              password: ['', [Validators.required , Validators.minLength(6) , Validators.maxLength(20)] ]  ,
+            });
+            this.loginform.valueChanges
+            .subscribe(data => this.onloginValueChanged(data));
+
+            this.onloginValueChanged();
+
+              }
+
+              onloginValueChanged(data?: any) {
+                if (!this.loginform) { return; }
+                const form = this.loginform;
+                for (const field in this.formErrors) {
+                  if (this.formErrors.hasOwnProperty(field)) {
+                    // clear previous error message (if any)
+                    this.formErrors[field] = '';
+                    const control = form.get(field);
+                    if (control && control.dirty && !control.valid) {
+                      const messages = this.validationMessages[field];
+                      for (const key in control.errors) {
+                        if (control.errors.hasOwnProperty(key)) {
+                          this.formErrors[field] += messages[key] + ' ';
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+
+          onValueChanged(data?: any) {
+            if (!this.registerform) { return; }
+            const form = this.registerform;
+            for (const field in this.formErrors) {
+              if (this.formErrors.hasOwnProperty(field)) {
+                // clear previous error message (if any)
+                this.formErrors[field] = '';
+                const control = form.get(field);
+                if (control && control.dirty && !control.valid) {
+                  const messages = this.validationMessages[field];
+                  for (const key in control.errors) {
+                    if (control.errors.hasOwnProperty(key)) {
+                      this.formErrors[field] += messages[key] + ' ';
+                    }
+                  }
+                }
+              }
+            }
+          }
+          onSubmitclient(): void {
+            this.userregister = this.registerform.value;
+
+            this.authService.register(this.userregister).subscribe(
+              data => {
+                console.log(data);
+                this.usercopy = data ;
+                this.userregister = null ;
+                this.isSuccessful = true;
+                this.isSignUpFailed = false;
+                setTimeout(() => {
+                  this.usercopy = null; this.showregisterForm = true; }, 5000); },
+                  error => {console.log(error.status, error.message), this.isSuccessful = false; this.isSignUpFailed = false;
+                  });
+                  this.formFormDirective.reset();
+
+          }
+          onSubmitpres(): void {
+            this.userregister = this.registerform.value;
+            this.authService.registerprestataire(this.userregister).subscribe(
+              data => {
+                console.log(data);
+                this.usercopy = data ;
+                this.userregister = null ;
+                this.isSuccessful = true;
+                this.isSignUpFailed = false;
+                setTimeout(() => {
+                  this.usercopy = null; this.showregisterForm = true; }, 5000); },
+                  error => {console.log(error.status, error.message), this.isSuccessful = false; this.isSignUpFailed = false;
+                  });
+                this.formFormDirective.reset();
+
+          }
+          onSubmitt(buttonType): void {
+            if   (buttonType === 'Next') {
+                 this.onSubmitclient();
+            }
+            if (buttonType === 'Previous'){
+                 this.onSubmitpres();
+            }
+
+        }
+
+
 
 
      openDialog() {
@@ -53,8 +229,9 @@ export class HeaderComponent implements OnInit {
 //try
 
   ngOnInit(): void {
+    this.createloginform();
 
-
+    this.createregisterform() ;
     // tslint:disable-next-line: align
   this.clientservice.getclient()
   .subscribe((data) => {this.client = data, console.log(data); } , error => console.log(error));
@@ -85,7 +262,8 @@ export class HeaderComponent implements OnInit {
     window.location.href = '/All4MyCar/home';  }
 
   onSubmit(): void {
-    this.authService.login(this.form).subscribe(
+    this.userlogin = this.loginform.value;
+    this.authService.login(this.userlogin).subscribe(
       data => {
         this.tokenStorageService.saveToken(data.accessToken);
         this.tokenStorageService.saveUser(data);
@@ -167,5 +345,29 @@ export class HeaderComponent implements OnInit {
 
   getPositionValue(){
     return this.position;
+  }
+  dialogpegister(){
+    this.registerpDialog = true;
+
+  }
+  dialoglogin(){
+    this.loginpDialog = true;
+
+  }
+  termesetconditions(){
+    this.registerpDialog = false;
+
+  }
+  dialogplogin(){
+    this.registerpDialog = false;
+    this.loginpDialog = true;
+
+
+  }
+  returnregister(){
+    this.loginpDialog = false;
+    this.registerpDialog = true;
+
+
   }
 }
