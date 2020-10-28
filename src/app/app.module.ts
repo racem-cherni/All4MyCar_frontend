@@ -127,6 +127,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { AboutComponent } from './components/about/about.component';
 import { MentionslegalesComponent } from './components/mentionslegales/mentionslegales.component';
+import { CarnetEntretienComponent } from './components/interface-client/carnet-entretien/carnet-entretien.component';
 
 @NgModule({
   declarations: [
@@ -188,6 +189,8 @@ import { MentionslegalesComponent } from './components/mentionslegales/mentionsl
     AboutComponent,
 
     MentionslegalesComponent,
+
+    CarnetEntretienComponent,
 
 
 

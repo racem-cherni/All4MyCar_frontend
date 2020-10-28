@@ -47,6 +47,7 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { AboutComponent } from './components/about/about.component';
 
 import { MentionslegalesComponent } from './components/mentionslegales/mentionslegales.component';
+import { CarnetEntretienComponent } from './components/interface-client/carnet-entretien/carnet-entretien.component';
 
 
 const routes: Routes = [
@@ -113,7 +114,7 @@ const routes: Routes = [
   { path: 'All4MyCar', component: LayoutComponent , children: [
     { path: 'client', component: InterfaceClientComponent, children: [
       {path: 'home', component: HomeclientComponent},
-
+      {path: 'carnetentretien', component: CarnetEntretienComponent},
       {path: 'completeprofil', component: CompleteprofilComponent},
       {path: 'prestations', component: PrestationsComponent},
     { path: 'espace-client', component: EspaceClientComponent, canActivate: [AuthGuard] ,  children: [

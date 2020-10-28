@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap');
+
+
+.bodycer{
+display: flex;
+justify-content: center;
+align-items: center;
+width: 50vh;
+height: 50vh;
+background: #EEEEEE;
+}
+.boxcer
+{
+position: relative;
+width: 200px;
+height: 200px;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+background:#EEEEEE;
+}
+
+.boxcer .percentcer
+{
+position: relative;
+width: 150px;
+height: 150px;
+}
+.boxcer .percentcer svg
+{
+    position: relative;
+width: 150px;
+height: 150px;
+}
+
+.boxcer .percentcer svg circle
+{
+width: 150px;
+height: 150px;
+fill : none;
+stroke-width: 10;
+stroke: #000;
+transform: translate(5px,5px);
+stroke-dasharray: 440;
+stroke-dashoffset: 440;
+stroke-linecap: round;
+}
+
+.boxcer .percentcer svg circle:nth-child(1)
+{
+    stroke-dashoffset: 0;
+    stroke: #f3f3f3;
+}
+.boxcer .percentcer svg circle:nth-child(2)
+{
+    stroke-dashoffset: 0;
+    stroke: #d9c40b;
+}
+.boxcer .percentcer .numbercer
+{
+    position : absolute;
+    top :0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color : #999;
+}
+
+.boxcer .percentcer .numbercer h2
+{
+    font-size: 48px;
+}
+
+.boxcer .text 
+{
+    padding: 10px 0 0;
+    color: #999;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.bodyy
+{ 
+margin:0;
+padding:0;
+display:flex; 
+justify-content : center;
+align-items : center ;
+min-height : 50vh;
+font-family: 'Poppins', sans-serif;
+
+}
+.containerr{
+display : flex;
+flex-wrap : wrap;
+justify-content : space-between;
+}
+
+.containerr .boxx
+{
+position:relative;
+width:350px;
+padding:40px;
+background: #fff;
+box-shadow : 0 5px 15px rgba(0,0,0,.1);
+border-radius : 4px;
+margin : 20px;
+box-sizing: border-box;
+overflow: hidden;
+text-align: center;
+}
+
+
+.containerr .boxx::before 
+{
+
+    content: '';
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top : 0;
+    left :0;
+    background: rgba(255,255,255,.2);
+    z-index: 2;
+    pointer-events: none;
+}
+.containerr .boxx .iconn {
+position:relative;
+width:80px;
+height:80px;
+color: #fff ;
+background: #000;
+display : flex;
+justify-content:   center;
+align-items:   center;
+margin:0 auto ;
+border-radius: 50%;
+font-size: 40px;
+font-weight: 700;
+transition: 1s;
+
+}
+
+.containerr .boxx:nth-child(1) .iconn 
+{
+    box-shadow: 0 0 0 0 #e91e63;
+    background: #e91e63;
+}
+
+.containerr .boxx:nth-child(1):hover .iconn 
+{
+    box-shadow: 0 0 0 400px #e91e63;
+}
+
+.containerr .boxx:nth-child(2) .iconn 
+{
+    box-shadow: 0 0 0 0 #23e629;
+    background: #23e629;
+}
+
+.containerr .boxx:nth-child(2):hover .iconn
+{
+    box-shadow: 0 0 0 400px #23e629;
+}
+
+.containerr .boxx:nth-child(3) .iconn 
+{
+    box-shadow: 0 0 0 0 #2196f3;
+    background: #2196f3;
+}
+
+.containerr .boxx:nth-child(3):hover .iconn 
+{
+    box-shadow: 0 0 0 400px #2196f3;
+}
+
+
+.containerr .boxx .content {
+    position: relative;
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.containerr .boxx:hover .content {
+    color : #fff
+}
+
+.containerr .boxx .content h3 {
+font-size: 20px;
+margin:  10px 0;
+padding: 0;
+}
+
+.containerr .boxx .content p {
+    margin:  0;
+    padding: 0;
+    }
+
+a {
+    display: inline-block;
+    padding: 10px 20px ;
+    background: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    color : #000;
+    font-weight: 500;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);    
+}
+
+ 
+
+
+
+
+
+
+
+
+
+
+.bodyyp
+{ 
+margin:0;
+padding:0;
+display:flex; 
+justify-content : center;
+align-items : center ;
+min-height : 50vh;
+font-family: 'Poppins', sans-serif;
+
+}
+.containerrp{
+display : flex;
+flex-wrap : wrap;
+justify-content : space-between;
+}
+
+.containerrp .boxxp
+{
+position:relative;
+width:350px;
+padding:40px;
+background: #fff;
+box-shadow : 0 5px 15px rgba(0,0,0,.1);
+border-radius : 4px;
+margin : 20px;
+box-sizing: border-box;
+overflow: hidden;
+text-align: center;
+}
+
+
+.containerrp .boxxp::before 
+{
+
+    content: '';
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top : 0;
+    left :0;
+    background: rgba(255,255,255,.2);
+    z-index: 2;
+    pointer-events: none;
+}
+.containerrp .boxxp .iconnp {
+position:relative;
+width:80px;
+height:80px;
+color: #fff ;
+background: #000;
+display : flex;
+justify-content:   center;
+align-items:   center;
+margin:0 auto ;
+border-radius: 50%;
+font-size: 40px;
+font-weight: 700;
+transition: 1s;
+
+}
+
+.containerrp .boxxp:nth-child(1) .iconnp 
+{
+    box-shadow: 0 0 0 0#f22213;
+    background: #f22213;
+}
+
+.containerrp .boxxp:nth-child(1):hover .iconnp 
+{
+    box-shadow: 0 0 0 400px #f22213;
+}
+
+.containerrp .boxxp:nth-child(2) .iconnp 
+{
+    box-shadow: 0 0 0 0 #8a4007;
+    background: #8a4007;
+}
+
+.containerrp .boxxp:nth-child(2):hover .iconnp
+{
+    box-shadow: 0 0 0 400px #8a4007;
+}
+
+.containerrp .boxxp:nth-child(3) .iconnp 
+{
+    box-shadow: 0 0 0 0 #2196f3;
+    background: #2196f3;
+}
+
+.containerrp .boxxp:nth-child(3):hover .iconnp 
+{
+    box-shadow: 0 0 0 400px #2196f3;
+}
+
+
+.containerrp .boxxp .content {
+    position: relative;
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.containerrp .boxxp:hover .content {
+    color : #fff
+}
+
+.containerrp .boxxp .content h3 {
+font-size: 20px;
+margin:  10px 0;
+padding: 0;
+}
+
+.containerrp .boxxp .content p {
+    margin:  0;
+    padding: 0;
+    }
+
+

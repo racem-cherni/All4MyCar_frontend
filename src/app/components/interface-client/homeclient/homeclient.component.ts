@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { Adressecities } from 'src/app/entities/adressecities';
@@ -14,6 +15,7 @@ import { ClientService } from 'src/app/_services/client.service';
 import { SpecialisationService } from 'src/app/_services/specialisation.service';
 import { UserService } from 'src/app/_services/user.service';
 import { VehiculesService } from 'src/app/_services/vehicules.service';
+import { CarnetEntretienComponent } from '../carnet-entretien/carnet-entretien.component';
 
 @Component({
   selector: 'app-homeclient',
@@ -47,6 +49,7 @@ showDialog() {
   selectedModel : DetailSpecialisation;
     detailss: DetailSpecialisation[] = [];
     selectedVehicule: Vehicule = null;
+    private cec: CarnetEntretienComponent;
 
 
   form: FormGroup; v
@@ -62,7 +65,7 @@ selectedville : Adressevilles = null;
 selectedcite: Adressecities = null;
 adressevilles: Adressevilles[] = [];
 adressecites: Adressecities[] = [];
-  constructor(private fb: FormBuilder ,private adresseService: AdresseService,private userService: UserService, private clientService: ClientService , private vehiculesService: VehiculesService , private specialisationService: SpecialisationService) {
+  constructor(private fb: FormBuilder ,private router: Router ,private adresseService: AdresseService,private userService: UserService, private clientService: ClientService , private vehiculesService: VehiculesService , private specialisationService: SpecialisationService) {
 
   }
 
@@ -221,6 +224,8 @@ this.onValueChanged();
 
 
    }
+
+
 
 
 }
