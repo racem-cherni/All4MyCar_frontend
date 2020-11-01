@@ -19,13 +19,15 @@ export class EspaceClientComponent implements OnInit {
 
     console.log("espace"+this.message);
     if (this.router.url.indexOf('/All4MyCar/client/espace-client/dashboard') > -1) {
-       
-    
+
+
     this.position=1;
     }
 else if (this.router.url.indexOf('/All4MyCar/client/espace-client/profil') > -1){
   this.position=3;
-  }  }
+  }
+
+}
 
   gotovehicules(){
     this.position=2;
@@ -38,6 +40,10 @@ else if (this.router.url.indexOf('/All4MyCar/client/espace-client/profil') > -1)
 
   gotodashboard(){
     this.position=1;
+  }
+  gotocarnetentretien(){
+    this.position=4;
+
   }
 
 }

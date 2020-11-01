@@ -123,6 +123,7 @@ const routes: Routes = [
       {path: 'profil', component: ProfilComponent},
 
 
+
     ] },]},
      { path: 'register', component: RegisterComponent },
     { path: 'home', component: HomeComponent },

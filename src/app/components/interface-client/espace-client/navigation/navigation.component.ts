@@ -28,4 +28,9 @@ gotoprofil(){
 this.router.navigate(['All4MyCar/client/espace-client/profil']);
 }
 
+gotocarnetentretien(){
+  this.router.navigate(['All4MyCar/client/espace-client/carnet-entretien']);
+
+}
+
 }

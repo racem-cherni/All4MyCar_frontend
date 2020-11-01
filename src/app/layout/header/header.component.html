@@ -896,23 +896,23 @@
     <div class="header__logo">
       <div class="logo">
        <br>
-        <div *ngIf="username == null" class="logo__image " routerLink="/All4MyCar/home">
+        <div *ngIf="username == null" class="logo__image " >
           <!-- logo -->
-          <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif " href="" >ALL <span
-              style="color:red;"> 4 </span> MYCAR</h1> <!-- logo / end -->
+          <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif "  ><a href="" routerLink="/All4MyCar/home" ><span style="color: black;">ALL </span> <span
+              style="color:red;"> 4 </span><span style="color: black;">MYCAR</span> </a></h1> <!-- logo / end -->
         </div>
 
-        <div *ngIf="role == 'ROLE_USER' && username !== null" class="logo__image " routerLink="/All4MyCar/client/home">
+        <div *ngIf="role == 'ROLE_USER' && username !== null" class="logo__image " >
           <!-- logo -->
-          <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">ALL <span
-              style="color:red;"> 4 </span> MYCAR</h1> <!-- logo / end -->
+          <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"><a href="" routerLink="/All4MyCar/client/home" ><span style="color: black;">ALL </span> <span
+            style="color:red;"> 4 </span><span style="color: black;">MYCAR</span> </a></h1> <!-- logo / end -->
         </div>
 
         <div *ngIf="role == 'ROLE_PRESTATAIRE' && username !== null" class="logo__image "
-          routerLink="/All4MyCar/prestataire/home">
+          >
           <!-- logo -->
-          <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">ALL <span
-              style="color:red;"> 4 </span> MYCAR</h1> <!-- logo / end -->
+          <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"><a href="" routerLink="/All4MyCar/prestataire/home" ><span style="color: black;">ALL </span> <span
+            style="color:red;"> 4 </span><span style="color: black;">MYCAR</span> </a></h1> <!-- logo / end -->
         </div>
 
 
@@ -1154,7 +1154,7 @@
 	z"></path>
             </svg></span></a></div>-->
             <div class="indicator"></div>
-      <div class="indicator indicator--trigger--click"><a href="account-login.html" class="indicator__button"><span
+      <div class="indicator indicator--trigger--click"><a href="" class="indicator__button"><span
             class="indicator__icon"><svg width="32" height="32">
               <path d="M16,18C9.4,18,4,23.4,4,30H2c0-6.2,4-11.5,9.6-13.3C9.4,15.3,8,12.8,8,10c0-4.4,3.6-8,8-8s8,3.6,8,8c0,2.8-1.5,5.3-3.6,6.7
 	C26,18.5,30,23.8,30,30h-2C28,23.4,22.6,18,16,18z M22,10c0-3.3-2.7-6-6-6s-6,2.7-6,6s2.7,6,6,6S22,13.3,22,10z"></path>
@@ -1219,7 +1219,7 @@
             </form>-->
             <div class="account-menu__divider"></div>
             <div *ngIf="username !== null">
-              <a class="account-menu__user">
+              <div class="account-menu__user">
                 <div class="account-menu__user-avatar" *ngIf="role == 'ROLE_USER'">
                   <img *ngIf="client.photoclt == null  " src="assets/images/avatars/avat.jpg" alt="">
                   <img *ngIf="client.photoclt !== null"
@@ -1240,24 +1240,28 @@
                   <div class="account-menu__user-name">{{ username }}</div>
                   <div class="account-menu__user-email">{{username}}@gmail.com</div>
                 </div>
-              </a>
+              </div>
               <div class="account-menu__divider"></div>
               <ul class="account-menu__links">
                 <div *ngIf="role == 'ROLE_USER' ">
-                  <li (click)="gotodashboardc()"><a>Dashboard</a></li>
+                  <li><a (click)="gotodashboardc()" href="javascript:void(0)">Dashboard</a></li>
                 </div>
                 <div *ngIf="role == 'ROLE_PRESTATAIRE' ">
-                  <li (click)="gotodashboardp()"><a>Dashboard</a></li>
+                  <li ><a (click)="gotodashboardp()" href="javascript:void(0)">Dashboard</a></li>
                 </div>
                 <div *ngIf="role == 'ROLE_USER' ">
-                  <li (click)="gotoprofil()"><a>Edit Profile</a></li>
+                  <li ><a (click)="gotoprofil()" href="javascript:void(0)"  >Mon Profile</a></li>
+                </div>
+                <div *ngIf="role == 'ROLE_USER' ">
+                  <li ><a  href="javascript:void(0)" (click)="gotocarnetentretien()"  >Mon Carnet d'entretien</a></li>
+                </div>
+                <div *ngIf="role == 'ROLE_USER' ">
+                  <li ><a  href="javascript:void(0)"  >Mes Prestations</a></li>
                 </div>
                 <div *ngIf="role == 'ROLE_PRESTATAIRE' ">
-                  <li (click)="gotoprofilp()"><a routerLink="/All4MyCar/prestataire/espace-prestataire/profilpres">Edit
+                  <li (click)="gotoprofilp()"><a routerLink="/All4MyCar/prestataire/espace-prestataire/profilpres" href="javascript:void(0)">Edit
                       Profile</a></li>
                 </div>
-                <li><a href="account-orders.html">Order History</a></li>
-                <li><a href="account-addresses.html">Addresses</a></li>
               </ul>
               <div class="account-menu__divider"></div>
               <ul class="account-menu__links">
@@ -1380,7 +1384,7 @@ C26,18.5,30,23.8,30,30h-2C28,23.4,22.6,18,16,18z M22,10c0-3.3-2.7-6-6-6s-6,2.7-6
 
 <p-dialog [(visible)]="registerpDialog" [style]="{width: '510px'}" header="&nbsp;"   [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
-    <h1 class="offset-2" style=" font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif " href="" >ALL <span style="color:red;"> 4 </span> MYCAR</h1>
+    <h1 class="offset-2" style=" font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif " href="" ><a>ALL <span style="color:red;"> 4 </span> MYCAR</a></h1>
 
    <form novalidate [formGroup]="registerform" #fform="ngForm"  (ngSubmit)="registerform.valid && onSubmitt(buttonType)" *ngIf="showregisterForm"
 
@@ -1418,7 +1422,7 @@ C26,18.5,30,23.8,30,30h-2C28,23.4,22.6,18,16,18z M22,10c0-3.3-2.7-6-6-6s-6,2.7-6
            Merci ! veuillez s'identifier pour compléter votre profil
          </div>
          <hr>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;   Déjà inscrit(e) ?&nbsp;&nbsp;&nbsp;<a  style="color: red;" (click)="dialogplogin()" >S’identifier</a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;   Déjà inscrit(e) ?&nbsp;&nbsp;&nbsp;<a  style="color: red;" (click)="dialogplogin()" href="javascript:void(0)" >S’identifier</a>
 
   </ng-template>
 
@@ -1455,7 +1459,7 @@ C26,18.5,30,23.8,30,30h-2C28,23.4,22.6,18,16,18z M22,10c0-3.3-2.7-6-6-6s-6,2.7-6
          <hr>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <a style="color: red;"> Mot de passe oublié</a>
           <br><br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;   Nouveau sur All4MyCar?&nbsp; <a  style="color: red;" (click)="returnregister()" > S’inscrire</a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;   Nouveau sur All4MyCar?&nbsp; <a  style="color: red;" (click)="returnregister()" href="javascript:void(0)" > S’inscrire</a>
 
 
   </ng-template>

@@ -76,7 +76,7 @@ stroke-linecap: round;
     font-size: 48px;
 }
 
-.boxcer .text 
+.boxcer .text
 {
     padding: 10px 0 0;
     color: #999;
@@ -85,13 +85,13 @@ stroke-linecap: round;
 }
 
 .bodyy
-{ 
+{
 margin:0;
 padding:0;
-display:flex; 
+display:flex;
 justify-content : center;
 align-items : center ;
-min-height : 50vh;
+min-height : 20vh;
 font-family: 'Poppins', sans-serif;
 
 }
@@ -116,7 +116,7 @@ text-align: center;
 }
 
 
-.containerr .boxx::before 
+.containerr .boxx::before
 {
 
     content: '';
@@ -146,18 +146,18 @@ transition: 1s;
 
 }
 
-.containerr .boxx:nth-child(1) .iconn 
+.containerr .boxx:nth-child(1) .iconn
 {
     box-shadow: 0 0 0 0 #e91e63;
     background: #e91e63;
 }
 
-.containerr .boxx:nth-child(1):hover .iconn 
+.containerr .boxx:nth-child(1):hover .iconn
 {
     box-shadow: 0 0 0 400px #e91e63;
 }
 
-.containerr .boxx:nth-child(2) .iconn 
+.containerr .boxx:nth-child(2) .iconn
 {
     box-shadow: 0 0 0 0 #23e629;
     background: #23e629;
@@ -168,13 +168,13 @@ transition: 1s;
     box-shadow: 0 0 0 400px #23e629;
 }
 
-.containerr .boxx:nth-child(3) .iconn 
+.containerr .boxx:nth-child(3) .iconn
 {
     box-shadow: 0 0 0 0 #2196f3;
     background: #2196f3;
 }
 
-.containerr .boxx:nth-child(3):hover .iconn 
+.containerr .boxx:nth-child(3):hover .iconn
 {
     box-shadow: 0 0 0 400px #2196f3;
 }
@@ -210,10 +210,10 @@ a {
     color : #000;
     font-weight: 500;
     margin-top: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,.2);    
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
 }
 
- 
+
 
 
 
@@ -225,10 +225,10 @@ a {
 
 
 .bodyyp
-{ 
+{
 margin:0;
 padding:0;
-display:flex; 
+display:flex;
 justify-content : center;
 align-items : center ;
 min-height : 50vh;
@@ -256,7 +256,7 @@ text-align: center;
 }
 
 
-.containerrp .boxxp::before 
+.containerrp .boxxp::before
 {
 
     content: '';
@@ -286,18 +286,18 @@ transition: 1s;
 
 }
 
-.containerrp .boxxp:nth-child(1) .iconnp 
+.containerrp .boxxp:nth-child(1) .iconnp
 {
     box-shadow: 0 0 0 0#f22213;
     background: #f22213;
 }
 
-.containerrp .boxxp:nth-child(1):hover .iconnp 
+.containerrp .boxxp:nth-child(1):hover .iconnp
 {
     box-shadow: 0 0 0 400px #f22213;
 }
 
-.containerrp .boxxp:nth-child(2) .iconnp 
+.containerrp .boxxp:nth-child(2) .iconnp
 {
     box-shadow: 0 0 0 0 #8a4007;
     background: #8a4007;
@@ -308,13 +308,13 @@ transition: 1s;
     box-shadow: 0 0 0 400px #8a4007;
 }
 
-.containerrp .boxxp:nth-child(3) .iconnp 
+.containerrp .boxxp:nth-child(3) .iconnp
 {
     box-shadow: 0 0 0 0 #2196f3;
     background: #2196f3;
 }
 
-.containerrp .boxxp:nth-child(3):hover .iconnp 
+.containerrp .boxxp:nth-child(3):hover .iconnp
 {
     box-shadow: 0 0 0 400px #2196f3;
 }

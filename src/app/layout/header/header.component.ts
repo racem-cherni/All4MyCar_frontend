@@ -334,6 +334,10 @@ validationMessages = {
 
 
   }
+  gotocarnetentretien(){
+    window.location.href ='/All4MyCar/client/espace-client/carnet-entretien';
+
+  }
 
   gotoprofilp(){
    // this.position = 3;
