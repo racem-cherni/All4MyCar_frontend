@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CarburantCarnet } from 'src/app/entities/carburant-carnet';
 import { Client } from 'src/app/entities/client';
 import { DetailSpecialisation } from 'src/app/entities/detail-specialisation';
 import { Specialisation } from 'src/app/entities/specialisation';
 import { Vehicule } from 'src/app/entities/vehicule';
+import { CarnetEntretienService } from 'src/app/_services/carnet-entretien.service';
 import { ClientService } from 'src/app/_services/client.service';
 import { SpecialisationService } from 'src/app/_services/specialisation.service';
 import { VehiculesService } from 'src/app/_services/vehicules.service';
@@ -22,13 +24,13 @@ export class CarnetEntretienComponent implements OnInit {
   depenseDialog: boolean;
 
   date_entretienn: Date;
-  
+  carnet_carbutant : CarburantCarnet;
 
   date_depensee: Date;
-  
+
 
   date_carburantt: Date;
- 
+
 
 
   Vehicules: Vehicule[] = [];
@@ -39,7 +41,7 @@ export class CarnetEntretienComponent implements OnInit {
   selectedMarque: DetailSpecialisation[] = null;
   selectedModel : DetailSpecialisation;
     detailss: DetailSpecialisation[] = [];
-    depences: string[] = ['Vignette' , 'Assurance' , 'Visite technique' ,'Accessoires'];
+    depences: string[] = ['Fine' , 'Insurance' , 'MOT' ,'Parking','Tax','Toll'];
   form: FormGroup;
   form_entretien : FormGroup;
   form_carburant : FormGroup;
@@ -48,12 +50,78 @@ export class CarnetEntretienComponent implements OnInit {
   form_odometer : FormGroup;
 
   formErrors = {
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'date_carburant': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+'vehicule': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+'odometer_carburant': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'quantite_carburant': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'station_carburant': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'depense_carburant': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'date_entretien': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'centre_entretien': '',
+ // tslint:disable-next-line: object-literal-key-quotes
 
 };
 validationMessages = {
+   // tslint:disable-next-line: object-literal-key-quotes
+   'date_carburant': {
+    // tslint:disable-next-line: object-literal-key-quotes
+    'required':      'la date est nécessaire.',
+    // tslint:disable-next-line: object-literal-key-quotes
+  },
+  // tslint:disable-next-line: object-literal-key-quotes
+  'vehicule': {
+    // tslint:disable-next-line: object-literal-key-quotes
+    'required':      'choisir une vehicule',
+    // tslint:disable-next-line: object-literal-key-quotes
+  },
+  'odometer_carburant': {
+    // tslint:disable-next-line: object-literal-key-quotes
+    'required':      'inserer le kilometrage',
+    // tslint:disable-next-line: object-literal-key-quotes
+    'minlength': 'au moins 3 lettre'
+  },
+  'quantite_carburant': {
+    // tslint:disable-next-line: object-literal-key-quotes
+    'required':      'cin is required.',
+    // tslint:disable-next-line: object-literal-key-quotes
+    'pattern':       'cin must contain only numbers.',
+    // tslint:disable-next-line: object-literal-key-quotes
+  },
+  'station_carburant': {
+    // tslint:disable-next-line: object-literal-key-quotes
+    'required':      'inserer la station',
+    // tslint:disable-next-line: object-literal-key-quotes
+    'minlength':   'cin must contain  3 numbers',
+  },
+  'depense_carburant': {
+    // tslint:disable-next-line: object-literal-key-quotes
+    'required':      'inserer le prix totale',
+    // tslint:disable-next-line: object-literal-key-quotes
+    'minlength': 'au moins 3 lettre'
+  },
+  'date_entretien': {
+    // tslint:disable-next-line: object-literal-key-quotes
+    'required':      'la date est nécessaire.',
+    // tslint:disable-next-line: object-literal-key-quotes
+  },
+  'centre_entretien': {
+    // tslint:disable-next-line: object-literal-key-quotes
+    'required':      'inserer le centre de service.',
+    // tslint:disable-next-line: object-literal-key-quotes
+    'minlength': 'au moins 3 lettre'
+  },
 };
 
-  constructor(private fb: FormBuilder,private clientService: ClientService , private vehiculesService: VehiculesService , private specialisationService: SpecialisationService) { }
+  constructor(private fb: FormBuilder,private clientService: ClientService , private vehiculesService: VehiculesService , private specialisationService: SpecialisationService,
+    private carnetentretienService: CarnetEntretienService) { }
 
   ngOnInit(): void {
     this.date_entretienn = (new Date());
@@ -81,11 +149,11 @@ validationMessages = {
    .subscribe((data) => {this.specialisations = data, console.log(data); });
   }
 
- 
 
 
 
-  
+
+
   selectvec: Vehicule;
   selectspec: DetailSpecialisation[] = [];
   selectAge: Specialisation;
@@ -125,11 +193,12 @@ this.onValueChanged();
 
   CreateForm_entretien() {
     this.form_entretien = this.fb.group({
-  date_entretien: [''],
-  centre_entretien: [''],
-  prix_entretien: [''],
-  note_entretien: [''],
-  specialisations: [''],
+  date_entretien: ['' , [Validators.required]],
+  centre_entretien: ['' , [Validators.required] ,[Validators.minLength(3)]],
+  vehicule: ['' , [Validators.required]],
+  prix_entretien: ['' , [Validators.required], [Validators.minLength(2)], [Validators.pattern]],
+  note_entretien: ['' , [Validators.required]],
+  specialisations: ['' , [Validators.required]],
 
     });
     this.form_entretien.valueChanges
@@ -143,12 +212,13 @@ this.onValueChanged_entretien();
     this.form_carburant = this.fb.group({
 
 
-
-      date_carburant: [''],
-      station_carburant: [''],
-      quantite_carburant: [''],
-      depense_carburant: [''],
-      odometer_carburant: [''],
+      date_carburant: ['' , [Validators.required]],
+      vehicule: ['' , [Validators.required]],
+      station_carburant: ['', [Validators.required], [Validators.minLength(3)]],
+    //  cin: ['', [Validators.required, Validators.pattern , Validators.minLength(8) , Validators.maxLength(8)] ]  ,
+      quantite_carburant: ['', [Validators.required, Validators.pattern] ],
+      depense_carburant: ['', [Validators.required], [Validators.pattern]],
+      odometer_carburant: ['', [Validators.required], [Validators.pattern]],
       note_carburant: [''],
 
 
@@ -369,7 +439,14 @@ this.onValueChanged_trajet();
    onsubmit_entretien(){
    }
 
-   onsubmit_carburant(){
+   onsubmit_carburant():void{
+    this.form_carburant.value.vehicule = this.selectvec;
+   this.carnet_carbutant = this.form_carburant.value ;
+   console.log(this.form_carburant.value);
+    this.carnetentretienService.ajouter_carburant(this.carnet_carbutant).subscribe(
+      data => {
+        console.log(data);} );
+
   }
   onsubmit_depense(){
   }

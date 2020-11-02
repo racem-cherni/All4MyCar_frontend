@@ -3,7 +3,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
- 
+  width: 60%;
 }
 </style>
 <div class="block-header block-header--has-breadcrumb block-header--has-title">
@@ -15,8 +15,8 @@
     </div>
   </div>
 </div>
-
-<mat-tab-group  mat-align-tabs="center" class="fenetre">
+<div class="fenetre">
+<mat-tab-group  mat-align-tabs="center" >
   <mat-tab label="Tableau de board" >
 <div class="block" style="overflow-y: hidden;max-height:  70vh;">
   <div class="container container--max--lg">
@@ -146,13 +146,14 @@
       <input matInput formControlName="date_carburant"  [matDatepicker]="picker" placeholder="date"  required  >
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="formErrors.date_carburant">{{formErrors.date_carburant}}</mat-error>
       </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <mat-form-field class="dateform" >
         <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
         <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
           [(ngModel)]="selectedVehicule" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-          (ngModelChange)="getVehicule()">
-          <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
+          (ngModelChange)="getVehicule()" required >
+          <mat-option *ngFor=" let marque of Vehicules" [value]="marque" >
             {{marque.model.marque.name}} {{marque.model.name}}
           </mat-option>
         </mat-select>
@@ -163,11 +164,12 @@
 
 <mat-form-field class="dateform" >
 <input matInput formControlName="odometer_carburant" type="number"   placeholder="Kilométrage (km)"  required >
-
+<mat-error *ngIf="formErrors.odometer_carburant">{{formErrors.odometer_carburant}}</mat-error>
 </mat-form-field>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <mat-form-field class="dateform"  >
-<input matInput formControlName="quantite_carburant" type="text"   placeholder="Quantité (L)"  required >
+<input matInput formControlName="quantite_carburant" type="number"   placeholder="Quantité (L)"  required >
+<mat-error *ngIf="formErrors.quantite_carburant">{{formErrors.quantite_carburant}}</mat-error>
 </mat-form-field>
 </div>
 
@@ -175,12 +177,14 @@
 &nbsp;&nbsp;&nbsp;&nbsp;
 
 <mat-form-field class="dateform" >
-<input matInput formControlName="station_carburant" type="text"  placeholder="station carburant"   >
+<input matInput formControlName="station_carburant" type="text"  placeholder="station carburant" required   >
+<mat-error *ngIf="formErrors.station_carburant">{{formErrors.station_carburant}}</mat-error>
 </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
 <mat-form-field class="dateform">
 <input matInput formControlName="depense_carburant" type="number" placeholder="Prix total"  required   >
+<mat-error *ngIf="formErrors.depense_carburant">{{formErrors.depense_carburant}}</mat-error>
 </mat-form-field>
 </div>
 
@@ -210,6 +214,7 @@
     <input matInput formControlName="date_entretien"  [matDatepicker]="picker_entretien" placeholder="Date entretien"  required  >
     <mat-datepicker-toggle matSuffix [for]="picker_entretien"></mat-datepicker-toggle>
     <mat-datepicker #picker_entretien></mat-datepicker>
+    <mat-error *ngIf="formErrors.date_entretien">{{formErrors.date_entretien}}</mat-error>
     </mat-form-field>
 </div>
 
@@ -241,6 +246,7 @@
         <div class="row">&nbsp;&nbsp;&nbsp;
         <mat-form-field class="dateform"  >
           <input matInput formControlName="centre_entretien" type="text"  id="centre_entretien" placeholder="Centre entretien"   >
+          <mat-error *ngIf="formErrors.centre_entretien">{{formErrors.centre_entretien}}</mat-error>
           </mat-form-field>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -506,7 +512,7 @@
     </div>
     <div class="block-space block-space--layout--divider-xs"></div>
 </mat-tab>
-</mat-tab-group>
+</mat-tab-group></div>
 
 
 
