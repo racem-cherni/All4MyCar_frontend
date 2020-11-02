@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap');
 
+.example-detail{
+  width: 90%;
+}
+.dateform {
+  width:35%;
+}
+
+.example-full-width {
+  width:50%;
+}
 
 .bodycer{
 display: flex;

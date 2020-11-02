@@ -1,3 +1,14 @@
+<style>
+.fenetre {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  height: 60%;
+  overflow-anchor: hidden;
+  max-height: 70vh;
+}
+</style>
 <div class="block-header block-header--has-breadcrumb block-header--has-title">
   <div class="container">
     <div class="block-header__body">
@@ -8,7 +19,9 @@
   </div>
 </div>
 
-<div class="block">
+<mat-tab-group  mat-align-tabs="center" class="fenetre">
+  <mat-tab label="Tableau de board" >
+<div class="block" style="overflow-y: hidden;max-height:  70vh;">
   <div class="container container--max--lg">
     <div class="card contacts">
       <br>
@@ -65,7 +78,7 @@
         <div class="content">
         <h3><strong>Ajouter entretien</strong></h3>
         </div>
-      
+
       </a>
 
 
@@ -82,10 +95,10 @@
                 <path d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
               </svg></div>
             <div class="content">
-            <h3><strong>Ajouter une depense</strong></h3>
-            
+            <h3><strong>Ajouter depense</strong></h3>
+
             </div>
-           
+
           </a>
 
           <a (click)="affichertrajetDialog()" class="boxx"href="javascript:void(0)">
@@ -98,7 +111,7 @@
             <h3><strong>Ajouter un trajet</strong></h3>
             </div>
 
-            
+
 
           </a>
 
@@ -113,16 +126,16 @@
                 <div class="content">
                 <h3><strong>Ajouter odomoter</strong></h3>
                 </div>
-         
+
               </a>
-          
+
             </div>
 
 
         </div>
 
 
-        
+
 
 </div>
 <div class="block-space block-space--layout--after-header"></div>
@@ -130,39 +143,50 @@
   <p-dialog  [(visible)]="carburantDialog" [style]="{width: '30vw'}" header="Remplir carburant" [modal]="true" styleClass="p-fluid" [draggable]="false"
   [resizable]="false" [baseZIndex]="10000">
 
-  <div class="row">&nbsp;&nbsp;&nbsp;
+  <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;
 
-    <mat-form-field class="half-width">
+    <mat-form-field class="dateform" >
       <input matInput formControlName="date_carburant"  [matDatepicker]="picker" placeholder="date"  required  >
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <mat-form-field class="dateform" >
+        <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
+        <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
+          [(ngModel)]="selectedVehicule" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
+          (ngModelChange)="getVehicule()">
+          <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
+            {{marque.model.marque.name}} {{marque.model.name}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 </div>
 <div class="row">
 &nbsp;&nbsp;&nbsp;&nbsp;
 
-<mat-form-field  >
-<input matInput formControlName="odometer_carburant" type="number"   placeholder="Odometer (mi)"  required >
+<mat-form-field class="dateform" >
+<input matInput formControlName="odometer_carburant" type="number"   placeholder="Kilométrage (km)"  required >
 
-</mat-form-field>            &nbsp;&nbsp;&nbsp;&nbsp;
-       
-<mat-form-field  >
-<input matInput formControlName="quantite_carburant" type="text"   placeholder="Quantité (ltr)"  required >
-</mat-form-field> 
-</div> 
+</mat-form-field>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<mat-form-field class="dateform"  >
+<input matInput formControlName="quantite_carburant" type="text"   placeholder="Quantité (L)"  required >
+</mat-form-field>
+</div>
 
 <div class="row">
 &nbsp;&nbsp;&nbsp;&nbsp;
 
-<mat-form-field  >
-<input matInput formControlName="station_carburant" type="text"  placeholder="station_carburant"   >
-</mat-form-field>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<mat-form-field class="dateform" >
+<input matInput formControlName="station_carburant" type="text"  placeholder="station carburant"   >
+</mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
-<mat-form-field class="half-width">
-<input matInput formControlName="depense_carburant" type="number" placeholder="Total depense"  required   >
+<mat-form-field class="dateform">
+<input matInput formControlName="depense_carburant" type="number" placeholder="Prix total"  required   >
 </mat-form-field>
 </div>
+
 <mat-form-field class="example-detail" >
 <mat-label>Notes</mat-label>
 <input matInput #message formControlName="note_carburant" maxlength="256" placeholder="ajouter des informations supplimentaires">
@@ -173,7 +197,7 @@
 
     <ng-template pTemplate="footer">
       <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hidecarburantDialog()"></button>
-      <button pButton pRipple label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
+      <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
   </ng-template>
   </p-dialog>
 </form>
@@ -185,15 +209,15 @@
 
   <div class="row">&nbsp;&nbsp;&nbsp;
 
-  <mat-form-field class="half-width">
-    <input matInput formControlName="date_entretien"  [matDatepicker]="picker_entretien" placeholder="date_entretien"  required  >
+  <mat-form-field class="dateform">
+    <input matInput formControlName="date_entretien"  [matDatepicker]="picker_entretien" placeholder="Date entretien"  required  >
     <mat-datepicker-toggle matSuffix [for]="picker_entretien"></mat-datepicker-toggle>
     <mat-datepicker #picker_entretien></mat-datepicker>
     </mat-form-field>
 </div>
 
        <div class="row">&nbsp;&nbsp;&nbsp;
-        <mat-form-field class="example" >
+        <mat-form-field class="dateform" >
           <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
           <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
             [(ngModel)]="selectedVehicule" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
@@ -205,7 +229,7 @@
         </mat-form-field>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-        <mat-form-field class="example-full-width"   >
+        <mat-form-field class="dateform"   >
           <mat-label> &nbsp;&nbsp;&nbsp; Entretien et réparation</mat-label>
           <mat-select [disabled]="selectedVehicule == null" matNativeControl id="abc" [(ngModel)]="selectedMarque"
             formControlName="specialisations" [ngModelOptions]="{standalone: true}" multiple
@@ -216,17 +240,17 @@
               </mat-option>
             </mat-optgroup>
           </mat-select>
-        </mat-form-field>            &nbsp;&nbsp;&nbsp;&nbsp;
-       
-        <mat-form-field  >
-          <input matInput formControlName="centre_entretien" type="text"  id="centre_entretien" placeholder="centre_entretien"   >
+        </mat-form-field> </div>
+        <div class="row">&nbsp;&nbsp;&nbsp;
+        <mat-form-field class="dateform"  >
+          <input matInput formControlName="centre_entretien" type="text"  id="centre_entretien" placeholder="Centre entretien"   >
           </mat-form-field>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-          <mat-form-field class="half-width">
-            <input matInput formControlName="prix_entretien" type="number" placeholder="Total depense"  required   >
+          <mat-form-field class="dateform">
+            <input matInput formControlName="prix_entretien" type="number" placeholder="Prix total"  required   >
             </mat-form-field>
-          </div>
+            </div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
         <mat-form-field class="example-detail" >
@@ -238,7 +262,7 @@
 
     <ng-template pTemplate="footer">
       <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideentretienDialog()"></button>
-      <button pButton pRipple label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
+      <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
   </ng-template>
   </p-dialog>
   </form>
@@ -250,24 +274,40 @@
     [resizable]="false" [baseZIndex]="10000">
     <div class="row">&nbsp;&nbsp;&nbsp;
 
-      <mat-form-field class="half-width">
-        <input matInput formControlName="date_depense"  [matDatepicker]="picker_depense" placeholder="date_depense"  required  >
+      <mat-form-field class="dateform">
+        <input matInput formControlName="date_depense"  [matDatepicker]="picker_depense" placeholder="Date depense"  required  >
         <mat-datepicker-toggle matSuffix [for]="picker_depense"></mat-datepicker-toggle>
         <mat-datepicker #picker_depense></mat-datepicker>
         </mat-form-field>
-      &nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
 
-      <mat-form-field  >
-        <input matInput formControlName="odometer_depense" type="number"   placeholder="kilométrage (mi)"  required >
-    </mat-form-field> 
-    
+     <div class="row">&nbsp;&nbsp;&nbsp;
+      <mat-form-field class="dateform" >
+        <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
+        <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
+          [(ngModel)]="selectedVehicule" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
+          (ngModelChange)="getVehicule()">
+          <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
+            {{marque.model.marque.name}} {{marque.model.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <mat-form-field class="dateform"  >
+        <input matInput formControlName="odometer_depense" type="number"   placeholder="kilométrage (km)"  required >
+    </mat-form-field>
+
+
+
+
+
   </div>
 
         <div class="row">
           &nbsp;&nbsp;&nbsp;
 
-          <mat-form-field class="example"    >
-            <mat-label> dépense </mat-label>
+          <mat-form-field class="dateform"    >
+            <mat-label> Dépenses </mat-label>
             <mat-select  matNativeControl id="abc"
               formControlName="depences" [ngModelOptions]="{standalone: true}"
               >
@@ -279,9 +319,9 @@
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
-          
-<mat-form-field class="half-width">
-  <input matInput formControlName="prix_depense" type="number" placeholder="Total depense"  required   >
+
+<mat-form-field class="dateform">
+  <input matInput formControlName="prix_depense" type="number" placeholder="Prix total"  required   >
   </mat-form-field>
         </div>
         <mat-form-field class="example-detail" >
@@ -294,7 +334,7 @@
 
       <ng-template pTemplate="footer">
         <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hidedepenseDialog()"></button>
-        <button pButton pRipple label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
+        <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
     </ng-template>
     </p-dialog>
     </form>
@@ -305,20 +345,39 @@
       [resizable]="false" [baseZIndex]="10000">
 
       <div class="row">
-        &nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;
 
-        <mat-form-field class="half-width">
+        <mat-form-field class="dateform">
           <input matInput formControlName="date_odometer"  [matDatepicker]="picker_odometer" placeholder="date"  required  >
           <mat-datepicker-toggle matSuffix [for]="picker_odometer"></mat-datepicker-toggle>
           <mat-datepicker #picker_odometer></mat-datepicker>
           </mat-form-field>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    
-    <mat-form-field  >
-    <input matInput formControlName="odomoeter_cal" type="number"   placeholder="Odometer (mi)"  required >
-    
-    </mat-form-field> 
+
+
   </div>
+  <div class="row">&nbsp;&nbsp;&nbsp;
+    <mat-form-field class="dateform" >
+      <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
+      <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
+        [(ngModel)]="selectedVehicule" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
+        (ngModelChange)="getVehicule()">
+        <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
+          {{marque.model.marque.name}} {{marque.model.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <mat-form-field class="dateform" >
+      <input matInput formControlName="odomoeter_cal" type="number"   placeholder="Kilométrage(km)"  required >
+
+      </mat-form-field>
+
+
+
+
+
+</div>
 
   <mat-form-field class="example-detail" >
     <mat-label>Notes</mat-label>
@@ -326,10 +385,10 @@
     <mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
     <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
   </mat-form-field>
- 
+
         <ng-template pTemplate="footer">
           <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideodometerDialog()"></button>
-          <button pButton pRipple label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
+          <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
       </ng-template>
       </p-dialog>
       </form>
@@ -337,60 +396,73 @@
 
       <form class="block-finder__form " novalidate [formGroup]="form_trajet" (ngSubmit)="onsubmit_odometer()">
 
-        <p-dialog [(visible)]="trajetDialog" [style]="{width: '45vw'}" header="Ajouter trajet" [modal]="true" styleClass="p-fluid" [draggable]="false"
-        [resizable]="false" [baseZIndex]="10000">
+        <p-dialog [(visible)]="trajetDialog"  [contentStyle]="{'overflow-y': 'scroll', 'overflow-x': 'hidden',
+        'max-height': '40vh','min-height':'250px'}" header="Ajouter trajet" [modal]="true" styleClass="p-fluid" [draggable]="false"
+        [resizable]="false" [baseZIndex]="10000"  >
+        <div class="row">&nbsp;&nbsp;
+          <mat-form-field class="dateform" >
+            <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
+            <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
+              [(ngModel)]="selectedVehicule" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
+              (ngModelChange)="getVehicule()">
+              <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
+                {{marque.model.marque.name}} {{marque.model.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
         <div class="vehicle-form__divider">Depart</div>
 
             <div class="row">
               &nbsp;&nbsp;
 
               <mat-form-field class="half-width">
-                <input matInput formControlName="date_depart"  [matDatepicker]="picker_dd" placeholder="date débart"  required  >
+                <input matInput formControlName="date_depart"  [matDatepicker]="picker_dd" placeholder="Date débart"  required  >
                 <mat-datepicker-toggle matSuffix [for]="picker_dd"></mat-datepicker-toggle>
                 <mat-datepicker #picker_dd></mat-datepicker>
                 </mat-form-field>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <mat-form-field class="half-width" >
-                  <input matInput formControlName="lieux_depart" type="text"  placeholder="lieux depart"   >
-                  </mat-form-field> 
+                  <input matInput formControlName="lieux_depart" type="text"  placeholder="lieu départ"   >
+                  </mat-form-field>
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <div >
                     <br/>
-                    <p-calendar  formControlName="heure_depart" placeholder="heure depart" [timeOnly]="true"></p-calendar>
+                    <p-calendar  formControlName="heure_depart" placeholder="Heure départ" [timeOnly]="true"></p-calendar>
     </div>
             </div>
            <br/>
-            <div class="vehicle-form__divider">Arrivé</div>
+            <div class="vehicle-form__divider">Arrivée</div>
             <div class="row">
               &nbsp;&nbsp;
               <mat-form-field class="half-width">
-                <input matInput formControlName="date_arrive"  [matDatepicker]="picker_da" placeholder="date arrivé"  required  >
+                <input matInput formControlName="date_arrive"  [matDatepicker]="picker_da" placeholder="Date arrivé"  required  >
                 <mat-datepicker-toggle matSuffix [for]="picker_da"></mat-datepicker-toggle>
                 <mat-datepicker #picker_da></mat-datepicker>
                 </mat-form-field>                  &nbsp;&nbsp;&nbsp;&nbsp;
 
                 <mat-form-field class="half-width" >
-                  <input matInput formControlName="lieux_arrivé" type="text"  placeholder="lieux arrivé"   >
+                  <input matInput formControlName="lieux_arrivé" type="text"  placeholder="lieu arrivée"   >
                   </mat-form-field>                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <div >
                     <br/>
-                  <p-calendar  formControlName="heure_arrive" placeholder="heure arrivé" [timeOnly]="true"></p-calendar>
+                  <p-calendar  formControlName="heure_arrive" placeholder="Heure arrivée" [timeOnly]="true"></p-calendar>
  </div>
             </div>
             <div class="vehicle-form__divider">Trajet information</div>
             <div class="row">
               &nbsp;&nbsp;
               <mat-form-field  >
-                <input matInput formControlName="distance_trajet" type="number"   placeholder="distance"  required >
+                <input matInput formControlName="distance_trajet" type="number"   placeholder="Distance parcourue"  required >
                 </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <mat-form-field  >
-                  <input matInput formControlName="duree_trajet" type="number"   placeholder="durée"  required >
-                  
+                  <input matInput formControlName="duree_trajet" type="number"   placeholder="Temps du trajet"  required >
+
                   </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <mat-form-field  >
                     <input matInput formControlName="vitesse_trajet" type="number"   placeholder="moy vitesse"  required >
-                    
-                    </mat-form-field> 
+
+                    </mat-form-field>
               </div>
             <div class="vehicle-form__divider">Autres informations</div>
             <div class="row">
@@ -398,10 +470,10 @@
 
             <mat-form-field  class="half-width">
               <input matInput formControlName="taxe_trajet" type="number"   placeholder="Taxe"   >
-              
-              </mat-form-field> 
+
+              </mat-form-field>
             </div>
-          
+
             <mat-form-field class="example-detail" >
               <mat-label>Notes</mat-label>
               <input matInput #message formControlName="note_trajet" maxlength="256" placeholder="ajouter des informations supplimentaires">
@@ -411,23 +483,42 @@
 
           <ng-template pTemplate="footer">
             <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hidetrajetDialog()"></button>
-            <button pButton pRipple label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
+            <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
         </ng-template>
         </p-dialog>
         </form>
-
-        
-<div class="block-space block-space--layout--divider-xs"></div>
+        </div>
 
 
+</mat-tab>
+<mat-tab label="Statistiques & Tableaux">
+  <div class="block">
+    <div class="container container--max--lg">
+      <div class="card contacts">
+        <br>
+
+        <div class="card-body card-body--padding--2">
+
+          <div class="row offset-1">
 
 
-              
+          </div>
+          </div>
+          </div>
+    </div>
+    </div>
+    <div class="block-space block-space--layout--divider-xs"></div>
+</mat-tab>
+</mat-tab-group>
 
 
-               
 
-                
+
+
+
+
+
+
 
 
 

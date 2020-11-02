@@ -31,7 +31,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
+import {MatTabsModule} from '@angular/material/tabs';
 
 import {MatTooltipModule} from '@angular/material/tooltip';
 
@@ -198,6 +198,7 @@ import { CarnetEntretienComponent } from './components/interface-client/carnet-e
 
   ],
   imports: [
+    MatTabsModule,
     TooltipModule,
     MessageModule,
     MessagesModule,
