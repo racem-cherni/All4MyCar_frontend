@@ -9,9 +9,39 @@
 </div>
 
 <div class="block">
+  <div class="container container--max--lg">
+    <div class="card contacts">
+      <br>
+
+      <div class="card-body card-body--padding--2">
+
+        <div class="row offset-1">
+<div class="col">Cout du carburant des 30 derniers jours</div>
+<div class="col">Moyenne L/100km</div>
+<div class="col">Pleins des 30 derniers jours</div>
+
+        </div>
+        </div>
+        </div>
+  </div>
+    <div class="container container--max--lg">
+      <div class="card contacts">
+        <br>
+        <h5 class="offset-5">Entrées de journal récents</h5>
+        <div class="card-body card-body--padding--2">
+          <div class="row">
+
+          </div>
+          </div>
+          </div>
+    </div>
+
+
+<div class="block">
 <div class="bodyy">
 <div class="containerr">
-    <a class="boxx" href="javascript:void(0)">
+
+    <a (click)="affichercarburantDialog()" class="boxx" href="javascript:void(0)">
     <div class="iconn">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-closed-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M4 1a1 1 0 0 0-1 1v13H1.5a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2a1 1 0 0 0-1-1H4zm2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
@@ -19,13 +49,13 @@
     </div>
     <div class="content">
     <h3><strong>Remplir carburant</strong></h3>
-    <p> remplir le formulaire a chague fois vous passer au kiosque</p>
     </div>
-  </a>
+
+</a>
 
 
         <a (click)="afficherentretiendialog()" class="boxx" href="javascript:void(0)">
-        <div class="iconn">
+        <div  class="iconn">
 
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tools" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M0 1l1-1 3.081 2.2a1 1 0 0 1 .419.815v.07a1 1 0 0 0 .293.708L10.5 9.5l.914-.305a1 1 0 0 1 1.023.242l3.356 3.356a1 1 0 0 1 0 1.414l-1.586 1.586a1 1 0 0 1-1.414 0l-3.356-3.356a1 1 0 0 1-.242-1.023L9.5 10.5 3.793 4.793a1 1 0 0 0-.707-.293h-.071a1 1 0 0 1-.814-.419L0 1zm11.354 9.646a.5.5 0 0 0-.708.708l3 3a.5.5 0 0 0 .708-.708l-3-3z"/>
@@ -34,11 +64,18 @@
         </div>
         <div class="content">
         <h3><strong>Ajouter entretien</strong></h3>
-        <p> ajouter les prestations effectuer a votre vehicules </p>
-        </div></a>
+        </div>
+      
+      </a>
 
 
-            <a class="boxx" href="javascript:void(0)">
+
+
+
+
+
+
+            <a (click)="afficherdepenseDialog()" class="boxx" href="javascript:void(0)">
             <div class="iconn"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z"/>
                 <path fill-rule="evenodd" d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z"/>
@@ -46,105 +83,351 @@
               </svg></div>
             <div class="content">
             <h3><strong>Ajouter une depense</strong></h3>
-            <p> ajouter toues les depenses de votre vehicule</p>
-            </div></a>
+            
+            </div>
+           
+          </a>
+
+          <a (click)="affichertrajetDialog()" class="boxx"href="javascript:void(0)">
+            <div class="iconn">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-truck" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                  </svg>
+            </div>
+            <div class="content">
+            <h3><strong>Ajouter un trajet</strong></h3>
+            </div>
+
+            
+
+          </a>
+
+
+                <a (click)="afficherodometerDialog()" class="boxx" href="javascript:void(0)">
+                <div class="iconn">
+
+
+
+                    <i class="fas fa-tachometer-alt"></i>
+                                     </div>
+                <div class="content">
+                <h3><strong>Ajouter odomoter</strong></h3>
+                </div>
+         
+              </a>
+          
             </div>
 
 
         </div>
 
 
-        <div class="bodyyp">
-            <div class="containerrp">
-                <a class="boxxp"href="javascript:void(0)">
-                <div class="iconnp">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-truck" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                      </svg>
-                </div>
-                <div class="content">
-                <h3><strong>Ajouter un trajet</strong></h3>
-                <p> Faire entrer tous les trajets pour le suivi de votre véhicule</p>
-                </div>
-              </a>
-
-
-                    <a class="boxxp" href="javascript:void(0)">
-                    <div class="iconnp">
-
-
-
-                        <i class="fas fa-tachometer-alt"></i>
-                                         </div>
-                    <div class="content">
-                    <h3><strong>Ajouter odomoter</strong></h3>
-                    <p> ajouter les données de votre odomoter pour calculer le kilométrage </p>
-                    </div></a>
-
-
-
-                        </div>
-
-
-                    </div>
+        
 
 </div>
-                <p-dialog [(visible)]="entretienDialog" [style]="{width: '30vw'}" header="Ajouter entretien" [modal]="true" styleClass="p-fluid" [draggable]="false"
-                [resizable]="false" [baseZIndex]="10000">
-                     <div class="row">&nbsp;&nbsp;&nbsp;
-                      <mat-form-field class="example" >
-                        <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
-                        <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
-                          [(ngModel)]="selectedVehicule" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-                          (ngModelChange)="getVehicule()">
-                          <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
-                            {{marque.model.marque.name}} {{marque.model.name}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="block-space block-space--layout--after-header"></div>
+<form class="block-finder__form " novalidate [formGroup]="form_carburant" (ngSubmit)="onsubmit_carburant()">
+  <p-dialog  [(visible)]="carburantDialog" [style]="{width: '30vw'}" header="Remplir carburant" [modal]="true" styleClass="p-fluid" [draggable]="false"
+  [resizable]="false" [baseZIndex]="10000">
 
-                      <mat-form-field class="example-full-width"   >
-                        <mat-label> &nbsp;&nbsp;&nbsp; Entretien et réparation</mat-label>
-                        <mat-select [disabled]="selectedVehicule == null" matNativeControl id="abc" [(ngModel)]="selectedMarque"
-                          formControlName="specialisations" [ngModelOptions]="{standalone: true}" multiple
-                          (ngModelChange)="getspec()">
-                          <mat-optgroup *ngFor="let group of specialisations" [label]="group.name">
-                            <mat-option *ngFor="let pokemon of group.detailspecialisations" [value]="pokemon">
-                              {{pokemon.name}}
-                            </mat-option>
-                          </mat-optgroup>
-                        </mat-select>
-                      </mat-form-field>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <mat-form-field class="example"    >
-                          <mat-label> &nbsp;&nbsp;&nbsp; Autres dépense </mat-label>
-                          <mat-select [disabled]="selectedMarque == null" matNativeControl id="abc"
-                            formControlName="depences" [ngModelOptions]="{standalone: true}"
-                            >
-                              <mat-option *ngFor="let pokemon of depences" [value]="pokemon">
-                                {{pokemon}}
-                              </mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                        </div>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <div class="row">&nbsp;&nbsp;&nbsp;
 
-                    <div class="row">
-                      &nbsp;&nbsp;&nbsp;
+    <mat-form-field class="half-width">
+      <input matInput formControlName="date_carburant"  [matDatepicker]="picker" placeholder="date"  required  >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+</div>
+<div class="row">
+&nbsp;&nbsp;&nbsp;&nbsp;
 
-                      <mat-form-field class="example-detail" >
-                        <mat-label>Détails</mat-label>
-                        <input matInput #message maxlength="256" placeholder="Ex. I need help with...">
-                        <mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
-                        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-                      </mat-form-field>
-                    </div>
-                  <ng-template pTemplate="footer">
-                    <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideentretienDialog()"></button>
-                    <button pButton pRipple label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
-                </ng-template>
-                </p-dialog>
+<mat-form-field  >
+<input matInput formControlName="odometer_carburant" type="number"   placeholder="Odometer (mi)"  required >
+
+</mat-form-field>            &nbsp;&nbsp;&nbsp;&nbsp;
+       
+<mat-form-field  >
+<input matInput formControlName="quantite_carburant" type="text"   placeholder="Quantité (ltr)"  required >
+</mat-form-field> 
+</div> 
+
+<div class="row">
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<mat-form-field  >
+<input matInput formControlName="station_carburant" type="text"  placeholder="station_carburant"   >
+</mat-form-field>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<mat-form-field class="half-width">
+<input matInput formControlName="depense_carburant" type="number" placeholder="Total depense"  required   >
+</mat-form-field>
+</div>
+<mat-form-field class="example-detail" >
+<mat-label>Notes</mat-label>
+<input matInput #message formControlName="note_carburant" maxlength="256" placeholder="ajouter des informations supplimentaires">
+<mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
+<mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+</mat-form-field>
+
+
+    <ng-template pTemplate="footer">
+      <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hidecarburantDialog()"></button>
+      <button pButton pRipple label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
+  </ng-template>
+  </p-dialog>
+</form>
+
+
+<form class="block-finder__form " novalidate [formGroup]="form_entretien" (ngSubmit)="onsubmit_entretien()">
+  <p-dialog [(visible)]="entretienDialog" [style]="{width: '30vw'}" header="Ajouter entretien" [modal]="true" styleClass="p-fluid" [draggable]="false"
+  [resizable]="false" [baseZIndex]="10000">
+
+  <div class="row">&nbsp;&nbsp;&nbsp;
+
+  <mat-form-field class="half-width">
+    <input matInput formControlName="date_entretien"  [matDatepicker]="picker_entretien" placeholder="date_entretien"  required  >
+    <mat-datepicker-toggle matSuffix [for]="picker_entretien"></mat-datepicker-toggle>
+    <mat-datepicker #picker_entretien></mat-datepicker>
+    </mat-form-field>
+</div>
+
+       <div class="row">&nbsp;&nbsp;&nbsp;
+        <mat-form-field class="example" >
+          <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
+          <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
+            [(ngModel)]="selectedVehicule" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
+            (ngModelChange)="getVehicule()">
+            <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
+              {{marque.model.marque.name}} {{marque.model.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <mat-form-field class="example-full-width"   >
+          <mat-label> &nbsp;&nbsp;&nbsp; Entretien et réparation</mat-label>
+          <mat-select [disabled]="selectedVehicule == null" matNativeControl id="abc" [(ngModel)]="selectedMarque"
+            formControlName="specialisations" [ngModelOptions]="{standalone: true}" multiple
+            (ngModelChange)="getspec()">
+            <mat-optgroup *ngFor="let group of specialisations" [label]="group.name">
+              <mat-option *ngFor="let pokemon of group.detailspecialisations" [value]="pokemon">
+                {{pokemon.name}}
+              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+        </mat-form-field>            &nbsp;&nbsp;&nbsp;&nbsp;
+       
+        <mat-form-field  >
+          <input matInput formControlName="centre_entretien" type="text"  id="centre_entretien" placeholder="centre_entretien"   >
+          </mat-form-field>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+          <mat-form-field class="half-width">
+            <input matInput formControlName="prix_entretien" type="number" placeholder="Total depense"  required   >
+            </mat-form-field>
+          </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <mat-form-field class="example-detail" >
+          <mat-label>Notes</mat-label>
+          <input matInput #message formControlName="note_entretien" maxlength="256" placeholder="ajouter des informations supplimentaires">
+          <mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
+          <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+        </mat-form-field>
+
+    <ng-template pTemplate="footer">
+      <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideentretienDialog()"></button>
+      <button pButton pRipple label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
+  </ng-template>
+  </p-dialog>
+  </form>
+
+
+  <form class="block-finder__form " novalidate [formGroup]="form_depense" (ngSubmit)="onsubmit_depense()">
+
+    <p-dialog [(visible)]="depenseDialog" [style]="{width: '30vw'}" header="Ajouter depense" [modal]="true" styleClass="p-fluid" [draggable]="false"
+    [resizable]="false" [baseZIndex]="10000">
+    <div class="row">&nbsp;&nbsp;&nbsp;
+
+      <mat-form-field class="half-width">
+        <input matInput formControlName="date_depense"  [matDatepicker]="picker_depense" placeholder="date_depense"  required  >
+        <mat-datepicker-toggle matSuffix [for]="picker_depense"></mat-datepicker-toggle>
+        <mat-datepicker #picker_depense></mat-datepicker>
+        </mat-form-field>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+
+      <mat-form-field  >
+        <input matInput formControlName="odometer_depense" type="number"   placeholder="kilométrage (mi)"  required >
+    </mat-form-field> 
+    
+  </div>
+
+        <div class="row">
+          &nbsp;&nbsp;&nbsp;
+
+          <mat-form-field class="example"    >
+            <mat-label> dépense </mat-label>
+            <mat-select  matNativeControl id="abc"
+              formControlName="depences" [ngModelOptions]="{standalone: true}"
+              >
+                <mat-option *ngFor="let pokemon of depences" [value]="pokemon">
+                  {{pokemon}}
+                </mat-option>
+            </mat-select>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+          
+<mat-form-field class="half-width">
+  <input matInput formControlName="prix_depense" type="number" placeholder="Total depense"  required   >
+  </mat-form-field>
+        </div>
+        <mat-form-field class="example-detail" >
+          <mat-label>Notes</mat-label>
+          <input matInput #message formControlName="note_depense" maxlength="256" placeholder="ajouter des informations supplimentaires">
+          <mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
+          <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+        </mat-form-field>
+
+
+      <ng-template pTemplate="footer">
+        <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hidedepenseDialog()"></button>
+        <button pButton pRipple label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
+    </ng-template>
+    </p-dialog>
+    </form>
+
+    <form class="block-finder__form " novalidate [formGroup]="form_odometer" (ngSubmit)="onsubmit_odometer()">
+
+      <p-dialog [(visible)]="odometerDialog" [style]="{width: '30vw'}" header="Ajouter odometer" [modal]="true" styleClass="p-fluid" [draggable]="false"
+      [resizable]="false" [baseZIndex]="10000">
+
+      <div class="row">
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
+        <mat-form-field class="half-width">
+          <input matInput formControlName="date_odometer"  [matDatepicker]="picker_odometer" placeholder="date"  required  >
+          <mat-datepicker-toggle matSuffix [for]="picker_odometer"></mat-datepicker-toggle>
+          <mat-datepicker #picker_odometer></mat-datepicker>
+          </mat-form-field>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    
+    <mat-form-field  >
+    <input matInput formControlName="odomoeter_cal" type="number"   placeholder="Odometer (mi)"  required >
+    
+    </mat-form-field> 
+  </div>
+
+  <mat-form-field class="example-detail" >
+    <mat-label>Notes</mat-label>
+    <input matInput #message formControlName="note_odometer" maxlength="256" placeholder="ajouter des informations supplimentaires">
+    <mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
+    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+  </mat-form-field>
+ 
+        <ng-template pTemplate="footer">
+          <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideodometerDialog()"></button>
+          <button pButton pRipple label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
+      </ng-template>
+      </p-dialog>
+      </form>
+
+
+      <form class="block-finder__form " novalidate [formGroup]="form_trajet" (ngSubmit)="onsubmit_odometer()">
+
+        <p-dialog [(visible)]="trajetDialog" [style]="{width: '45vw'}" header="Ajouter trajet" [modal]="true" styleClass="p-fluid" [draggable]="false"
+        [resizable]="false" [baseZIndex]="10000">
+        <div class="vehicle-form__divider">Depart</div>
+
+            <div class="row">
+              &nbsp;&nbsp;
+
+              <mat-form-field class="half-width">
+                <input matInput formControlName="date_depart"  [matDatepicker]="picker_dd" placeholder="date débart"  required  >
+                <mat-datepicker-toggle matSuffix [for]="picker_dd"></mat-datepicker-toggle>
+                <mat-datepicker #picker_dd></mat-datepicker>
+                </mat-form-field>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <mat-form-field class="half-width" >
+                  <input matInput formControlName="lieux_depart" type="text"  placeholder="lieux depart"   >
+                  </mat-form-field> 
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <div >
+                    <br/>
+                    <p-calendar  formControlName="heure_depart" placeholder="heure depart" [timeOnly]="true"></p-calendar>
+    </div>
+            </div>
+           <br/>
+            <div class="vehicle-form__divider">Arrivé</div>
+            <div class="row">
+              &nbsp;&nbsp;
+              <mat-form-field class="half-width">
+                <input matInput formControlName="date_arrive"  [matDatepicker]="picker_da" placeholder="date arrivé"  required  >
+                <mat-datepicker-toggle matSuffix [for]="picker_da"></mat-datepicker-toggle>
+                <mat-datepicker #picker_da></mat-datepicker>
+                </mat-form-field>                  &nbsp;&nbsp;&nbsp;&nbsp;
+
+                <mat-form-field class="half-width" >
+                  <input matInput formControlName="lieux_arrivé" type="text"  placeholder="lieux arrivé"   >
+                  </mat-form-field>                   &nbsp;&nbsp;&nbsp;&nbsp;
+                  <div >
+                    <br/>
+                  <p-calendar  formControlName="heure_arrive" placeholder="heure arrivé" [timeOnly]="true"></p-calendar>
+ </div>
+            </div>
+            <div class="vehicle-form__divider">Trajet information</div>
+            <div class="row">
+              &nbsp;&nbsp;
+              <mat-form-field  >
+                <input matInput formControlName="distance_trajet" type="number"   placeholder="distance"  required >
+                </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <mat-form-field  >
+                  <input matInput formControlName="duree_trajet" type="number"   placeholder="durée"  required >
+                  
+                  </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <mat-form-field  >
+                    <input matInput formControlName="vitesse_trajet" type="number"   placeholder="moy vitesse"  required >
+                    
+                    </mat-form-field> 
+              </div>
+            <div class="vehicle-form__divider">Autres informations</div>
+            <div class="row">
+              &nbsp;&nbsp;&nbsp;
+
+            <mat-form-field  class="half-width">
+              <input matInput formControlName="taxe_trajet" type="number"   placeholder="Taxe"   >
+              
+              </mat-form-field> 
+            </div>
+          
+            <mat-form-field class="example-detail" >
+              <mat-label>Notes</mat-label>
+              <input matInput #message formControlName="note_trajet" maxlength="256" placeholder="ajouter des informations supplimentaires">
+              <mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
+              <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+            </mat-form-field>
+
+          <ng-template pTemplate="footer">
+            <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hidetrajetDialog()"></button>
+            <button pButton pRipple label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
+        </ng-template>
+        </p-dialog>
+        </form>
+
+        
+<div class="block-space block-space--layout--divider-xs"></div>
+
+
+
+
+              
+
+
+               
+
+                
 
 
 

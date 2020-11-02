@@ -104,12 +104,12 @@ justify-content : space-between;
 .containerr .boxx
 {
 position:relative;
-width:350px;
-padding:40px;
+width:200px;
+padding:10px;
 background: #fff;
 box-shadow : 0 5px 15px rgba(0,0,0,.1);
 border-radius : 4px;
-margin : 20px;
+margin : 13px;
 box-sizing: border-box;
 overflow: hidden;
 text-align: center;
@@ -178,7 +178,27 @@ transition: 1s;
 {
     box-shadow: 0 0 0 400px #2196f3;
 }
+.containerr .boxx:nth-child(4) .iconn
+{
+    box-shadow: 0 0 0 0#f22213;
+    background: #f22213;
+}
 
+.containerr .boxx:nth-child(4):hover .iconn
+{
+    box-shadow: 0 0 0 400px #f22213;
+}
+
+.containerr .boxx:nth-child(5) .iconn
+{
+    box-shadow: 0 0 0 0 #8a4007;
+    background: #8a4007;
+}
+
+.containerr .boxx:nth-child(5):hover .iconn
+{
+    box-shadow: 0 0 0 400px #8a4007;
+}
 
 .containerr .boxx .content {
     position: relative;
@@ -231,28 +251,28 @@ padding:0;
 display:flex;
 justify-content : center;
 align-items : center ;
-min-height : 50vh;
+min-height : 20vh;
 font-family: 'Poppins', sans-serif;
 
 }
 .containerrp{
-display : flex;
-flex-wrap : wrap;
-justify-content : space-between;
+  display : flex;
+  flex-wrap : wrap;
+  justify-content : space-between;
 }
 
 .containerrp .boxxp
 {
-position:relative;
-width:350px;
-padding:40px;
-background: #fff;
-box-shadow : 0 5px 15px rgba(0,0,0,.1);
-border-radius : 4px;
-margin : 20px;
-box-sizing: border-box;
-overflow: hidden;
-text-align: center;
+  position:relative;
+  width:250px;
+  padding:20px;
+  background: #fff;
+  box-shadow : 0 5px 15px rgba(0,0,0,.1);
+  border-radius : 4px;
+  margin : 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-align: center;
 }
 
 
@@ -270,19 +290,19 @@ text-align: center;
     pointer-events: none;
 }
 .containerrp .boxxp .iconnp {
-position:relative;
-width:80px;
-height:80px;
-color: #fff ;
-background: #000;
-display : flex;
-justify-content:   center;
-align-items:   center;
-margin:0 auto ;
-border-radius: 50%;
-font-size: 40px;
-font-weight: 700;
-transition: 1s;
+  position:relative;
+  width:80px;
+  height:80px;
+  color: #fff ;
+  background: #000;
+  display : flex;
+  justify-content:   center;
+  align-items:   center;
+  margin:0 auto ;
+  border-radius: 50%;
+  font-size: 40px;
+  font-weight: 700;
+  transition: 1s;
 
 }
 
