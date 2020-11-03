@@ -3,7 +3,6 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 60%;
 }
 </style>
 <div class="block-header block-header--has-breadcrumb block-header--has-title">
@@ -151,8 +150,8 @@
       <mat-form-field class="dateform" >
         <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
         <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
-          [(ngModel)]="selectedVehicule" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-          (ngModelChange)="getVehicule()" required >
+          [(ngModel)]="selectedVehicule_carburant" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
+          (ngModelChange)="setVehicule_carburant()" required >
           <mat-option *ngFor=" let marque of Vehicules" [value]="marque" >
             {{marque.model.marque.name}} {{marque.model.name}}
           </mat-option>
@@ -216,14 +215,18 @@
     <mat-datepicker #picker_entretien></mat-datepicker>
     <mat-error *ngIf="formErrors.date_entretien">{{formErrors.date_entretien}}</mat-error>
     </mat-form-field>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <mat-form-field class="dateform"  >
+      <input matInput formControlName="odometer_entretien" type="number"   placeholder="kilométrage (km)"  required >
+  </mat-form-field>
 </div>
 
        <div class="row">&nbsp;&nbsp;&nbsp;
         <mat-form-field class="dateform" >
           <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
           <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
-            [(ngModel)]="selectedVehicule" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-            (ngModelChange)="getVehicule()">
+            [(ngModel)]="selectedVehicule_entretien" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
+            (ngModelChange)="setVehicule_entretien()">
             <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
               {{marque.model.marque.name}} {{marque.model.name}}
             </mat-option>
@@ -233,11 +236,11 @@
 
         <mat-form-field class="dateform"   >
           <mat-label> &nbsp;&nbsp;&nbsp; Entretien et réparation</mat-label>
-          <mat-select [disabled]="selectedVehicule == null" matNativeControl id="abc" [(ngModel)]="selectedMarque"
+          <mat-select  matNativeControl id="abc" [(ngModel)]="specialisationss"
             formControlName="specialisations" [ngModelOptions]="{standalone: true}" multiple
-            (ngModelChange)="getspec()">
+            (ngModelChange)="setspecialisation()">
             <mat-optgroup *ngFor="let group of specialisations" [label]="group.name">
-              <mat-option *ngFor="let pokemon of group.detailspecialisations" [value]="pokemon">
+              <mat-option *ngFor="let pokemon of group.detailspecialisations" [value]="pokemon.name">
                 {{pokemon.name}}
               </mat-option>
             </mat-optgroup>
@@ -288,8 +291,8 @@
       <mat-form-field class="dateform" >
         <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
         <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
-          [(ngModel)]="selectedVehicule" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-          (ngModelChange)="getVehicule()">
+          [(ngModel)]="selectedVehicule_depense" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
+          (ngModelChange)="setVehicule_depense()">
           <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
             {{marque.model.marque.name}} {{marque.model.name}}
           </mat-option>
@@ -311,9 +314,10 @@
 
           <mat-form-field class="dateform"    >
             <mat-label> Dépenses </mat-label>
-            <mat-select  matNativeControl id="abc"
-              formControlName="depences" [ngModelOptions]="{standalone: true}"
+            <mat-select  matNativeControl id="abc" [(ngModel)]="selected_d"  (ngModelChange)="setDepense()"
+              formControlName="depense" [ngModelOptions]="{standalone: true}"
               >
+       
                 <mat-option *ngFor="let pokemon of depences" [value]="pokemon">
                   {{pokemon}}
                 </mat-option>
@@ -363,8 +367,8 @@
     <mat-form-field class="dateform" >
       <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
       <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
-        [(ngModel)]="selectedVehicule" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-        (ngModelChange)="getVehicule()">
+        [(ngModel)]="selectedVehicule_odometer" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
+        (ngModelChange)="setVehicule_odometer()">
         <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
           {{marque.model.marque.name}} {{marque.model.name}}
         </mat-option>
@@ -397,7 +401,7 @@
       </form>
 
 
-      <form class="block-finder__form " novalidate [formGroup]="form_trajet" (ngSubmit)="onsubmit_odometer()">
+      <form class="block-finder__form " novalidate [formGroup]="form_trajet" (ngSubmit)="onsubmit_trajet()">
 
         <p-dialog [(visible)]="trajetDialog"  [contentStyle]="{'overflow-y': 'scroll', 'overflow-x': 'hidden',
         'max-height': '40vh','min-height':'250px'}" header="Ajouter trajet" [modal]="true" styleClass="p-fluid" [draggable]="false"
@@ -406,8 +410,8 @@
           <mat-form-field class="dateform" >
             <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
             <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
-              [(ngModel)]="selectedVehicule" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-              (ngModelChange)="getVehicule()">
+              [(ngModel)]="selectedVehicule_trajet" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
+              (ngModelChange)="setVehicule_trajet()">
               <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
                 {{marque.model.marque.name}} {{marque.model.name}}
               </mat-option>
@@ -445,7 +449,7 @@
                 </mat-form-field>                  &nbsp;&nbsp;&nbsp;&nbsp;
 
                 <mat-form-field class="half-width" >
-                  <input matInput formControlName="lieux_arrivé" type="text"  placeholder="lieu arrivée"   >
+                  <input matInput formControlName="lieux_arrive" type="text"  placeholder="lieu arrivée"   >
                   </mat-form-field>                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <div >
                     <br/>

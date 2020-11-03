@@ -218,6 +218,7 @@ myForm = new FormGroup({
 
   setSpecializationValue(){
 this.selectspecx = this.specialisathou.toString();
+console.log(this.selectspecx);
   }
 
   createformprofil(): void{

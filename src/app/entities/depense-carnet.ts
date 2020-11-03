@@ -7,5 +7,5 @@ export class DepenseCarnet {
      note_depense: String;
      odometer_depense: number ; 
      vehicule : Vehicule;
-
+     depense : String;
 }

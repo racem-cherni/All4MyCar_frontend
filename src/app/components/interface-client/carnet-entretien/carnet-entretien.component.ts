@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CarburantCarnet } from 'src/app/entities/carburant-carnet';
 import { Client } from 'src/app/entities/client';
+import { DepenseCarnet } from 'src/app/entities/depense-carnet';
 import { DetailSpecialisation } from 'src/app/entities/detail-specialisation';
+import { EntretienCarnet } from 'src/app/entities/entretien-carnet';
+import { OdometerCarnet } from 'src/app/entities/odometer-carnet';
 import { Specialisation } from 'src/app/entities/specialisation';
+import { TrajetCarnet } from 'src/app/entities/trajet-carnet';
 import { Vehicule } from 'src/app/entities/vehicule';
 import { CarnetEntretienService } from 'src/app/_services/carnet-entretien.service';
 import { ClientService } from 'src/app/_services/client.service';
@@ -25,6 +29,10 @@ export class CarnetEntretienComponent implements OnInit {
 
   date_entretienn: Date;
   carnet_carbutant : CarburantCarnet;
+  carnet_depense : DepenseCarnet;
+  carnet_entretien : EntretienCarnet;
+  carnet_trajet : TrajetCarnet;
+  carnet_odometer : OdometerCarnet;
 
   date_depensee: Date;
 
@@ -35,10 +43,9 @@ export class CarnetEntretienComponent implements OnInit {
 
   Vehicules: Vehicule[] = [];
   clientt: Client;
-  selectedVehicule: Vehicule ;
   specialisations: Specialisation[] = [];
+  specialisationss: String[];
   detailsspecialisation: DetailSpecialisation[] = [];
-  selectedMarque: DetailSpecialisation[] = null;
   selectedModel : DetailSpecialisation;
     detailss: DetailSpecialisation[] = [];
     depences: string[] = ['Fine' , 'Insurance' , 'MOT' ,'Parking','Tax','Toll'];
@@ -87,6 +94,11 @@ validationMessages = {
     'required':      'inserer le kilometrage',
     // tslint:disable-next-line: object-literal-key-quotes
     'minlength': 'au moins 3 lettre'
+  },
+  'odometer_entretien': {
+    // tslint:disable-next-line: object-literal-key-quotes
+    'required':      'inserer le kilometrage',
+    // tslint:disable-next-line: object-literal-key-quotes
   },
   'quantite_carburant': {
     // tslint:disable-next-line: object-literal-key-quotes
@@ -153,29 +165,58 @@ validationMessages = {
 
 
 
+//////////////////////////////////les select /////////////////////////////////
+  selectvec_carburant: Vehicule;  selectedVehicule_carburant: Vehicule ;
+  selectvec_depense: Vehicule;  selectedVehicule_depense: Vehicule ;
+  selectvec_entretien: Vehicule;  selectedVehicule_entretien: Vehicule ;
+  selectvec_trajet: Vehicule;  selectedVehicule_trajet: Vehicule ;
+  selectvec_odometer: Vehicule;  selectedVehicule_odometer: Vehicule ;
 
-  selectvec: Vehicule;
-  selectspec: DetailSpecialisation[] = [];
+  selected_depense : String ; selected_d;
+
+  selectspec: String;
   selectAge: Specialisation;
   selectmodelx : DetailSpecialisation;
-  getVehicule(){
+  setVehicule_carburant(){
+    this.selectvec_carburant = this.selectedVehicule_carburant;console.log(this.selectvec_carburant);}
+    setVehicule_entretien(){
+      this.selectvec_entretien = this.selectedVehicule_entretien;console.log(this.selectvec_entretien);}
+      setVehicule_depense(){
+        this.selectvec_depense = this.selectedVehicule_depense;console.log(this.selectvec_depense);}
+        setVehicule_trajet(){
+          this.selectvec_trajet = this.selectedVehicule_trajet;console.log(this.selectvec_trajet);}
+          setVehicule_odometer(){
+            this.selectvec_odometer = this.selectedVehicule_odometer;console.log(this.selectvec_odometer);}
+  setspec(){
 
-    this.selectvec = this.selectedVehicule;
-    console.log(this.selectvec);
-
-
-  }
-  getspec(){
-
-    this.selectspec = this.selectedMarque ;
+    this.selectspec = this.specialisationss.toString() ;
     console.log(this.selectspec);
 
+  }
+
+  setspecialisation(){
+    this.selectspec = this.specialisationss.toString() ;
+    console.log(this.selectspec);
   }
   setModelValue(){
     this.selectmodelx = this.selectedModel;
     console.log(this.selectmodelx);
 
   }
+
+  setDepense() {
+    this.selected_depense = this.selected_d;
+    console.log(this.selected_depense);
+
+  }
+
+  setSpecialisationValue(){
+
+  }
+
+  //////////////////////////////////////////////////////////////////////////
+
+
 
   ////////////////////////////////////// create form /////////////////////////////////////////
   CreateVehiculeForm(){
@@ -199,6 +240,7 @@ this.onValueChanged();
   prix_entretien: ['' , [Validators.required], [Validators.minLength(2)], [Validators.pattern]],
   note_entretien: ['' , [Validators.required]],
   specialisations: ['' , [Validators.required]],
+  odometer_entretien : ['' , [Validators.required]],
 
     });
     this.form_entretien.valueChanges
@@ -255,6 +297,7 @@ this.onValueChanged_odometer();
       prix_depense: [''],
       note_depense: [''],
       odometer_depense: [''],
+      depense: [''],
 
     });
     this.form_depense.valueChanges
@@ -428,7 +471,7 @@ this.onValueChanged_trajet();
 
   //////////////////////ON SUBMIT/////////////////////////////////////////////
   onsubmit(){
-    this.form.value.vehicule = this.selectvec;
+    this.form.value.vehicule = this.selectvec_carburant;
     this.form.value.specialisations = this.selectspec ;
 
      console.log(this.form.value);
@@ -437,10 +480,17 @@ this.onValueChanged_trajet();
    }
 
    onsubmit_entretien(){
+    this.form_entretien.value.specialisations = this.selectspec;
+    this.form_entretien.value.vehicule = this.selectvec_entretien;
+    this.carnet_entretien = this.form_entretien.value ;
+    console.log(this.form_entretien.value);
+     this.carnetentretienService.ajouter_entretien(this.carnet_entretien).subscribe(
+       data => {
+         console.log(data);} );
    }
 
    onsubmit_carburant():void{
-    this.form_carburant.value.vehicule = this.selectvec;
+    this.form_carburant.value.vehicule = this.selectvec_carburant;
    this.carnet_carbutant = this.form_carburant.value ;
    console.log(this.form_carburant.value);
     this.carnetentretienService.ajouter_carburant(this.carnet_carbutant).subscribe(
@@ -449,10 +499,32 @@ this.onValueChanged_trajet();
 
   }
   onsubmit_depense(){
+    this.form_depense.value.depense =this.selected_depense;
+    this.form_depense.value.vehicule = this.selectvec_depense;
+    this.carnet_depense = this.form_depense.value ;
+    console.log(this.form_depense.value);
+     this.carnetentretienService.ajouter_depense(this.carnet_depense).subscribe(
+       data => {
+         console.log(data);} );
   }
   onsubmit_trajet(){
+
+    this.form_trajet.value.vehicule = this.selectvec_trajet;
+    this.carnet_trajet = this.form_trajet.value ;
+    console.log(this.form_trajet.value);
+     this.carnetentretienService.ajouter_trajet(this.carnet_trajet).subscribe(
+       data => {
+         console.log(data);} );
+
   }
   onsubmit_odometer(){
+
+    this.form_odometer.value.vehicule = this.selectvec_odometer;
+    this.carnet_odometer = this.form_odometer.value ;
+    console.log(this.form_odometer.value);
+     this.carnetentretienService.ajouter_odometer(this.carnet_odometer).subscribe(
+       data => {
+         console.log(data);} );
   }
 
 

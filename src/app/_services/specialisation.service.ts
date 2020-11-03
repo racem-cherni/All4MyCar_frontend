@@ -26,4 +26,10 @@ getspecialisations(): Observable<any> {
     return this.http.get(searchModelUrl, {
       headers: this.header});
   }
+
+  getdetailspecialisationn() : Observable<any> {
+    const searchModelUrl = `${this.baseUrluser}/getdetailspecialisationn`;
+    return this.http.get(searchModelUrl, {
+      headers: this.header});
+  }
 }
