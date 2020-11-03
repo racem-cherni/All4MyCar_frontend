@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CarburantCarnet } from 'src/app/entities/carburant-carnet';
 import { Client } from 'src/app/entities/client';
@@ -13,11 +13,13 @@ import { CarnetEntretienService } from 'src/app/_services/carnet-entretien.servi
 import { ClientService } from 'src/app/_services/client.service';
 import { SpecialisationService } from 'src/app/_services/specialisation.service';
 import { VehiculesService } from 'src/app/_services/vehicules.service';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-carnet-entretien',
   templateUrl: './carnet-entretien.component.html',
-  styleUrls: ['./carnet-entretien.component.css']
+  styleUrls: ['./carnet-entretien.component.css'],
+  providers: [MessageService]
 })
 export class CarnetEntretienComponent implements OnInit {
 
@@ -39,6 +41,7 @@ export class CarnetEntretienComponent implements OnInit {
 
   date_carburantt: Date;
 
+  sysdate : Date= new Date();
 
 
   Vehicules: Vehicule[] = [];
@@ -55,6 +58,11 @@ export class CarnetEntretienComponent implements OnInit {
   form_trajet : FormGroup;
   form_depense : FormGroup;
   form_odometer : FormGroup;
+  @ViewChild('cform',) carburantFormDirective ;
+  @ViewChild('eform') entretienFormDirective ;
+  @ViewChild('tform') trajetFormDirective ;
+  @ViewChild('oform') odometerFormDirective ;
+  @ViewChild('dform') depenseFormDirective ;
 
   formErrors = {
  // tslint:disable-next-line: object-literal-key-quotes
@@ -74,7 +82,41 @@ export class CarnetEntretienComponent implements OnInit {
  // tslint:disable-next-line: object-literal-key-quotes
  'centre_entretien': '',
  // tslint:disable-next-line: object-literal-key-quotes
-
+ 'odometer_entretien': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'specialisations': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'prix_entretien': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'date_depense': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'odometer_depense': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'depense': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'prix_depense': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'date_odometer': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'odomoeter_cal': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'date_depart': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'lieux_depart': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'heure_depart': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'date_arrive': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'lieux_arrive': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'heure_arrive': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'distance_trajet': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'duree_trajet': '',
+ // tslint:disable-next-line: object-literal-key-quotes
+ 'vitesse_trajet': '',
 };
 validationMessages = {
    // tslint:disable-next-line: object-literal-key-quotes
@@ -89,51 +131,165 @@ validationMessages = {
     'required':      'choisir une vehicule',
     // tslint:disable-next-line: object-literal-key-quotes
   },
-  'odometer_carburant': {
+    // tslint:disable-next-line: object-literal-key-quotes
+    'odometer_carburant': {
     // tslint:disable-next-line: object-literal-key-quotes
     'required':      'inserer le kilometrage',
     // tslint:disable-next-line: object-literal-key-quotes
     'minlength': 'au moins 3 lettre'
   },
-  'odometer_entretien': {
     // tslint:disable-next-line: object-literal-key-quotes
-    'required':      'inserer le kilometrage',
-    // tslint:disable-next-line: object-literal-key-quotes
-  },
-  'quantite_carburant': {
+   'quantite_carburant': {
     // tslint:disable-next-line: object-literal-key-quotes
     'required':      'cin is required.',
     // tslint:disable-next-line: object-literal-key-quotes
     'pattern':       'cin must contain only numbers.',
     // tslint:disable-next-line: object-literal-key-quotes
   },
-  'station_carburant': {
+    // tslint:disable-next-line: object-literal-key-quotes
+     'station_carburant': {
     // tslint:disable-next-line: object-literal-key-quotes
     'required':      'inserer la station',
     // tslint:disable-next-line: object-literal-key-quotes
     'minlength':   'cin must contain  3 numbers',
   },
-  'depense_carburant': {
+    // tslint:disable-next-line: object-literal-key-quotes
+   'depense_carburant': {
     // tslint:disable-next-line: object-literal-key-quotes
     'required':      'inserer le prix totale',
     // tslint:disable-next-line: object-literal-key-quotes
     'minlength': 'au moins 3 lettre'
   },
-  'date_entretien': {
+    // tslint:disable-next-line: object-literal-key-quotes
+   'date_entretien': {
     // tslint:disable-next-line: object-literal-key-quotes
     'required':      'la date est nécessaire.',
     // tslint:disable-next-line: object-literal-key-quotes
   },
-  'centre_entretien': {
+    // tslint:disable-next-line: object-literal-key-quotes
+   'centre_entretien': {
     // tslint:disable-next-line: object-literal-key-quotes
     'required':      'inserer le centre de service.',
     // tslint:disable-next-line: object-literal-key-quotes
     'minlength': 'au moins 3 lettre'
   },
+    // tslint:disable-next-line: object-literal-key-quotes
+    'odometer_entretien': {
+      // tslint:disable-next-line: object-literal-key-quotes
+    'required':      'inserer le kilometrage',
+    // tslint:disable-next-line: object-literal-key-quotes
+  },
+    // tslint:disable-next-line: object-literal-key-quotes
+   'specialisations': {
+   // tslint:disable-next-line: object-literal-key-quotes
+  'required':      'inserer entretien',
+  // tslint:disable-next-line: object-literal-key-quotes
+},
+  // tslint:disable-next-line: object-literal-key-quotes
+  'prix_entretien': {
+   // tslint:disable-next-line: object-literal-key-quotes
+   'required':      'inserer le prix totale',
+  // tslint:disable-next-line: object-literal-key-quotes
+ },
+   // tslint:disable-next-line: object-literal-key-quotes
+  'date_depense': {
+  // tslint:disable-next-line: object-literal-key-quotes
+  'required':      'inserer la date',
+// tslint:disable-next-line: object-literal-key-quotes'
+
+ },
+   // tslint:disable-next-line: object-literal-key-quotes
+  'odometer_depense': {
+    // tslint:disable-next-line: object-literal-key-quotes
+  'required':      'inserer kilometrage',
+  // tslint:disable-next-line: object-literal-key-quotes
+ },
+  // tslint:disable-next-line: object-literal-key-quotes
+  'depense': {
+    // tslint:disable-next-line: object-literal-key-quotes
+  'required':      'choisir depense',
+  // tslint:disable-next-line: object-literal-key-quotes
+ },
+  // tslint:disable-next-line: object-literal-key-quotes
+  'prix_depense': {
+    // tslint:disable-next-line: object-literal-key-quotes
+  'required':      'inserer prix',
+  // tslint:disable-next-line: object-literal-key-quotes
+ },
+  // tslint:disable-next-line: object-literal-key-quotes
+  'date_odometer': {
+    // tslint:disable-next-line: object-literal-key-quotes
+  'required':      'inserer date',
+  // tslint:disable-next-line: object-literal-key-quotes
+ },
+  // tslint:disable-next-line: object-literal-key-quotes
+  'odomoeter_cal': {
+    // tslint:disable-next-line: object-literal-key-quotes
+  'required':      'inserer kilometrage',
+  // tslint:disable-next-line: object-literal-key-quotes
+ },
+  // tslint:disable-next-line: object-literal-key-quotes
+  'date_depart': {
+  // tslint:disable-next-line: object-literal-key-quotes
+'required':      'inserer date depart',
+// tslint:disable-next-line: object-literal-key-quotes
+},
+  // tslint:disable-next-line: object-literal-key-quotes
+  'lieux_depart': {
+  // tslint:disable-next-line: object-literal-key-quotes
+'required':      'inserer lieu depart',
+// tslint:disable-next-line: object-literal-key-quotes
+'minlength': 'au moins 3 lettre'
+// tslint:disable-next-line: object-literal-key-quotes
+},
+  // tslint:disable-next-line: object-literal-key-quotes
+ 'heure_depart': {
+  // tslint:disable-next-line: object-literal-key-quotes
+'required':      'inserer heure depart',
+// tslint:disable-next-line: object-literal-key-quotes
+},
+  // tslint:disable-next-line: object-literal-key-quotes
+  'date_arrive': {
+  // tslint:disable-next-line: object-literal-key-quotes
+'required':      'inserer date arrivee',
+// tslint:disable-next-line: object-literal-key-quotes
+},
+  // tslint:disable-next-line: object-literal-key-quotes
+  'lieux_arrive': {
+  // tslint:disable-next-line: object-literal-key-quotes
+'required':      'inserer lieu arrivee',
+// tslint:disable-next-line: object-literal-key-quotes
+'minlength': 'au moins 3 lettre'
+// tslint:disable-next-line: object-literal-key-quotes
+},
+  // tslint:disable-next-line: object-literal-key-quotes
+  'heure_arrive': {
+  // tslint:disable-next-line: object-literal-key-quotes
+'required':      'inserer heure arrive',
+// tslint:disable-next-line: object-literal-key-quotes
+},
+  // tslint:disable-next-line: object-literal-key-quotes
+  'distance_trajet': {
+  // tslint:disable-next-line: object-literal-key-quotes
+'required':      'inserer distance parcouru',
+// tslint:disable-next-line: object-literal-key-quotes
+},
+  // tslint:disable-next-line: object-literal-key-quotes
+  'duree_trajet': {
+  // tslint:disable-next-line: object-literal-key-quotes
+'required':      'inserer duree du trajet',
+// tslint:disable-next-line: object-literal-key-quotes
+},
+  // tslint:disable-next-line: object-literal-key-quotes
+  'vitesse_trajet': {
+  // tslint:disable-next-line: object-literal-key-quotes
+'required':      'inserer vitesse du trajet',
+// tslint:disable-next-line: object-literal-key-quotes
+},
 };
 
   constructor(private fb: FormBuilder,private clientService: ClientService , private vehiculesService: VehiculesService , private specialisationService: SpecialisationService,
-    private carnetentretienService: CarnetEntretienService) { }
+    private carnetentretienService: CarnetEntretienService,private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.date_entretienn = (new Date());
@@ -237,8 +393,8 @@ this.onValueChanged();
   date_entretien: ['' , [Validators.required]],
   centre_entretien: ['' , [Validators.required] ,[Validators.minLength(3)]],
   vehicule: ['' , [Validators.required]],
-  prix_entretien: ['' , [Validators.required], [Validators.minLength(2)], [Validators.pattern]],
-  note_entretien: ['' , [Validators.required]],
+  prix_entretien: ['' , [Validators.required], [Validators.minLength(2)]],
+  note_entretien: '',
   specialisations: ['' , [Validators.required]],
   odometer_entretien : ['' , [Validators.required]],
 
@@ -275,8 +431,8 @@ this.onValueChanged_carburant();
 
   CreateForm_odometer() {
     this.form_odometer = this.fb.group({
-          date_odometer: [''],
-          odomoeter_cal: [''],
+          date_odometer: ['' , [Validators.required]],
+          odomoeter_cal: ['' , [Validators.required]],
           note_odometer: [''],
 
     });
@@ -293,11 +449,11 @@ this.onValueChanged_odometer();
     this.form_depense = this.fb.group({
 
 
-      date_depense: [''],
-      prix_depense: [''],
+      date_depense: ['' , [Validators.required]],
+      prix_depense: ['' , [Validators.required]],
       note_depense: [''],
-      odometer_depense: [''],
-      depense: [''],
+      odometer_depense: ['' , [Validators.required]],
+      depense: ['' , [Validators.required]],
 
     });
     this.form_depense.valueChanges
@@ -308,18 +464,18 @@ this.onValueChanged_depense();
   }
   CreateForm_trajet() {
     this.form_trajet = this.fb.group({
-      heure_depart: [''],
-      date_depart : [''],
-      lieux_depart : [''],
+      heure_depart: ['' , [Validators.required]],
+      date_depart : ['' , [Validators.required]],
+      lieux_depart : ['' , [Validators.required], [Validators.minLength(3)]],
 
-      heure_arrive: [''],
-      date_arrive : [''],
-      lieux_arrive: [''],
-      taxe_trajet: [''],
+      heure_arrive: ['' , [Validators.required]],
+      date_arrive : ['' , [Validators.required]],
+      lieux_arrive: ['' , [Validators.required], [Validators.minLength(3)]],
+      taxe_trajet: ['' , [Validators.required]],
       note_trajet: [''],
-      distance_trajet: [''],
-      duree_trajet: [''],
-      vitesse_trajet: [''],
+      distance_trajet: ['' , [Validators.required]],
+      duree_trajet: ['' , [Validators.required]],
+      vitesse_trajet: ['' , [Validators.required]],
 
     });
     this.form_trajet.valueChanges
@@ -487,6 +643,10 @@ this.onValueChanged_trajet();
      this.carnetentretienService.ajouter_entretien(this.carnet_entretien).subscribe(
        data => {
          console.log(data);} );
+         this.form_entretien.reset();
+         this.entretienDialog = false ;
+         this.messageService.add({severity:'info', summary: 'Info', detail: 'entretien ajouté '});
+
    }
 
    onsubmit_carburant():void{
@@ -496,6 +656,10 @@ this.onValueChanged_trajet();
     this.carnetentretienService.ajouter_carburant(this.carnet_carbutant).subscribe(
       data => {
         console.log(data);} );
+      //  this.form_carburant.reset();
+        this.carburantFormDirective.reset();
+        this.carburantDialog = false;
+        this.messageService.add({severity:'info', summary: 'Info', detail: 'carburant ajouté '});
 
   }
   onsubmit_depense(){
@@ -506,6 +670,10 @@ this.onValueChanged_trajet();
      this.carnetentretienService.ajouter_depense(this.carnet_depense).subscribe(
        data => {
          console.log(data);} );
+         this.form_depense.reset();
+         this.depenseDialog = false ;
+         this.messageService.add({severity:'info', summary: 'Info', detail: 'depense ajouté '});
+
   }
   onsubmit_trajet(){
 
@@ -515,6 +683,10 @@ this.onValueChanged_trajet();
      this.carnetentretienService.ajouter_trajet(this.carnet_trajet).subscribe(
        data => {
          console.log(data);} );
+         this.form_trajet.reset();
+         this.trajetDialog = false ;
+         this.messageService.add({severity:'info', summary: 'Info', detail: 'trajet ajouté '});
+
 
   }
   onsubmit_odometer(){
@@ -525,6 +697,10 @@ this.onValueChanged_trajet();
      this.carnetentretienService.ajouter_odometer(this.carnet_odometer).subscribe(
        data => {
          console.log(data);} );
+         this.form_odometer.reset();
+         this.odometerDialog = false ;
+         this.messageService.add({severity:'info', summary: 'Info', detail: 'odometer ajouté '});
+
   }
 
 

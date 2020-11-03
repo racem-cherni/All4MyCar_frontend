@@ -3,6 +3,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  width: 60%;
 }
 </style>
 <div class="block-header block-header--has-breadcrumb block-header--has-title">
@@ -18,8 +19,10 @@
 <mat-tab-group  mat-align-tabs="center" >
   <mat-tab label="Tableau de board" >
 <div class="block" style="overflow-y: hidden;max-height:  70vh;">
+
   <div class="container container--max--lg">
     <div class="card contacts">
+
       <br>
 
       <div class="card-body card-body--padding--2">
@@ -34,6 +37,7 @@
         </div>
   </div>
     <div class="container container--max--lg">
+      <p-toast></p-toast>
       <div class="card contacts">
         <br>
         <h5 class="offset-5">Entrées de journal récents</h5>
@@ -135,14 +139,14 @@
 
 </div>
 <div class="block-space block-space--layout--after-header"></div>
-<form class="block-finder__form " novalidate [formGroup]="form_carburant" (ngSubmit)="onsubmit_carburant()">
+<form class="block-finder__form " novalidate [formGroup]="form_carburant" #cform="ngForm" (ngSubmit)="onsubmit_carburant()">
   <p-dialog  [(visible)]="carburantDialog" [style]="{width: '30vw'}" header="Remplir carburant" [modal]="true" styleClass="p-fluid" [draggable]="false"
   [resizable]="false" [baseZIndex]="10000">
 
   <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;
 
     <mat-form-field class="dateform" >
-      <input matInput formControlName="date_carburant"  [matDatepicker]="picker" placeholder="date"  required  >
+      <input matInput formControlName="date_carburant"  [matDatepicker]="picker" placeholder="date" [(ngModel)]="sysdate"  required  >
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       <mat-error *ngIf="formErrors.date_carburant">{{formErrors.date_carburant}}</mat-error>
@@ -182,14 +186,14 @@
 
 
 <mat-form-field class="dateform">
-<input matInput formControlName="depense_carburant" type="number" placeholder="Prix total"  required   >
+<input matInput formControlName="depense_carburant" type="number" placeholder="Prix total (DT)"  required   >
 <mat-error *ngIf="formErrors.depense_carburant">{{formErrors.depense_carburant}}</mat-error>
 </mat-form-field>
 </div>
 
 <mat-form-field class="example-detail" >
 <mat-label>Notes</mat-label>
-<input matInput #message formControlName="note_carburant" maxlength="256" placeholder="ajouter des informations supplimentaires">
+<input matInput #message formControlName="note_carburant" type="text" maxlength="256" placeholder="ajouter des informations supplimentaires">
 <mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
 <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
 </mat-form-field>
@@ -203,14 +207,14 @@
 </form>
 
 
-<form class="block-finder__form " novalidate [formGroup]="form_entretien" (ngSubmit)="onsubmit_entretien()">
+<form class="block-finder__form " novalidate [formGroup]="form_entretien" #eform="ngForm" (ngSubmit)="onsubmit_entretien()">
   <p-dialog [(visible)]="entretienDialog" [style]="{width: '30vw'}" header="Ajouter entretien" [modal]="true" styleClass="p-fluid" [draggable]="false"
   [resizable]="false" [baseZIndex]="10000">
 
   <div class="row">&nbsp;&nbsp;&nbsp;
 
   <mat-form-field class="dateform">
-    <input matInput formControlName="date_entretien"  [matDatepicker]="picker_entretien" placeholder="Date entretien"  required  >
+    <input matInput formControlName="date_entretien"  [matDatepicker]="picker_entretien" placeholder="Date entretien" [(ngModel)]="sysdate"  required  >
     <mat-datepicker-toggle matSuffix [for]="picker_entretien"></mat-datepicker-toggle>
     <mat-datepicker #picker_entretien></mat-datepicker>
     <mat-error *ngIf="formErrors.date_entretien">{{formErrors.date_entretien}}</mat-error>
@@ -218,6 +222,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <mat-form-field class="dateform"  >
       <input matInput formControlName="odometer_entretien" type="number"   placeholder="kilométrage (km)"  required >
+      <mat-error *ngIf="formErrors.odometer_entretien">{{formErrors.odometer_entretien}}</mat-error>
   </mat-form-field>
 </div>
 
@@ -226,11 +231,12 @@
           <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
           <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
             [(ngModel)]="selectedVehicule_entretien" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-            (ngModelChange)="setVehicule_entretien()">
+            (ngModelChange)="setVehicule_entretien()" required>
             <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
               {{marque.model.marque.name}} {{marque.model.name}}
             </mat-option>
           </mat-select>
+          <mat-error *ngIf="formErrors.vehicule">{{formErrors.vehicule}}</mat-error>
         </mat-form-field>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -238,13 +244,14 @@
           <mat-label> &nbsp;&nbsp;&nbsp; Entretien et réparation</mat-label>
           <mat-select  matNativeControl id="abc" [(ngModel)]="specialisationss"
             formControlName="specialisations" [ngModelOptions]="{standalone: true}" multiple
-            (ngModelChange)="setspecialisation()">
+            (ngModelChange)="setspecialisation()" required>
             <mat-optgroup *ngFor="let group of specialisations" [label]="group.name">
               <mat-option *ngFor="let pokemon of group.detailspecialisations" [value]="pokemon.name">
                 {{pokemon.name}}
               </mat-option>
             </mat-optgroup>
           </mat-select>
+          <mat-error *ngIf="formErrors.specialisations">{{formErrors.specialisations}}</mat-error>
         </mat-form-field> </div>
         <div class="row">&nbsp;&nbsp;&nbsp;
         <mat-form-field class="dateform"  >
@@ -254,7 +261,9 @@
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
           <mat-form-field class="dateform">
-            <input matInput formControlName="prix_entretien" type="number" placeholder="Prix total"  required   >
+            <input matInput formControlName="prix_entretien" type="number" placeholder="Prix total (DT)"  required   >
+            <mat-error *ngIf="formErrors.prix_entretien">{{formErrors.prix_entretien}}</mat-error>
+
             </mat-form-field>
             </div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -274,17 +283,18 @@
   </form>
 
 
-  <form class="block-finder__form " novalidate [formGroup]="form_depense" (ngSubmit)="onsubmit_depense()">
+  <form class="block-finder__form " novalidate [formGroup]="form_depense" #dform="ngForm" (ngSubmit)="onsubmit_depense()">
 
     <p-dialog [(visible)]="depenseDialog" [style]="{width: '30vw'}" header="Ajouter depense" [modal]="true" styleClass="p-fluid" [draggable]="false"
     [resizable]="false" [baseZIndex]="10000">
     <div class="row">&nbsp;&nbsp;&nbsp;
 
       <mat-form-field class="dateform">
-        <input matInput formControlName="date_depense"  [matDatepicker]="picker_depense" placeholder="Date depense"  required  >
+        <input matInput formControlName="date_depense"  [matDatepicker]="picker_depense" placeholder="Date depense" [(ngModel)]="sysdate"  required  >
         <mat-datepicker-toggle matSuffix [for]="picker_depense"></mat-datepicker-toggle>
         <mat-datepicker #picker_depense></mat-datepicker>
-        </mat-form-field>
+        <mat-error *ngIf="formErrors.date_depense">{{formErrors.date_depense}}</mat-error>
+  </mat-form-field>
         </div>
 
      <div class="row">&nbsp;&nbsp;&nbsp;
@@ -292,15 +302,19 @@
         <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
         <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
           [(ngModel)]="selectedVehicule_depense" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-          (ngModelChange)="setVehicule_depense()">
+          (ngModelChange)="setVehicule_depense()" required >
           <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
             {{marque.model.marque.name}} {{marque.model.name}}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="formErrors.vehicule">{{formErrors.vehicule}}</mat-error>
+
       </mat-form-field>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <mat-form-field class="dateform"  >
         <input matInput formControlName="odometer_depense" type="number"   placeholder="kilométrage (km)"  required >
+        <mat-error *ngIf="formErrors.odometer_depense">{{formErrors.odometer_depense}}</mat-error>
+
     </mat-form-field>
 
 
@@ -316,19 +330,22 @@
             <mat-label> Dépenses </mat-label>
             <mat-select  matNativeControl id="abc" [(ngModel)]="selected_d"  (ngModelChange)="setDepense()"
               formControlName="depense" [ngModelOptions]="{standalone: true}"
-              >
-       
+              required >
+
                 <mat-option *ngFor="let pokemon of depences" [value]="pokemon">
                   {{pokemon}}
                 </mat-option>
             </mat-select>
+            <mat-error *ngIf="formErrors.depense">{{formErrors.depense}}</mat-error>
+
           </mat-form-field>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
 
 <mat-form-field class="dateform">
-  <input matInput formControlName="prix_depense" type="number" placeholder="Prix total"  required   >
+  <input matInput formControlName="prix_depense" type="number" placeholder="Prix total (DT)"  required   >
+  <mat-error *ngIf="formErrors.prix_depense">{{formErrors.prix_depense}}</mat-error>
   </mat-form-field>
         </div>
         <mat-form-field class="example-detail" >
@@ -346,7 +363,7 @@
     </p-dialog>
     </form>
 
-    <form class="block-finder__form " novalidate [formGroup]="form_odometer" (ngSubmit)="onsubmit_odometer()">
+    <form class="block-finder__form " novalidate [formGroup]="form_odometer" #oform="ngForm" (ngSubmit)="onsubmit_odometer()">
 
       <p-dialog [(visible)]="odometerDialog" [style]="{width: '30vw'}" header="Ajouter odometer" [modal]="true" styleClass="p-fluid" [draggable]="false"
       [resizable]="false" [baseZIndex]="10000">
@@ -355,9 +372,11 @@
         &nbsp;&nbsp;&nbsp;
 
         <mat-form-field class="dateform">
-          <input matInput formControlName="date_odometer"  [matDatepicker]="picker_odometer" placeholder="date"  required  >
+          <input matInput formControlName="date_odometer"  [matDatepicker]="picker_odometer" placeholder="date" [(ngModel)]="sysdate"   required  >
           <mat-datepicker-toggle matSuffix [for]="picker_odometer"></mat-datepicker-toggle>
           <mat-datepicker #picker_odometer></mat-datepicker>
+          <mat-error *ngIf="formErrors.date_odometer">{{formErrors.date_odometer}}</mat-error>
+
           </mat-form-field>
     &nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -368,15 +387,17 @@
       <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
       <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
         [(ngModel)]="selectedVehicule_odometer" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-        (ngModelChange)="setVehicule_odometer()">
+        (ngModelChange)="setVehicule_odometer()" required>
         <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
           {{marque.model.marque.name}} {{marque.model.name}}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="formErrors.vehicule">{{formErrors.vehicule}}</mat-error>
     </mat-form-field>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <mat-form-field class="dateform" >
-      <input matInput formControlName="odomoeter_cal" type="number"   placeholder="Kilométrage(km)"  required >
+      <input matInput formControlName="odomoeter_cal" type="number"   placeholder="Kilométrage (km)"  required >
+      <mat-error *ngIf="formErrors.odomoeter_cal">{{formErrors.odomoeter_cal}}</mat-error>
 
       </mat-form-field>
 
@@ -401,7 +422,7 @@
       </form>
 
 
-      <form class="block-finder__form " novalidate [formGroup]="form_trajet" (ngSubmit)="onsubmit_trajet()">
+      <form class="block-finder__form " novalidate [formGroup]="form_trajet" #tform="ngForm" (ngSubmit)="onsubmit_trajet()">
 
         <p-dialog [(visible)]="trajetDialog"  [contentStyle]="{'overflow-y': 'scroll', 'overflow-x': 'hidden',
         'max-height': '40vh','min-height':'250px'}" header="Ajouter trajet" [modal]="true" styleClass="p-fluid" [draggable]="false"
@@ -411,11 +432,13 @@
             <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
             <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
               [(ngModel)]="selectedVehicule_trajet" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-              (ngModelChange)="setVehicule_trajet()">
+              (ngModelChange)="setVehicule_trajet()" required >
               <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
                 {{marque.model.marque.name}} {{marque.model.name}}
               </mat-option>
             </mat-select>
+            <mat-error *ngIf="formErrors.vehicule">{{formErrors.vehicule}}</mat-error>
+
           </mat-form-field>
       </div>
         <div class="vehicle-form__divider">Depart</div>
@@ -427,15 +450,21 @@
                 <input matInput formControlName="date_depart"  [matDatepicker]="picker_dd" placeholder="Date débart"  required  >
                 <mat-datepicker-toggle matSuffix [for]="picker_dd"></mat-datepicker-toggle>
                 <mat-datepicker #picker_dd></mat-datepicker>
+                <mat-error *ngIf="formErrors.date_depart">{{formErrors.date_depart}}</mat-error>
                 </mat-form-field>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <mat-form-field class="half-width" >
-                  <input matInput formControlName="lieux_depart" type="text"  placeholder="lieu départ"   >
+                  <input matInput formControlName="lieux_depart" type="text"  placeholder="lieu départ" required   >
+                  <mat-error *ngIf="formErrors.lieux_depart">{{formErrors.lieux_depart}}</mat-error>
+
                   </mat-form-field>
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <div >
                     <br/>
-                    <p-calendar  formControlName="heure_depart" placeholder="Heure départ" [timeOnly]="true"></p-calendar>
+                    <p-calendar  formControlName="heure_depart" placeholder="Heure départ" [timeOnly]="true" required>
+                      <mat-error *ngIf="formErrors.heure_depart">{{formErrors.heure_depart}}</mat-error>
+
+                    </p-calendar>
     </div>
             </div>
            <br/>
@@ -446,28 +475,39 @@
                 <input matInput formControlName="date_arrive"  [matDatepicker]="picker_da" placeholder="Date arrivé"  required  >
                 <mat-datepicker-toggle matSuffix [for]="picker_da"></mat-datepicker-toggle>
                 <mat-datepicker #picker_da></mat-datepicker>
+                <mat-error *ngIf="formErrors.date_arrive">{{formErrors.date_arrive}}</mat-error>
+
                 </mat-form-field>                  &nbsp;&nbsp;&nbsp;&nbsp;
 
                 <mat-form-field class="half-width" >
-                  <input matInput formControlName="lieux_arrive" type="text"  placeholder="lieu arrivée"   >
+                  <input matInput formControlName="lieux_arrive" type="text"  placeholder="lieu arrivée" required   >
+                  <mat-error *ngIf="formErrors.lieux_arrive">{{formErrors.lieux_arrive}}</mat-error>
+
                   </mat-form-field>                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <div >
                     <br/>
-                  <p-calendar  formControlName="heure_arrive" placeholder="Heure arrivée" [timeOnly]="true"></p-calendar>
+                  <p-calendar  formControlName="heure_arrive" placeholder="Heure arrivée" [timeOnly]="true" required>
+                    <mat-error *ngIf="formErrors.heure_arrive">{{formErrors.heure_arrive}}</mat-error>
+
+                  </p-calendar>
  </div>
             </div>
             <div class="vehicle-form__divider">Trajet information</div>
             <div class="row">
               &nbsp;&nbsp;
               <mat-form-field  >
-                <input matInput formControlName="distance_trajet" type="number"   placeholder="Distance parcourue"  required >
+                <input matInput formControlName="distance_trajet" type="number"   placeholder="Distance parcourue (KM)"  required >
+                <mat-error *ngIf="formErrors.distance_trajet">{{formErrors.distance_trajet}}</mat-error>
+
                 </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <mat-form-field  >
                   <input matInput formControlName="duree_trajet" type="number"   placeholder="Temps du trajet"  required >
+                  <mat-error *ngIf="formErrors.duree_trajet">{{formErrors.duree_trajet}}</mat-error>
 
                   </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <mat-form-field  >
                     <input matInput formControlName="vitesse_trajet" type="number"   placeholder="moy vitesse"  required >
+                    <mat-error *ngIf="formErrors.vitesse_trajet">{{formErrors.vitesse_trajet}}</mat-error>
 
                     </mat-form-field>
               </div>
@@ -476,7 +516,7 @@
               &nbsp;&nbsp;&nbsp;
 
             <mat-form-field  class="half-width">
-              <input matInput formControlName="taxe_trajet" type="number"   placeholder="Taxe"   >
+              <input matInput formControlName="taxe_trajet" type="number"   placeholder="Autre Taxe"   >
 
               </mat-form-field>
             </div>
