@@ -6,6 +6,8 @@ import { DepenseCarnet } from '../entities/depense-carnet';
 import { EntretienCarnet } from '../entities/entretien-carnet';
 import { OdometerCarnet } from '../entities/odometer-carnet';
 import { TrajetCarnet } from '../entities/trajet-carnet';
+import { Vehicule } from '../entities/vehicule';
+
 import { TokenStorageService } from './token-storage.service';
 
 
@@ -25,7 +27,7 @@ export class CarnetEntretienService {
 });
 
 private baseUrluser = 'http://localhost:8081/api';
-
+vehicule: Vehicule ;
 
 ajouter_carburant( carburant : CarburantCarnet): Observable<any> {
   return this.http.post( this.baseUrluser + '/ajouter_carburant/' ,carburant
@@ -51,7 +53,21 @@ ajouter_odometer( odometer : OdometerCarnet): Observable<any> {
   return this.http.post( this.baseUrluser + '/ajouter_odometer/' ,odometer
   ,{ headers: this.header});
 }
+getAllHistorique(): Observable<any> {
 
+  return this.http.get(this.baseUrluser + '/gethistorique', {
+    headers: this.header});
+}
+getPremiersHistorique(): Observable<any> {
+
+  return this.http.get(this.baseUrluser + '/getpremiershistorique', {
+    headers: this.header});
+}
+getHistoriqueByVehicule(vehicule): Observable<any> {
+
+  return this.http.get(this.baseUrluser + '/gethistoriquebyVehicule'+`${vehicule}`, {
+    headers: this.header});
+}
 
 
 }
