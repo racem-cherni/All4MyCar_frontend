@@ -14,6 +14,7 @@ import { ClientService } from 'src/app/_services/client.service';
 import { SpecialisationService } from 'src/app/_services/specialisation.service';
 import { VehiculesService } from 'src/app/_services/vehicules.service';
 import {MessageService} from 'primeng/api';
+import { Historique } from 'src/app/entities/historique';
 
 @Component({
   selector: 'app-carnet-entretien',
@@ -22,13 +23,13 @@ import {MessageService} from 'primeng/api';
   providers: [MessageService]
 })
 export class CarnetEntretienComponent implements OnInit {
-
+  historique:Historique[]=[];
   entretienDialog: boolean;
   carburantDialog: boolean;
   trajetDialog: boolean;
   odometerDialog: boolean;
   depenseDialog: boolean;
-
+  loading: boolean = true;
   date_entretienn: Date;
   carnet_carbutant : CarburantCarnet;
   carnet_depense : DepenseCarnet;
@@ -292,6 +293,10 @@ validationMessages = {
     private carnetentretienService: CarnetEntretienService,private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.carnetentretienService.getPremiersHistorique()
+    .subscribe((data) => {this.historique = data, console.log(data), this.loading = false; } ,error => console.log(error));
+ 
+
     this.date_entretienn = (new Date());
     this.date_carburantt = (new Date());
     this.date_depensee = (new Date());
@@ -754,4 +759,5 @@ this.onValueChanged_trajet();
 
 
 }
-/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////Historique/////////////////////////
+

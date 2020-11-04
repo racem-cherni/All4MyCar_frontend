@@ -3,7 +3,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 60%;
+  width: 80%;
 }
 </style>
 <div class="block-header block-header--has-breadcrumb block-header--has-title">
@@ -18,7 +18,7 @@
 <div class="fenetre">
 <mat-tab-group  mat-align-tabs="center" >
   <mat-tab label="Tableau de board" >
-<div class="block" style="overflow-y: hidden;max-height:  70vh;">
+<div class="block" style="overflow-y: hidden;min-height:  90vh;">
 
   <div class="container container--max--lg">
     <div class="card contacts">
@@ -40,11 +40,56 @@
       <p-toast></p-toast>
       <div class="card contacts">
         <br>
-        <h5 class="offset-5">Entrées de journal récents</h5>
+        <div style="color: black; width: 80%;" class="vehicle-form__divider offset-1">Entrées de journal récentes</div>
         <div class="card-body card-body--padding--2">
-          <div class="row">
+          <div class="card-body">
+            <div class="table-responsive">
+              <p-table  #dt  [value]="historique"   
+              [rowHover]="true"  [loading]="loading"
+  
+  
+              >
+               
+                <ng-template pTemplate="body"  *ngIf="historique === null">
+                  <tr>                    <td class="text-center"> aucune entretien récente</td>
 
-          </div>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-clt *ngIf="historique !== null">
+                  <tr *ngIf="clt.entretien !== null">
+
+                    <td>
+                      <div class="boxx">
+                      <div class="iconn" >
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-closed-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4 1a1 1 0 0 0-1 1v13H1.5a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2a1 1 0 0 0-1-1H4zm2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                          </svg>
+                    </div>
+                  </div>
+                    
+
+                      </td>
+                    <td>{{clt.emailclt}}</td>
+                    <td>{{clt.date_inscrip}}</td>
+                    <td class="td-actions text-right ">
+                      <button pButton pRipple icon="pi pi-info-circle" class="p-button-rounded p-button-info"  pTooltip="Details" ></button>
+
+                      &nbsp;
+
+                      <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" pTooltip="supprimer" ></button>
+                    </td>
+                  </tr>
+
+
+
+
+                  <!---->
+                </ng-template>
+               
+             
+              </p-table>
+              </div>
+  </div>
           </div>
           </div>
     </div>
@@ -61,7 +106,7 @@
           </svg>
     </div>
     <div class="content">
-    <h3><strong>Remplir carburant</strong></h3>
+    <h3>Remplir carburant</h3>
     </div>
 
 </a>
@@ -76,7 +121,7 @@
               </svg>
         </div>
         <div class="content">
-        <h3><strong>Ajouter entretien</strong></h3>
+        <h3>Ajouter entretien</h3>
         </div>
 
       </a>
@@ -95,7 +140,7 @@
                 <path d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
               </svg></div>
             <div class="content">
-            <h3><strong>Ajouter depense</strong></h3>
+            <h3>Ajouter depense</h3>
 
             </div>
 
@@ -108,7 +153,7 @@
                   </svg>
             </div>
             <div class="content">
-            <h3><strong>Ajouter un trajet</strong></h3>
+            <h3>Ajouter un trajet</h3>
             </div>
 
 
@@ -124,7 +169,7 @@
                     <i class="fas fa-tachometer-alt"></i>
                                      </div>
                 <div class="content">
-                <h3><strong>Ajouter odomoter</strong></h3>
+                <h3>Ajouter odomoter</h3>
                 </div>
 
               </a>
