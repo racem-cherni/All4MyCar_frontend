@@ -156,6 +156,18 @@ transition: 1s;
 
 }
 
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 23%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+
+}
+
+
 .containerr .boxx:nth-child(1) .iconn
 {
     box-shadow: 0 0 0 0 #e91e63;
@@ -375,7 +387,7 @@ padding: 0;
     .body_stats{
         margin :0;
         padding: 0;
-        font-family: sans-serif;   
+        font-family: sans-serif;
         justify-content : space-between;
 
      }
@@ -426,7 +438,7 @@ padding: 0;
     text-align : center ;
 }
 
-.weather .fa 
+.weather .fa
 {
     font-size : 80px;
     color : #fff;
@@ -485,8 +497,8 @@ padding: 0;
     box-sizing: border-box;
     transform-origin: left;
     transition: .5s;
- 
-    
+
+
 }
 .go-back {
     font-size : 24px;
@@ -555,7 +567,7 @@ box-shadow: 0 0 0 0 #fa3275;
     display : block;
 }
 
-.weather_carburant .fa 
+.weather_carburant .fa
 {
     font-size : 80px;
     color : #e91e63;
@@ -618,7 +630,7 @@ box-shadow: 0 0 0 0 #fa3275;
     background: #ff2877;
     box-sizing: border-box;
     transform-origin: left;
-    transition: .5s;  
+    transition: .5s;
 }
 
 
@@ -675,7 +687,7 @@ box-shadow: 0 0 0 0 #23e629;
     display : block;
 }
 
-.weather_entretien .fa 
+.weather_entretien .fa
 {
     font-size : 80px;
     color : #23e629;
@@ -794,7 +806,7 @@ box-shadow: 0 0 0 0 #2196f3;
     display : block;
 }
 
-.weather_depense .fa 
+.weather_depense .fa
 {
     font-size : 80px;
     color : #2196f3;
@@ -912,7 +924,7 @@ box-shadow: 0 0 0 0 #f22213;
     display : block;
 }
 
-.weather_trajet .fa 
+.weather_trajet .fa
 {
     font-size : 80px;
     color : #f22213;
@@ -1030,7 +1042,7 @@ box-shadow: 0 0 0 0 #8a4007;
     display : block;
 }
 
-.weather_odometer .fa 
+.weather_odometer .fa
 {
     font-size : 80px;
     color : #8a4007;
@@ -1148,7 +1160,7 @@ box-shadow: 0 0 0 0 #bf06e4;
     display : block;
 }
 
-.weather_total .fa 
+.weather_total .fa
 {
     font-size : 80px;
     color : #bf06e4;

@@ -15,6 +15,7 @@ import { SpecialisationService } from 'src/app/_services/specialisation.service'
 import { VehiculesService } from 'src/app/_services/vehicules.service';
 import {MessageService} from 'primeng/api';
 import { Historique } from 'src/app/entities/historique';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-carnet-entretien',
@@ -23,8 +24,9 @@ import { Historique } from 'src/app/entities/historique';
   providers: [MessageService]
 })
 export class CarnetEntretienComponent implements OnInit {
-  historique:Historique[]=[];
+  historique: Historique[]= [];
   entretienDialog: boolean;
+  @ViewChild('dt') table: Table;
   carburantDialog: boolean;
   trajetDialog: boolean;
   odometerDialog: boolean;
@@ -295,7 +297,7 @@ validationMessages = {
   ngOnInit(): void {
     this.carnetentretienService.getPremiersHistorique()
     .subscribe((data) => {this.historique = data, console.log(data), this.loading = false; } ,error => console.log(error));
- 
+
 
     this.date_entretienn = (new Date());
     this.date_carburantt = (new Date());
@@ -756,7 +758,7 @@ this.onValueChanged_trajet();
     this.odometerDialog = true;
   }
 
-////////////////////////////////////interface_statistique/////// 
+////////////////////////////////////interface_statistique///////
 condition_total = true;
 condition_carburant=true;
 condition_entretien=true;
@@ -764,22 +766,22 @@ condition_depense=true;
 condition_trajet=true;
 condition_odometer=true;
 
-work_total(){this.condition_total=false;} 
+work_total(){this.condition_total=false;}
 workk_total(){this.condition_total=true;}
 
-work_carburant(){this.condition_carburant=false;} 
+work_carburant(){this.condition_carburant=false;}
 workk_carburant(){this.condition_carburant=true;}
 
-work_entretien(){this.condition_entretien=false;} 
+work_entretien(){this.condition_entretien=false;}
 workk_entretien(){this.condition_entretien=true;}
 
-work_depense(){this.condition_depense=false;} 
+work_depense(){this.condition_depense=false;}
 workk_depense(){this.condition_depense=true;}
 
-work_trajet(){this.condition_trajet=false;} 
+work_trajet(){this.condition_trajet=false;}
 workk_trajet(){this.condition_trajet=true;}
 
-work_odometer(){this.condition_odometer=false;} 
+work_odometer(){this.condition_odometer=false;}
 workk_odometer(){this.condition_odometer=true;}
 
 
