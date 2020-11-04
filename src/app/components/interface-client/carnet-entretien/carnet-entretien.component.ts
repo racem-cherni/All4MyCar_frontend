@@ -756,7 +756,35 @@ this.onValueChanged_trajet();
     this.odometerDialog = true;
   }
 
+////////////////////////////////////interface_statistique/////// 
+condition_total = true;
+condition_carburant=true;
+condition_entretien=true;
+condition_depense=true;
+condition_trajet=true;
+condition_odometer=true;
 
+work_total(){this.condition_total=false;} 
+workk_total(){this.condition_total=true;}
+
+work_carburant(){this.condition_carburant=false;} 
+workk_carburant(){this.condition_carburant=true;}
+
+work_entretien(){this.condition_entretien=false;} 
+workk_entretien(){this.condition_entretien=true;}
+
+work_depense(){this.condition_depense=false;} 
+workk_depense(){this.condition_depense=true;}
+
+work_trajet(){this.condition_trajet=false;} 
+workk_trajet(){this.condition_trajet=true;}
+
+work_odometer(){this.condition_odometer=false;} 
+workk_odometer(){this.condition_odometer=true;}
+
+
+
+////////////////////////////////////////////////////////////////////////////
 
 }
 /////////////////////////////////////////////////////////////////////////////Historique/////////////////////////

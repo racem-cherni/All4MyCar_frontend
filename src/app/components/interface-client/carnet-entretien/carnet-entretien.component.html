@@ -699,25 +699,547 @@
 
 </mat-tab>
 <mat-tab label="Statistiques & Tableaux">
-  <div class="block">
-    <div class="container container--max--lg">
-      <div class="card contacts">
-        <br>
+  <div class="block" style="overflow-y: hidden;min-height:  150vh;">
+    
 
-        <div class="card-body card-body--padding--2">
+   
+    <div class="block">
+      <div class="block-space block-space--layout--divider-xs"></div>
+      <div class="block-space block-space--layout--divider-xs"></div>
+      <div class="block-space block-space--layout--divider-xs"></div>
+      <div class="block-space block-space--layout--divider-xs"></div>
+      <div class="block-space block-space--layout--divider-xs"></div>
+      <div class="block-space block-space--layout--divider-xs"></div>
+<div class="row">
+<div class="col-4">
+    <div class="body_stats">
 
-          <div class="row offset-1">
+      <div class="card_stats">
+        <div class="front_stats_total " *ngIf="condition_total">
+          <div class="location_total">Total</div>
+          <div class="more_total"  ><i class="fa fa-info-circle" aria-hidden="true" (click)="work_total()"></i></div>
+          <div class="weather_total">
+            <div class="icon_total">
+              <i class="fas fa-receipt"></i>
 
 
+            </div>                
           </div>
-          </div>
-          </div>
+          <ul class="forecast_total">
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="back_stats_total " *ngIf="!condition_total">
+          <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_total()"></i></div>
+          <ul class="forecast">
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+          
+          </ul>
+
+        </div>
+      </div>
+
     </div>
+  </div>
+
+
+
+
+  <div class="col-4">
+
+    <div class="body_stats">
+
+
+  
+
+      <div class="card_stats">
+        <div class="front_stats_carburant " *ngIf="condition_carburant">
+          <div class="location_carburant">carburant</div>
+          <div class="more_carburant"  ><i class="fa fa-info-circle" aria-hidden="true" (click)="work_carburant()"></i></div>
+          <div class="icon_carburant">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-closed-fill" fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M4 1a1 1 0 0 0-1 1v13H1.5a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2a1 1 0 0 0-1-1H4zm2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+            </svg>
+          </div>   
+          <ul class="forecast_carburant">
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Sunday  
+              </div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="back_stats_carburant " *ngIf="!condition_carburant">
+          <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_carburant()"></i></div>
+          <ul class="forecast">
+            <li>
+              <div class="day">Avg remplis</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Quantite/mois</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Remplis/mois</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Depense/sem</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Depense/mois</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+           
+          </ul>
+
+        </div>
+      </div>
     </div>
+
+  </div>
+
+
+
+
+  <div class="col-4">
+
+    <div class="body_stats">
+
+
+  
+
+      <div class="card_stats">
+        <div class="front_stats_entretien" *ngIf="condition_entretien">
+          <div class="location_entretien">entretien</div>
+          <div class="more_entretien"  ><i class="fa fa-info-circle" aria-hidden="true" (click)="work_entretien()"></i></div>
+          <div class="icon_entretien">
+
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tools" fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M0 1l1-1 3.081 2.2a1 1 0 0 1 .419.815v.07a1 1 0 0 0 .293.708L10.5 9.5l.914-.305a1 1 0 0 1 1.023.242l3.356 3.356a1 1 0 0 1 0 1.414l-1.586 1.586a1 1 0 0 1-1.414 0l-3.356-3.356a1 1 0 0 1-.242-1.023L9.5 10.5 3.793 4.793a1 1 0 0 0-.707-.293h-.071a1 1 0 0 1-.814-.419L0 1zm11.354 9.646a.5.5 0 0 0-.708.708l3 3a.5.5 0 0 0 .708-.708l-3-3z" />
+              <path fill-rule="evenodd"
+                d="M15.898 2.223a3.003 3.003 0 0 1-3.679 3.674L5.878 12.15a3 3 0 1 1-2.027-2.027l6.252-6.341A3 3 0 0 1 13.778.1l-2.142 2.142L12 4l1.757.364 2.141-2.141zm-13.37 9.019L3.001 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z" />
+            </svg>
+          </div>
+          <ul class="forecast_entretien">
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="back_stats_entretien " *ngIf="!condition_entretien">
+          <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_entretien()"></i></div>
+          <ul class="forecast">
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+            <li>
+              <div class="day">Sunday</div>
+              <div class="temperature">
+                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+              </div>
+            </li>
+           
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+
+    </div>
+
+    <div class="block">
+      <div class="block-space block-space--layout--divider-xs"></div>
+      <div class="block-space block-space--layout--divider-xs"></div>
+      <div class="block-space block-space--layout--divider-xs"></div>
+      <div class="block-space block-space--layout--divider-xs"></div>
+      <div class="block-space block-space--layout--divider-xs"></div>
+      <div class="block-space block-space--layout--divider-xs"></div>
+      <div class="block-space block-space--layout--divider-xs"></div>
     <div class="block-space block-space--layout--divider-xs"></div>
-</mat-tab>
-</mat-tab-group></div>
+    <div class="block-space block-space--layout--divider-xs"></div>
+    
+<div class="row">
+  <div class="col-4">
+        <div class="body_stats">
 
+          <div class="card_stats">
+            <div class="front_stats_depense " *ngIf="condition_depense">
+              <div class="location_depense">Depense</div>
+              <div class="more_depense"  ><i class="fa fa-info-circle" aria-hidden="true" (click)="work_depense()"></i></div>
+              <div class="icon_depense"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack"
+                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z" />
+                <path fill-rule="evenodd"
+                  d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z" />
+                <path
+                  d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
+              </svg></div>
+              <ul class="forecast_depense">
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="back_stats_depense " *ngIf="!condition_depense">
+              <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_depense()"></i></div>
+              <ul class="forecast">
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+               
+              </ul>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+      <div class="col-4">
+
+        <div class="body_stats">
+
+
+      
+
+          <div class="card_stats">
+            <div class="front_stats_trajet " *ngIf="condition_trajet">
+              <div class="location_trajet">Trajet</div>
+              <div class="more_trajet"  ><i class="fa fa-info-circle" aria-hidden="true" (click)="work_trajet()"></i></div>
+              <div class="icon_trajet">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-truck" fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                </svg>
+              </div>
+              <ul class="forecast_trajet">
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="back_stats_trajet " *ngIf="!condition_trajet">
+              <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_trajet()"></i></div>
+              <ul class="forecast">
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+               
+              </ul>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    
+
+
+
+      <div class="col-4">
+
+        <div class="body_stats">
+
+
+      
+
+          <div class="card_stats">
+            <div class="front_stats_odometer " *ngIf="condition_odometer">
+              <div class="location_odometer">Odometer</div>
+              <div class="more_odometer"  ><i class="fa fa-info-circle" aria-hidden="true" (click)="work_odometer()"></i></div>
+              <div class="icon_odometer">
+                <i class="fas fa-tachometer-alt"></i>
+              </div>
+              <ul class="forecast_odometer">
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="back_stats_odometer " *ngIf="!condition_odometer">
+              <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_odometer()"></i></div>
+              <ul class="forecast">
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+                <li>
+                  <div class="day">Sunday</div>
+                  <div class="temperature">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                  </div>
+                </li>
+               
+              </ul>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+
+</div>
+
+  </div>
+
+
+  <div class="block-space block-space--layout--divider-xs"></div>
+</mat-tab>
+</mat-tab-group>
+</div>
 
 
 

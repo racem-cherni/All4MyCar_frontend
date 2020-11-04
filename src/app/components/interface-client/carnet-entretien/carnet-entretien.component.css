@@ -372,3 +372,845 @@ padding: 0;
     }
 
 
+    .body_stats{
+        margin :0;
+        padding: 0;
+        font-family: sans-serif;   
+        justify-content : space-between;
+
+     }
+
+.card_stats{
+    position: absolute;
+    top :50%;
+    left :50%;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    height :300px;
+
+}
+
+.card_stats .front_stats{
+    width: 100%;
+    height :100%;
+    background: #2196f3;
+    padding :30px ;
+    box-sizing: border-box;
+    transition: .5s;
+    transform-origin: right;
+
+}
+
+.location {
+    font-weight: bold;
+    width: 50%;
+    text-align: left;
+    float: left;
+    color : #fff;
+}
+
+.more
+{
+    width: 50%;
+    text-align: right;
+    cursor: pointer;
+    float: right;
+    font-size : 24px;
+    color : #fff;
+    display : block;
+}
+
+.weather
+{
+    padding : 50px 0 20px;
+    text-align : center ;
+}
+
+.weather .fa 
+{
+    font-size : 80px;
+    color : #fff;
+}
+
+.weather h1{
+    margin :0 ;
+    padding : 0;
+    font-size: 56px;
+    color : #fff;
+    line-height : 26px;
+
+}
+
+.weather h1 span{
+    font-size : 20px;
+}
+
+.forecast
+{
+    margin : 0;
+    padding :0;
+
+}
+
+.forecast li {
+    padding : 10px 0;
+    border-bottom:  2px solid #fff;
+    display : flex;
+    font-weight: bold;
+    cursor: pointer;
+    color : #fff
+}
+
+.forecast li:last-child{
+ border-bottom: none;
+}
+
+.forecast li .day{
+  width: 50%;
+}
+
+.forecast li .temperature{
+    width: 50%;
+    text-align:right;
+  }
+
+.card_stats .back_stats {
+    position: absolute;
+    top :0;
+    left : 0;
+    width : 100%;
+    height: 100%;
+    padding : 30px;
+    background: #ff2877;
+    box-sizing: border-box;
+    transform-origin: left;
+    transition: .5s;
+ 
+    
+}
+.go-back {
+    font-size : 24px;
+    color : #fff;
+    text-align: right;
+}
+.go-back .fa{
+    cursor : pointer ;
+}
+
+.card_stats .back_stats.active{
+    transform : translateX(0) rotateY(0deg);
+
+}
+
+
+
+
+
+
+.icon_carburant{
+
+    position:relative;
+width:80px;
+height:80px;
+color: #fff ;
+background: #000;
+display : flex;
+justify-content:   center;
+align-items:   center;
+margin:0 auto ;
+border-radius: 50%;
+font-size: 40px;
+font-weight: 700;
+transition: 1s;
+box-shadow: 0 0 0 0 #fa3275;
+    background: #fa3275;
+}
+
+.card_stats .front_stats_carburant{
+    width: 100%;
+    height :100%;
+    background: #fff;
+    padding :30px ;
+    box-sizing: border-box;
+    transition: .5s;
+    transform-origin: right;
+
+}
+.location_carburant {
+    font-weight: bold;
+    width: 50%;
+    text-align: left;
+    float: left;
+    color : #e91e63;
+}
+
+.more_carburant
+{
+    width: 50%;
+    text-align: right;
+    cursor: pointer;
+    float: right;
+    font-size : 24px;
+    color : #e91e63;
+    display : block;
+}
+
+.weather_carburant .fa 
+{
+    font-size : 80px;
+    color : #e91e63;
+}
+
+.weather_carburant h1{
+    margin :0 ;
+    padding : 0;
+    font-size: 56px;
+    color : #e91e63;
+    line-height : 26px;
+
+}
+
+.go-back_carburant {
+    font-size : 24px;
+    color : #e91e63;
+    text-align: right;
+
+}
+
+.weather_carburant h1 span{
+    font-size : 20px;
+}
+
+.forecast_carburant
+{
+    margin : 0;
+    padding :0;
+
+}
+.forecast_carburant li {
+    padding : 10px 0;
+    border-bottom:  2px solid #e91e63;
+    display : flex;
+    font-weight: bold;
+    cursor: pointer;
+    color : #e91e63
+}
+
+.forecast_carburant li:last-child{
+ border-bottom: none;
+}
+
+.forecast_carburant li .day{
+  width: 50%;
+}
+
+.forecast_carburant li .temperature{
+    width: 50%;
+    text-align:right;
+  }
+.card_stats .back_stats_carburant {
+    position: absolute;
+    top :0;
+    left : 0;
+    width : 100%;
+    height: 100%;
+    padding : 30px;
+    background: #ff2877;
+    box-sizing: border-box;
+    transform-origin: left;
+    transition: .5s;  
+}
+
+
+
+
+
+
+
+  .icon_entretien{
+
+    position:relative;
+width:80px;
+height:80px;
+color: #fff ;
+background: #000;
+display : flex;
+justify-content:   center;
+align-items:   center;
+margin:0 auto ;
+border-radius: 50%;
+font-size: 40px;
+font-weight: 700;
+transition: 1s;
+box-shadow: 0 0 0 0 #23e629;
+    background: #23e629;
+}
+
+.card_stats .front_stats_entretien{
+    width: 100%;
+    height :100%;
+    background: #fff;
+    padding :30px ;
+    box-sizing: border-box;
+    transition: .5s;
+    transform-origin: right;
+
+}
+.location_entretien {
+    font-weight: bold;
+    width: 50%;
+    text-align: left;
+    float: left;
+    color : #23e629;
+}
+
+.more_entretien
+{
+    width: 50%;
+    text-align: right;
+    cursor: pointer;
+    float: right;
+    font-size : 24px;
+    color : #23e629;
+    display : block;
+}
+
+.weather_entretien .fa 
+{
+    font-size : 80px;
+    color : #23e629;
+}
+
+.weather_entretien h1{
+    margin :0 ;
+    padding : 0;
+    font-size: 56px;
+    color : #23e629;
+    line-height : 26px;
+
+}
+
+.go-back_entretien {
+    font-size : 24px;
+    color : #23e629;
+    text-align: right;
+
+}
+
+.weather_entretien h1 span{
+    font-size : 20px;
+}
+
+.forecast_entretien
+{
+    margin : 0;
+    padding :0;
+
+}
+.forecast_entretien li {
+    padding : 10px 0;
+    border-bottom:  2px solid #23e629;
+    display : flex;
+    font-weight: bold;
+    cursor: pointer;
+    color : #23e629
+}
+
+.forecast_entretien li:last-child{
+ border-bottom: none;
+}
+
+.forecast_entretien li .day{
+  width: 50%;
+}
+
+.forecast_entretien li .temperature{
+    width: 50%;
+    text-align:right;
+  }
+
+  .card_stats .back_stats_entretien {
+    position: absolute;
+    top :0;
+    left : 0;
+    width : 100%;
+    height: 100%;
+    padding : 30px;
+    background: #23e629;
+    box-sizing: border-box;
+    transform-origin: left;
+    transition: .5s;
+}
+
+
+
+
+
+  .icon_depense{
+
+    position:relative;
+width:80px;
+height:80px;
+color: #fff ;
+background: #000;
+display : flex;
+justify-content:   center;
+align-items:   center;
+margin:0 auto ;
+border-radius: 50%;
+font-size: 40px;
+font-weight: 700;
+transition: 1s;
+box-shadow: 0 0 0 0 #2196f3;
+    background: #2196f3;
+}
+
+.card_stats .front_stats_depense{
+    width: 100%;
+    height :100%;
+    background: #fff;
+    padding :30px ;
+    box-sizing: border-box;
+    transition: .5s;
+    transform-origin: right;
+
+}
+.location_depense {
+    font-weight: bold;
+    width: 50%;
+    text-align: left;
+    float: left;
+    color : #2196f3;
+}
+
+.more_depense
+{
+    width: 50%;
+    text-align: right;
+    cursor: pointer;
+    float: right;
+    font-size : 24px;
+    color : #2196f3;
+    display : block;
+}
+
+.weather_depense .fa 
+{
+    font-size : 80px;
+    color : #2196f3;
+}
+
+.weather_depense h1{
+    margin :0 ;
+    padding : 0;
+    font-size: 56px;
+    color : #2196f3;
+    line-height : 26px;
+
+}
+
+.go-back_depense {
+    font-size : 24px;
+    color : #2196f3;
+    text-align: right;
+
+}
+
+.weather_depense h1 span{
+    font-size : 20px;
+}
+
+.forecast_depense
+{
+    margin : 0;
+    padding :0;
+
+}
+.forecast_depense li {
+    padding : 10px 0;
+    border-bottom:  2px solid #2196f3;
+    display : flex;
+    font-weight: bold;
+    cursor: pointer;
+    color : #2196f3
+}
+
+.forecast_depense li:last-child{
+ border-bottom: none;
+}
+
+.forecast_depense li .day{
+  width: 50%;
+}
+
+.forecast_depense li .temperature{
+    width: 50%;
+    text-align:right;
+  }
+  .card_stats .back_stats_depense {
+    position: absolute;
+    top :0;
+    left : 0;
+    width : 100%;
+    height: 100%;
+    padding : 30px;
+    background: #2196f3;
+    box-sizing: border-box;
+    transform-origin: left;
+    transition: .5s;
+}
+
+
+
+
+
+  .icon_trajet{
+
+    position:relative;
+width:80px;
+height:80px;
+color: #fff ;
+background: #000;
+display : flex;
+justify-content:   center;
+align-items:   center;
+margin:0 auto ;
+border-radius: 50%;
+font-size: 40px;
+font-weight: 700;
+transition: 1s;
+box-shadow: 0 0 0 0 #f22213;
+    background: #f22213;
+}
+
+.card_stats .front_stats_trajet{
+    width: 100%;
+    height :100%;
+    background: #fff;
+    padding :30px ;
+    box-sizing: border-box;
+    transition: .5s;
+    transform-origin: right;
+
+}
+.location_trajet {
+    font-weight: bold;
+    width: 50%;
+    text-align: left;
+    float: left;
+    color : #f22213;
+}
+
+.more_trajet
+{
+    width: 50%;
+    text-align: right;
+    cursor: pointer;
+    float: right;
+    font-size : 24px;
+    color : #f22213;
+    display : block;
+}
+
+.weather_trajet .fa 
+{
+    font-size : 80px;
+    color : #f22213;
+}
+
+.weather_trajet h1{
+    margin :0 ;
+    padding : 0;
+    font-size: 56px;
+    color : #f22213;
+    line-height : 26px;
+
+}
+
+.go-back_trajet {
+    font-size : 24px;
+    color : #f22213;
+    text-align: right;
+
+}
+
+.weather_trajet h1 span{
+    font-size : 20px;
+}
+
+.forecast_trajet
+{
+    margin : 0;
+    padding :0;
+
+}
+.forecast_trajet li {
+    padding : 10px 0;
+    border-bottom:  2px solid #f22213;
+    display : flex;
+    font-weight: bold;
+    cursor: pointer;
+    color : #f22213
+}
+
+.forecast_trajet li:last-child{
+ border-bottom: none;
+}
+
+.forecast_trajet li .day{
+  width: 50%;
+}
+
+.forecast_trajet li .temperature{
+    width: 50%;
+    text-align:right;
+  }
+  .card_stats .back_stats_trajet {
+    position: absolute;
+    top :0;
+    left : 0;
+    width : 100%;
+    height: 100%;
+    padding : 30px;
+    background: #f22213;
+    box-sizing: border-box;
+    transform-origin: left;
+    transition: .5s;
+}
+
+
+
+
+
+  .icon_odometer{
+
+    position:relative;
+width:80px;
+height:80px;
+color: #fff ;
+background: #000;
+display : flex;
+justify-content:   center;
+align-items:   center;
+margin:0 auto ;
+border-radius: 50%;
+font-size: 40px;
+font-weight: 700;
+transition: 1s;
+box-shadow: 0 0 0 0 #8a4007;
+    background: #8a4007;
+}
+
+.card_stats .front_stats_odometer{
+    width: 100%;
+    height :100%;
+    background: #fff;
+    padding :30px ;
+    box-sizing: border-box;
+    transition: .5s;
+    transform-origin: right;
+
+}
+.location_odometer {
+    font-weight: bold;
+    width: 50%;
+    text-align: left;
+    float: left;
+    color : #8a4007;
+}
+
+.more_odometer
+{
+    width: 50%;
+    text-align: right;
+    cursor: pointer;
+    float: right;
+    font-size : 24px;
+    color : #8a4007;
+    display : block;
+}
+
+.weather_odometer .fa 
+{
+    font-size : 80px;
+    color : #8a4007;
+}
+
+.weather_odometer h1{
+    margin :0 ;
+    padding : 0;
+    font-size: 56px;
+    color : #8a4007;
+    line-height : 26px;
+
+}
+
+.go-back_odometer {
+    font-size : 24px;
+    color : #8a4007;
+    text-align: right;
+
+}
+
+.weather_odometer h1 span{
+    font-size : 20px;
+}
+
+.forecast_odometer
+{
+    margin : 0;
+    padding :0;
+
+}
+.forecast_odometer li {
+    padding : 10px 0;
+    border-bottom:  2px solid #8a4007;
+    display : flex;
+    font-weight: bold;
+    cursor: pointer;
+    color : #8a4007
+}
+
+.forecast_odometer li:last-child{
+ border-bottom: none;
+}
+
+.forecast_odometer li .day{
+  width: 50%;
+}
+
+.forecast_odometer li .temperature{
+    width: 50%;
+    text-align:right;
+  }
+  .card_stats .back_stats_odometer {
+    position: absolute;
+    top :0;
+    left : 0;
+    width : 100%;
+    height: 100%;
+    padding : 30px;
+    background: #8a4007;
+    box-sizing: border-box;
+    transform-origin: left;
+    transition: .5s;
+}
+
+
+
+
+.icon_total{
+
+    position:relative;
+width:80px;
+height:80px;
+color: #fff ;
+background: #000;
+display : flex;
+justify-content:   center;
+align-items:   center;
+margin:0 auto ;
+border-radius: 50%;
+font-size: 40px;
+font-weight: 700;
+transition: 1s;
+box-shadow: 0 0 0 0 #bf06e4;
+    background: #bf06e4;
+}
+
+.card_stats .front_stats_total{
+    width: 100%;
+    height :100%;
+    background: #fff;
+    padding :30px ;
+    box-sizing: border-box;
+    transition: .5s;
+    transform-origin: right;
+
+}
+
+.location_total {
+    font-weight: bold;
+    width: 50%;
+    text-align: left;
+    float: left;
+    color : #bf06e4;
+}
+
+.more_total
+{
+    width: 50%;
+    text-align: right;
+    cursor: pointer;
+    float: right;
+    font-size : 24px;
+    color : #bf06e4;
+    display : block;
+}
+
+.weather_total .fa 
+{
+    font-size : 80px;
+    color : #bf06e4;
+}
+
+.weather_total h1{
+    margin :0 ;
+    padding : 0;
+    font-size: 56px;
+    color : #bf06e4;
+    line-height : 26px;
+
+}
+
+.go-back_total {
+    font-size : 24px;
+    color : #bf06e4;
+    text-align: right;
+
+}
+
+.weather_total h1 span{
+    font-size : 20px;
+}
+
+.forecast_total
+{
+    margin : 0;
+    padding :0;
+
+}
+.forecast_total li {
+    padding : 10px 0;
+    border-bottom:  2px solid #bf06e4;
+    display : flex;
+    font-weight: bold;
+    cursor: pointer;
+    color : #bf06e4
+}
+
+.forecast_total li:last-child{
+ border-bottom: none;
+}
+
+.forecast_total li .day{
+  width: 50%;
+}
+
+.forecast_total li .temperature{
+    width: 50%;
+    text-align:right;
+  }
+
+  .card_stats .back_stats_total {
+    position: absolute;
+    top :0;
+    left : 0;
+    width : 100%;
+    height: 100%;
+    padding : 30px;
+    background: #bf06e4;
+    box-sizing: border-box;
+    transform-origin: left;
+    transition: .5s;
+}
