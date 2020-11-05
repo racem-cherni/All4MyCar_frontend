@@ -800,6 +800,10 @@ condition_entretien=true;
 condition_depense=true;
 condition_trajet=true;
 condition_odometer=true;
+second_carburant=true;
+
+second_depense=true;
+third_depense=true;
 
 work_total(){this.condition_total=false;}
 workk_total(){this.condition_total=true;}
@@ -819,10 +823,72 @@ workk_trajet(){this.condition_trajet=true;}
 work_odometer(){this.condition_odometer=false;}
 workk_odometer(){this.condition_odometer=true;}
 
+secondt_carburant(){this.second_carburant=false;} 
+secondf_carburant(){this.second_carburant=true;}
 
+secondt_depense(){this.second_depense=false;} 
+secondf_depense(){this.second_depense=true;}
 
+thirdt_depense(){this.third_depense=false;} 
+thirdf_depense(){this.third_depense=true;}
 ////////////////////////////////////////////////////////////////////////////
 
-}
-/////////////////////////////////////////////////////////////////////////////Historique/////////////////////////
 
+selectedVehicule_stats : Vehicule;
+selectedVehiculeStats : Vehicule;
+
+selectedPeriode_stats :string[]= ["ALLTIME","THIS_MONTH","LAST_MONTH","THIS_YEAR"];
+selectedPeriode : string;
+selectedPeriode_statistique : string;
+periode : String = "ALLTIME";
+
+nbr_carburant:number=0;nbr_carburantMois:number;nbr_distanceParCarburant:number=0; qte_carburant:number=0;
+qte_moy_carburant:number=0;depense_carburant:number=0;depense_carburantMois:number=0;depense_moy_carburant:number=0;
+
+carburant_forstats : CarburantCarnet[];
+
+SetPeriode(){
+  this.periode = this.selectedPeriode_statistique;
+  this.setVehicule_statistique();
+}
+
+setVehicule_statistique(){
+  this.nbr_carburant=0;
+  this.qte_carburant=0;
+  this.nbr_distanceParCarburant=0;
+  this.qte_moy_carburant=0;
+  this.depense_carburant=0;
+  this.depense_moy_carburant=0;
+this.selectedVehiculeStats=this.selectedVehicule_stats;
+console.log(this.periode);
+console.log(this.selectedVehiculeStats.id);
+this.carnetentretienService.getCarburantParPeriode(this.selectedVehiculeStats.id,this.periode)
+.subscribe((data) => {this.carburant_forstats = data, console.log(data); 
+  this.nbr_carburant=this.carburant_forstats.length;
+  for (let i = 0; i < this.carburant_forstats.length; i++) {
+       
+    if (this.carburant_forstats.length>=2 ){
+           if (i<this.carburant_forstats.length-1)
+          this.nbr_distanceParCarburant= this.nbr_distanceParCarburant +(this.carburant_forstats[i+1].odometer_carburant
+            -this.carburant_forstats[i].odometer_carburant);
+         }
+         else this.nbr_distanceParCarburant=0;
+   
+         this.qte_carburant+=this.carburant_forstats[i].quantite_carburant;
+         this.depense_carburant+=this.carburant_forstats[i].depense_carburant;
+  }
+  this.qte_moy_carburant= this.qte_carburant/this.carburant_forstats.length;
+  this.nbr_distanceParCarburant=this.nbr_distanceParCarburant/this.carburant_forstats.length;
+  this.depense_moy_carburant=this.depense_carburant/this.carburant_forstats.length;
+});
+
+
+
+
+
+
+}
+
+
+/////////////////////////////////////////////////////////////////////////////Historique/////////////////////////
+}

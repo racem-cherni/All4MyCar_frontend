@@ -817,18 +817,45 @@
 
 </mat-tab>
 <mat-tab label="Statistiques & Tableaux">
-  <div class="block" style="overflow-x: hidden;min-height:  70vh;">
+  <div class="block" style="overflow-x: hidden;overflow-y: hidden;min-height:  100vh;">
 
 
 
     <div class="block">
+      <div class=row >
+      <mat-form-field class="offset-1 half-width" >
+        <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
+        <mat-select matNativeControl id="v_stats" 
+          [(ngModel)]="selectedVehicule_stats" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
+          (ngModelChange)="setVehicule_statistique()" required >
+          <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
+            {{marque.model.marque.name}} {{marque.model.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-form-field class="half-width" >
+        <mat-label>&nbsp;&nbsp;&nbsp;Periode</mat-label>
+        <mat-select matNativeControl id="v_stats" 
+          [(ngModel)]="selectedPeriode_statistique" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
+          (ngModelChange)="SetPeriode()" required >
+          <mat-option *ngFor=" let s of selectedPeriode_stats" [value]="s">
+            {{s}} 
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
       <div class="block-space block-space--layout--divider-xs"></div>
       <div class="block-space block-space--layout--divider-xs"></div>
       <div class="block-space block-space--layout--divider-xs"></div>
       <div class="block-space block-space--layout--divider-xs"></div>
       <div class="block-space block-space--layout--divider-xs"></div>
+    
+      
 
+   
 <div class="row">
+
 <div class="col-4">
     <div class="body_stats">
 
@@ -951,43 +978,80 @@
           </ul>
         </div>
 
-        <div class="back_stats_carburant " *ngIf="!condition_carburant">
-          <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_carburant()"></i></div>
+        <div class="back_stats_carburant " *ngIf="!condition_carburant && second_carburant">
+          <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_carburant()"></i>
+            &nbsp; <i class="fa fa-chevron-circle-right" aria-hidden="true" (click)="secondt_carburant()"></i>
+          </div>
           <ul class="forecast">
             <li>
-              <div class="day">Avg remplis</div>
+              <div class="day">Nbr Remplis</div>
               <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-              </div>
-            </li>
-            <li>
-              <div class="day">Quantite/mois</div>
-              <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                <div *ngIf="nbr_carburant !== 0 && nbr_carburant !== null">{{nbr_carburant}}</div>
+                <div *ngIf="nbr_carburant == 0 || nbr_carburant == null">n/a </div>
               </div>
             </li>
             <li>
               <div class="day">Remplis/mois</div>
               <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                8
               </div>
             </li>
             <li>
-              <div class="day">Depense/sem</div>
+              <div class="day">Distance/remplis</div>
               <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                <div *ngIf="qte_carburant !== 0 && qte_carburant !== null">{{nbr_distanceParCarburant}} &nbsp;km</div>
+                <div *ngIf="qte_carburant == 0 || qte_carburant == null">n/a &nbsp;km </div>              </div>
+            </li>
+            <li>
+              <div class="day">Qté</div>
+              <div class="temperature">
+                <div *ngIf="qte_carburant !== 0 && qte_carburant !== null">{{qte_carburant}} &nbsp;Ltr</div>
+                <div *ngIf="qte_carburant == 0 || qte_carburant == null">n/a &nbsp;Ltr </div>
               </div>
             </li>
             <li>
-              <div class="day">Depense/mois</div>
+              <div class="day">Qté.moy/remplis</div>
               <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                
+                <div *ngIf="qte_moy_carburant !== 0 && qte_moy_carburant !== null">{{qte_moy_carburant}} &nbsp;Ltr</div>
+                <div *ngIf="qte_moy_carburant == 0 || qte_moy_carburant == null">n/a &nbsp;Ltr </div>
               </div>
             </li>
-
+           
+           
           </ul>
 
         </div>
+
+        <div class="back_stats_carburant " *ngIf="!second_carburant">
+          <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="secondf_carburant()"></i></div>
+          <ul class="forecast">
+           
+            <li>
+              <div class="day">Dep</div>
+              <div class="temperature">
+                <div *ngIf="depense_carburant !== 0 && depense_carburant !== null">{{depense_carburant}} &nbsp;dt</div>
+                <div *ngIf="depense_carburant == 0 || depense_carburant == null">n/a &nbsp;dt </div>              </div>
+            </li>
+            <li>
+              <div class="day">Dep.moy/remplis</div>
+              <div class="temperature">
+                <div *ngIf="depense_moy_carburant !== 0 && depense_moy_carburant !== null">{{depense_moy_carburant}} &nbsp;dt</div>
+                <div *ngIf="depense_moy_carburant == 0 || depense_moy_carburant == null">n/a &nbsp;dt </div>              </div>
+            </li>
+           
+            <li>
+              <div class="day">Dep/mois</div>
+              <div class="temperature">
+                <div *ngIf="depense_carburantMois !== 0 && depense_carburantMois !== null">{{depense_carburantMois}}&nbsp;dt</div>
+                <div *ngIf="depense_carburantMois == 0 || depense_carburantMois == null">n/a &nbsp;dt </div>              </div>
+            </li>
+           
+          </ul>
+
+        </div>
+
+
       </div>
     </div>
 
@@ -1043,36 +1107,35 @@
           <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_entretien()"></i></div>
           <ul class="forecast">
             <li>
-              <div class="day">Sunday</div>
+              <div class="day">nbr</div>
               <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                8
               </div>
             </li>
             <li>
-              <div class="day">Sunday</div>
+              <div class="day">nbr/mois</div>
               <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                8
               </div>
             </li>
             <li>
-              <div class="day">Sunday</div>
+              <div class="day">dep</div>
               <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                8&nbsp;dt
               </div>
             </li>
             <li>
-              <div class="day">Sunday</div>
+              <div class="day">dep/mois</div>
               <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                8&nbsp;dt
               </div>
             </li>
             <li>
-              <div class="day">Sunday</div>
+              <div class="day">dep/km</div>
               <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                8&nbsp;dt
               </div>
             </li>
-
           </ul>
 
         </div>
@@ -1136,43 +1199,108 @@
               </ul>
             </div>
 
-            <div class="back_stats_depense " *ngIf="!condition_depense">
-              <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_depense()"></i></div>
+            <div class="back_stats_depense " *ngIf="!condition_depense && second_depense">
+              <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_depense()"></i>
+                &nbsp; <i class="fa fa-chevron-circle-right" aria-hidden="true" (click)="secondt_depense()"></i>
+
+              </div>
               <ul class="forecast">
                 <li>
-                  <div class="day">Sunday</div>
+                  <div class="day">nbr Fine</div>
                   <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                    8
                   </div>
                 </li>
                 <li>
-                  <div class="day">Sunday</div>
+                  <div class="day">dep fine</div>
                   <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                    8&nbsp;dt
                   </div>
                 </li>
                 <li>
-                  <div class="day">Sunday</div>
+                  <div class="day">nbr insurance</div>
                   <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                    8
+                                    </div>
+                </li>
+                <li>
+                  <div class="day">dep insurance</div>
+                  <div class="temperature">
+                    8&nbsp;dt
                   </div>
                 </li>
                 <li>
-                  <div class="day">Sunday</div>
+                  <div class="day">nbr mot</div>
                   <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                    8                  </div>
+                </li>
+                
+              </ul>
+
+            </div>
+
+
+
+            <div class="back_stats_depense " *ngIf="!second_depense && third_depense">
+              <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="secondf_depense()"></i>
+                &nbsp; <i class="fa fa-chevron-circle-right" aria-hidden="true" (click)="thirdt_depense()"></i>
+
+              </div>
+              <ul class="forecast">
+                
+                <li>
+                  <div class="day">dep mot</div>
+                  <div class="temperature">
+                    8&nbsp;dt
                   </div>
                 </li>
                 <li>
-                  <div class="day">Sunday</div>
+                  <div class="day">nbr parking</div>
                   <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                    8                  </div>
+                </li>
+                <li>
+                  <div class="day">dep parking</div>
+                  <div class="temperature">
+                    8&nbsp;dt
+                  </div>
+                </li>
+                <li>
+                  <div class="day">nbr tax</div>
+                  <div class="temperature">
+                    8                  </div>
+                </li>
+                <li>
+                  <div class="day">dep tax</div>
+                  <div class="temperature">
+                    8&nbsp;dt
                   </div>
                 </li>
 
               </ul>
 
             </div>
+
+
+            <div class="back_stats_depense " *ngIf="!second_depense && !third_depense">
+              <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="thirdf_depense()"></i></div>
+              <ul class="forecast">
+                
+              
+                <li>
+                  <div class="day">nbr troll</div>
+                  <div class="temperature">
+                    8                  </div>
+                </li>
+                <li>
+                  <div class="day">dep troll</div>
+                  <div class="temperature">
+                    8&nbsp;dt                  </div>
+                </li>
+              </ul>
+
+            </div>
+
           </div>
 
         </div>
@@ -1225,34 +1353,30 @@
               <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_trajet()"></i></div>
               <ul class="forecast">
                 <li>
-                  <div class="day">Sunday</div>
+                  <div class="day">nbr trajet</div>
                   <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+8
                   </div>
                 </li>
                 <li>
-                  <div class="day">Sunday</div>
+                  <div class="day">kilometre</div>
                   <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
+8   &nbsp;km               </div>
                 </li>
                 <li>
-                  <div class="day">Sunday</div>
+                  <div class="day">taxe</div>
                   <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
+8       &nbsp;dt           </div>
                 </li>
                 <li>
-                  <div class="day">Sunday</div>
+                  <div class="day">moy vitesse</div>
                   <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
+8    &nbsp;km/h              </div>
                 </li>
                 <li>
-                  <div class="day">Sunday</div>
+                  <div class="day">temps</div>
                   <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
+8&nbsp;min                  </div>
                 </li>
 
               </ul>
@@ -1306,34 +1430,29 @@
               <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_odometer()"></i></div>
               <ul class="forecast">
                 <li>
-                  <div class="day">Sunday</div>
+                  <div class="day">kilometrage</div>
                   <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
+                    8   &nbsp;km                   </div>
                 </li>
                 <li>
-                  <div class="day">Sunday</div>
+                  <div class="day">kilometrage/jour</div>
                   <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
+                    8   &nbsp;km                   </div>
                 </li>
                 <li>
-                  <div class="day">Sunday</div>
+                  <div class="day">kilometrage/semaine</div>
                   <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
+                    8   &nbsp;km                   </div>
                 </li>
                 <li>
-                  <div class="day">Sunday</div>
+                  <div class="day">kilometrage/mois</div>
                   <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
+                    8   &nbsp;km                   </div>
                 </li>
                 <li>
-                  <div class="day">Sunday</div>
+                  <div class="day">kilometrage/annee</div>
                   <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
+                    8   &nbsp;km                   </div>
                 </li>
 
               </ul>
