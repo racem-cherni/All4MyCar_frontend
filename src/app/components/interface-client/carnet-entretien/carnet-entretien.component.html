@@ -89,7 +89,7 @@
                     <td>Debut : {{clt.trajet.date_depart}}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{clt.trajet.lieux_depart}}</td>
                     <td>Arrivé : {{clt.trajet.date_arrive}}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{clt.trajet.lieux_arrive}}</td>
                     <td >Distance : {{clt.trajet.distance_trajet}} km</td>
-                    <td style="width: 20%">Temps emis: {{clt.trajet.duree_trajet}} heures</td>
+                    <td style="width: 20%">Temps emis: {{clt.trajet.duree_trajet}} H</td>
 
 
                   </tr>
@@ -103,6 +103,8 @@
                       </td>
                     <td>{{clt.odometer.date_odometer}}</td>
                     <td>Kilométrage :  {{clt.odometer.odomoeter_cal}}</td>
+                    <td></td>
+                    <td></td>
 
                   </tr>
                   <tr *ngIf="clt.depense!== null">
@@ -132,8 +134,11 @@
                     </tr>
               </ng-template>
              </p-table>
+
               </div>
-  </div>
+              <div *ngIf="Allhistorique.length >3">
+              <br>
+              <button pButton pRipple type="button" label="Afficher tous" class="p-button-rounded p-button-secondary" (click)="showhistoriqueDialog()"></button></div>  </div>
           </div>
           </div>
     </div>
@@ -225,6 +230,193 @@
 
 
 <div class="block-space block-space--layout--after-header"></div>
+  <p-dialog  [(visible)]="historiqueDialog" [style]="{width: '55vw'}" header="Journal"  [contentStyle]="{'overflow-y': 'scroll', 'overflow-x': 'hidden',
+  'max-height': '50vh','min-height':'350px'}"[modal]="true" styleClass="p-fluid" [draggable]="false"
+  [resizable]="false" [baseZIndex]="10000">
+   <mat-form-field class="datefor" >
+        <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
+        <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
+          [(ngModel)]="selectedVehicule_carburant" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
+          (ngModelChange)="setVehicule_carburant()" required >
+          <mat-option *ngFor=" let marque of Vehicules" [value]="marque" >
+            {{marque.model.marque.name}} {{marque.model.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+<div class="row">
+  <div class="table-responsive " >
+    <p-table  #dt  [value]="Allhistoriquebyvehicule" [rowHover]="true"  [loading]="loading" [filterDelay]="0">
+      <ng-template pTemplate="body" let-clt *ngIf="historique !== null">
+        <tr *ngIf="clt.carburant!== null">
+
+          <td>
+            <div class="icon_carburant">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-closed-fill" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M4 1a1 1 0 0 0-1 1v13H1.5a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2a1 1 0 0 0-1-1H4zm2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+              </svg>
+            </div>
+
+            </td>
+          <td>{{clt.carburant.date_carburant}}</td>
+          <td>Kilometrage : {{clt.carburant.odometer_carburant}}</td>
+          <td>Qauntité : {{ clt.carburant.quantite_carburant}} L <br>
+            Prix total : {{ clt.carburant.depense_carburant}} Dt</td>
+          <td>Station : {{ clt.carburant.station_carburant}} </td>
+          <td class="td-actions text-right ">
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success" (click)="editentretiendialog()" pTooltip="editer" ></button>
+
+            &nbsp;
+
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteclient()"pTooltip="supprimer" ></button>
+          </td>
+        </tr>
+        <tr *ngIf="clt.entretien !== null">
+
+          <td>
+            <div class="icon_entretien">
+
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tools" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M0 1l1-1 3.081 2.2a1 1 0 0 1 .419.815v.07a1 1 0 0 0 .293.708L10.5 9.5l.914-.305a1 1 0 0 1 1.023.242l3.356 3.356a1 1 0 0 1 0 1.414l-1.586 1.586a1 1 0 0 1-1.414 0l-3.356-3.356a1 1 0 0 1-.242-1.023L9.5 10.5 3.793 4.793a1 1 0 0 0-.707-.293h-.071a1 1 0 0 1-.814-.419L0 1zm11.354 9.646a.5.5 0 0 0-.708.708l3 3a.5.5 0 0 0 .708-.708l-3-3z" />
+                <path fill-rule="evenodd"
+                  d="M15.898 2.223a3.003 3.003 0 0 1-3.679 3.674L5.878 12.15a3 3 0 1 1-2.027-2.027l6.252-6.341A3 3 0 0 1 13.778.1l-2.142 2.142L12 4l1.757.364 2.141-2.141zm-13.37 9.019L3.001 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z" />
+              </svg>
+            </div>
+
+
+            </td>
+          <td>{{clt.entretien.date_entretien}}</td>
+          <td style="width: 20%;">Kilometrage : {{clt.entretien.odometer_entretien}}</td>
+          <td style="width: 25%;">{{clt.entretien.specialisations}}</td>
+          <td>centre : {{clt.entretien.centre_entretien}}</td>
+          <td class="td-actions text-right ">
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success" (click)="editentretiendialog()" pTooltip="editer" ></button>
+
+            &nbsp;
+
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteclient()"pTooltip="supprimer" ></button>
+          </td>
+
+        </tr>
+        <tr *ngIf="clt.trajet!== null">
+
+          <td>
+            <div class="icon_trajet">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-truck" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+              </svg>
+            </div>
+
+
+            </td>
+          <td>Debut : {{clt.trajet.date_depart}}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{clt.trajet.lieux_depart}}</td>
+          <td>Arrivé : {{clt.trajet.date_arrive}}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{clt.trajet.lieux_arrive}}</td>
+          <td >Distance : {{clt.trajet.distance_trajet}} km</td>
+          <td style="width: 30%">Temps emis: {{clt.trajet.duree_trajet}} H </td>
+          <td class="td-actions text-right ">
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success" (click)="editentretiendialog()" pTooltip="editer" ></button>
+
+            &nbsp;
+
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteclient()"pTooltip="supprimer" ></button>
+          </td>
+
+        </tr>
+        <tr *ngIf="clt.odometer!== null">
+
+          <td>
+            <div class="icon_odometer">
+              <i class="fas fa-tachometer-alt"></i>
+            </div>
+
+            </td>
+          <td>{{clt.odometer.date_odometer}}</td>
+          <td>Kilométrage :  {{clt.odometer.odomoeter_cal}}</td>
+          <td></td>
+            <td></td>
+
+          <td class="td-actions text-right ">
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success" (click)="editentretiendialog()" pTooltip="editer" ></button>
+
+            &nbsp;
+
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteclient()"pTooltip="supprimer" ></button>
+          </td>
+        </tr>
+        <tr *ngIf="clt.depense!== null">
+
+          <td>
+            <div class="icon_depense"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack"
+              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z" />
+              <path fill-rule="evenodd"
+                d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z" />
+              <path
+                d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
+            </svg></div>
+
+            </td>
+          <td>{{clt.depense.date_depense}}</td>
+          <td>Kilométrage : {{clt.depense.odometer_depense}}</td>
+          <td style="width: 20%">Dépense : {{clt.depense.depense}}</td>
+
+          <td>Prix total : {{clt.depense.prix_depense}} Dt</td>
+          <td class="td-actions text-right ">
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success" (click)="editentretiendialog()" pTooltip="editer" ></button>
+
+            &nbsp;
+
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteclient()"pTooltip="supprimer" ></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+<tr>
+            <td colspan="8" class="cvn">Aucune voiture choisie</td>
+          </tr>
+    </ng-template>
+   </p-table>
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+    <ng-template pTemplate="footer">
+
+  </ng-template>
+  </p-dialog>
+  <p-dialog  [(visible)]="editDialog" [style]="{width: '40vw'}" header="Modifier entretien" [modal]="true" styleClass="p-fluid" [draggable]="false"
+  [resizable]="false" [baseZIndex]="10000">
+
+  <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+</div>
+
+
+
+
+
+
+
+    <ng-template pTemplate="footer">
+      <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideeditDialog()"></button>
+      <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
+  </ng-template>
+  </p-dialog>
 <form class="block-finder__form " novalidate [formGroup]="form_carburant" #cform="ngForm" (ngSubmit)="onsubmit_carburant()">
   <p-dialog  [(visible)]="carburantDialog" [style]="{width: '30vw'}" header="Remplir carburant" [modal]="true" styleClass="p-fluid" [draggable]="false"
   [resizable]="false" [baseZIndex]="10000">
@@ -1177,3 +1369,4 @@
 
 
 
+<p-confirmDialog [style]="{width: '500px'}"></p-confirmDialog>

@@ -27,7 +27,7 @@ export class CarnetEntretienService {
 });
 
 private baseUrluser = 'http://localhost:8081/api';
-vehicule: Vehicule ;
+
 
 ajouter_carburant( carburant : CarburantCarnet): Observable<any> {
   return this.http.post( this.baseUrluser + '/ajouter_carburant/' ,carburant
@@ -63,9 +63,9 @@ getPremiersHistorique(): Observable<any> {
   return this.http.get(this.baseUrluser + '/getpremiershistorique', {
     headers: this.header});
 }
-getHistoriqueByVehicule(vehicule): Observable<any> {
+getHistoriqueByVehicule(id : number): Observable<any> {
 
-  return this.http.get(this.baseUrluser + '/gethistoriquebyVehicule'+`${vehicule}`, {
+  return this.http.get(this.baseUrluser + '/gethistoriquebyVehicule/'+`${id}`, {
     headers: this.header});
 }
 

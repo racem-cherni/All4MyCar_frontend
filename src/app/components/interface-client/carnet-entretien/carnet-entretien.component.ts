@@ -13,7 +13,7 @@ import { CarnetEntretienService } from 'src/app/_services/carnet-entretien.servi
 import { ClientService } from 'src/app/_services/client.service';
 import { SpecialisationService } from 'src/app/_services/specialisation.service';
 import { VehiculesService } from 'src/app/_services/vehicules.service';
-import {MessageService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
 import { Historique } from 'src/app/entities/historique';
 import { Table } from 'primeng/table';
 
@@ -21,15 +21,19 @@ import { Table } from 'primeng/table';
   selector: 'app-carnet-entretien',
   templateUrl: './carnet-entretien.component.html',
   styleUrls: ['./carnet-entretien.component.css'],
-  providers: [MessageService]
+  providers: [MessageService, ConfirmationService]
 })
 export class CarnetEntretienComponent implements OnInit {
+  Allhistoriquebyvehicule: Historique[]= [];
+  Allhistorique: Historique[]= [];
   historique: Historique[]= [];
   entretienDialog: boolean;
   @ViewChild('dt') table: Table;
   carburantDialog: boolean;
   trajetDialog: boolean;
   odometerDialog: boolean;
+  editDialog: boolean;
+  historiqueDialog: boolean;
   depenseDialog: boolean;
   loading: boolean = true;
   date_entretienn: Date;
@@ -291,12 +295,15 @@ validationMessages = {
 },
 };
 
-  constructor(private fb: FormBuilder,private clientService: ClientService , private vehiculesService: VehiculesService , private specialisationService: SpecialisationService,
+  constructor(private fb: FormBuilder,private clientService: ClientService ,private confirmationService: ConfirmationService, private vehiculesService: VehiculesService , private specialisationService: SpecialisationService,
     private carnetentretienService: CarnetEntretienService,private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.carnetentretienService.getPremiersHistorique()
     .subscribe((data) => {this.historique = data, console.log(data), this.loading = false; } ,error => console.log(error));
+    this.carnetentretienService.getAllHistorique()
+    .subscribe((data) => {this.Allhistorique = data, console.log(data) } ,error => console.log(error));
+
 
 
     this.date_entretienn = (new Date());
@@ -341,7 +348,10 @@ validationMessages = {
   selectAge: Specialisation;
   selectmodelx : DetailSpecialisation;
   setVehicule_carburant(){
-    this.selectvec_carburant = this.selectedVehicule_carburant;console.log(this.selectvec_carburant);}
+    this.selectvec_carburant = this.selectedVehicule_carburant; console.log(this.selectvec_carburant);
+    this.carnetentretienService.getHistoriqueByVehicule(this.selectvec_carburant.id)
+    .subscribe((data) => {this.Allhistoriquebyvehicule = data, console.log(data), this.loading = false; } ,error => console.log(error));
+  }
     setVehicule_entretien(){
       this.selectvec_entretien = this.selectedVehicule_entretien;console.log(this.selectvec_entretien);}
       setVehicule_depense(){
@@ -356,7 +366,17 @@ validationMessages = {
     console.log(this.selectspec);
 
   }
+  deleteclient() {
+   // this.historiqueDialog = false ;
+    this.confirmationService.confirm({
+        message: 'Etes-vous sûr que vous voulez supprimer  ' +  '?',
+        header: 'Confirm',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
 
+        }
+    });
+  }
   setspecialisation(){
     this.selectspec = this.specialisationss.toString() ;
     console.log(this.selectspec);
@@ -719,7 +739,22 @@ this.onValueChanged_trajet();
 
 
 /////////////////////////////hide & affiche dialogue ////////////////////////////////////
+showhistoriqueDialog() {
+  this.historiqueDialog = true;
+}
+
+editentretiendialog() {
+  this.historiqueDialog = false;
+  this.editDialog = true ;
+}
+hideeditDialog(){
+  this.editDialog = false ;
+  this.historiqueDialog = true;
+
+}
+
   hideentretienDialog() {
+
     this.entretienDialog = false;
   }
   afficherentretiendialog() {

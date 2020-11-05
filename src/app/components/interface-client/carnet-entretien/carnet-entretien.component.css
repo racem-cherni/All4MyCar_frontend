@@ -7,6 +7,9 @@
 .dateform {
   width:35%;
 }
+.datefor {
+  width:25%;
+}
 
 .example-full-width {
   width:50%;
@@ -141,8 +144,8 @@ text-align: center;
 }
 .containerr .boxx .iconn {
 position:relative;
-width:80px;
-height:80px;
+width:70px;
+height:70px;
 color: #fff ;
 background: #000;
 display : flex;
@@ -165,6 +168,14 @@ transition: 1s;
   margin-top: 5%;
   margin-bottom: 5%;
 
+}
+.cvn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 
@@ -522,8 +533,8 @@ padding: 0;
 .icon_carburant{
 
     position:relative;
-width:80px;
-height:80px;
+width:60px;
+height:60px;
 color: #fff ;
 background: #000;
 display : flex;
@@ -642,8 +653,8 @@ box-shadow: 0 0 0 0 #fa3275;
   .icon_entretien{
 
     position:relative;
-width:80px;
-height:80px;
+width:60px;
+height:60px;
 color: #fff ;
 background: #000;
 display : flex;
@@ -761,8 +772,8 @@ box-shadow: 0 0 0 0 #23e629;
   .icon_depense{
 
     position:relative;
-width:80px;
-height:80px;
+width:60px;
+height:60px;
 color: #fff ;
 background: #000;
 display : flex;
@@ -879,8 +890,8 @@ box-shadow: 0 0 0 0 #2196f3;
   .icon_trajet{
 
     position:relative;
-width:80px;
-height:80px;
+width:60px;
+height:60px;
 color: #fff ;
 background: #000;
 display : flex;
@@ -997,8 +1008,8 @@ box-shadow: 0 0 0 0 #f22213;
   .icon_odometer{
 
     position:relative;
-width:80px;
-height:80px;
+width:60px;
+height:60px;
 color: #fff ;
 background: #000;
 display : flex;
