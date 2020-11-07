@@ -1,10 +1,10 @@
 <style>
-.fenetre {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-}
+  .fenetre {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+  }
 </style>
 <div class="block-header block-header--has-breadcrumb block-header--has-title">
   <div class="container">
@@ -16,39 +16,281 @@
   </div>
 </div>
 <div class="fenetre">
-<mat-tab-group  mat-align-tabs="center" >
-  <mat-tab label="Tableau de board" >
-<div class="block" style="overflow-y: hidden;min-height:  70vh;">
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Tableau de board">
+      <div class="block" style="overflow-y: hidden;min-height:  70vh;">
 
 
-    <div class="container container--max--lg">
-      <p-toast></p-toast>
-      <div class="card contacts">
-        <div class="card-body card-body--padding--2">
-          <div class="card-body">
-            <div style="color: black; width: 80%;" class="vehicle-form__divider offset-1">Entrées de journal récentes</div>
+        <div class="container container--max--lg">
+          <p-toast></p-toast>
+          <div class="card contacts">
+            <div class="card-body card-body--padding--2">
+              <div class="card-body">
+                <div style="color: black; width: 80%;" class="vehicle-form__divider offset-1">Entrées de journal
+                  récentes</div>
 
-            <div class="table-responsive " >
-              <p-table  #dt  [value]="historique" [rowHover]="true"  [loading]="loading" [filterDelay]="0">
+                <div class="table-responsive ">
+                  <p-table #dt [value]="historique" [rowHover]="true" [loading]="loading" [filterDelay]="0">
+                    <ng-template pTemplate="body" let-clt *ngIf="historique !== null">
+                      <tr *ngIf="clt.carburant!== null">
+
+                        <td>
+                          <div class="icon_carburant">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-closed-fill"
+                              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd"
+                                d="M4 1a1 1 0 0 0-1 1v13H1.5a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2a1 1 0 0 0-1-1H4zm2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                            </svg>
+                          </div>
+
+                        </td>
+                        <td>{{clt.carburant.date_carburant}}</td>
+                        <td>Kilometrage : {{clt.carburant.odometer_carburant}}</td>
+                        <td>Qauntité : {{ clt.carburant.quantite_carburant}} L <br>
+                          Prix total : {{ clt.carburant.depense_carburant}} Dt</td>
+                        <td>Station : {{ clt.carburant.station_carburant}} </td>
+
+                      </tr>
+                      <tr *ngIf="clt.entretien !== null">
+
+                        <td>
+                          <div class="icon_entretien">
+
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tools" fill="currentColor"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd"
+                                d="M0 1l1-1 3.081 2.2a1 1 0 0 1 .419.815v.07a1 1 0 0 0 .293.708L10.5 9.5l.914-.305a1 1 0 0 1 1.023.242l3.356 3.356a1 1 0 0 1 0 1.414l-1.586 1.586a1 1 0 0 1-1.414 0l-3.356-3.356a1 1 0 0 1-.242-1.023L9.5 10.5 3.793 4.793a1 1 0 0 0-.707-.293h-.071a1 1 0 0 1-.814-.419L0 1zm11.354 9.646a.5.5 0 0 0-.708.708l3 3a.5.5 0 0 0 .708-.708l-3-3z" />
+                              <path fill-rule="evenodd"
+                                d="M15.898 2.223a3.003 3.003 0 0 1-3.679 3.674L5.878 12.15a3 3 0 1 1-2.027-2.027l6.252-6.341A3 3 0 0 1 13.778.1l-2.142 2.142L12 4l1.757.364 2.141-2.141zm-13.37 9.019L3.001 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z" />
+                            </svg>
+                          </div>
+
+
+                        </td>
+                        <td>{{clt.entretien.date_entretien}}</td>
+                        <td style="width: 20%;">Kilometrage : {{clt.entretien.odometer_entretien}}</td>
+                        <td style="width: 25%;">{{clt.entretien.specialisations}}</td>
+                        <td>centre : {{clt.entretien.centre_entretien}}</td>
+
+
+                      </tr>
+                      <tr *ngIf="clt.trajet!== null">
+
+                        <td>
+                          <div class="icon_trajet">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-truck" fill="currentColor"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd"
+                                d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                            </svg>
+                          </div>
+
+
+                        </td>
+                        <td>Debut :
+                          {{clt.trajet.date_depart}}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{clt.trajet.lieux_depart}}
+                        </td>
+                        <td>Arrivé :
+                          {{clt.trajet.date_arrive}}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{clt.trajet.lieux_arrive}}
+                        </td>
+                        <td>Distance : {{clt.trajet.distance_trajet}} km</td>
+                        <td style="width: 20%">Temps emis: {{clt.trajet.duree_trajet}} H</td>
+
+
+                      </tr>
+                      <tr *ngIf="clt.odometer!== null">
+
+                        <td>
+                          <div class="icon_odometer">
+                            <i class="fas fa-tachometer-alt"></i>
+                          </div>
+
+                        </td>
+                        <td>{{clt.odometer.date_odometer}}</td>
+                        <td>Kilométrage : {{clt.odometer.odomoeter_cal}}</td>
+                        <td></td>
+                        <td></td>
+
+                      </tr>
+                      <tr *ngIf="clt.depense!== null">
+
+                        <td>
+                          <div class="icon_depense"><svg width="1em" height="1em" viewBox="0 0 16 16"
+                              class="bi bi-cash-stack" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z" />
+                              <path fill-rule="evenodd"
+                                d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z" />
+                              <path
+                                d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
+                            </svg></div>
+
+                        </td>
+                        <td>{{clt.depense.date_depense}}</td>
+                        <td>Kilométrage : {{clt.depense.odometer_depense}}</td>
+                        <td style="width: 20%">Dépense : {{clt.depense.depense}}</td>
+
+                        <td>Prix total : {{clt.depense.prix_depense}} Dt</td>
+
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                      <tr>
+                        <td colspan="8" class="center">Aucune entretien récente</td>
+                      </tr>
+                    </ng-template>
+                  </p-table>
+
+                </div>
+                <div *ngIf="Allhistorique.length >3">
+                  <br>
+                  <button pButton pRipple type="button" label="Afficher tous"
+                    class="p-button-rounded p-button-secondary" (click)="showhistoriqueDialog()"></button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bodyy">
+          <div class="containerr">
+
+            <a (click)="affichercarburantDialog()" class="boxx" href="javascript:void(0)">
+              <div class="iconn">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-closed-fill" fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M4 1a1 1 0 0 0-1 1v13H1.5a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2a1 1 0 0 0-1-1H4zm2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                </svg>
+              </div>
+              <div class="content">
+                <h3>Remplir carburant</h3>
+              </div>
+
+            </a>
+
+
+            <a (click)="afficherentretiendialog()" class="boxx" href="javascript:void(0)">
+              <div class="iconn">
+
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tools" fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M0 1l1-1 3.081 2.2a1 1 0 0 1 .419.815v.07a1 1 0 0 0 .293.708L10.5 9.5l.914-.305a1 1 0 0 1 1.023.242l3.356 3.356a1 1 0 0 1 0 1.414l-1.586 1.586a1 1 0 0 1-1.414 0l-3.356-3.356a1 1 0 0 1-.242-1.023L9.5 10.5 3.793 4.793a1 1 0 0 0-.707-.293h-.071a1 1 0 0 1-.814-.419L0 1zm11.354 9.646a.5.5 0 0 0-.708.708l3 3a.5.5 0 0 0 .708-.708l-3-3z" />
+                  <path fill-rule="evenodd"
+                    d="M15.898 2.223a3.003 3.003 0 0 1-3.679 3.674L5.878 12.15a3 3 0 1 1-2.027-2.027l6.252-6.341A3 3 0 0 1 13.778.1l-2.142 2.142L12 4l1.757.364 2.141-2.141zm-13.37 9.019L3.001 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z" />
+                </svg>
+              </div>
+              <div class="content">
+                <h3>Ajouter entretien</h3>
+              </div>
+
+            </a>
+
+
+
+
+
+
+
+
+            <a (click)="afficherdepenseDialog()" class="boxx" href="javascript:void(0)">
+              <div class="iconn"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack"
+                  fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z" />
+                  <path fill-rule="evenodd"
+                    d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z" />
+                  <path
+                    d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
+                </svg></div>
+              <div class="content">
+                <h3>Ajouter dépense</h3>
+
+              </div>
+
+            </a>
+
+            <a (click)="affichertrajetDialog()" class="boxx" href="javascript:void(0)">
+              <div class="iconn">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-truck" fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                </svg>
+              </div>
+              <div class="content">
+                <h3>Ajouter un trajet</h3>
+              </div>
+
+
+
+            </a>
+
+
+            <a (click)="afficherodometerDialog()" class="boxx" href="javascript:void(0)">
+              <div class="iconn">
+
+
+
+                <i class="fas fa-tachometer-alt"></i>
+              </div>
+              <div class="content">
+                <h3>Ajouter odomoter</h3>
+              </div>
+
+            </a>
+
+          </div>
+
+
+        </div>
+
+
+
+
+
+        <div class="block-space block-space--layout--after-header"></div>
+        <p-dialog [(visible)]="historiqueDialog" [style]="{width: '55vw'}" header="Journal" [contentStyle]="{'overflow-y': 'scroll', 'overflow-x': 'hidden',
+  'max-height': '50vh','min-height':'350px'}" [modal]="true" styleClass="p-fluid" [draggable]="false"
+          [resizable]="false" [baseZIndex]="10000">
+          <mat-form-field class="datefor">
+            <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
+            <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
+              [(ngModel)]="selectedVehicule_carburant" [ngModelOptions]="{standalone: true}"
+              panelClass="my-select-panel-class" (ngModelChange)="setVehicule_carburant()" required>
+              <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
+                {{marque.model.marque.name}} {{marque.model.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="row">
+            <div class="table-responsive ">
+              <p-table #dt [value]="Allhistoriquebyvehicule" [rowHover]="true" [loading]="loading" [filterDelay]="0">
                 <ng-template pTemplate="body" let-clt *ngIf="historique !== null">
                   <tr *ngIf="clt.carburant!== null">
 
                     <td>
                       <div class="icon_carburant">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-closed-fill" fill="currentColor"
-                          xmlns="http://www.w3.org/2000/svg">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-closed-fill"
+                          fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                           <path fill-rule="evenodd"
                             d="M4 1a1 1 0 0 0-1 1v13H1.5a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2a1 1 0 0 0-1-1H4zm2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                         </svg>
                       </div>
 
-                      </td>
+                    </td>
                     <td>{{clt.carburant.date_carburant}}</td>
                     <td>Kilometrage : {{clt.carburant.odometer_carburant}}</td>
                     <td>Qauntité : {{ clt.carburant.quantite_carburant}} L <br>
                       Prix total : {{ clt.carburant.depense_carburant}} Dt</td>
                     <td>Station : {{ clt.carburant.station_carburant}} </td>
+                    <td class="td-actions text-right ">
+                      <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success"
+                        (click)="editentretiendialog()" pTooltip="editer"></button>
 
+                      &nbsp;
+
+                      <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="deleteclient()" pTooltip="supprimer"></button>
+                    </td>
                   </tr>
                   <tr *ngIf="clt.entretien !== null">
 
@@ -65,12 +307,20 @@
                       </div>
 
 
-                      </td>
+                    </td>
                     <td>{{clt.entretien.date_entretien}}</td>
                     <td style="width: 20%;">Kilometrage : {{clt.entretien.odometer_entretien}}</td>
                     <td style="width: 25%;">{{clt.entretien.specialisations}}</td>
                     <td>centre : {{clt.entretien.centre_entretien}}</td>
+                    <td class="td-actions text-right ">
+                      <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success"
+                        (click)="editentretiendialog()" pTooltip="editer"></button>
 
+                      &nbsp;
+
+                      <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="deleteclient()" pTooltip="supprimer"></button>
+                    </td>
 
                   </tr>
                   <tr *ngIf="clt.trajet!== null">
@@ -85,12 +335,24 @@
                       </div>
 
 
-                      </td>
-                    <td>Debut : {{clt.trajet.date_depart}}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{clt.trajet.lieux_depart}}</td>
-                    <td>Arrivé : {{clt.trajet.date_arrive}}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{clt.trajet.lieux_arrive}}</td>
-                    <td >Distance : {{clt.trajet.distance_trajet}} km</td>
-                    <td style="width: 20%">Temps emis: {{clt.trajet.duree_trajet}} H</td>
+                    </td>
+                    <td>Debut :
+                      {{clt.trajet.date_depart}}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{clt.trajet.lieux_depart}}
+                    </td>
+                    <td>Arrivé :
+                      {{clt.trajet.date_arrive}}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{clt.trajet.lieux_arrive}}
+                    </td>
+                    <td>Distance : {{clt.trajet.distance_trajet}} km</td>
+                    <td style="width: 30%">Temps emis: {{clt.trajet.duree_trajet}} H </td>
+                    <td class="td-actions text-right ">
+                      <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success"
+                        (click)="editentretiendialog()" pTooltip="editer"></button>
 
+                      &nbsp;
+
+                      <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="deleteclient()" pTooltip="supprimer"></button>
+                    </td>
 
                   </tr>
                   <tr *ngIf="clt.odometer!== null">
@@ -100,17 +362,894 @@
                         <i class="fas fa-tachometer-alt"></i>
                       </div>
 
-                      </td>
+                    </td>
                     <td>{{clt.odometer.date_odometer}}</td>
-                    <td>Kilométrage :  {{clt.odometer.odomoeter_cal}}</td>
+                    <td>Kilométrage : {{clt.odometer.odomoeter_cal}}</td>
                     <td></td>
                     <td></td>
 
+                    <td class="td-actions text-right ">
+                      <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success"
+                        (click)="editentretiendialog()" pTooltip="editer"></button>
+
+                      &nbsp;
+
+                      <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="deleteclient()" pTooltip="supprimer"></button>
+                    </td>
                   </tr>
                   <tr *ngIf="clt.depense!== null">
 
                     <td>
-                      <div class="icon_depense"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack"
+                      <div class="icon_depense"><svg width="1em" height="1em" viewBox="0 0 16 16"
+                          class="bi bi-cash-stack" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z" />
+                          <path fill-rule="evenodd"
+                            d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z" />
+                          <path
+                            d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
+                        </svg></div>
+
+                    </td>
+                    <td>{{clt.depense.date_depense}}</td>
+                    <td>Kilométrage : {{clt.depense.odometer_depense}}</td>
+                    <td style="width: 20%">Dépense : {{clt.depense.depense}}</td>
+
+                    <td>Prix total : {{clt.depense.prix_depense}} Dt</td>
+                    <td class="td-actions text-right ">
+                      <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success"
+                        (click)="editentretiendialog()" pTooltip="editer"></button>
+
+                      &nbsp;
+
+                      <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="deleteclient()" pTooltip="supprimer"></button>
+                    </td>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                  <tr>
+                    <td colspan="8" class="cvn">Aucune voiture choisie</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+
+            </div>
+
+
+          </div>
+
+
+
+
+
+
+          <ng-template pTemplate="footer">
+
+          </ng-template>
+        </p-dialog>
+        <p-dialog [(visible)]="editDialog" [style]="{width: '40vw'}" header="Modifier entretien" [modal]="true"
+          styleClass="p-fluid" [draggable]="false" [resizable]="false" [baseZIndex]="10000">
+
+          <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+          </div>
+
+
+
+
+
+
+
+          <ng-template pTemplate="footer">
+            <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text"
+              (click)="hideeditDialog()"></button>
+            <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"></button>
+          </ng-template>
+        </p-dialog>
+        <form class="block-finder__form " novalidate [formGroup]="form_carburant" #cform="ngForm"
+          (ngSubmit)="onsubmit_carburant()">
+          <p-dialog [(visible)]="carburantDialog" [style]="{width: '30vw'}" header="Remplir carburant" [modal]="true"
+            styleClass="p-fluid" [draggable]="false" [resizable]="false" [baseZIndex]="10000">
+
+            <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;
+
+              <mat-form-field class="dateform">
+                <input matInput formControlName="date_carburant" [matDatepicker]="picker" placeholder="date"
+                  [(ngModel)]="sysdate" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="formErrors.date_carburant">{{formErrors.date_carburant}}</mat-error>
+              </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field class="dateform">
+                <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
+                <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
+                  [(ngModel)]="selectedVehicule_carburant" [ngModelOptions]="{standalone: true}"
+                  panelClass="my-select-panel-class" (ngModelChange)="setVehicule_carburant()" required>
+                  <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
+                    {{marque.model.marque.name}} {{marque.model.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              &nbsp;&nbsp;&nbsp;&nbsp;
+
+              <mat-form-field class="dateform">
+                <input matInput formControlName="odometer_carburant" type="number" placeholder="Kilométrage (km)"
+                  required>
+                <mat-error *ngIf="formErrors.odometer_carburant">{{formErrors.odometer_carburant}}</mat-error>
+              </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+              <mat-form-field class="dateform">
+                <input matInput formControlName="quantite_carburant" type="number" placeholder="Quantité (L)" required>
+                <mat-error *ngIf="formErrors.quantite_carburant">{{formErrors.quantite_carburant}}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="row">
+              &nbsp;&nbsp;&nbsp;&nbsp;
+
+              <mat-form-field class="dateform">
+                <input matInput formControlName="station_carburant" type="text" placeholder="station carburant"
+                  required>
+                <mat-error *ngIf="formErrors.station_carburant">{{formErrors.station_carburant}}</mat-error>
+              </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+              <mat-form-field class="dateform">
+                <input matInput formControlName="depense_carburant" type="number" placeholder="Prix total (DT)"
+                  required>
+                <mat-error *ngIf="formErrors.depense_carburant">{{formErrors.depense_carburant}}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <mat-form-field class="example-detail">
+              <mat-label>Notes</mat-label>
+              <input matInput #message formControlName="note_carburant" type="text" maxlength="256"
+                placeholder="ajouter des informations supplimentaires">
+              <mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
+              <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+            </mat-form-field>
+
+
+            <ng-template pTemplate="footer">
+              <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text"
+                (click)="hidecarburantDialog()"></button>
+              <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"></button>
+            </ng-template>
+          </p-dialog>
+        </form>
+
+
+        <form class="block-finder__form " novalidate [formGroup]="form_entretien" #eform="ngForm"
+          (ngSubmit)="onsubmit_entretien()">
+          <p-dialog [(visible)]="entretienDialog" [style]="{width: '30vw'}" header="Ajouter entretien" [modal]="true"
+            styleClass="p-fluid" [draggable]="false" [resizable]="false" [baseZIndex]="10000">
+
+            <div class="row">&nbsp;&nbsp;&nbsp;
+
+              <mat-form-field class="dateform">
+                <input matInput formControlName="date_entretien" [matDatepicker]="picker_entretien"
+                  placeholder="Date entretien" [(ngModel)]="sysdate" required>
+                <mat-datepicker-toggle matSuffix [for]="picker_entretien"></mat-datepicker-toggle>
+                <mat-datepicker #picker_entretien></mat-datepicker>
+                <mat-error *ngIf="formErrors.date_entretien">{{formErrors.date_entretien}}</mat-error>
+              </mat-form-field>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field class="dateform">
+                <input matInput formControlName="odometer_entretien" type="number" placeholder="kilométrage (km)"
+                  required>
+                <mat-error *ngIf="formErrors.odometer_entretien">{{formErrors.odometer_entretien}}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="row">&nbsp;&nbsp;&nbsp;
+              <mat-form-field class="dateform">
+                <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
+                <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
+                  [(ngModel)]="selectedVehicule_entretien" [ngModelOptions]="{standalone: true}"
+                  panelClass="my-select-panel-class" (ngModelChange)="setVehicule_entretien()" required>
+                  <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
+                    {{marque.model.marque.name}} {{marque.model.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="formErrors.vehicule">{{formErrors.vehicule}}</mat-error>
+              </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+              <mat-form-field class="dateform">
+                <mat-label> &nbsp;&nbsp;&nbsp; Entretien et réparation</mat-label>
+                <mat-select matNativeControl id="abc" [(ngModel)]="specialisationss" formControlName="specialisations"
+                  [ngModelOptions]="{standalone: true}" multiple (ngModelChange)="setspecialisation()" required>
+                  <mat-optgroup *ngFor="let group of specialisations" [label]="group.name">
+                    <mat-option *ngFor="let pokemon of group.detailspecialisations" [value]="pokemon.name">
+                      {{pokemon.name}}
+                    </mat-option>
+                  </mat-optgroup>
+                </mat-select>
+                <mat-error *ngIf="formErrors.specialisations">{{formErrors.specialisations}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="row">&nbsp;&nbsp;&nbsp;
+              <mat-form-field class="dateform">
+                <input matInput formControlName="centre_entretien" type="text" id="centre_entretien"
+                  placeholder="Centre entretien">
+                <mat-error *ngIf="formErrors.centre_entretien">{{formErrors.centre_entretien}}</mat-error>
+              </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+              <mat-form-field class="dateform">
+                <input matInput formControlName="prix_entretien" type="number" placeholder="Prix total (DT)" required>
+                <mat-error *ngIf="formErrors.prix_entretien">{{formErrors.prix_entretien}}</mat-error>
+
+              </mat-form-field>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <mat-form-field class="example-detail">
+              <mat-label>Notes</mat-label>
+              <input matInput #message formControlName="note_entretien" maxlength="256"
+                placeholder="ajouter des informations supplimentaires">
+              <mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
+              <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+            </mat-form-field>
+
+            <ng-template pTemplate="footer">
+              <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text"
+                (click)="hideentretienDialog()"></button>
+              <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"></button>
+            </ng-template>
+          </p-dialog>
+        </form>
+
+
+        <form class="block-finder__form " novalidate [formGroup]="form_depense" #dform="ngForm"
+          (ngSubmit)="onsubmit_depense()">
+
+          <p-dialog [(visible)]="depenseDialog" [style]="{width: '30vw'}" header="Ajouter depense" [modal]="true"
+            styleClass="p-fluid" [draggable]="false" [resizable]="false" [baseZIndex]="10000">
+            <div class="row">&nbsp;&nbsp;&nbsp;
+
+              <mat-form-field class="dateform">
+                <input matInput formControlName="date_depense" [matDatepicker]="picker_depense"
+                  placeholder="Date depense" [(ngModel)]="sysdate" required>
+                <mat-datepicker-toggle matSuffix [for]="picker_depense"></mat-datepicker-toggle>
+                <mat-datepicker #picker_depense></mat-datepicker>
+                <mat-error *ngIf="formErrors.date_depense">{{formErrors.date_depense}}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="row">&nbsp;&nbsp;&nbsp;
+              <mat-form-field class="dateform">
+                <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
+                <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
+                  [(ngModel)]="selectedVehicule_depense" [ngModelOptions]="{standalone: true}"
+                  panelClass="my-select-panel-class" (ngModelChange)="setVehicule_depense()" required>
+                  <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
+                    {{marque.model.marque.name}} {{marque.model.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="formErrors.vehicule">{{formErrors.vehicule}}</mat-error>
+
+              </mat-form-field>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field class="dateform">
+                <input matInput formControlName="odometer_depense" type="number" placeholder="kilométrage (km)"
+                  required>
+                <mat-error *ngIf="formErrors.odometer_depense">{{formErrors.odometer_depense}}</mat-error>
+
+              </mat-form-field>
+
+
+
+
+
+            </div>
+
+            <div class="row">
+              &nbsp;&nbsp;&nbsp;
+
+              <mat-form-field class="dateform">
+                <mat-label> Dépenses </mat-label>
+                <mat-select matNativeControl id="abc" [(ngModel)]="selected_d" (ngModelChange)="setDepense()"
+                  formControlName="depense" [ngModelOptions]="{standalone: true}" required>
+
+                  <mat-option *ngFor="let pokemon of depences" [value]="pokemon">
+                    {{pokemon}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="formErrors.depense">{{formErrors.depense}}</mat-error>
+
+              </mat-form-field>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+              <mat-form-field class="dateform">
+                <input matInput formControlName="prix_depense" type="number" placeholder="Prix total (DT)" required>
+                <mat-error *ngIf="formErrors.prix_depense">{{formErrors.prix_depense}}</mat-error>
+              </mat-form-field>
+            </div>
+            <mat-form-field class="example-detail">
+              <mat-label>Notes</mat-label>
+              <input matInput #message formControlName="note_depense" maxlength="256"
+                placeholder="ajouter des informations supplimentaires">
+              <mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
+              <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+            </mat-form-field>
+
+
+            <ng-template pTemplate="footer">
+              <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text"
+                (click)="hidedepenseDialog()"></button>
+              <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"></button>
+            </ng-template>
+          </p-dialog>
+        </form>
+
+        <form class="block-finder__form " novalidate [formGroup]="form_odometer" #oform="ngForm"
+          (ngSubmit)="onsubmit_odometer()">
+
+          <p-dialog [(visible)]="odometerDialog" [style]="{width: '30vw'}" header="Ajouter odometer" [modal]="true"
+            styleClass="p-fluid" [draggable]="false" [resizable]="false" [baseZIndex]="10000">
+
+            <div class="row">
+              &nbsp;&nbsp;&nbsp;
+
+              <mat-form-field class="dateform">
+                <input matInput formControlName="date_odometer" [matDatepicker]="picker_odometer" placeholder="date"
+                  [(ngModel)]="sysdate" required>
+                <mat-datepicker-toggle matSuffix [for]="picker_odometer"></mat-datepicker-toggle>
+                <mat-datepicker #picker_odometer></mat-datepicker>
+                <mat-error *ngIf="formErrors.date_odometer">{{formErrors.date_odometer}}</mat-error>
+
+              </mat-form-field>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+
+
+            </div>
+            <div class="row">&nbsp;&nbsp;&nbsp;
+              <mat-form-field class="dateform">
+                <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
+                <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
+                  [(ngModel)]="selectedVehicule_odometer" [ngModelOptions]="{standalone: true}"
+                  panelClass="my-select-panel-class" (ngModelChange)="setVehicule_odometer()" required>
+                  <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
+                    {{marque.model.marque.name}} {{marque.model.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="formErrors.vehicule">{{formErrors.vehicule}}</mat-error>
+              </mat-form-field>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field class="dateform">
+                <input matInput formControlName="odomoeter_cal" type="number" placeholder="Kilométrage (km)" required>
+                <mat-error *ngIf="formErrors.odomoeter_cal">{{formErrors.odomoeter_cal}}</mat-error>
+
+              </mat-form-field>
+
+
+
+
+
+            </div>
+
+            <mat-form-field class="example-detail">
+              <mat-label>Notes</mat-label>
+              <input matInput #message formControlName="note_odometer" maxlength="256"
+                placeholder="ajouter des informations supplimentaires">
+              <mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
+              <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+            </mat-form-field>
+
+            <ng-template pTemplate="footer">
+              <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text"
+                (click)="hideodometerDialog()"></button>
+              <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"></button>
+            </ng-template>
+          </p-dialog>
+        </form>
+
+
+        <form class="block-finder__form " novalidate [formGroup]="form_trajet" #tform="ngForm"
+          (ngSubmit)="onsubmit_trajet()">
+
+          <p-dialog [(visible)]="trajetDialog" [contentStyle]="{'overflow-y': 'scroll', 'overflow-x': 'hidden',
+        'max-height': '40vh','min-height':'250px'}" header="Ajouter trajet" [modal]="true" styleClass="p-fluid"
+            [draggable]="false" [resizable]="false" [baseZIndex]="10000">
+            <div class="row">&nbsp;&nbsp;
+              <mat-form-field class="dateform">
+                <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
+                <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
+                  [(ngModel)]="selectedVehicule_trajet" [ngModelOptions]="{standalone: true}"
+                  panelClass="my-select-panel-class" (ngModelChange)="setVehicule_trajet()" required>
+                  <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
+                    {{marque.model.marque.name}} {{marque.model.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="formErrors.vehicule">{{formErrors.vehicule}}</mat-error>
+
+              </mat-form-field>
+            </div>
+            <div class="vehicle-form__divider">Depart</div>
+
+            <div class="row">
+              &nbsp;&nbsp;
+
+              <mat-form-field class="half-width">
+                <input matInput formControlName="date_depart" [matDatepicker]="picker_dd" placeholder="Date débart"
+                  required>
+                <mat-datepicker-toggle matSuffix [for]="picker_dd"></mat-datepicker-toggle>
+                <mat-datepicker #picker_dd></mat-datepicker>
+                <mat-error *ngIf="formErrors.date_depart">{{formErrors.date_depart}}</mat-error>
+              </mat-form-field>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field class="half-width">
+                <input matInput formControlName="lieux_depart" type="text" placeholder="lieu départ" required>
+                <mat-error *ngIf="formErrors.lieux_depart">{{formErrors.lieux_depart}}</mat-error>
+
+              </mat-form-field>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <div>
+                <br />
+                <p-calendar formControlName="heure_depart" placeholder="Heure départ" [timeOnly]="true" required>
+                  <mat-error *ngIf="formErrors.heure_depart">{{formErrors.heure_depart}}</mat-error>
+
+                </p-calendar>
+              </div>
+            </div>
+            <br />
+            <div class="vehicle-form__divider">Arrivée</div>
+            <div class="row">
+              &nbsp;&nbsp;
+              <mat-form-field class="half-width">
+                <input matInput formControlName="date_arrive" [matDatepicker]="picker_da" placeholder="Date arrivé"
+                  required>
+                <mat-datepicker-toggle matSuffix [for]="picker_da"></mat-datepicker-toggle>
+                <mat-datepicker #picker_da></mat-datepicker>
+                <mat-error *ngIf="formErrors.date_arrive">{{formErrors.date_arrive}}</mat-error>
+
+              </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;
+
+              <mat-form-field class="half-width">
+                <input matInput formControlName="lieux_arrive" type="text" placeholder="lieu arrivée" required>
+                <mat-error *ngIf="formErrors.lieux_arrive">{{formErrors.lieux_arrive}}</mat-error>
+
+              </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;
+              <div>
+                <br />
+                <p-calendar formControlName="heure_arrive" placeholder="Heure arrivée" [timeOnly]="true" required>
+                  <mat-error *ngIf="formErrors.heure_arrive">{{formErrors.heure_arrive}}</mat-error>
+
+                </p-calendar>
+              </div>
+            </div>
+            <div class="vehicle-form__divider">Trajet information</div>
+            <div class="row">
+              &nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput formControlName="distance_trajet" type="number" placeholder="Distance parcourue (KM)"
+                  required>
+                <mat-error *ngIf="formErrors.distance_trajet">{{formErrors.distance_trajet}}</mat-error>
+
+              </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput formControlName="duree_trajet" type="number" placeholder="Temps du trajet" required>
+                <mat-error *ngIf="formErrors.duree_trajet">{{formErrors.duree_trajet}}</mat-error>
+
+              </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput formControlName="vitesse_trajet" type="number" placeholder="moy vitesse" required>
+                <mat-error *ngIf="formErrors.vitesse_trajet">{{formErrors.vitesse_trajet}}</mat-error>
+
+              </mat-form-field>
+            </div>
+            <div class="vehicle-form__divider">Autres informations</div>
+            <div class="row">
+              &nbsp;&nbsp;&nbsp;
+
+              <mat-form-field class="half-width">
+                <input matInput formControlName="taxe_trajet" type="number" placeholder="Autre Taxe">
+
+              </mat-form-field>
+            </div>
+
+            <mat-form-field class="example-detail">
+              <mat-label>Notes</mat-label>
+              <input matInput #message formControlName="note_trajet" maxlength="256"
+                placeholder="ajouter des informations supplimentaires">
+              <mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
+              <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+            </mat-form-field>
+
+            <ng-template pTemplate="footer">
+              <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text"
+                (click)="hidetrajetDialog()"></button>
+              <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"></button>
+            </ng-template>
+          </p-dialog>
+        </form>
+      </div>
+
+
+    </mat-tab>
+    <mat-tab label="Statistiques & Tableaux">
+      <div class="block" style="overflow-x: hidden;overflow-y: hidden;min-height:  100vh;">
+
+
+
+        <div class="block">
+          <div class=row>
+            <mat-form-field class="offset-1 half-width">
+              <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
+              <mat-select matNativeControl id="v_stats" [(ngModel)]="selectedVehicule_stats"
+                [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
+                (ngModelChange)="setVehicule_statistique()" required>
+                <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
+                  {{marque.model.marque.name}} {{marque.model.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-form-field class="half-width">
+              <mat-label>&nbsp;&nbsp;&nbsp;Periode</mat-label>
+              <mat-select matNativeControl id="v_stats" [(ngModel)]="selectedPeriode_statistique"
+                [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class" (ngModelChange)="SetPeriode()"
+                required>
+                <mat-option *ngFor=" let s of selectedPeriode_stats" [value]="s">
+                  {{s}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="block-space block-space--layout--divider-xs"></div>
+          <div class="block-space block-space--layout--divider-xs"></div>
+          <div class="block-space block-space--layout--divider-xs"></div>
+          <div class="block-space block-space--layout--divider-xs"></div>
+          <div class="block-space block-space--layout--divider-xs"></div>
+
+
+
+
+          <div class="row">
+
+            <div class="col-4">
+              <div class="body_stats">
+
+                <div class="card_stats">
+                  <div class="front_stats_total " *ngIf="condition_total">
+                    <div class="location_total">Total</div>
+                    <div class="more_total"><i class="fa fa-info-circle" aria-hidden="true" (click)="work_total()"></i>
+                    </div>
+                    <div class="weather_total">
+                      <div class="icon_total">
+                        <i class="fas fa-receipt"></i>
+
+
+                      </div>
+                    </div>
+                    <ul class="forecast_total">
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="back_stats_total " *ngIf="!condition_total">
+                    <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true"
+                        (click)="workk_total()"></i></div>
+                    <ul class="forecast">
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+
+                    </ul>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+
+
+            <div class="col-4">
+
+              <div class="body_stats">
+
+
+
+
+                <div class="card_stats">
+                  <div class="front_stats_carburant " *ngIf="condition_carburant">
+                    <div class="location_carburant">carburant</div>
+                    <div class="more_carburant"><i class="fa fa-info-circle" aria-hidden="true"
+                        (click)="work_carburant()"></i></div>
+                    <div class="icon_carburant">
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-closed-fill"
+                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                          d="M4 1a1 1 0 0 0-1 1v13H1.5a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2a1 1 0 0 0-1-1H4zm2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                      </svg>
+                    </div>
+                    <ul class="forecast_carburant">
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Sunday
+                        </div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="back_stats_carburant " *ngIf="!condition_carburant && second_carburant">
+                    <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true"
+                        (click)="workk_carburant()"></i>
+                      &nbsp; <i class="fa fa-chevron-circle-right" aria-hidden="true" (click)="secondt_carburant()"></i>
+                    </div>
+                    <ul class="forecast">
+                      <li>
+                        <div class="day">Nbr Remplis</div>
+                        <div class="temperature">
+                          <div *ngIf="nbr_carburant !== 0 && nbr_carburant !== null">{{nbr_carburant}}</div>
+                          <div *ngIf="nbr_carburant == 0 || nbr_carburant == null">n/a </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Remplis/mois</div>
+                        <div class="temperature">
+                          x
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Distance/remplis</div>
+                        <div class="temperature">
+                          <div *ngIf="nbr_distanceParCarburant !== 0 && nbr_distanceParCarburant !== null">
+                            {{depense_moy_carburantS}} &nbsp;km</div>
+                          <div *ngIf="nbr_distanceParCarburant == 0 || nbr_distanceParCarburant == null">n/a
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Qté</div>
+                        <div class="temperature">
+                          <div *ngIf="qte_carburant !== 0 && qte_carburant !== null">{{qte_carburant}} &nbsp;Ltr</div>
+                          <div *ngIf="qte_carburant == 0 || qte_carburant == null">n/a </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Qté.moy/remplis</div>
+                        <div class="temperature">
+
+                          <div *ngIf="qte_moy_carburant !== 0 && qte_moy_carburant !== null">{{qte_moy_carburantS}}
+                            &nbsp;Ltr</div>
+                          <div *ngIf="qte_moy_carburant == 0 || qte_moy_carburant == null">n/a </div>
+                        </div>
+                      </li>
+
+
+                    </ul>
+
+                  </div>
+
+                  <div class="back_stats_carburant " *ngIf="!second_carburant">
+                    <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true"
+                        (click)="secondf_carburant()"></i></div>
+                    <ul class="forecast">
+
+                      <li>
+                        <div class="day">Dep</div>
+                        <div class="temperature">
+                          <div *ngIf="depense_carburant !== 0 && depense_carburant !== null">{{depense_carburant}}
+                            &nbsp;dt</div>
+                          <div *ngIf="depense_carburant == 0 || depense_carburant == null">n/a </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Dep.moy/remplis</div>
+                        <div class="temperature">
+                          <div *ngIf="depense_moy_carburant !== 0 && depense_moy_carburant !== null">
+                            {{depense_moy_carburant}} &nbsp;dt</div>
+                          <div *ngIf="depense_moy_carburant == 0 || depense_moy_carburant == null">n/a </div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div class="day">Dep/mois</div>
+                        <div class="temperature">
+                          x
+                        </div>
+                      </li>
+
+                    </ul>
+
+                  </div>
+
+
+                </div>
+              </div>
+
+            </div>
+
+
+
+
+            <div class="col-4">
+
+              <div class="body_stats">
+
+
+
+
+                <div class="card_stats">
+                  <div class="front_stats_entretien" *ngIf="condition_entretien">
+                    <div class="location_entretien">entretien</div>
+                    <div class="more_entretien"><i class="fa fa-info-circle" aria-hidden="true"
+                        (click)="work_entretien()"></i></div>
+                    <div class="icon_entretien">
+
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tools" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                          d="M0 1l1-1 3.081 2.2a1 1 0 0 1 .419.815v.07a1 1 0 0 0 .293.708L10.5 9.5l.914-.305a1 1 0 0 1 1.023.242l3.356 3.356a1 1 0 0 1 0 1.414l-1.586 1.586a1 1 0 0 1-1.414 0l-3.356-3.356a1 1 0 0 1-.242-1.023L9.5 10.5 3.793 4.793a1 1 0 0 0-.707-.293h-.071a1 1 0 0 1-.814-.419L0 1zm11.354 9.646a.5.5 0 0 0-.708.708l3 3a.5.5 0 0 0 .708-.708l-3-3z" />
+                        <path fill-rule="evenodd"
+                          d="M15.898 2.223a3.003 3.003 0 0 1-3.679 3.674L5.878 12.15a3 3 0 1 1-2.027-2.027l6.252-6.341A3 3 0 0 1 13.778.1l-2.142 2.142L12 4l1.757.364 2.141-2.141zm-13.37 9.019L3.001 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z" />
+                      </svg>
+                    </div>
+                    <ul class="forecast_entretien">
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="back_stats_entretien " *ngIf="!condition_entretien">
+                    <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true"
+                        (click)="workk_entretien()"></i></div>
+                    <ul class="forecast">
+                      <li>
+                        <div class="day">nbr</div>
+                        <div class="temperature">
+                          <div *ngIf="nbr_entretien !== 0 && nbr_entretien !== null">{{nbr_entretien}}</div>
+                          <div *ngIf="nbr_entretien == 0 || nbr_entretien == null">n/a </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">nbr/mois</div>
+                        <div class="temperature">
+                          x
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">dep</div>
+                        <div class="temperature">
+                          <div *ngIf="depense_entretien !== 0 && depense_entretien !== null">{{depense_entretien}}
+                            &nbsp;dt</div>
+                          <div *ngIf="depense_entretien == 0 || depense_entretien == null">n/a </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">dep/mois</div>
+                        <div class="temperature">
+                          x
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">distance/entretien</div>
+                        <div class="temperature">
+                          <div *ngIf="distance_moy_entretien !== 0 && distance_moy_entretien !== null ">
+                            {{distance_moy_entretienS}} &nbsp;km</div>
+                          <div *ngIf="distance_moy_entretien == 0 || distance_moy_entretien == null">n/a </div>
+                        </div>
+                      </li>
+                    </ul>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+        <div class="block">
+          <div class="block-space block-space--layout--divider-xs"></div>
+          <div class="block-space block-space--layout--divider-xs"></div>
+          <div class="block-space block-space--layout--divider-xs"></div>
+          <div class="block-space block-space--layout--divider-xs"></div>
+          <div class="block-space block-space--layout--divider-xs"></div>
+          <div class="block-space block-space--layout--divider-xs"></div>
+          <div class="block-space block-space--layout--divider-xs"></div>
+          <div class="block-space block-space--layout--divider-xs"></div>
+          <div class="block-space block-space--layout--divider-xs"></div>
+
+          <div class="row">
+            <div class="col-4">
+              <div class="body_stats">
+
+                <div class="card_stats">
+                  <div class="front_stats_depense " *ngIf="condition_depense">
+                    <div class="location_depense">Depense</div>
+                    <div class="more_depense"><i class="fa fa-info-circle" aria-hidden="true"
+                        (click)="work_depense()"></i></div>
+                    <div class="icon_depense"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack"
                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z" />
                         <path fill-rule="evenodd"
@@ -118,1364 +1257,386 @@
                         <path
                           d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
                       </svg></div>
+                    <ul class="forecast_depense">
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
 
-                      </td>
-                    <td>{{clt.depense.date_depense}}</td>
-                    <td>Kilométrage : {{clt.depense.odometer_depense}}</td>
-                    <td style="width: 20%">Dépense : {{clt.depense.depense}}</td>
+                  <div class="back_stats_depense " *ngIf="!condition_depense && second_depense">
+                    <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true"
+                        (click)="workk_depense()"></i>
+                      &nbsp; <i class="fa fa-chevron-circle-right" aria-hidden="true" (click)="secondt_depense()"></i>
 
-                    <td>Prix total : {{clt.depense.prix_depense}} Dt</td>
-
-                  </tr>
-                </ng-template>
-                <ng-template pTemplate="emptymessage">
-<tr>
-                      <td colspan="8" class="center">Aucune entretien récente</td>
-                    </tr>
-              </ng-template>
-             </p-table>
-
-              </div>
-              <div *ngIf="Allhistorique.length >3">
-              <br>
-              <button pButton pRipple type="button" label="Afficher tous" class="p-button-rounded p-button-secondary" (click)="showhistoriqueDialog()"></button></div>  </div>
-          </div>
-          </div>
-    </div>
-<div class="bodyy">
-<div class="containerr">
-
-    <a (click)="affichercarburantDialog()" class="boxx" href="javascript:void(0)">
-    <div class="iconn">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-closed-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M4 1a1 1 0 0 0-1 1v13H1.5a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2a1 1 0 0 0-1-1H4zm2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-          </svg>
-    </div>
-    <div class="content">
-    <h3>Remplir carburant</h3>
-    </div>
-
-</a>
-
-
-        <a (click)="afficherentretiendialog()" class="boxx" href="javascript:void(0)">
-        <div  class="iconn">
-
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tools" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M0 1l1-1 3.081 2.2a1 1 0 0 1 .419.815v.07a1 1 0 0 0 .293.708L10.5 9.5l.914-.305a1 1 0 0 1 1.023.242l3.356 3.356a1 1 0 0 1 0 1.414l-1.586 1.586a1 1 0 0 1-1.414 0l-3.356-3.356a1 1 0 0 1-.242-1.023L9.5 10.5 3.793 4.793a1 1 0 0 0-.707-.293h-.071a1 1 0 0 1-.814-.419L0 1zm11.354 9.646a.5.5 0 0 0-.708.708l3 3a.5.5 0 0 0 .708-.708l-3-3z"/>
-                <path fill-rule="evenodd" d="M15.898 2.223a3.003 3.003 0 0 1-3.679 3.674L5.878 12.15a3 3 0 1 1-2.027-2.027l6.252-6.341A3 3 0 0 1 13.778.1l-2.142 2.142L12 4l1.757.364 2.141-2.141zm-13.37 9.019L3.001 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z"/>
-              </svg>
-        </div>
-        <div class="content">
-        <h3>Ajouter entretien</h3>
-        </div>
-
-      </a>
-
-
-
-
-
-
-
-
-            <a (click)="afficherdepenseDialog()" class="boxx" href="javascript:void(0)">
-            <div class="iconn"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z"/>
-                <path fill-rule="evenodd" d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z"/>
-                <path d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
-              </svg></div>
-            <div class="content">
-            <h3>Ajouter dépense</h3>
-
-            </div>
-
-          </a>
-
-          <a (click)="affichertrajetDialog()" class="boxx"href="javascript:void(0)">
-            <div class="iconn">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-truck" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                  </svg>
-            </div>
-            <div class="content">
-            <h3>Ajouter un trajet</h3>
-            </div>
+                    </div>
+                    <ul class="forecast">
+                      <li>
+                        <div class="day">nbr depense</div>
+                        <div class="temperature">
+                          <div *ngIf="nbr_depense_total !== 0 && nbr_depense_total !== null">{{nbr_depense_total}}</div>
+                          <div *ngIf="nbr_depense_total == 0 || nbr_depense_total == null">0 </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Depense</div>
+                        <div class="temperature">
+                          <div *ngIf="depense_total !== 0 && depense_total !== null">{{depense_total}} &nbsp;dt</div>
+                          <div *ngIf="depense_total == 0 || depense_total == null">0 &nbsp;dt </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">nbr Fine</div>
+                        <div class="temperature">
+                          <div *ngIf="nbr_depense_fine !== 0 && nbr_depense_fine !== null">{{nbr_depense_fine}}</div>
+                          <div *ngIf="nbr_depense_fine == 0 || nbr_depense_fine == null">0 </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">dep fine</div>
+                        <div class="temperature">
+                          <div *ngIf="depense_fine !== 0 && depense_fine !== null">{{depense_fine}} &nbsp;dt</div>
+                          <div *ngIf="depense_fine == 0 || depense_fine == null">0 &nbsp;dt </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">nbr insurance</div>
+                        <div class="temperature">
+                          <div *ngIf="nbr_depense_insurance !== 0 && nbr_depense_insurance !== null">
+                            {{nbr_depense_insurance}}</div>
+                          <div *ngIf="nbr_depense_insurance == 0 || nbr_depense_insurance == null">0 </div>
+                        </div>
+                      </li>
 
 
 
-          </a>
+                    </ul>
 
-
-                <a (click)="afficherodometerDialog()" class="boxx" href="javascript:void(0)">
-                <div class="iconn">
+                  </div>
 
 
 
-                    <i class="fas fa-tachometer-alt"></i>
-                                     </div>
-                <div class="content">
-                <h3>Ajouter odomoter</h3>
+                  <div class="back_stats_depense " *ngIf="!second_depense && third_depense">
+                    <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true"
+                        (click)="secondf_depense()"></i>
+                      &nbsp; <i class="fa fa-chevron-circle-right" aria-hidden="true" (click)="thirdt_depense()"></i>
+
+                    </div>
+                    <ul class="forecast">
+                      <li>
+                        <div class="day">dep insurance</div>
+                        <div class="temperature">
+                          <div *ngIf="depense_insurance !== 0 && depense_insurance !== null">{{depense_insurance}}
+                            &nbsp;dt</div>
+                          <div *ngIf="depense_insurance == 0 || depense_insurance == null">0 &nbsp;dt </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">nbr mot</div>
+                        <div class="temperature">
+                          <div *ngIf="nbr_depense_mot !== 0 && nbr_depense_mot !== null">{{nbr_depense_mot}}</div>
+                          <div *ngIf="nbr_depense_mot == 0 || nbr_depense_mot == null">0 </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">dep mot</div>
+                        <div class="temperature">
+                          <div *ngIf="depense_mot !== 0 && depense_mot !== null">{{depense_mot}} &nbsp;dt</div>
+                          <div *ngIf="depense_mot == 0 || depense_mot == null">0 &nbsp;dt </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">nbr parking</div>
+                        <div class="temperature">
+                          <div *ngIf="nbr_depense_parking !== 0 && nbr_depense_parking !== null">{{nbr_depense_parking}}
+                          </div>
+                          <div *ngIf="nbr_depense_parking == 0 || nbr_depense_parking == null">0 </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">dep parking</div>
+                        <div class="temperature">
+                          <div *ngIf="depense_parking !== 0 && depense_parking !== null">{{depense_parking}} &nbsp;dt
+                          </div>
+                          <div *ngIf="depense_parking == 0 || depense_parking == null">0 &nbsp;dt </div>
+                        </div>
+                      </li>
+
+
+
+                    </ul>
+
+                  </div>
+
+
+                  <div class="back_stats_depense " *ngIf="!second_depense && !third_depense">
+                    <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true"
+                        (click)="thirdf_depense()"></i></div>
+                    <ul class="forecast">
+                      <li>
+                        <div class="day">nbr tax</div>
+                        <div class="temperature">
+                          <div *ngIf="nbr_depense_Tax !== 0 && nbr_depense_Tax !== null">{{nbr_depense_Tax}}</div>
+                          <div *ngIf="nbr_depense_Tax == 0 || nbr_depense_Tax == null">0 </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">dep tax</div>
+                        <div class="temperature">
+                          <div *ngIf="depense_Tax !== 0 && depense_Tax !== null">{{depense_Tax}} &nbsp;dt</div>
+                          <div *ngIf="depense_Tax == 0 || depense_Tax == null">0 &nbsp;dt </div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div class="day">nbr troll</div>
+                        <div class="temperature">
+                          <div *ngIf="nbr_depense_troll !== 0 && nbr_depense_troll !== null">{{nbr_depense_troll}}</div>
+                          <div *ngIf="nbr_depense_troll == 0 || nbr_depense_troll == null">0 </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">dep troll</div>
+                        <div class="temperature">
+                          <div *ngIf="depense_troll !== 0 && depense_troll !== null">{{depense_troll}} &nbsp;dt</div>
+                          <div *ngIf="depense_troll == 0 || depense_troll == null">0 &nbsp;dt </div>
+                        </div>
+                      </li>
+                    </ul>
+
+                  </div>
+
                 </div>
 
-              </a>
-
+              </div>
             </div>
 
 
-        </div>
 
 
-
-
-
-<div class="block-space block-space--layout--after-header"></div>
-  <p-dialog  [(visible)]="historiqueDialog" [style]="{width: '55vw'}" header="Journal"  [contentStyle]="{'overflow-y': 'scroll', 'overflow-x': 'hidden',
-  'max-height': '50vh','min-height':'350px'}"[modal]="true" styleClass="p-fluid" [draggable]="false"
-  [resizable]="false" [baseZIndex]="10000">
-   <mat-form-field class="datefor" >
-        <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
-        <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
-          [(ngModel)]="selectedVehicule_carburant" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-          (ngModelChange)="setVehicule_carburant()" required >
-          <mat-option *ngFor=" let marque of Vehicules" [value]="marque" >
-            {{marque.model.marque.name}} {{marque.model.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-<div class="row">
-  <div class="table-responsive " >
-    <p-table  #dt  [value]="Allhistoriquebyvehicule" [rowHover]="true"  [loading]="loading" [filterDelay]="0">
-      <ng-template pTemplate="body" let-clt *ngIf="historique !== null">
-        <tr *ngIf="clt.carburant!== null">
-
-          <td>
-            <div class="icon_carburant">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-closed-fill" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M4 1a1 1 0 0 0-1 1v13H1.5a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2a1 1 0 0 0-1-1H4zm2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-              </svg>
-            </div>
-
-            </td>
-          <td>{{clt.carburant.date_carburant}}</td>
-          <td>Kilometrage : {{clt.carburant.odometer_carburant}}</td>
-          <td>Qauntité : {{ clt.carburant.quantite_carburant}} L <br>
-            Prix total : {{ clt.carburant.depense_carburant}} Dt</td>
-          <td>Station : {{ clt.carburant.station_carburant}} </td>
-          <td class="td-actions text-right ">
-            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success" (click)="editentretiendialog()" pTooltip="editer" ></button>
-
-            &nbsp;
-
-            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteclient()"pTooltip="supprimer" ></button>
-          </td>
-        </tr>
-        <tr *ngIf="clt.entretien !== null">
-
-          <td>
-            <div class="icon_entretien">
-
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tools" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M0 1l1-1 3.081 2.2a1 1 0 0 1 .419.815v.07a1 1 0 0 0 .293.708L10.5 9.5l.914-.305a1 1 0 0 1 1.023.242l3.356 3.356a1 1 0 0 1 0 1.414l-1.586 1.586a1 1 0 0 1-1.414 0l-3.356-3.356a1 1 0 0 1-.242-1.023L9.5 10.5 3.793 4.793a1 1 0 0 0-.707-.293h-.071a1 1 0 0 1-.814-.419L0 1zm11.354 9.646a.5.5 0 0 0-.708.708l3 3a.5.5 0 0 0 .708-.708l-3-3z" />
-                <path fill-rule="evenodd"
-                  d="M15.898 2.223a3.003 3.003 0 0 1-3.679 3.674L5.878 12.15a3 3 0 1 1-2.027-2.027l6.252-6.341A3 3 0 0 1 13.778.1l-2.142 2.142L12 4l1.757.364 2.141-2.141zm-13.37 9.019L3.001 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z" />
-              </svg>
-            </div>
-
-
-            </td>
-          <td>{{clt.entretien.date_entretien}}</td>
-          <td style="width: 20%;">Kilometrage : {{clt.entretien.odometer_entretien}}</td>
-          <td style="width: 25%;">{{clt.entretien.specialisations}}</td>
-          <td>centre : {{clt.entretien.centre_entretien}}</td>
-          <td class="td-actions text-right ">
-            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success" (click)="editentretiendialog()" pTooltip="editer" ></button>
-
-            &nbsp;
-
-            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteclient()"pTooltip="supprimer" ></button>
-          </td>
-
-        </tr>
-        <tr *ngIf="clt.trajet!== null">
-
-          <td>
-            <div class="icon_trajet">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-truck" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-              </svg>
-            </div>
-
-
-            </td>
-          <td>Debut : {{clt.trajet.date_depart}}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{clt.trajet.lieux_depart}}</td>
-          <td>Arrivé : {{clt.trajet.date_arrive}}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{clt.trajet.lieux_arrive}}</td>
-          <td >Distance : {{clt.trajet.distance_trajet}} km</td>
-          <td style="width: 30%">Temps emis: {{clt.trajet.duree_trajet}} H </td>
-          <td class="td-actions text-right ">
-            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success" (click)="editentretiendialog()" pTooltip="editer" ></button>
-
-            &nbsp;
-
-            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteclient()"pTooltip="supprimer" ></button>
-          </td>
-
-        </tr>
-        <tr *ngIf="clt.odometer!== null">
-
-          <td>
-            <div class="icon_odometer">
-              <i class="fas fa-tachometer-alt"></i>
-            </div>
-
-            </td>
-          <td>{{clt.odometer.date_odometer}}</td>
-          <td>Kilométrage :  {{clt.odometer.odomoeter_cal}}</td>
-          <td></td>
-            <td></td>
-
-          <td class="td-actions text-right ">
-            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success" (click)="editentretiendialog()" pTooltip="editer" ></button>
-
-            &nbsp;
-
-            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteclient()"pTooltip="supprimer" ></button>
-          </td>
-        </tr>
-        <tr *ngIf="clt.depense!== null">
-
-          <td>
-            <div class="icon_depense"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack"
-              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z" />
-              <path fill-rule="evenodd"
-                d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z" />
-              <path
-                d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
-            </svg></div>
-
-            </td>
-          <td>{{clt.depense.date_depense}}</td>
-          <td>Kilométrage : {{clt.depense.odometer_depense}}</td>
-          <td style="width: 20%">Dépense : {{clt.depense.depense}}</td>
-
-          <td>Prix total : {{clt.depense.prix_depense}} Dt</td>
-          <td class="td-actions text-right ">
-            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success" (click)="editentretiendialog()" pTooltip="editer" ></button>
-
-            &nbsp;
-
-            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteclient()"pTooltip="supprimer" ></button>
-          </td>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="emptymessage">
-<tr>
-            <td colspan="8" class="cvn">Aucune voiture choisie</td>
-          </tr>
-    </ng-template>
-   </p-table>
-
-    </div>
-
-
-</div>
-
-
-
-
-
-
-    <ng-template pTemplate="footer">
-
-  </ng-template>
-  </p-dialog>
-  <p-dialog  [(visible)]="editDialog" [style]="{width: '40vw'}" header="Modifier entretien" [modal]="true" styleClass="p-fluid" [draggable]="false"
-  [resizable]="false" [baseZIndex]="10000">
-
-  <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-
-</div>
-
-
-
-
-
-
-
-    <ng-template pTemplate="footer">
-      <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideeditDialog()"></button>
-      <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
-  </ng-template>
-  </p-dialog>
-<form class="block-finder__form " novalidate [formGroup]="form_carburant" #cform="ngForm" (ngSubmit)="onsubmit_carburant()">
-  <p-dialog  [(visible)]="carburantDialog" [style]="{width: '30vw'}" header="Remplir carburant" [modal]="true" styleClass="p-fluid" [draggable]="false"
-  [resizable]="false" [baseZIndex]="10000">
-
-  <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;
-
-    <mat-form-field class="dateform" >
-      <input matInput formControlName="date_carburant"  [matDatepicker]="picker" placeholder="date" [(ngModel)]="sysdate"  required  >
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="formErrors.date_carburant">{{formErrors.date_carburant}}</mat-error>
-      </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <mat-form-field class="dateform" >
-        <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
-        <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
-          [(ngModel)]="selectedVehicule_carburant" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-          (ngModelChange)="setVehicule_carburant()" required >
-          <mat-option *ngFor=" let marque of Vehicules" [value]="marque" >
-            {{marque.model.marque.name}} {{marque.model.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-</div>
-<div class="row">
-&nbsp;&nbsp;&nbsp;&nbsp;
-
-<mat-form-field class="dateform" >
-<input matInput formControlName="odometer_carburant" type="number"   placeholder="Kilométrage (km)"  required >
-<mat-error *ngIf="formErrors.odometer_carburant">{{formErrors.odometer_carburant}}</mat-error>
-</mat-form-field>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-<mat-form-field class="dateform"  >
-<input matInput formControlName="quantite_carburant" type="number"   placeholder="Quantité (L)"  required >
-<mat-error *ngIf="formErrors.quantite_carburant">{{formErrors.quantite_carburant}}</mat-error>
-</mat-form-field>
-</div>
-
-<div class="row">
-&nbsp;&nbsp;&nbsp;&nbsp;
-
-<mat-form-field class="dateform" >
-<input matInput formControlName="station_carburant" type="text"  placeholder="station carburant" required   >
-<mat-error *ngIf="formErrors.station_carburant">{{formErrors.station_carburant}}</mat-error>
-</mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-<mat-form-field class="dateform">
-<input matInput formControlName="depense_carburant" type="number" placeholder="Prix total (DT)"  required   >
-<mat-error *ngIf="formErrors.depense_carburant">{{formErrors.depense_carburant}}</mat-error>
-</mat-form-field>
-</div>
-
-<mat-form-field class="example-detail" >
-<mat-label>Notes</mat-label>
-<input matInput #message formControlName="note_carburant" type="text" maxlength="256" placeholder="ajouter des informations supplimentaires">
-<mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
-<mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-</mat-form-field>
-
-
-    <ng-template pTemplate="footer">
-      <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hidecarburantDialog()"></button>
-      <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
-  </ng-template>
-  </p-dialog>
-</form>
-
-
-<form class="block-finder__form " novalidate [formGroup]="form_entretien" #eform="ngForm" (ngSubmit)="onsubmit_entretien()">
-  <p-dialog [(visible)]="entretienDialog" [style]="{width: '30vw'}" header="Ajouter entretien" [modal]="true" styleClass="p-fluid" [draggable]="false"
-  [resizable]="false" [baseZIndex]="10000">
-
-  <div class="row">&nbsp;&nbsp;&nbsp;
-
-  <mat-form-field class="dateform">
-    <input matInput formControlName="date_entretien"  [matDatepicker]="picker_entretien" placeholder="Date entretien" [(ngModel)]="sysdate"  required  >
-    <mat-datepicker-toggle matSuffix [for]="picker_entretien"></mat-datepicker-toggle>
-    <mat-datepicker #picker_entretien></mat-datepicker>
-    <mat-error *ngIf="formErrors.date_entretien">{{formErrors.date_entretien}}</mat-error>
-    </mat-form-field>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <mat-form-field class="dateform"  >
-      <input matInput formControlName="odometer_entretien" type="number"   placeholder="kilométrage (km)"  required >
-      <mat-error *ngIf="formErrors.odometer_entretien">{{formErrors.odometer_entretien}}</mat-error>
-  </mat-form-field>
-</div>
-
-       <div class="row">&nbsp;&nbsp;&nbsp;
-        <mat-form-field class="dateform" >
-          <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
-          <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
-            [(ngModel)]="selectedVehicule_entretien" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-            (ngModelChange)="setVehicule_entretien()" required>
-            <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
-              {{marque.model.marque.name}} {{marque.model.name}}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="formErrors.vehicule">{{formErrors.vehicule}}</mat-error>
-        </mat-form-field>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-        <mat-form-field class="dateform"   >
-          <mat-label> &nbsp;&nbsp;&nbsp; Entretien et réparation</mat-label>
-          <mat-select  matNativeControl id="abc" [(ngModel)]="specialisationss"
-            formControlName="specialisations" [ngModelOptions]="{standalone: true}" multiple
-            (ngModelChange)="setspecialisation()" required>
-            <mat-optgroup *ngFor="let group of specialisations" [label]="group.name">
-              <mat-option *ngFor="let pokemon of group.detailspecialisations" [value]="pokemon.name">
-                {{pokemon.name}}
-              </mat-option>
-            </mat-optgroup>
-          </mat-select>
-          <mat-error *ngIf="formErrors.specialisations">{{formErrors.specialisations}}</mat-error>
-        </mat-form-field> </div>
-        <div class="row">&nbsp;&nbsp;&nbsp;
-        <mat-form-field class="dateform"  >
-          <input matInput formControlName="centre_entretien" type="text"  id="centre_entretien" placeholder="Centre entretien"   >
-          <mat-error *ngIf="formErrors.centre_entretien">{{formErrors.centre_entretien}}</mat-error>
-          </mat-form-field>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-          <mat-form-field class="dateform">
-            <input matInput formControlName="prix_entretien" type="number" placeholder="Prix total (DT)"  required   >
-            <mat-error *ngIf="formErrors.prix_entretien">{{formErrors.prix_entretien}}</mat-error>
-
-            </mat-form-field>
-            </div>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-        <mat-form-field class="example-detail" >
-          <mat-label>Notes</mat-label>
-          <input matInput #message formControlName="note_entretien" maxlength="256" placeholder="ajouter des informations supplimentaires">
-          <mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
-          <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-        </mat-form-field>
-
-    <ng-template pTemplate="footer">
-      <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideentretienDialog()"></button>
-      <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
-  </ng-template>
-  </p-dialog>
-  </form>
-
-
-  <form class="block-finder__form " novalidate [formGroup]="form_depense" #dform="ngForm" (ngSubmit)="onsubmit_depense()">
-
-    <p-dialog [(visible)]="depenseDialog" [style]="{width: '30vw'}" header="Ajouter depense" [modal]="true" styleClass="p-fluid" [draggable]="false"
-    [resizable]="false" [baseZIndex]="10000">
-    <div class="row">&nbsp;&nbsp;&nbsp;
-
-      <mat-form-field class="dateform">
-        <input matInput formControlName="date_depense"  [matDatepicker]="picker_depense" placeholder="Date depense" [(ngModel)]="sysdate"  required  >
-        <mat-datepicker-toggle matSuffix [for]="picker_depense"></mat-datepicker-toggle>
-        <mat-datepicker #picker_depense></mat-datepicker>
-        <mat-error *ngIf="formErrors.date_depense">{{formErrors.date_depense}}</mat-error>
-  </mat-form-field>
-        </div>
-
-     <div class="row">&nbsp;&nbsp;&nbsp;
-      <mat-form-field class="dateform" >
-        <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
-        <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
-          [(ngModel)]="selectedVehicule_depense" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-          (ngModelChange)="setVehicule_depense()" required >
-          <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
-            {{marque.model.marque.name}} {{marque.model.name}}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="formErrors.vehicule">{{formErrors.vehicule}}</mat-error>
-
-      </mat-form-field>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <mat-form-field class="dateform"  >
-        <input matInput formControlName="odometer_depense" type="number"   placeholder="kilométrage (km)"  required >
-        <mat-error *ngIf="formErrors.odometer_depense">{{formErrors.odometer_depense}}</mat-error>
-
-    </mat-form-field>
-
-
-
-
-
-  </div>
-
-        <div class="row">
-          &nbsp;&nbsp;&nbsp;
-
-          <mat-form-field class="dateform"    >
-            <mat-label> Dépenses </mat-label>
-            <mat-select  matNativeControl id="abc" [(ngModel)]="selected_d"  (ngModelChange)="setDepense()"
-              formControlName="depense" [ngModelOptions]="{standalone: true}"
-              required >
-
-                <mat-option *ngFor="let pokemon of depences" [value]="pokemon">
-                  {{pokemon}}
-                </mat-option>
-            </mat-select>
-            <mat-error *ngIf="formErrors.depense">{{formErrors.depense}}</mat-error>
-
-          </mat-form-field>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-
-<mat-form-field class="dateform">
-  <input matInput formControlName="prix_depense" type="number" placeholder="Prix total (DT)"  required   >
-  <mat-error *ngIf="formErrors.prix_depense">{{formErrors.prix_depense}}</mat-error>
-  </mat-form-field>
-        </div>
-        <mat-form-field class="example-detail" >
-          <mat-label>Notes</mat-label>
-          <input matInput #message formControlName="note_depense" maxlength="256" placeholder="ajouter des informations supplimentaires">
-          <mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
-          <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-        </mat-form-field>
-
-
-      <ng-template pTemplate="footer">
-        <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hidedepenseDialog()"></button>
-        <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
-    </ng-template>
-    </p-dialog>
-    </form>
-
-    <form class="block-finder__form " novalidate [formGroup]="form_odometer" #oform="ngForm" (ngSubmit)="onsubmit_odometer()">
-
-      <p-dialog [(visible)]="odometerDialog" [style]="{width: '30vw'}" header="Ajouter odometer" [modal]="true" styleClass="p-fluid" [draggable]="false"
-      [resizable]="false" [baseZIndex]="10000">
-
-      <div class="row">
-        &nbsp;&nbsp;&nbsp;
-
-        <mat-form-field class="dateform">
-          <input matInput formControlName="date_odometer"  [matDatepicker]="picker_odometer" placeholder="date" [(ngModel)]="sysdate"   required  >
-          <mat-datepicker-toggle matSuffix [for]="picker_odometer"></mat-datepicker-toggle>
-          <mat-datepicker #picker_odometer></mat-datepicker>
-          <mat-error *ngIf="formErrors.date_odometer">{{formErrors.date_odometer}}</mat-error>
-
-          </mat-form-field>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-
-
-  </div>
-  <div class="row">&nbsp;&nbsp;&nbsp;
-    <mat-form-field class="dateform" >
-      <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
-      <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
-        [(ngModel)]="selectedVehicule_odometer" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-        (ngModelChange)="setVehicule_odometer()" required>
-        <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
-          {{marque.model.marque.name}} {{marque.model.name}}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="formErrors.vehicule">{{formErrors.vehicule}}</mat-error>
-    </mat-form-field>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <mat-form-field class="dateform" >
-      <input matInput formControlName="odomoeter_cal" type="number"   placeholder="Kilométrage (km)"  required >
-      <mat-error *ngIf="formErrors.odomoeter_cal">{{formErrors.odomoeter_cal}}</mat-error>
-
-      </mat-form-field>
-
-
-
-
-
-</div>
-
-  <mat-form-field class="example-detail" >
-    <mat-label>Notes</mat-label>
-    <input matInput #message formControlName="note_odometer" maxlength="256" placeholder="ajouter des informations supplimentaires">
-    <mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
-    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-  </mat-form-field>
-
-        <ng-template pTemplate="footer">
-          <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideodometerDialog()"></button>
-          <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
-      </ng-template>
-      </p-dialog>
-      </form>
-
-
-      <form class="block-finder__form " novalidate [formGroup]="form_trajet" #tform="ngForm" (ngSubmit)="onsubmit_trajet()">
-
-        <p-dialog [(visible)]="trajetDialog"  [contentStyle]="{'overflow-y': 'scroll', 'overflow-x': 'hidden',
-        'max-height': '40vh','min-height':'250px'}" header="Ajouter trajet" [modal]="true" styleClass="p-fluid" [draggable]="false"
-        [resizable]="false" [baseZIndex]="10000"  >
-        <div class="row">&nbsp;&nbsp;
-          <mat-form-field class="dateform" >
-            <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
-            <mat-select matNativeControl id="mySelectmarqueId" formControleName="vehicule"
-              [(ngModel)]="selectedVehicule_trajet" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-              (ngModelChange)="setVehicule_trajet()" required >
-              <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
-                {{marque.model.marque.name}} {{marque.model.name}}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="formErrors.vehicule">{{formErrors.vehicule}}</mat-error>
-
-          </mat-form-field>
-      </div>
-        <div class="vehicle-form__divider">Depart</div>
-
-            <div class="row">
-              &nbsp;&nbsp;
-
-              <mat-form-field class="half-width">
-                <input matInput formControlName="date_depart"  [matDatepicker]="picker_dd" placeholder="Date débart"  required  >
-                <mat-datepicker-toggle matSuffix [for]="picker_dd"></mat-datepicker-toggle>
-                <mat-datepicker #picker_dd></mat-datepicker>
-                <mat-error *ngIf="formErrors.date_depart">{{formErrors.date_depart}}</mat-error>
-                </mat-form-field>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <mat-form-field class="half-width" >
-                  <input matInput formControlName="lieux_depart" type="text"  placeholder="lieu départ" required   >
-                  <mat-error *ngIf="formErrors.lieux_depart">{{formErrors.lieux_depart}}</mat-error>
-
-                  </mat-form-field>
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <div >
-                    <br/>
-                    <p-calendar  formControlName="heure_depart" placeholder="Heure départ" [timeOnly]="true" required>
-                      <mat-error *ngIf="formErrors.heure_depart">{{formErrors.heure_depart}}</mat-error>
-
-                    </p-calendar>
-    </div>
-            </div>
-           <br/>
-            <div class="vehicle-form__divider">Arrivée</div>
-            <div class="row">
-              &nbsp;&nbsp;
-              <mat-form-field class="half-width">
-                <input matInput formControlName="date_arrive"  [matDatepicker]="picker_da" placeholder="Date arrivé"  required  >
-                <mat-datepicker-toggle matSuffix [for]="picker_da"></mat-datepicker-toggle>
-                <mat-datepicker #picker_da></mat-datepicker>
-                <mat-error *ngIf="formErrors.date_arrive">{{formErrors.date_arrive}}</mat-error>
-
-                </mat-form-field>                  &nbsp;&nbsp;&nbsp;&nbsp;
-
-                <mat-form-field class="half-width" >
-                  <input matInput formControlName="lieux_arrive" type="text"  placeholder="lieu arrivée" required   >
-                  <mat-error *ngIf="formErrors.lieux_arrive">{{formErrors.lieux_arrive}}</mat-error>
-
-                  </mat-form-field>                   &nbsp;&nbsp;&nbsp;&nbsp;
-                  <div >
-                    <br/>
-                  <p-calendar  formControlName="heure_arrive" placeholder="Heure arrivée" [timeOnly]="true" required>
-                    <mat-error *ngIf="formErrors.heure_arrive">{{formErrors.heure_arrive}}</mat-error>
-
-                  </p-calendar>
- </div>
-            </div>
-            <div class="vehicle-form__divider">Trajet information</div>
-            <div class="row">
-              &nbsp;&nbsp;
-              <mat-form-field  >
-                <input matInput formControlName="distance_trajet" type="number"   placeholder="Distance parcourue (KM)"  required >
-                <mat-error *ngIf="formErrors.distance_trajet">{{formErrors.distance_trajet}}</mat-error>
-
-                </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <mat-form-field  >
-                  <input matInput formControlName="duree_trajet" type="number"   placeholder="Temps du trajet"  required >
-                  <mat-error *ngIf="formErrors.duree_trajet">{{formErrors.duree_trajet}}</mat-error>
-
-                  </mat-form-field> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <mat-form-field  >
-                    <input matInput formControlName="vitesse_trajet" type="number"   placeholder="moy vitesse"  required >
-                    <mat-error *ngIf="formErrors.vitesse_trajet">{{formErrors.vitesse_trajet}}</mat-error>
-
-                    </mat-form-field>
-              </div>
-            <div class="vehicle-form__divider">Autres informations</div>
-            <div class="row">
-              &nbsp;&nbsp;&nbsp;
-
-            <mat-form-field  class="half-width">
-              <input matInput formControlName="taxe_trajet" type="number"   placeholder="Autre Taxe"   >
-
-              </mat-form-field>
-            </div>
-
-            <mat-form-field class="example-detail" >
-              <mat-label>Notes</mat-label>
-              <input matInput #message formControlName="note_trajet" maxlength="256" placeholder="ajouter des informations supplimentaires">
-              <mat-hint align="start"><strong>Ajouter autre infos</strong> </mat-hint>
-              <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-            </mat-form-field>
-
-          <ng-template pTemplate="footer">
-            <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hidetrajetDialog()"></button>
-            <button pButton pRipple type="submit" label="Valider" icon="pi pi-check" class="p-button-text"  ></button>
-        </ng-template>
-        </p-dialog>
-        </form>
-        </div>
-
-
-</mat-tab>
-<mat-tab label="Statistiques & Tableaux">
-  <div class="block" style="overflow-x: hidden;overflow-y: hidden;min-height:  100vh;">
-
-
-
-    <div class="block">
-      <div class=row >
-      <mat-form-field class="offset-1 half-width" >
-        <mat-label>&nbsp;&nbsp;&nbsp;Vehicule</mat-label>
-        <mat-select matNativeControl id="v_stats" 
-          [(ngModel)]="selectedVehicule_stats" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-          (ngModelChange)="setVehicule_statistique()" required >
-          <mat-option *ngFor=" let marque of Vehicules" [value]="marque">
-            {{marque.model.marque.name}} {{marque.model.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-            <mat-form-field class="half-width" >
-        <mat-label>&nbsp;&nbsp;&nbsp;Periode</mat-label>
-        <mat-select matNativeControl id="v_stats" 
-          [(ngModel)]="selectedPeriode_statistique" [ngModelOptions]="{standalone: true}" panelClass="my-select-panel-class"
-          (ngModelChange)="SetPeriode()" required >
-          <mat-option *ngFor=" let s of selectedPeriode_stats" [value]="s">
-            {{s}} 
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-      <div class="block-space block-space--layout--divider-xs"></div>
-      <div class="block-space block-space--layout--divider-xs"></div>
-      <div class="block-space block-space--layout--divider-xs"></div>
-      <div class="block-space block-space--layout--divider-xs"></div>
-      <div class="block-space block-space--layout--divider-xs"></div>
-    
-      
-
-   
-<div class="row">
-
-<div class="col-4">
-    <div class="body_stats">
-
-      <div class="card_stats">
-        <div class="front_stats_total " *ngIf="condition_total">
-          <div class="location_total">Total</div>
-          <div class="more_total"  ><i class="fa fa-info-circle" aria-hidden="true" (click)="work_total()"></i></div>
-          <div class="weather_total">
-            <div class="icon_total">
-              <i class="fas fa-receipt"></i>
-
-
-            </div>
-          </div>
-          <ul class="forecast_total">
-            <li>
-              <div class="day">Sunday</div>
-              <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-              </div>
-            </li>
-            <li>
-              <div class="day">Sunday</div>
-              <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-              </div>
-            </li>
-            <li>
-              <div class="day">Sunday</div>
-              <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="back_stats_total " *ngIf="!condition_total">
-          <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_total()"></i></div>
-          <ul class="forecast">
-            <li>
-              <div class="day">Sunday</div>
-              <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-              </div>
-            </li>
-            <li>
-              <div class="day">Sunday</div>
-              <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-              </div>
-            </li>
-            <li>
-              <div class="day">Sunday</div>
-              <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-              </div>
-            </li>
-            <li>
-              <div class="day">Sunday</div>
-              <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-              </div>
-            </li>
-            <li>
-              <div class="day">Sunday</div>
-              <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-              </div>
-            </li>
-
-          </ul>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-
-
-
-  <div class="col-4">
-
-    <div class="body_stats">
-
-
-
-
-      <div class="card_stats">
-        <div class="front_stats_carburant " *ngIf="condition_carburant">
-          <div class="location_carburant">carburant</div>
-          <div class="more_carburant"  ><i class="fa fa-info-circle" aria-hidden="true" (click)="work_carburant()"></i></div>
-          <div class="icon_carburant">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-closed-fill" fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd"
-                d="M4 1a1 1 0 0 0-1 1v13H1.5a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2a1 1 0 0 0-1-1H4zm2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-            </svg>
-          </div>
-          <ul class="forecast_carburant">
-            <li>
-              <div class="day">Sunday</div>
-              <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-              </div>
-            </li>
-            <li>
-              <div class="day">Sunday
-              </div>
-              <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-              </div>
-            </li>
-            <li>
-              <div class="day">Sunday</div>
-              <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="back_stats_carburant " *ngIf="!condition_carburant && second_carburant">
-          <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_carburant()"></i>
-            &nbsp; <i class="fa fa-chevron-circle-right" aria-hidden="true" (click)="secondt_carburant()"></i>
-          </div>
-          <ul class="forecast">
-            <li>
-              <div class="day">Nbr Remplis</div>
-              <div class="temperature">
-                <div *ngIf="nbr_carburant !== 0 && nbr_carburant !== null">{{nbr_carburant}}</div>
-                <div *ngIf="nbr_carburant == 0 || nbr_carburant == null">n/a </div>
-              </div>
-            </li>
-            <li>
-              <div class="day">Remplis/mois</div>
-              <div class="temperature">
-                8
-              </div>
-            </li>
-            <li>
-              <div class="day">Distance/remplis</div>
-              <div class="temperature">
-                <div *ngIf="qte_carburant !== 0 && qte_carburant !== null">{{nbr_distanceParCarburant}} &nbsp;km</div>
-                <div *ngIf="qte_carburant == 0 || qte_carburant == null">n/a &nbsp;km </div>              </div>
-            </li>
-            <li>
-              <div class="day">Qté</div>
-              <div class="temperature">
-                <div *ngIf="qte_carburant !== 0 && qte_carburant !== null">{{qte_carburant}} &nbsp;Ltr</div>
-                <div *ngIf="qte_carburant == 0 || qte_carburant == null">n/a &nbsp;Ltr </div>
-              </div>
-            </li>
-            <li>
-              <div class="day">Qté.moy/remplis</div>
-              <div class="temperature">
-                
-                <div *ngIf="qte_moy_carburant !== 0 && qte_moy_carburant !== null">{{qte_moy_carburant}} &nbsp;Ltr</div>
-                <div *ngIf="qte_moy_carburant == 0 || qte_moy_carburant == null">n/a &nbsp;Ltr </div>
-              </div>
-            </li>
-           
-           
-          </ul>
-
-        </div>
-
-        <div class="back_stats_carburant " *ngIf="!second_carburant">
-          <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="secondf_carburant()"></i></div>
-          <ul class="forecast">
-           
-            <li>
-              <div class="day">Dep</div>
-              <div class="temperature">
-                <div *ngIf="depense_carburant !== 0 && depense_carburant !== null">{{depense_carburant}} &nbsp;dt</div>
-                <div *ngIf="depense_carburant == 0 || depense_carburant == null">n/a &nbsp;dt </div>              </div>
-            </li>
-            <li>
-              <div class="day">Dep.moy/remplis</div>
-              <div class="temperature">
-                <div *ngIf="depense_moy_carburant !== 0 && depense_moy_carburant !== null">{{depense_moy_carburant}} &nbsp;dt</div>
-                <div *ngIf="depense_moy_carburant == 0 || depense_moy_carburant == null">n/a &nbsp;dt </div>              </div>
-            </li>
-           
-            <li>
-              <div class="day">Dep/mois</div>
-              <div class="temperature">
-                <div *ngIf="depense_carburantMois !== 0 && depense_carburantMois !== null">{{depense_carburantMois}}&nbsp;dt</div>
-                <div *ngIf="depense_carburantMois == 0 || depense_carburantMois == null">n/a &nbsp;dt </div>              </div>
-            </li>
-           
-          </ul>
-
-        </div>
-
-
-      </div>
-    </div>
-
-  </div>
-
-
-
-
-  <div class="col-4">
-
-    <div class="body_stats">
-
-
-
-
-      <div class="card_stats">
-        <div class="front_stats_entretien" *ngIf="condition_entretien">
-          <div class="location_entretien">entretien</div>
-          <div class="more_entretien"  ><i class="fa fa-info-circle" aria-hidden="true" (click)="work_entretien()"></i></div>
-          <div class="icon_entretien">
-
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tools" fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd"
-                d="M0 1l1-1 3.081 2.2a1 1 0 0 1 .419.815v.07a1 1 0 0 0 .293.708L10.5 9.5l.914-.305a1 1 0 0 1 1.023.242l3.356 3.356a1 1 0 0 1 0 1.414l-1.586 1.586a1 1 0 0 1-1.414 0l-3.356-3.356a1 1 0 0 1-.242-1.023L9.5 10.5 3.793 4.793a1 1 0 0 0-.707-.293h-.071a1 1 0 0 1-.814-.419L0 1zm11.354 9.646a.5.5 0 0 0-.708.708l3 3a.5.5 0 0 0 .708-.708l-3-3z" />
-              <path fill-rule="evenodd"
-                d="M15.898 2.223a3.003 3.003 0 0 1-3.679 3.674L5.878 12.15a3 3 0 1 1-2.027-2.027l6.252-6.341A3 3 0 0 1 13.778.1l-2.142 2.142L12 4l1.757.364 2.141-2.141zm-13.37 9.019L3.001 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z" />
-            </svg>
-          </div>
-          <ul class="forecast_entretien">
-            <li>
-              <div class="day">Sunday</div>
-              <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-              </div>
-            </li>
-            <li>
-              <div class="day">Sunday</div>
-              <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-              </div>
-            </li>
-            <li>
-              <div class="day">Sunday</div>
-              <div class="temperature">
-                <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="back_stats_entretien " *ngIf="!condition_entretien">
-          <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_entretien()"></i></div>
-          <ul class="forecast">
-            <li>
-              <div class="day">nbr</div>
-              <div class="temperature">
-                8
-              </div>
-            </li>
-            <li>
-              <div class="day">nbr/mois</div>
-              <div class="temperature">
-                8
-              </div>
-            </li>
-            <li>
-              <div class="day">dep</div>
-              <div class="temperature">
-                8&nbsp;dt
-              </div>
-            </li>
-            <li>
-              <div class="day">dep/mois</div>
-              <div class="temperature">
-                8&nbsp;dt
-              </div>
-            </li>
-            <li>
-              <div class="day">dep/km</div>
-              <div class="temperature">
-                8&nbsp;dt
-              </div>
-            </li>
-          </ul>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-
-
-</div>
-
-    </div>
-
-    <div class="block">
-      <div class="block-space block-space--layout--divider-xs"></div>
-      <div class="block-space block-space--layout--divider-xs"></div>
-      <div class="block-space block-space--layout--divider-xs"></div>
-      <div class="block-space block-space--layout--divider-xs"></div>
-      <div class="block-space block-space--layout--divider-xs"></div>
-      <div class="block-space block-space--layout--divider-xs"></div>
-      <div class="block-space block-space--layout--divider-xs"></div>
-    <div class="block-space block-space--layout--divider-xs"></div>
-    <div class="block-space block-space--layout--divider-xs"></div>
-
-<div class="row">
-  <div class="col-4">
-        <div class="body_stats">
-
-          <div class="card_stats">
-            <div class="front_stats_depense " *ngIf="condition_depense">
-              <div class="location_depense">Depense</div>
-              <div class="more_depense"  ><i class="fa fa-info-circle" aria-hidden="true" (click)="work_depense()"></i></div>
-              <div class="icon_depense"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z" />
-                <path fill-rule="evenodd"
-                  d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z" />
-                <path
-                  d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
-              </svg></div>
-              <ul class="forecast_depense">
-                <li>
-                  <div class="day">Sunday</div>
-                  <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+            <div class="col-4">
+
+              <div class="body_stats">
+
+
+
+
+                <div class="card_stats">
+                  <div class="front_stats_trajet " *ngIf="condition_trajet">
+                    <div class="location_trajet">Trajet</div>
+                    <div class="more_trajet"><i class="fa fa-info-circle" aria-hidden="true"
+                        (click)="work_trajet()"></i></div>
+                    <div class="icon_trajet">
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-truck" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                          d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                      </svg>
+                    </div>
+                    <ul class="forecast_trajet">
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                    </ul>
                   </div>
-                </li>
-                <li>
-                  <div class="day">Sunday</div>
-                  <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
-                </li>
-                <li>
-                  <div class="day">Sunday</div>
-                  <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
-                </li>
-              </ul>
-            </div>
 
-            <div class="back_stats_depense " *ngIf="!condition_depense && second_depense">
-              <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_depense()"></i>
-                &nbsp; <i class="fa fa-chevron-circle-right" aria-hidden="true" (click)="secondt_depense()"></i>
+                  <div class="back_stats_trajet " *ngIf="!condition_trajet">
+                    <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true"
+                        (click)="workk_trajet()"></i></div>
+                    <ul class="forecast">
+                      <li>
+                        <div class="day">nbr trajet</div>
+                        <div class="temperature">
+                          <div *ngIf="nbr_trajet !== 0 && nbr_trajet !== null ">{{nbr_trajet}}</div>
+                          <div *ngIf="nbr_trajet == 0 || nbr_trajet == null">n/a </div>
+                        </div>
 
+                      </li>
+                      <li>
+                        <div class="day">kilometre</div>
+                        <div class="temperature">
+                          <div *ngIf="kilometre_trajet !== 0 && kilometre_trajet !== null ">
+                            {{kilometre_trajet}} &nbsp;km</div>
+                          <div *ngIf="kilometre_trajet == 0 || kilometre_trajet == null">n/a
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">taxe </div>
+
+                        <div class="temperature">
+                          <div *ngIf="taxe_trajet !== 0 && taxe_trajet !== null ">
+                            {{taxe_trajet}} &nbsp;dt</div>
+                          <div *ngIf="taxe_trajet == 0 || taxe_trajet == null">n/a </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">moy vitesse</div>
+                        <div class="temperature">
+                          <div *ngIf="moy_vitesse_trajet !== 0 && moy_vitesse_trajet !== null ">
+                            {{moy_vitesse_trajetS}} &nbsp;km/h</div>
+                          <div *ngIf="moy_vitesse_trajet == 0 || moy_vitesse_trajet == null">n/a </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">temps</div>
+                        <div class="temperature">
+                          <div *ngIf="temp_trajet !== 0 && temp_trajet !== null ">
+                            {{temp_trajet}} &nbsp;min</div>
+                          <div *ngIf="temp_trajet == 0 || temp_trajet == null">n/a </div>
+                        </div>
+                      </li>
+
+                    </ul>
+
+                  </div>
+                </div>
               </div>
-              <ul class="forecast">
-                <li>
-                  <div class="day">nbr Fine</div>
-                  <div class="temperature">
-                    8
-                  </div>
-                </li>
-                <li>
-                  <div class="day">dep fine</div>
-                  <div class="temperature">
-                    8&nbsp;dt
-                  </div>
-                </li>
-                <li>
-                  <div class="day">nbr insurance</div>
-                  <div class="temperature">
-                    8
-                                    </div>
-                </li>
-                <li>
-                  <div class="day">dep insurance</div>
-                  <div class="temperature">
-                    8&nbsp;dt
-                  </div>
-                </li>
-                <li>
-                  <div class="day">nbr mot</div>
-                  <div class="temperature">
-                    8                  </div>
-                </li>
-                
-              </ul>
 
             </div>
 
 
 
-            <div class="back_stats_depense " *ngIf="!second_depense && third_depense">
-              <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="secondf_depense()"></i>
-                &nbsp; <i class="fa fa-chevron-circle-right" aria-hidden="true" (click)="thirdt_depense()"></i>
 
+            <div class="col-4">
+
+              <div class="body_stats">
+
+
+
+
+                <div class="card_stats">
+                  <div class="front_stats_odometer " *ngIf="condition_odometer">
+                    <div class="location_odometer">Odometer</div>
+                    <div class="more_odometer"><i class="fa fa-info-circle" aria-hidden="true"
+                        (click)="work_odometer()"></i></div>
+                    <div class="icon_odometer">
+                      <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <ul class="forecast_odometer">
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">Sunday</div>
+                        <div class="temperature">
+                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="back_stats_odometer " *ngIf="!condition_odometer">
+                    <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true"
+                        (click)="workk_odometer()"></i>
+                    </div>
+                    <ul class="forecast">
+                      <li>
+                        <div class="day">kilometrage</div>
+                        <div class="temperature">
+                          <div *ngIf="kilometrage !== 0 && kilometrage !== null ">
+                            {{kilometrage}} &nbsp;km</div>
+                          <div *ngIf="kilometrage == 0 || kilometrage == null">n/a
+                          </div>
+                          </div>
+                      </li>
+                      <li>
+                        <div class="day">kilometrage/jour</div>
+                        <div class="temperature">
+                          <div *ngIf="kilometrage_jour !== 0 && kilometrage_jour !== null ">
+                            {{kilometrage_jour}} &nbsp;km</div>
+                          <div *ngIf="kilometrage_jour == 0 || kilometrage_jour == null">n/a
+                          </div>
+                          </div>
+                      </li>
+                      <li>
+                        <div class="day">kilometrage/semaine</div>
+                        <div class="temperature">
+                          <div *ngIf="kilometrage_semaine !== 0 && kilometrage_semaine !== null ">
+                            {{kilometrage_semaine}} &nbsp;km</div>
+                          <div *ngIf="kilometrage_semaine == 0 || kilometrage_semaine == null">n/a
+                          </div>
+                          </div>
+                      </li>
+                      <li>
+                        <div class="day">kilometrage/mois</div>
+                        <div class="temperature">
+                          <div *ngIf="kilometrage_mois !== 0 && kilometrage_mois !== null ">
+                            {{kilometrage_mois}} &nbsp;km</div>
+                          <div *ngIf="kilometrage_mois == 0 || kilometrage_mois == null">n/a
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="day">kilometrage/annee</div>
+                        <div class="temperature">
+                          <div *ngIf="kilometrage_annee !== 0 && kilometrage_annee !== null ">
+                            {{kilometrage_annee}} &nbsp;km</div>
+                          <div *ngIf="kilometrage_annee == 0 || kilometrage_annee == null">n/a
+                          </div>
+                        </div>
+                      </li>
+
+                    </ul>
+
+                  </div>
+                </div>
               </div>
-              <ul class="forecast">
-                
-                <li>
-                  <div class="day">dep mot</div>
-                  <div class="temperature">
-                    8&nbsp;dt
-                  </div>
-                </li>
-                <li>
-                  <div class="day">nbr parking</div>
-                  <div class="temperature">
-                    8                  </div>
-                </li>
-                <li>
-                  <div class="day">dep parking</div>
-                  <div class="temperature">
-                    8&nbsp;dt
-                  </div>
-                </li>
-                <li>
-                  <div class="day">nbr tax</div>
-                  <div class="temperature">
-                    8                  </div>
-                </li>
-                <li>
-                  <div class="day">dep tax</div>
-                  <div class="temperature">
-                    8&nbsp;dt
-                  </div>
-                </li>
-
-              </ul>
 
             </div>
 
 
-            <div class="back_stats_depense " *ngIf="!second_depense && !third_depense">
-              <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="thirdf_depense()"></i></div>
-              <ul class="forecast">
-                
-              
-                <li>
-                  <div class="day">nbr troll</div>
-                  <div class="temperature">
-                    8                  </div>
-                </li>
-                <li>
-                  <div class="day">dep troll</div>
-                  <div class="temperature">
-                    8&nbsp;dt                  </div>
-                </li>
-              </ul>
-
-            </div>
 
           </div>
 
-        </div>
-      </div>
 
-
-
-
-      <div class="col-4">
-
-        <div class="body_stats">
-
-
-
-
-          <div class="card_stats">
-            <div class="front_stats_trajet " *ngIf="condition_trajet">
-              <div class="location_trajet">Trajet</div>
-              <div class="more_trajet"  ><i class="fa fa-info-circle" aria-hidden="true" (click)="work_trajet()"></i></div>
-              <div class="icon_trajet">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-truck" fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-                </svg>
-              </div>
-              <ul class="forecast_trajet">
-                <li>
-                  <div class="day">Sunday</div>
-                  <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
-                </li>
-                <li>
-                  <div class="day">Sunday</div>
-                  <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
-                </li>
-                <li>
-                  <div class="day">Sunday</div>
-                  <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div class="back_stats_trajet " *ngIf="!condition_trajet">
-              <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_trajet()"></i></div>
-              <ul class="forecast">
-                <li>
-                  <div class="day">nbr trajet</div>
-                  <div class="temperature">
-8
-                  </div>
-                </li>
-                <li>
-                  <div class="day">kilometre</div>
-                  <div class="temperature">
-8   &nbsp;km               </div>
-                </li>
-                <li>
-                  <div class="day">taxe</div>
-                  <div class="temperature">
-8       &nbsp;dt           </div>
-                </li>
-                <li>
-                  <div class="day">moy vitesse</div>
-                  <div class="temperature">
-8    &nbsp;km/h              </div>
-                </li>
-                <li>
-                  <div class="day">temps</div>
-                  <div class="temperature">
-8&nbsp;min                  </div>
-                </li>
-
-              </ul>
-
-            </div>
-          </div>
         </div>
 
       </div>
 
 
-
-
-      <div class="col-4">
-
-        <div class="body_stats">
-
-
-
-
-          <div class="card_stats">
-            <div class="front_stats_odometer " *ngIf="condition_odometer">
-              <div class="location_odometer">Odometer</div>
-              <div class="more_odometer"  ><i class="fa fa-info-circle" aria-hidden="true" (click)="work_odometer()"></i></div>
-              <div class="icon_odometer">
-                <i class="fas fa-tachometer-alt"></i>
-              </div>
-              <ul class="forecast_odometer">
-                <li>
-                  <div class="day">Sunday</div>
-                  <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
-                </li>
-                <li>
-                  <div class="day">Sunday</div>
-                  <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
-                </li>
-                <li>
-                  <div class="day">Sunday</div>
-                  <div class="temperature">
-                    <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div class="back_stats_odometer " *ngIf="!condition_odometer">
-              <div class="go-back"><i class="fa fa-chevron-circle-left" aria-hidden="true" (click)="workk_odometer()"></i></div>
-              <ul class="forecast">
-                <li>
-                  <div class="day">kilometrage</div>
-                  <div class="temperature">
-                    8   &nbsp;km                   </div>
-                </li>
-                <li>
-                  <div class="day">kilometrage/jour</div>
-                  <div class="temperature">
-                    8   &nbsp;km                   </div>
-                </li>
-                <li>
-                  <div class="day">kilometrage/semaine</div>
-                  <div class="temperature">
-                    8   &nbsp;km                   </div>
-                </li>
-                <li>
-                  <div class="day">kilometrage/mois</div>
-                  <div class="temperature">
-                    8   &nbsp;km                   </div>
-                </li>
-                <li>
-                  <div class="day">kilometrage/annee</div>
-                  <div class="temperature">
-                    8   &nbsp;km                   </div>
-                </li>
-
-              </ul>
-
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-
-
-    </div>
-
-
-</div>
-
-  </div>
-
-
-  <div class="block-space block-space--layout--divider-xs"></div>
-</mat-tab>
-</mat-tab-group>
+      <div class="block-space block-space--layout--divider-xs"></div>
+    </mat-tab>
+  </mat-tab-group>
 </div>
 
 

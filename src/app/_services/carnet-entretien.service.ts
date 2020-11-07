@@ -22,62 +22,95 @@ export class CarnetEntretienService {
 
 
 
+
   constructor(private http: HttpClient, private token: TokenStorageService) { }
   header = new HttpHeaders({
     // tslint:disable-next-line: object-literal-key-quotes
     'Authorization': 'Bearer ' + this.token.getToken()
-});
+  });
 
-private baseUrluser = 'http://localhost:8081/api';
+  private baseUrluser = 'http://localhost:8081/api';
 
 
-ajouter_carburant( carburant : CarburantCarnet): Observable<any> {
-  return this.http.post( this.baseUrluser + '/ajouter_carburant/' ,carburant
-  ,{ headers: this.header});
-}
-
-ajouter_entretien( entretien : EntretienCarnet): Observable<any> {
-  return this.http.post( this.baseUrluser + '/ajouter_entretien/' ,entretien
-  ,{ headers: this.header});
-}
-
-ajouter_depense( depense : DepenseCarnet): Observable<any> {
-  return this.http.post( this.baseUrluser + '/ajouter_depense/' ,depense
-  ,{ headers: this.header});
-}
-
-ajouter_trajet( trajet : TrajetCarnet): Observable<any> {
-  return this.http.post( this.baseUrluser + '/ajouter_trajet/' ,trajet
-  ,{ headers: this.header});
-}
-
-ajouter_odometer( odometer : OdometerCarnet): Observable<any> {
-  return this.http.post( this.baseUrluser + '/ajouter_odometer/' ,odometer
-  ,{ headers: this.header});
-}
-getAllHistorique(): Observable<any> {
-
-  return this.http.get(this.baseUrluser + '/gethistorique', {
-    headers: this.header});
-}
-getPremiersHistorique(): Observable<any> {
-
-  return this.http.get(this.baseUrluser + '/getpremiershistorique', {
-    headers: this.header});
-}
-getHistoriqueByVehicule(id : number): Observable<any> {
-
-  return this.http.get(this.baseUrluser + '/gethistoriquebyVehicule/'+`${id}`, {
-    headers: this.header});
-}
-
-getCarburantParPeriode(idvehicule:number,periode : String) : Observable<any> {
-  return this.http.get(this.baseUrluser + '/getCarburantParPeriode/'+`${idvehicule}`+"/"+`${periode}`, {
-    headers: this.header});
+  ajouter_carburant(carburant: CarburantCarnet): Observable<any> {
+    return this.http.post(this.baseUrluser + '/ajouter_carburant/', carburant
+      , { headers: this.header });
   }
 
-  getDepense_carburantMois(carburant_forstats: CarburantCarnet[]) : Observable<any>{
-    return this.http.get(this.baseUrluser + '/getDepense_carburantMois/'+`${carburant_forstats}`, {
-      headers: this.header});
-    }
+  ajouter_entretien(entretien: EntretienCarnet): Observable<any> {
+    return this.http.post(this.baseUrluser + '/ajouter_entretien/', entretien
+      , { headers: this.header });
+  }
+
+  ajouter_depense(depense: DepenseCarnet): Observable<any> {
+    return this.http.post(this.baseUrluser + '/ajouter_depense/', depense
+      , { headers: this.header });
+  }
+
+  ajouter_trajet(trajet: TrajetCarnet): Observable<any> {
+    return this.http.post(this.baseUrluser + '/ajouter_trajet/', trajet
+      , { headers: this.header });
+  }
+
+  ajouter_odometer(odometer: OdometerCarnet): Observable<any> {
+    return this.http.post(this.baseUrluser + '/ajouter_odometer/', odometer
+      , { headers: this.header });
+  }
+  getAllHistorique(): Observable<any> {
+
+    return this.http.get(this.baseUrluser + '/gethistorique', {
+      headers: this.header
+    });
+  }
+  getPremiersHistorique(): Observable<any> {
+
+    return this.http.get(this.baseUrluser + '/getpremiershistorique', {
+      headers: this.header
+    });
+  }
+  getHistoriqueByVehicule(id: number): Observable<any> {
+
+    return this.http.get(this.baseUrluser + '/gethistoriquebyVehicule/' + `${id}`, {
+      headers: this.header
+    });
+  }
+
+  getCarburantParPeriode(idvehicule: number, periode: String): Observable<any> {
+    return this.http.get(this.baseUrluser + '/getCarburantParPeriode/' + `${idvehicule}` + "/" + `${periode}`, {
+      headers: this.header
+    });
+  }
+
+  getEntretienParPeriode(idvehicule: number, periode: String): Observable<any> {
+    return this.http.get(this.baseUrluser + '/getEntretienParPeriode/' + `${idvehicule}` + "/" + `${periode}`, {
+      headers: this.header
+    });
+  }
+
+  getOdometerParPeriode(idvehicule: number, periode: String): Observable<any> {
+    return this.http.get(this.baseUrluser + '/getOdometerParPeriode/' + `${idvehicule}` + "/" + `${periode}`, {
+      headers: this.header
+    });
+  }
+
+  getDepenseParPeriode(idvehicule: number, periode: String): Observable<any> {
+    return this.http.get(this.baseUrluser + '/getDepenseParPeriode/' + `${idvehicule}` + "/" + `${periode}`, {
+      headers: this.header
+    });
+  }
+
+  getTrajetParPeriode(idvehicule: number, periode: String): Observable<any> {
+    return this.http.get(this.baseUrluser + '/getTrajetParPeriode/' + `${idvehicule}` + "/" + `${periode}`, {
+      headers: this.header
+    });
+  }
+
+
+  getDepense_carburantMois(carburant_forstats: CarburantCarnet[]): Observable<any> {
+    return this.http.get(this.baseUrluser + '/getDepense_carburantMois/' + `${carburant_forstats}`, {
+      headers: this.header
+    });
+  }
+
+
 }
