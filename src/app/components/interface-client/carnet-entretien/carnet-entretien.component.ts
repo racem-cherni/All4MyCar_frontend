@@ -858,19 +858,22 @@ export class CarnetEntretienComponent implements OnInit {
   ////////////////////// donnéee carburant
   nbr_carburant: number = 0; nbr_carburantMois: number; nbr_distanceParCarburant: number = 0; qte_carburant: number = 0;
   qte_moy_carburant: number = 0; depense_carburant: number = 0; depense_carburantMois: number = 0; depense_moy_carburant: number = 0;
-  qte_moy_carburantS:String;nbr_distanceParCarburantS:String;depense_moy_carburantS:String;
-
+  qte_moy_carburantS:String;nbr_distanceParCarburantS:String;depense_moy_carburantS:String;depense_carburantMoisS:String;
+  nbr_carburantMoisS:String;
   carburant_forstats: CarburantCarnet[];
   /////////////////////
   ////////////////////donnée entretien
   nbr_entretien: number = 0; nbr_entretienMois: number = 0; depense_entretien: number = 0;
   depense_entretienMois: number = 0; distance_moy_entretien: number = 0; distance_moy_entretienS: String;
+  nbr_entretienMoisS:String;depense_entretienMoisS:String;
 
   entretien_forstats: EntretienCarnet[];
   ////////////////////
   ////////////////////donnée odometer
   kilometrage:number=0;kilometrage_jour:number=0;kilometrage_semaine:number=0;kilometrage_mois:number=0;
-  kilometrage_annee:number=0;
+  kilometrage_annee:number=0;kilometrageS:String;
+  kilometrage_jourS:String;kilometrage_semaineS:String;kilometrage_moisS:String;
+  kilometrage_anneeS:String;
 
   odometer_forstats: OdometerCarnet[];
   ////////////////////
@@ -909,7 +912,7 @@ export class CarnetEntretienComponent implements OnInit {
     this.qte_moy_carburant = 0;
     this.depense_carburant = 0;
     this.depense_moy_carburant = 0;
-
+    this.nbr_carburantMois=0;
     this.carnetentretienService.getCarburantParPeriode(this.selectedVehiculeStats.id, this.periode)
       .subscribe((data) => {
         this.carburant_forstats = data, console.log(data);
@@ -937,6 +940,40 @@ export class CarnetEntretienComponent implements OnInit {
 
         }
       });
+
+      this.carnetentretienService.getDepense_carburantMois(this.selectedVehiculeStats.id, this.periode)
+      .subscribe((data) => {this.depense_carburantMois= data, console.log(data);
+      this.depense_carburantMoisS=this.depense_carburantMois.toFixed(2)});
+     
+      this.carnetentretienService.getRemplis_carburantMois(this.selectedVehiculeStats.id, this.periode)
+      .subscribe((data) => {this.nbr_carburantMois= data, console.log(data);
+      this.nbr_carburantMoisS=this.nbr_carburantMois.toFixed(2)});
+
+      this.carnetentretienService.getNbr_entretienMois(this.selectedVehiculeStats.id, this.periode)
+      .subscribe((data) => {this.nbr_entretienMois= data, console.log(data);
+      this.nbr_entretienMoisS=this.nbr_entretienMois.toFixed(2)});
+
+      this.carnetentretienService.getDepense_entretienMois(this.selectedVehiculeStats.id, this.periode)
+      .subscribe((data) => {this.depense_entretienMois= data, console.log(data);
+      this.depense_entretienMoisS=this.depense_entretienMois.toFixed(2)});
+
+      this.carnetentretienService.getKilometrage_jour(this.selectedVehiculeStats.id, this.periode)
+      .subscribe((data) => {this.kilometrage_jour= data, console.log(data);
+      this.kilometrage_jourS=this.kilometrage_jour.toFixed(2)});
+
+      this.carnetentretienService.getKilometrage_mois(this.selectedVehiculeStats.id, this.periode)
+      .subscribe((data) => {this.kilometrage_mois= data, console.log(data);
+      this.kilometrage_moisS=this.kilometrage_mois.toFixed(2)});
+
+      this.carnetentretienService.getKilometrage_semaine(this.selectedVehiculeStats.id, this.periode)
+      .subscribe((data) => {this.kilometrage_semaine= data, console.log(data);
+      this.kilometrage_semaineS=this.kilometrage_semaine.toFixed(2)});
+
+      this.carnetentretienService.getKilometrage_annee(this.selectedVehiculeStats.id, this.periode)
+      .subscribe((data) => {this.kilometrage_annee= data, console.log(data);
+      this.kilometrage_anneeS=this.kilometrage_annee.toFixed(2)});
+
+
     ///////////////////////////statistique_entretien/////////////////////
     this.nbr_entretien = 0;
     this.nbr_entretienMois = 0;
@@ -1053,8 +1090,8 @@ export class CarnetEntretienComponent implements OnInit {
       .subscribe((data) => {
         this.odometer_forstats = data, console.log(data);
         this.kilometrage =this.odometer_forstats[this.odometer_forstats.length-1].odomoeter_cal;
-        
-      });
+        this.kilometrageS =  this.kilometrage.toFixed(2);
+            });
 
 
   }

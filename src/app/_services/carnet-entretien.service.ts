@@ -106,11 +106,53 @@ export class CarnetEntretienService {
   }
 
 
-  getDepense_carburantMois(carburant_forstats: CarburantCarnet[]): Observable<any> {
-    return this.http.get(this.baseUrluser + '/getDepense_carburantMois/' + `${carburant_forstats}`, {
+  getDepense_carburantMois(idvehicule: number, periode: String): Observable<any> {
+    return this.http.get(this.baseUrluser + '/getDepense_carburantMois/' +  `${idvehicule}` + "/" + `${periode}`, {
       headers: this.header
     });
   }
 
+  getRemplis_carburantMois(idvehicule: number, periode: String): Observable<any> {
+    return this.http.get(this.baseUrluser + '/getRemplis_carburantMois/' +  `${idvehicule}` + "/" + `${periode}`, {
+      headers: this.header
+    });
+  }
+
+
+  getNbr_entretienMois(idvehicule: number, periode: String): Observable<any> {
+    return this.http.get(this.baseUrluser + '/getNbr_entretienMois/' +  `${idvehicule}` + "/" + `${periode}`, {
+      headers: this.header
+    });
+  }
+
+  getDepense_entretienMois(idvehicule: number, periode: String): Observable<any> {
+    return this.http.get(this.baseUrluser + '/getDepense_entretienMois/' +  `${idvehicule}` + "/" + `${periode}`, {
+      headers: this.header
+    });
+  }
+  //////
+  getKilometrage_jour(idvehicule: number, periode: String): Observable<any> {
+    return this.http.get(this.baseUrluser + '/getKilometrage_jour/' +  `${idvehicule}` + "/" + `${periode}`, {
+      headers: this.header
+    });
+  }
+
+  getKilometrage_semaine(idvehicule: number, periode: String): Observable<any> {
+    return this.http.get(this.baseUrluser + '/getKilometrage_semaine/' +  `${idvehicule}` + "/" + `${periode}`, {
+      headers: this.header
+    });
+  }
+
+  getKilometrage_mois(idvehicule: number, periode: String): Observable<any> {
+    return this.http.get(this.baseUrluser + '/getKilometrage_mois/' +  `${idvehicule}` + "/" + `${periode}`, {
+      headers: this.header
+    });
+  }
+
+  getKilometrage_annee(idvehicule: number, periode: String): Observable<any> {
+    return this.http.get(this.baseUrluser + '/getKilometrage_annee/' +  `${idvehicule}` + "/" + `${periode}`, {
+      headers: this.header
+    });
+  }
 
 }

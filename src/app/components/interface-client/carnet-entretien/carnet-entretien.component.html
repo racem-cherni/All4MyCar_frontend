@@ -1056,14 +1056,15 @@
                       <li>
                         <div class="day">Remplis/mois</div>
                         <div class="temperature">
-                          x
-                        </div>
+                          <div *ngIf="nbr_carburantMois !== 0 && nbr_carburantMois !== null">{{nbr_carburantMoisS}}</div>
+                          <div *ngIf="nbr_carburantMois == 0 || nbr_carburantMois == null">n/a </div>  
+                                              </div>
                       </li>
                       <li>
                         <div class="day">Distance/remplis</div>
                         <div class="temperature">
                           <div *ngIf="nbr_distanceParCarburant !== 0 && nbr_distanceParCarburant !== null">
-                            {{depense_moy_carburantS}} &nbsp;km</div>
+                            {{nbr_distanceParCarburantS}} &nbsp;km</div>
                           <div *ngIf="nbr_distanceParCarburant == 0 || nbr_distanceParCarburant == null">n/a
                           </div>
                         </div>
@@ -1107,15 +1108,18 @@
                         <div class="day">Dep.moy/remplis</div>
                         <div class="temperature">
                           <div *ngIf="depense_moy_carburant !== 0 && depense_moy_carburant !== null">
-                            {{depense_moy_carburant}} &nbsp;dt</div>
+                            {{depense_moy_carburantS}} &nbsp;dt</div>
                           <div *ngIf="depense_moy_carburant == 0 || depense_moy_carburant == null">n/a </div>
                         </div>
                       </li>
-
+                      
                       <li>
                         <div class="day">Dep/mois</div>
                         <div class="temperature">
-                          x
+                          <div *ngIf="depense_carburantMois !== 0 && depense_carburantMois !== null">
+                            {{depense_carburantMoisS}} &nbsp;dt</div>
+                          <div *ngIf="depense_carburantMois == 0 || depense_carburantMois == null">n/a </div>
+                        
                         </div>
                       </li>
 
@@ -1190,7 +1194,8 @@
                       <li>
                         <div class="day">nbr/mois</div>
                         <div class="temperature">
-                          x
+                          <div *ngIf="nbr_entretienMois !== 0 && nbr_entretienMois !== null">{{nbr_entretienMoisS}}</div>
+                          <div *ngIf="nbr_entretienMois == 0 || nbr_entretienMois == null">n/a </div>
                         </div>
                       </li>
                       <li>
@@ -1204,7 +1209,9 @@
                       <li>
                         <div class="day">dep/mois</div>
                         <div class="temperature">
-                          x
+                          <div *ngIf="depense_entretienMois !== 0 && depense_entretienMois !== null">{{depense_entretienMoisS}}
+                            &nbsp;dt</div>
+                          <div *ngIf="depense_entretienMois == 0 || depense_entretienMois == null">n/a </div>
                         </div>
                       </li>
                       <li>
@@ -1571,46 +1578,46 @@
                     </div>
                     <ul class="forecast">
                       <li>
-                        <div class="day">kilometrage</div>
+                        <div class="day">km</div>
                         <div class="temperature">
                           <div *ngIf="kilometrage !== 0 && kilometrage !== null ">
-                            {{kilometrage}} &nbsp;km</div>
+                            {{kilometrageS}} &nbsp;km</div>
                           <div *ngIf="kilometrage == 0 || kilometrage == null">n/a
                           </div>
                           </div>
                       </li>
                       <li>
-                        <div class="day">kilometrage/jour</div>
+                        <div class="day">km/j</div>
                         <div class="temperature">
                           <div *ngIf="kilometrage_jour !== 0 && kilometrage_jour !== null ">
-                            {{kilometrage_jour}} &nbsp;km</div>
+                            {{kilometrage_jourS}} &nbsp;km</div>
                           <div *ngIf="kilometrage_jour == 0 || kilometrage_jour == null">n/a
                           </div>
                           </div>
                       </li>
                       <li>
-                        <div class="day">kilometrage/semaine</div>
+                        <div class="day">km/s</div>
                         <div class="temperature">
                           <div *ngIf="kilometrage_semaine !== 0 && kilometrage_semaine !== null ">
-                            {{kilometrage_semaine}} &nbsp;km</div>
+                            {{kilometrage_semaineS}} &nbsp;km</div>
                           <div *ngIf="kilometrage_semaine == 0 || kilometrage_semaine == null">n/a
                           </div>
                           </div>
                       </li>
                       <li>
-                        <div class="day">kilometrage/mois</div>
+                        <div class="day">km/m</div>
                         <div class="temperature">
                           <div *ngIf="kilometrage_mois !== 0 && kilometrage_mois !== null ">
-                            {{kilometrage_mois}} &nbsp;km</div>
+                            {{kilometrage_moisS}} &nbsp;km</div>
                           <div *ngIf="kilometrage_mois == 0 || kilometrage_mois == null">n/a
                           </div>
                         </div>
                       </li>
                       <li>
-                        <div class="day">kilometrage/annee</div>
+                        <div class="day">km/an</div>
                         <div class="temperature">
                           <div *ngIf="kilometrage_annee !== 0 && kilometrage_annee !== null ">
-                            {{kilometrage_annee}} &nbsp;km</div>
+                            {{kilometrage_anneeS}} &nbsp;km</div>
                           <div *ngIf="kilometrage_annee == 0 || kilometrage_annee == null">n/a
                           </div>
                         </div>
