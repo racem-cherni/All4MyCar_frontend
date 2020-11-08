@@ -41,6 +41,8 @@ errMess: string;
 
 formErrors = {
   // tslint:disable-next-line: object-literal-key-quotes
+  'username': '',
+  // tslint:disable-next-line: object-literal-key-quotes
   'date_carburant': '',
       // tslint:disable-next-line: object-literal-key-quotes
   'email': '',
@@ -100,7 +102,7 @@ validationMessages = {
   isLoginFailed = false;
   position : number = null;
   message : number;
-  client: Client;
+  client: Client ;
   user: User;
   u : User;
 
@@ -319,6 +321,28 @@ validationMessages = {
    window.location.href ='/All4MyCar/client/espace-client/dashboard';
   }
 
+  gotohomeclient(){
+
+    // this.transfereService.changeMessage(1);
+
+    window.location.href ='/All4MyCar/client/home';
+   }
+
+   gotohomeprestataire(){
+
+    // this.transfereService.changeMessage(1);
+
+    window.location.href ='/All4MyCar/prestataire/home';
+   }
+   gotoprescompleteprofil() {
+    window.location.href ='/All4MyCar/prestataire/completeprofil';
+
+   }
+   gotoclientcompleteprofil(){
+    window.location.href ='/All4MyCar/client/completeprofil';
+
+   }
+
   gotodashboardp(){
    /* this.position = 1;
 
@@ -327,6 +351,13 @@ validationMessages = {
 
   }
 
+  gotordvprestations(){
+    /* this.position = 1;
+
+     this.transfereService.setData(this.position);*/
+     window.location.href ='/All4MyCar/prestataire/rdv';
+
+   }
   gotoprofil(){
 
    // this.transfereService.changeMessage(3);
