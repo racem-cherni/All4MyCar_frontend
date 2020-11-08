@@ -858,42 +858,49 @@ export class CarnetEntretienComponent implements OnInit {
   ////////////////////// donnéee carburant
   nbr_carburant: number = 0; nbr_carburantMois: number; nbr_distanceParCarburant: number = 0; qte_carburant: number = 0;
   qte_moy_carburant: number = 0; depense_carburant: number = 0; depense_carburantMois: number = 0; depense_moy_carburant: number = 0;
+  total_Ac_carburant: number=0;
   qte_moy_carburantS:String;nbr_distanceParCarburantS:String;depense_moy_carburantS:String;depense_carburantMoisS:String;
   nbr_carburantMoisS:String;
-  carburant_forstats: CarburantCarnet[];
+  carburant_forstats: CarburantCarnet[];carburant_fortotal: CarburantCarnet[];
   /////////////////////
   ////////////////////donnée entretien
   nbr_entretien: number = 0; nbr_entretienMois: number = 0; depense_entretien: number = 0;
-  depense_entretienMois: number = 0; distance_moy_entretien: number = 0; distance_moy_entretienS: String;
-  nbr_entretienMoisS:String;depense_entretienMoisS:String;
+  depense_entretienMois: number = 0; distance_moy_entretien: number = 0;total_Ac_entretien: number=0; 
+  
+  distance_moy_entretienS: String;nbr_entretienMoisS:String;depense_entretienMoisS:String;
 
-  entretien_forstats: EntretienCarnet[];
+  entretien_forstats: EntretienCarnet[];entretien_fortotal: EntretienCarnet[];
   ////////////////////
   ////////////////////donnée odometer
   kilometrage:number=0;kilometrage_jour:number=0;kilometrage_semaine:number=0;kilometrage_mois:number=0;
-  kilometrage_annee:number=0;kilometrageS:String;
+  kilometrage_annee:number=0;total_Ac_odometer: number=0; 
+  
   kilometrage_jourS:String;kilometrage_semaineS:String;kilometrage_moisS:String;
-  kilometrage_anneeS:String;
+  kilometrage_anneeS:String;kilometrageS:String;
 
-  odometer_forstats: OdometerCarnet[];
+  odometer_forstats: OdometerCarnet[];odometer_fortotal: OdometerCarnet[];
   ////////////////////
   ////////////////////donnée depense
   depense_total: number = 0; depense_fine: number = 0; depense_insurance: number = 0; depense_mot: number = 0;
-  depense_parking: number = 0; depense_Tax: number = 0; depense_troll: number = 0;
+  depense_parking: number = 0; depense_Tax: number = 0; depense_troll: number = 0;total_Ac_depense: number=0; 
 
   nbr_depense_total: number = 0; nbr_depense_fine: number = 0; nbr_depense_insurance: number = 0; nbr_depense_mot: number = 0;
   nbr_depense_parking: number = 0; nbr_depense_Tax: number = 0; nbr_depense_troll: number = 0;
 
-  depense_forstats: DepenseCarnet[];
+  depense_forstats: DepenseCarnet[];depense_fortotal: DepenseCarnet[];
   ////////////////////
   ////////////////////donnée trajet
-  nbr_trajet : number = 0; kilometre_trajet: number = 0; taxe_trajet: number = 0;
+  nbr_trajet : number = 0; kilometre_trajet: number = 0; taxe_trajet: number = 0;total_Ac_trajet: number=0; 
   moy_vitesse_trajet = 0;temp_trajet: number = 0;moy_vitesse_trajetS:String;
 
-  trajet_forstats: TrajetCarnet[];
+  trajet_forstats: TrajetCarnet[];trajet_fortotal: TrajetCarnet[];
   ////////////////////
   ////////////////////donnée total
+  total_action : number=0;pourcentage_carburant:number;pourcentage_odometer:number;pourcentage_trajet:number;
+  pourcentage_entretien:number;pourcentage_depense:number;total_Ac_total: number=0; 
 
+  pourcentage_carburantS:String="";pourcentage_odometerS:String="";pourcentage_trajetS:String="";
+  pourcentage_entretienS:String="";pourcentage_depenseS:String="";
   ////////////////////
 
   SetPeriode() {
@@ -939,6 +946,13 @@ export class CarnetEntretienComponent implements OnInit {
           this.depense_moy_carburantS=this.depense_moy_carburant.toFixed(2);
 
         }
+      });
+
+      this.carnetentretienService.getCarburantParPeriode(this.selectedVehiculeStats.id,"ALLTIME")
+      .subscribe((data) => {
+        this.carburant_fortotal = data, console.log(data);
+        this.total_Ac_carburant = this.carburant_fortotal.length;
+
       });
 
       this.carnetentretienService.getDepense_carburantMois(this.selectedVehiculeStats.id, this.periode)
@@ -1002,7 +1016,11 @@ export class CarnetEntretienComponent implements OnInit {
           this.distance_moy_entretienS = this.distance_moy_entretien.toFixed(2);
         }
       });
-
+      this.carnetentretienService.getEntretienParPeriode(this.selectedVehiculeStats.id, "ALLTIME")
+      .subscribe((data) => {
+        this.entretien_fortotal = data, console.log(data);
+          this.total_Ac_entretien = this.entretien_fortotal.length;
+      });
 
     ///////////////////////////statistique_depense////////////////////////
     this.depense_total = 0; this.depense_fine = 0; this.depense_insurance = 0; this.depense_mot = 0;
@@ -1053,6 +1071,12 @@ export class CarnetEntretienComponent implements OnInit {
 
         }
       });
+
+      this.carnetentretienService.getDepenseParPeriode(this.selectedVehiculeStats.id, "ALLTIME")
+      .subscribe((data) => {
+        this.depense_fortotal = data, console.log(data);
+          this.total_Ac_depense = this.depense_fortotal.length;
+      });
     ///////////////////////////statistique_trajet////////////////////////
 
 
@@ -1082,6 +1106,11 @@ export class CarnetEntretienComponent implements OnInit {
 
       });
 
+      this.carnetentretienService.getTrajetParPeriode(this.selectedVehiculeStats.id,"ALLTIME")
+      .subscribe((data) => {
+        this.trajet_fortotal = data, console.log(data);
+          this.total_Ac_trajet= this.trajet_fortotal.length;
+      });
     ///////////////////////////statistique_odometer///////////////// 
       this.kilometrage=0;this.kilometrage_jour=0;this.kilometrage_semaine=0;
       this.kilometrage_mois=0;this.kilometrage_annee=0;
@@ -1093,8 +1122,34 @@ export class CarnetEntretienComponent implements OnInit {
         this.kilometrageS =  this.kilometrage.toFixed(2);
             });
 
+     this.carnetentretienService.getOdometerParPeriode(this.selectedVehiculeStats.id, "ALLTIME")
+            .subscribe((data) => {
+              this.odometer_fortotal = data, console.log(data);
+              this.total_Ac_odometer= this.odometer_fortotal.length;
+
+              this.total_Ac_total=this.total_Ac_trajet+this.total_Ac_odometer+this.total_Ac_depense+
+              this.total_Ac_entretien+this.total_Ac_carburant;
+                  });
+
+  //////////////////////////////total
+
+
+
+  this.pourcentage_carburant=(this.total_Ac_carburant/this.total_Ac_total)*100;
+  this.pourcentage_trajet=(this.total_Ac_trajet/this.total_Ac_total)*100;
+  this.pourcentage_odometer=(this.total_Ac_odometer/this.total_Ac_total)*100;
+  this.pourcentage_depense=(this.total_Ac_depense/this.total_Ac_total)*100;
+  this.pourcentage_entretien=(this.total_Ac_entretien/this.total_Ac_total)*100;
+
+  this.pourcentage_carburantS=this.pourcentage_carburant.toFixed(2);
+  this.pourcentage_trajetS=this.pourcentage_trajet.toFixed(2);
+  this.pourcentage_odometerS=this.pourcentage_odometer.toFixed(2);
+  this.pourcentage_depenseS=this.pourcentage_depense.toFixed(2);
+  this.pourcentage_entretienS=this.pourcentage_entretien.toFixed(2);
 
   }
+
+  
 
 
   /////////////////////////////////////////////////////////////////////////////Historique/////////////////////////

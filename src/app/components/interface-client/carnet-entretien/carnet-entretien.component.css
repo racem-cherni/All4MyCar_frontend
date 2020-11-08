@@ -1237,3 +1237,101 @@ box-shadow: 0 0 0 0 #bf06e4;
     transform-origin: left;
     transition: .5s;
 }
+
+
+
+
+.icon_carburantStat{
+
+    position:relative;
+width:80px;
+height:80px;
+color: #fff ;
+background: #000;
+display : flex;
+justify-content:   center;
+align-items:   center;
+margin:0 auto ;
+border-radius: 50%;
+font-size: 40px;
+font-weight: 700;
+transition: 1s;
+box-shadow: 0 0 0 0 #fa3275;
+    background: #fa3275;
+}
+
+.icon_trajetStat{
+
+    position:relative;
+width:80px;
+height:80px;
+color: #fff ;
+background: #000;
+display : flex;
+justify-content:   center;
+align-items:   center;
+margin:0 auto ;
+border-radius: 50%;
+font-size: 40px;
+font-weight: 700;
+transition: 1s;
+box-shadow: 0 0 0 0 #f22213;
+    background: #f22213;
+}
+
+.icon_odometerStat{
+
+    position:relative;
+width:80px;
+height:80px;
+color: #fff ;
+background: #000;
+display : flex;
+justify-content:   center;
+align-items:   center;
+margin:0 auto ;
+border-radius: 50%;
+font-size: 40px;
+font-weight: 700;
+transition: 1s;
+box-shadow: 0 0 0 0 #8a4007;
+    background: #8a4007;
+}
+
+.icon_depenseStat{
+
+    position:relative;
+width:80px;
+height:80px;
+color: #fff ;
+background: #000;
+display : flex;
+justify-content:   center;
+align-items:   center;
+margin:0 auto ;
+border-radius: 50%;
+font-size: 40px;
+font-weight: 700;
+transition: 1s;
+box-shadow: 0 0 0 0 #2196f3;
+    background: #2196f3;
+}
+
+.icon_entretienStat{
+
+    position:relative;
+width:80px;
+height:80px;
+color: #fff ;
+background: #000;
+display : flex;
+justify-content:   center;
+align-items:   center;
+margin:0 auto ;
+border-radius: 50%;
+font-size: 40px;
+font-weight: 700;
+transition: 1s;
+box-shadow: 0 0 0 0 #23e629;
+    background: #23e629;
+}

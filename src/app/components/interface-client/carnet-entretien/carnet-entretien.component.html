@@ -923,6 +923,7 @@
                     <div class="location_total">Total</div>
                     <div class="more_total"><i class="fa fa-info-circle" aria-hidden="true" (click)="work_total()"></i>
                     </div>
+                    <br/><br/><br/>
                     <div class="weather_total">
                       <div class="icon_total">
                         <i class="fas fa-receipt"></i>
@@ -930,23 +931,17 @@
 
                       </div>
                     </div>
-                    <ul class="forecast_total">
+                     <ul class="forecast_total">
+                     <br/>
                       <li>
-                        <div class="day">Sunday</div>
+                        
                         <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
                         </div>
                       </li>
                       <li>
-                        <div class="day">Sunday</div>
+                        <div class="day">Total action</div>
                         <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="day">Sunday</div>
-                        <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                       {{total_Ac_total}}
                         </div>
                       </li>
                     </ul>
@@ -957,34 +952,30 @@
                         (click)="workk_total()"></i></div>
                     <ul class="forecast">
                       <li>
-                        <div class="day">Sunday</div>
+                        <div class="day">Carburant</div>
                         <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                          {{pourcentage_carburantS}}%
                         </div>
                       </li>
                       <li>
-                        <div class="day">Sunday</div>
+                        <div class="day">Entretien</div>
                         <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
+                          {{pourcentage_entretienS}}%                        </div>
                       </li>
                       <li>
-                        <div class="day">Sunday</div>
+                        <div class="day">depense</div>
                         <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
+                          {{pourcentage_depenseS}}%                        </div>
                       </li>
                       <li>
-                        <div class="day">Sunday</div>
+                        <div class="day">trajet</div>
                         <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
+                          {{pourcentage_trajetS}}%                        </div>
                       </li>
                       <li>
-                        <div class="day">Sunday</div>
+                        <div class="day">odometer</div>
                         <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
+                          {{pourcentage_odometerS}}%                        </div>
                       </li>
 
                     </ul>
@@ -1010,7 +1001,8 @@
                     <div class="location_carburant">carburant</div>
                     <div class="more_carburant"><i class="fa fa-info-circle" aria-hidden="true"
                         (click)="work_carburant()"></i></div>
-                    <div class="icon_carburant">
+                        <br/><br/><br/>
+                    <div class="icon_carburantStat">
                       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-closed-fill"
                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -1018,23 +1010,16 @@
                       </svg>
                     </div>
                     <ul class="forecast_carburant">
+                     <br/>
                       <li>
-                        <div class="day">Sunday</div>
+                        
                         <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
                         </div>
                       </li>
                       <li>
-                        <div class="day">Sunday
-                        </div>
+                        <div class="day">Total action</div>
                         <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="day">Sunday</div>
-                        <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
+                          {{total_Ac_carburant}}
                         </div>
                       </li>
                     </ul>
@@ -1148,7 +1133,8 @@
                     <div class="location_entretien">entretien</div>
                     <div class="more_entretien"><i class="fa fa-info-circle" aria-hidden="true"
                         (click)="work_entretien()"></i></div>
-                    <div class="icon_entretien">
+                        <br/><br/><br/>
+                    <div class="icon_entretienStat">
 
                       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tools" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
@@ -1159,25 +1145,19 @@
                       </svg>
                     </div>
                     <ul class="forecast_entretien">
-                      <li>
-                        <div class="day">Sunday</div>
-                        <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="day">Sunday</div>
-                        <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="day">Sunday</div>
-                        <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
-                      </li>
-                    </ul>
+                      <br/>
+                       <li>
+                         
+                         <div class="temperature">
+                         </div>
+                       </li>
+                       <li>
+                         <div class="day">Total action</div>
+                         <div class="temperature">
+                          {{total_Ac_entretien}}
+                         </div>
+                       </li>
+                     </ul>
                   </div>
 
                   <div class="back_stats_entretien " *ngIf="!condition_entretien">
@@ -1256,7 +1236,8 @@
                     <div class="location_depense">Depense</div>
                     <div class="more_depense"><i class="fa fa-info-circle" aria-hidden="true"
                         (click)="work_depense()"></i></div>
-                    <div class="icon_depense"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack"
+                        <br/><br/><br/>
+                    <div class="icon_depenseStat"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack"
                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z" />
                         <path fill-rule="evenodd"
@@ -1264,26 +1245,20 @@
                         <path
                           d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
                       </svg></div>
-                    <ul class="forecast_depense">
-                      <li>
-                        <div class="day">Sunday</div>
-                        <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="day">Sunday</div>
-                        <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="day">Sunday</div>
-                        <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
-                      </li>
-                    </ul>
+                      <ul class="forecast_depense">
+                        <br/>
+                         <li>
+                           
+                           <div class="temperature">
+                           </div>
+                         </li>
+                         <li>
+                           <div class="day">Total action</div>
+                           <div class="temperature">
+                            {{total_Ac_depense}}
+                           </div>
+                         </li>
+                       </ul>
                   </div>
 
                   <div class="back_stats_depense " *ngIf="!condition_depense && second_depense">
@@ -1448,7 +1423,8 @@
                     <div class="location_trajet">Trajet</div>
                     <div class="more_trajet"><i class="fa fa-info-circle" aria-hidden="true"
                         (click)="work_trajet()"></i></div>
-                    <div class="icon_trajet">
+                        <br/><br/><br/>
+                    <div class="icon_trajetStat">
                       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-truck" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -1456,25 +1432,19 @@
                       </svg>
                     </div>
                     <ul class="forecast_trajet">
-                      <li>
-                        <div class="day">Sunday</div>
-                        <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="day">Sunday</div>
-                        <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="day">Sunday</div>
-                        <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
-                      </li>
-                    </ul>
+                      <br/>
+                       <li>
+                         
+                         <div class="temperature">
+                         </div>
+                       </li>
+                       <li>
+                         <div class="day">Total action</div>
+                         <div class="temperature">
+                          {{total_Ac_trajet}}
+                         </div>
+                       </li>
+                     </ul>
                   </div>
 
                   <div class="back_stats_trajet " *ngIf="!condition_trajet">
@@ -1547,29 +1517,24 @@
                     <div class="location_odometer">Odometer</div>
                     <div class="more_odometer"><i class="fa fa-info-circle" aria-hidden="true"
                         (click)="work_odometer()"></i></div>
-                    <div class="icon_odometer">
+                        <br/><br/><br/>
+                    <div class="icon_odometerStat">
                       <i class="fas fa-tachometer-alt"></i>
                     </div>
                     <ul class="forecast_odometer">
-                      <li>
-                        <div class="day">Sunday</div>
-                        <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="day">Sunday</div>
-                        <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="day">Sunday</div>
-                        <div class="temperature">
-                          <i class="fa fa-cloud" aria-hidden="true"></i>8<sup>o</sup>
-                        </div>
-                      </li>
-                    </ul>
+                      <br/>
+                       <li>
+                         
+                         <div class="temperature">
+                         </div>
+                       </li>
+                       <li>
+                         <div class="day">Total action</div>
+                         <div class="temperature">
+                          {{total_Ac_odometer}}
+                         </div>
+                       </li>
+                     </ul>
                   </div>
 
                   <div class="back_stats_odometer " *ngIf="!condition_odometer">
