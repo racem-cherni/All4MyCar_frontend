@@ -141,7 +141,7 @@
                   </p-table>
 
                 </div>
-                <div *ngIf="Allhistorique.length >3">
+                <div *ngIf="Allhistorique.length >0">
                   <br>
                   <button pButton pRipple type="button" label="Afficher tous"
                     class="p-button-rounded p-button-secondary" (click)="showhistoriqueDialog()"></button></div>
@@ -264,7 +264,8 @@
           <div class="row">
             <div class="table-responsive ">
               <p-table #dt [value]="Allhistoriquebyvehicule" [rowHover]="true" [loading]="loading" [filterDelay]="0">
-                <ng-template pTemplate="body" let-clt *ngIf="historique !== null">
+
+                <ng-template pTemplate="body" let-clt *ngIf="Allhistoriquebyvehicule !== null">
                   <tr *ngIf="clt.carburant!== null">
 
                     <td>
@@ -289,7 +290,7 @@
                       &nbsp;
 
                       <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                        (click)="deleteclient()" pTooltip="supprimer"></button>
+                        (click)="deletecarburanthistorique(clt)" pTooltip="supprimer"></button>
                     </td>
                   </tr>
                   <tr *ngIf="clt.entretien !== null">
@@ -319,7 +320,7 @@
                       &nbsp;
 
                       <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                        (click)="deleteclient()" pTooltip="supprimer"></button>
+                        (click)="deleteentretienhistorique(clt)" pTooltip="supprimer"></button>
                     </td>
 
                   </tr>
@@ -351,7 +352,7 @@
                       &nbsp;
 
                       <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                        (click)="deleteclient()" pTooltip="supprimer"></button>
+                        (click)="deletetrajethistorique(clt)" pTooltip="supprimer"></button>
                     </td>
 
                   </tr>
@@ -375,7 +376,7 @@
                       &nbsp;
 
                       <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                        (click)="deleteclient()" pTooltip="supprimer"></button>
+                        (click)="deleteadometerhistorique(clt)" pTooltip="supprimer"></button>
                     </td>
                   </tr>
                   <tr *ngIf="clt.depense!== null">
@@ -403,12 +404,12 @@
                       &nbsp;
 
                       <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                        (click)="deleteclient()" pTooltip="supprimer"></button>
+                        (click)="deletedepensehistorique(clt)" pTooltip="supprimer"></button>
                     </td>
                   </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage">
-                  <tr>
+                  <tr *ngIf="selectvec_carburant == null">
                     <td colspan="8" class="cvn">Aucune voiture choisie</td>
                   </tr>
                 </ng-template>
@@ -934,7 +935,7 @@
                      <ul class="forecast_total">
                      <br/>
                       <li>
-                        
+
                         <div class="temperature">
                         </div>
                       </li>
@@ -1012,7 +1013,7 @@
                     <ul class="forecast_carburant">
                      <br/>
                       <li>
-                        
+
                         <div class="temperature">
                         </div>
                       </li>
@@ -1042,7 +1043,7 @@
                         <div class="day">Remplis/mois</div>
                         <div class="temperature">
                           <div *ngIf="nbr_carburantMois !== 0 && nbr_carburantMois !== null">{{nbr_carburantMoisS}}</div>
-                          <div *ngIf="nbr_carburantMois == 0 || nbr_carburantMois == null">n/a </div>  
+                          <div *ngIf="nbr_carburantMois == 0 || nbr_carburantMois == null">n/a </div>
                                               </div>
                       </li>
                       <li>
@@ -1097,14 +1098,14 @@
                           <div *ngIf="depense_moy_carburant == 0 || depense_moy_carburant == null">n/a </div>
                         </div>
                       </li>
-                      
+
                       <li>
                         <div class="day">Dep/mois</div>
                         <div class="temperature">
                           <div *ngIf="depense_carburantMois !== 0 && depense_carburantMois !== null">
                             {{depense_carburantMoisS}} &nbsp;dt</div>
                           <div *ngIf="depense_carburantMois == 0 || depense_carburantMois == null">n/a </div>
-                        
+
                         </div>
                       </li>
 
@@ -1147,7 +1148,7 @@
                     <ul class="forecast_entretien">
                       <br/>
                        <li>
-                         
+
                          <div class="temperature">
                          </div>
                        </li>
@@ -1248,7 +1249,7 @@
                       <ul class="forecast_depense">
                         <br/>
                          <li>
-                           
+
                            <div class="temperature">
                            </div>
                          </li>
@@ -1434,7 +1435,7 @@
                     <ul class="forecast_trajet">
                       <br/>
                        <li>
-                         
+
                          <div class="temperature">
                          </div>
                        </li>
@@ -1524,7 +1525,7 @@
                     <ul class="forecast_odometer">
                       <br/>
                        <li>
-                         
+
                          <div class="temperature">
                          </div>
                        </li>
@@ -1619,6 +1620,7 @@
 
 
 
-
+<!--
 
 <p-confirmDialog [style]="{width: '500px'}"></p-confirmDialog>
+-->

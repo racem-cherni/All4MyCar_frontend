@@ -373,16 +373,61 @@ export class CarnetEntretienComponent implements OnInit {
 
   }
   deleteclient() {
-    // this.historiqueDialog = false ;
-    this.confirmationService.confirm({
-      message: 'Etes-vous sûr que vous voulez supprimer  ' + '?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
 
-      }
-    });
-  }
+ }
+ deletecarburanthistorique(his : Historique){
+this.carnetentretienService.removehistorique(his.id).subscribe(data =>{console.log(data); this.carnetentretienService.getHistoriqueByVehicule(this.selectvec_carburant.id)
+  .subscribe((data) => { this.Allhistoriquebyvehicule = data, console.log(data), this.loading = false;}, error => console.log(error));
+  this.messageService.add({ severity: 'error', summary: 'Suppression', detail: 'carburant supprimé ' });
+  this.carnetentretienService.getPremiersHistorique()
+  .subscribe((data) => { this.historique = data, console.log(data), this.loading = false; }, error => console.log(error));
+});
+this.carnetentretienService.removecarburant(his.carburant.id).subscribe(data => console.log(data));
+
+ }
+ deleteentretienhistorique(his : Historique){
+  this.carnetentretienService.removehistorique(his.id).subscribe(data =>{console.log(data); this.carnetentretienService.getHistoriqueByVehicule(this.selectvec_carburant.id)
+    .subscribe((data) => { this.Allhistoriquebyvehicule = data, console.log(data), this.loading = false; }, error => console.log(error));
+    this.messageService.add({ severity: 'error', summary: 'Suppression', detail: 'entretien supprimé ' });
+    this.carnetentretienService.getPremiersHistorique()
+    .subscribe((data) => { this.historique = data, console.log(data), this.loading = false; }, error => console.log(error));
+  });
+  this.carnetentretienService.removeentretien(his.entretien.id).subscribe(data => console.log(data));
+
+ }
+ deletetrajethistorique(his : Historique){
+  this.carnetentretienService.removehistorique(his.id).subscribe(data =>{console.log(data); this.carnetentretienService.getHistoriqueByVehicule(this.selectvec_carburant.id)
+    .subscribe((data) => { this.Allhistoriquebyvehicule = data, console.log(data), this.loading = false;}, error => console.log(error));
+    this.messageService.add({ severity: 'error', summary: 'Suppression', detail: 'trajet supprimé ' });
+    this.carnetentretienService.getPremiersHistorique()
+    .subscribe((data) => { this.historique = data, console.log(data), this.loading = false; }, error => console.log(error));
+  });
+  this.carnetentretienService.removetrajet(his.trajet.id).subscribe(data => console.log(data));
+
+ }
+
+ deleteadometerhistorique(his : Historique){
+  this.carnetentretienService.removehistorique(his.id).subscribe(data =>{console.log(data); this.carnetentretienService.getHistoriqueByVehicule(this.selectvec_carburant.id)
+    .subscribe((data) => { this.Allhistoriquebyvehicule = data, console.log(data), this.loading = false;}, error => console.log(error));
+    this.messageService.add({ severity: 'error', summary: 'Suppression', detail: 'odemeter supprimé ' });
+    this.carnetentretienService.getPremiersHistorique()
+    .subscribe((data) => { this.historique = data, console.log(data), this.loading = false; }, error => console.log(error));
+  });
+  this.carnetentretienService.removeodometer(his.odometer.id).subscribe(data => console.log(data));
+
+ }
+
+ deletedepensehistorique(his : Historique){
+  this.carnetentretienService.removehistorique(his.id).subscribe(data =>{console.log(data); this.carnetentretienService.getHistoriqueByVehicule(this.selectvec_carburant.id)
+    .subscribe((data) => { this.Allhistoriquebyvehicule = data, console.log(data), this.loading = false;}, error => console.log(error));
+    this.messageService.add({ severity: 'error', summary: 'Suppression', detail: 'depense supprimé ' });
+    this.carnetentretienService.getPremiersHistorique()
+    .subscribe((data) => { this.historique = data, console.log(data), this.loading = false; }, error => console.log(error));
+  });
+  this.carnetentretienService.removedepense(his.depense.id).subscribe(data => console.log(data));
+
+ }
+
   setspecialisation() {
     this.selectspec = this.specialisationss.toString();
     console.log(this.selectspec);
@@ -675,7 +720,12 @@ export class CarnetEntretienComponent implements OnInit {
     console.log(this.form_entretien.value);
     this.carnetentretienService.ajouter_entretien(this.carnet_entretien).subscribe(
       data => {
-        console.log(data);
+        console.log(data);this.carnetentretienService.getPremiersHistorique()
+        .subscribe((data) => { this.historique = data, console.log(data), this.loading = false; }, error => console.log(error));
+        this.carnetentretienService.getAllHistorique()
+        .subscribe((data) => { this.Allhistorique = data, console.log(data) }, error => console.log(error));
+        this.carnetentretienService.getPremiersHistorique()
+      .subscribe((data) => { this.historique = data, console.log(data), this.loading = false; }, error => console.log(error));
       });
     this.form_entretien.reset();
     this.entretienDialog = false;
@@ -689,7 +739,12 @@ export class CarnetEntretienComponent implements OnInit {
     console.log(this.form_carburant.value);
     this.carnetentretienService.ajouter_carburant(this.carnet_carbutant).subscribe(
       data => {
-        console.log(data);
+        console.log(data);this.carnetentretienService.getPremiersHistorique()
+        .subscribe((data) => { this.historique = data, console.log(data), this.loading = false; }, error => console.log(error));
+        this.carnetentretienService.getAllHistorique()
+        .subscribe((data) => { this.Allhistorique = data, console.log(data) }, error => console.log(error));
+        this.carnetentretienService.getPremiersHistorique()
+      .subscribe((data) => { this.historique = data, console.log(data), this.loading = false; }, error => console.log(error));
       });
     //  this.form_carburant.reset();
     this.carburantFormDirective.reset();
@@ -704,7 +759,12 @@ export class CarnetEntretienComponent implements OnInit {
     console.log(this.form_depense.value);
     this.carnetentretienService.ajouter_depense(this.carnet_depense).subscribe(
       data => {
-        console.log(data);
+        console.log(data);this.carnetentretienService.getPremiersHistorique()
+        .subscribe((data) => { this.historique = data, console.log(data), this.loading = false; }, error => console.log(error));
+        this.carnetentretienService.getAllHistorique()
+        .subscribe((data) => { this.Allhistorique = data, console.log(data) }, error => console.log(error));
+        this.carnetentretienService.getPremiersHistorique()
+      .subscribe((data) => { this.historique = data, console.log(data), this.loading = false; }, error => console.log(error));
       });
     this.form_depense.reset();
     this.depenseDialog = false;
@@ -718,7 +778,12 @@ export class CarnetEntretienComponent implements OnInit {
     console.log(this.form_trajet.value);
     this.carnetentretienService.ajouter_trajet(this.carnet_trajet).subscribe(
       data => {
-        console.log(data);
+        console.log(data);this.carnetentretienService.getPremiersHistorique()
+        .subscribe((data) => { this.historique = data, console.log(data), this.loading = false; }, error => console.log(error));
+        this.carnetentretienService.getAllHistorique()
+        .subscribe((data) => { this.Allhistorique = data, console.log(data) }, error => console.log(error));
+        this.carnetentretienService.getPremiersHistorique()
+      .subscribe((data) => { this.historique = data, console.log(data), this.loading = false; }, error => console.log(error));
       });
     this.form_trajet.reset();
     this.trajetDialog = false;
@@ -733,7 +798,12 @@ export class CarnetEntretienComponent implements OnInit {
     console.log(this.form_odometer.value);
     this.carnetentretienService.ajouter_odometer(this.carnet_odometer).subscribe(
       data => {
-        console.log(data);
+        console.log(data);this.carnetentretienService.getPremiersHistorique()
+        .subscribe((data) => { this.historique = data, console.log(data), this.loading = false; }, error => console.log(error));
+        this.carnetentretienService.getAllHistorique()
+        .subscribe((data) => { this.Allhistorique = data, console.log(data) }, error => console.log(error));
+        this.carnetentretienService.getPremiersHistorique()
+      .subscribe((data) => { this.historique = data, console.log(data), this.loading = false; }, error => console.log(error));
       });
     this.form_odometer.reset();
     this.odometerDialog = false;
@@ -865,16 +935,16 @@ export class CarnetEntretienComponent implements OnInit {
   /////////////////////
   ////////////////////donnée entretien
   nbr_entretien: number = 0; nbr_entretienMois: number = 0; depense_entretien: number = 0;
-  depense_entretienMois: number = 0; distance_moy_entretien: number = 0;total_Ac_entretien: number=0; 
-  
+  depense_entretienMois: number = 0; distance_moy_entretien: number = 0;total_Ac_entretien: number=0;
+
   distance_moy_entretienS: String;nbr_entretienMoisS:String;depense_entretienMoisS:String;
 
   entretien_forstats: EntretienCarnet[];entretien_fortotal: EntretienCarnet[];
   ////////////////////
   ////////////////////donnée odometer
   kilometrage:number=0;kilometrage_jour:number=0;kilometrage_semaine:number=0;kilometrage_mois:number=0;
-  kilometrage_annee:number=0;total_Ac_odometer: number=0; 
-  
+  kilometrage_annee:number=0;total_Ac_odometer: number=0;
+
   kilometrage_jourS:String;kilometrage_semaineS:String;kilometrage_moisS:String;
   kilometrage_anneeS:String;kilometrageS:String;
 
@@ -882,7 +952,7 @@ export class CarnetEntretienComponent implements OnInit {
   ////////////////////
   ////////////////////donnée depense
   depense_total: number = 0; depense_fine: number = 0; depense_insurance: number = 0; depense_mot: number = 0;
-  depense_parking: number = 0; depense_Tax: number = 0; depense_troll: number = 0;total_Ac_depense: number=0; 
+  depense_parking: number = 0; depense_Tax: number = 0; depense_troll: number = 0;total_Ac_depense: number=0;
 
   nbr_depense_total: number = 0; nbr_depense_fine: number = 0; nbr_depense_insurance: number = 0; nbr_depense_mot: number = 0;
   nbr_depense_parking: number = 0; nbr_depense_Tax: number = 0; nbr_depense_troll: number = 0;
@@ -890,14 +960,14 @@ export class CarnetEntretienComponent implements OnInit {
   depense_forstats: DepenseCarnet[];depense_fortotal: DepenseCarnet[];
   ////////////////////
   ////////////////////donnée trajet
-  nbr_trajet : number = 0; kilometre_trajet: number = 0; taxe_trajet: number = 0;total_Ac_trajet: number=0; 
+  nbr_trajet : number = 0; kilometre_trajet: number = 0; taxe_trajet: number = 0;total_Ac_trajet: number=0;
   moy_vitesse_trajet = 0;temp_trajet: number = 0;moy_vitesse_trajetS:String;
 
   trajet_forstats: TrajetCarnet[];trajet_fortotal: TrajetCarnet[];
   ////////////////////
   ////////////////////donnée total
   total_action : number=0;pourcentage_carburant:number;pourcentage_odometer:number;pourcentage_trajet:number;
-  pourcentage_entretien:number;pourcentage_depense:number;total_Ac_total: number=0; 
+  pourcentage_entretien:number;pourcentage_depense:number;total_Ac_total: number=0;
 
   pourcentage_carburantS:String="";pourcentage_odometerS:String="";pourcentage_trajetS:String="";
   pourcentage_entretienS:String="";pourcentage_depenseS:String="";
@@ -912,7 +982,7 @@ export class CarnetEntretienComponent implements OnInit {
     this.selectedVehiculeStats = this.selectedVehicule_stats;
     console.log(this.periode);
     console.log(this.selectedVehiculeStats.id);
-    ///////////////////////////statistique_carburant///////////////// 
+    ///////////////////////////statistique_carburant/////////////////
     this.nbr_carburant = 0;
     this.qte_carburant = 0;
     this.nbr_distanceParCarburant = 0;
@@ -958,7 +1028,7 @@ export class CarnetEntretienComponent implements OnInit {
       this.carnetentretienService.getDepense_carburantMois(this.selectedVehiculeStats.id, this.periode)
       .subscribe((data) => {this.depense_carburantMois= data, console.log(data);
       this.depense_carburantMoisS=this.depense_carburantMois.toFixed(2)});
-     
+
       this.carnetentretienService.getRemplis_carburantMois(this.selectedVehiculeStats.id, this.periode)
       .subscribe((data) => {this.nbr_carburantMois= data, console.log(data);
       this.nbr_carburantMoisS=this.nbr_carburantMois.toFixed(2)});
@@ -1111,7 +1181,8 @@ export class CarnetEntretienComponent implements OnInit {
         this.trajet_fortotal = data, console.log(data);
           this.total_Ac_trajet= this.trajet_fortotal.length;
       });
-    ///////////////////////////statistique_odometer///////////////// 
+    ///////////////////////////statistique_odometer/////////////////
+    ///////////////////////////statistique_odometer/////////////////
       this.kilometrage=0;this.kilometrage_jour=0;this.kilometrage_semaine=0;
       this.kilometrage_mois=0;this.kilometrage_annee=0;
 
@@ -1149,7 +1220,7 @@ export class CarnetEntretienComponent implements OnInit {
 
   }
 
-  
+
 
 
   /////////////////////////////////////////////////////////////////////////////Historique/////////////////////////

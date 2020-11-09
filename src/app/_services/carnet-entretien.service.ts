@@ -155,4 +155,37 @@ export class CarnetEntretienService {
     });
   }
 
+  removehistorique(idhistorique : number) : Observable<any> {
+    const searchModelUrl = `${this.baseUrluser}/deletehistorique/${idhistorique}`;
+    return this.http.delete(searchModelUrl, {
+      headers: this.header, responseType: 'text'});
+
+
+  }
+  removecarburant(idcarburant : number) : Observable<any> {
+    const searchModelUrl = `${this.baseUrluser}/deletecarburant/${idcarburant}`;
+    return this.http.delete(searchModelUrl, {
+      headers: this.header, responseType: 'text'});
+}
+removeentretien(identretien : number) : Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/deleteentretien/${identretien}`;
+  return this.http.delete(searchModelUrl, {
+    headers: this.header, responseType: 'text'});
+}
+removetrajet(idtrajet : number) : Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/deletetrajet/${idtrajet}`;
+  return this.http.delete(searchModelUrl, {
+    headers: this.header, responseType: 'text'});
+}
+removeodometer(idodometer : number) : Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/deleteodometer/${idodometer}`;
+  return this.http.delete(searchModelUrl, {
+    headers: this.header, responseType: 'text'});
+}
+removedepense(iddepense : number) : Observable<any> {
+  const searchModelUrl = `${this.baseUrluser}/deletedepense/${iddepense}`;
+  return this.http.delete(searchModelUrl, {
+    headers: this.header, responseType: 'text'});
+}
+
 }
